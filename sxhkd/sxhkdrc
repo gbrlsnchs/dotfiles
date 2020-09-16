@@ -3,8 +3,8 @@
 #
 
 # terminal emulator and browser
-super + Return
-	onewin fzfmenu
+super + {_,shift + } Return
+	{alacritty --working-directory ~/dev,chromium --profile-directory=Default}
 
 # program launcher
 super + @space
