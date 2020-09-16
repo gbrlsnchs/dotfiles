@@ -1,11 +1,11 @@
 export EDITOR=$(which nvim)
 
 # cargo
-export PATH="$HOME/.cargo/bin:$PATH"
+path+=("~/.cargo/bin")
 
 # npm
 export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
-export PATH="$PATH:$NPM_CONFIG_PREFIX/bin"
+path+=("$NPM_CONFIG_PREFIX/bin")
 
 export FZF_DEFAULT_OPTS='
   --color fg:#D8DEE9,bg:#2E3440,hl:#A3BE8C,fg+:#D8DEE9,bg+:#434C5E,hl+:#A3BE8C
@@ -17,7 +17,8 @@ export XSECURELOCK_NO_COMPOSITE=1
 export XSECURELOCK_NO_XRANDR=1
 
 # homemade scripts
-export PATH="$PATH:$HOME/scripts"
+path+=("~/scripts")
+typeset -U path
 
 # custom user completions
 fpath+=$XDG_DATA_HOME/zfunc
