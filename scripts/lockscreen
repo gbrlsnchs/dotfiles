@@ -1,5 +1,3 @@
 #!/bin/sh
 
-dunstctl set-paused true
-xsecurelock
-dunstctl set-paused false
+dunstctl set-paused true && xsecurelock; dunstctl set-paused false
