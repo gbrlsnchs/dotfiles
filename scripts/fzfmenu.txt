@@ -1,0 +1,6 @@
+chromium
+discord
+lockscreen
+printscreen
+zoom
+terminal

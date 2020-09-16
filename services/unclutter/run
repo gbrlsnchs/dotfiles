@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if [ -z $DISPLAY ] ; then
+  exit 1
+fi
+
+exec 2>&1
+exec unclutter -idle 1

@@ -1,0 +1,5 @@
+xset s 300 5
+xrdb ~/.Xresources
+
+# Start session services, which may include WM, hotkey daemon, screen locker, etc.
+exec dbus-run-session -- runsvdir -P ~/sv

@@ -1,0 +1,69 @@
+targets:
+- alacritty
+- bspwm
+- dunst
+- fontconfig
+- git
+- neovim
+- picom
+- polybar
+- scripts
+- services
+- ssh
+- sxhkd
+- xdg
+- xorg
+- zsh
+options:
+  neovim:
+    link: nvim
+  scripts:
+    useHome: true
+  services:
+    link: sv
+    targets:
+    - bspwm
+    - picom
+    - sxhkd
+    - unclutter
+    useHome: true
+  ssh:
+    link: .ssh
+    targets:
+    - config
+    useHome: true
+  xdg:
+    targets:
+    - user-dirs.dirs
+    flatten: true
+  xorg:
+    targets:
+    - Xresources
+    - xinitrc
+    options:
+      Xresources:
+        link: .Xresources
+      xinitrc:
+        link: .xinitrc
+    flatten: true
+    useHome: true
+  zsh:
+    targets:
+    - plugins.txt
+    - zlogin
+    - zprofile
+    - zshenv
+    - zshrc
+    options:
+      plugins.txt:
+        link: .zsh_plugins.txt
+      zlogin:
+        link: .zlogin
+      zprofile:
+        link: .zprofile
+      zshenv:
+        link: .zshenv
+      zshrc:
+        link: .zshrc
+    flatten: true
+    useHome: true

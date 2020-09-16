@@ -1,0 +1,15 @@
+[user]
+	name = Gabriel Sanches
+	email = gabriel@gsr.dev
+
+[core]
+	editor = /bin/nvim
+
+[init]
+	defaultbranch = trunk
+
+[pull]
+	rebase = true
+
+[url "git@github.com:"]
+	insteadOf = https://github.com/

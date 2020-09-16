@@ -1,0 +1,4 @@
+#!/bin/sh
+
+exec 2>&1
+exec xss-lock -n /usr/libexec/xsecurelock/dimmer -l -- lockscreen

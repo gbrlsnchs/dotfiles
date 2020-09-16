@@ -1,0 +1,15 @@
+#!/bin/python3
+
+import os
+import subprocess
+import sys
+
+args = sys.argv
+
+if len(args) == 1:
+    sys.exit()
+
+os.setsid()
+os.umask(0)
+
+subprocess.Popen([args[1], *args[2:]])

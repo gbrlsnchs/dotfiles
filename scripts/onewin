@@ -1,0 +1,12 @@
+#!/bin/sh
+
+xdotool search --onlyvisible --classname $1 windowkill && exit
+
+win_id=$(xdotool search --classname $1)
+
+if [ -z "${win_id}" ] ; then
+  alacritty --title $1 --class $1 --dimensions 40 8 --command $1 && exit
+fi
+
+xdotool set_desktop_for_window $win_id $(xdotool get_desktop) \
+  && xdotool windowactivate $win_id

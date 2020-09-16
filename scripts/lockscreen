@@ -1,0 +1,5 @@
+#!/bin/sh
+
+dunstctl set-paused true
+xsecurelock
+dunstctl set-paused false

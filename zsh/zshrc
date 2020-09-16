@@ -1,0 +1,9 @@
+source <(antibody init)
+antibody bundle < ~/.zsh_plugins.txt
+
+if test -d /usr/share/doc/fzf ; then
+  antibody bundle /usr/share/doc/fzf/completion.zsh
+  antibody bundle /usr/share/doc/fzf/key-bindings.zsh
+fi
+
+autoload -U compinit && compinit
