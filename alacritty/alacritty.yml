@@ -32,3 +32,5 @@ colors:
 
 font:
   size: 12
+  normal:
+    family: monospace
