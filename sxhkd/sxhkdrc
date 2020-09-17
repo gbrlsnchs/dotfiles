@@ -4,7 +4,7 @@
 
 # terminal emulator and browser
 super + {_,shift + } Return
-	{alacritty --working-directory ~/dev,chromium --profile-directory=Default}
+	{alacritty --working-directory ~/dev,chromium}
 
 # program launcher
 super + @space
