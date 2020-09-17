@@ -1,7 +1,7 @@
 export EDITOR=$(which nvim)
 
 # cargo
-path+=("~/.cargo/bin")
+path+=("$HOME/.cargo/bin")
 
 # npm
 export NPM_CONFIG_PREFIX="$XDG_DATA_HOME/npm"
@@ -20,8 +20,8 @@ export XSECURELOCK_NO_COMPOSITE=1
 export XSECURELOCK_NO_XRANDR=1
 
 # homemade scripts
-path+=("~/scripts")
+path+=("$HOME/scripts")
 typeset -U path
 
 # custom user completions
-fpath+=$XDG_DATA_HOME/zfunc
+fpath+=($XDG_DATA_HOME/zfunc)
