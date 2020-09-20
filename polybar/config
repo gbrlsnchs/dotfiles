@@ -51,7 +51,7 @@ font-0 = monospace:size=12;2
 
 modules-left = bspwm
 modules-center = xwindow
-modules-right = filesystem alsa xkeyboard cpu memory temperature eth date
+modules-right = filesystem cpu memory temperature alsa eth xkeyboard date
 
 wm-restack = bspwm
 override-redirect = false
@@ -63,7 +63,7 @@ cursor-scroll = ns-resize
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:40:...%
+label = %title:0:26:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -86,7 +86,7 @@ interval = 25
 mount-0 = /
 mount-1 = /boot
 
-label-mounted = %mountpoint%: %percentage_used%%
+label-mounted = %mountpoint%: %percentage_used:2%%
 label-mounted-foreground = ${colors.primary}
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
@@ -161,7 +161,7 @@ format-volume-foreground = ${colors.foreground-alt}
 label-volume = %percentage:3%%
 label-volume-foreground = ${colors.foreground}
 
-format-muted-prefix = "VOL "
+format-muted-prefix = "VOL"
 format-muted-foreground = ${colors.foreground-alt}
 label-muted = MUTE
 label-muted-foreground = ${colors.foreground}
