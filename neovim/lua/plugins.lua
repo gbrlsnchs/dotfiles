@@ -44,6 +44,7 @@ return require('packer').startup(function()
   use {
     'iamcco/markdown-preview.nvim',
     run = 'cd app && yarn install',
+    ft = {'markdown'},
     cmd = 'MarkdownPreview',
   }
 
