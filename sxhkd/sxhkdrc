@@ -6,9 +6,9 @@
 super + {_,shift + } Return
 	{alacritty --working-directory ~/dev,chromium}
 
-# program launcher
+# lock screen
 super + @space
-	dmenu_run
+	lockscreen
 
 # make sxhkd reload its configuration files:
 super + Escape
