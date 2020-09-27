@@ -8,7 +8,7 @@ super + {_,shift + } Return
 
 # lock screen
 super + @space
-	lockscreen
+	xset s activate
 
 # make sxhkd reload its configuration files:
 super + Escape
