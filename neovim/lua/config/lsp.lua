@@ -23,6 +23,10 @@ local function custom_attach()
   vim.cmd [[inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"]]
   vim.cmd [[inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"]]
 
+  vim.cmd [[augroup lsp]]
+  vim.cmd       [[au! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
+  vim.cmd [[augroup END]]
+
   --- Custom attachments
   completion.on_attach()
   diagnostic.on_attach()
