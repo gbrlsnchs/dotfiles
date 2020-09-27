@@ -4,6 +4,7 @@
 
 [core]
 	editor = /bin/nvim
+	pager = nvim -c 'Man! | setf git'
 
 [init]
 	defaultbranch = trunk
@@ -13,3 +14,5 @@
 
 [url "git@github.com:"]
 	insteadOf = https://github.com/
+[color]
+	pager = no
