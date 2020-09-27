@@ -1,17 +1,13 @@
 [user]
 	name = Gabriel Sanches
 	email = gabriel@gsr.dev
-
 [core]
 	editor = /bin/nvim
 	pager = nvim -c 'Man! | setf git'
-
 [init]
 	defaultbranch = trunk
-
 [pull]
 	rebase = true
-
 [url "git@github.com:"]
 	insteadOf = https://github.com/
 [color]
