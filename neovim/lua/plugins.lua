@@ -35,6 +35,7 @@ return require('packer').startup(function()
   use 'moll/vim-bbye'
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
+  use 'lambdalisue/suda.vim'
   use {
     'norcalli/nvim-colorizer.lua',
     config = function()
