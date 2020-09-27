@@ -14,3 +14,9 @@
 	insteadOf = https://github.com/
 [color]
 	pager = no
+[merge]
+	tool = fugitive
+[mergetool]
+	keepBackup = false
+[mergetool "fugitive"]
+	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
