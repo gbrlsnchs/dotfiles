@@ -7,3 +7,6 @@ if test -d /usr/share/doc/fzf ; then
 fi
 
 autoload -U compinit && compinit
+
+# aws-cli
+complete -C $(which aws_completer) aws
