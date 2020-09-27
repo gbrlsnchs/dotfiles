@@ -13,7 +13,7 @@ local function custom_attach()
   vim.cmd [[nnoremap <buffer><silent> gd                <Cmd>lua vim.lsp.buf.declaration()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> <C-]>             <Cmd>lua vim.lsp.buf.definition()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> K                 <Cmd>lua vim.lsp.buf.hover()<CR>]]
-  vim.cmd [[nnoremap <buffer><silent> <C-h>             <Cmd>lua require('jumpLoc').openLineDiagnostics()]]
+  vim.cmd [[nnoremap <buffer><silent> <C-h>             <Cmd>lua require('jumpLoc').openLineDiagnostics()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> gD                <Cmd>lua vim.lsp.buf.implementation()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> <C-k>             <Cmd>lua vim.lsp.buf.signature_help()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> 1gD               <Cmd>lua vim.lsp.buf.type_definition()<CR>]]
