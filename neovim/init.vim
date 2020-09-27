@@ -21,3 +21,5 @@ set wrapmargin=0
 set wrap
 set list lcs+=tab:‣\ ,eol:↴,trail:␣
 set timeoutlen=500
+set splitright
+set splitbelow
