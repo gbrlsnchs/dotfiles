@@ -10,3 +10,6 @@ autoload -U compinit && compinit
 
 # aws-cli
 complete -C $(which aws_completer) aws
+
+# This is safe as long suda.vim is installed with smart edit on.
+alias visudo="nvim /etc/sudoers"
