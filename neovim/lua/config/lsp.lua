@@ -33,6 +33,7 @@ local function custom_attach()
 end
 
 local configs = {
+  cssls = {},
   gopls = {},
   tsserver = {},
 }
