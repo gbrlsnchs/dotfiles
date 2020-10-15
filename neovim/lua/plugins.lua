@@ -29,7 +29,7 @@ return require('packer').startup(function()
   }
 
   --- Git
-  use 'tpope/vim-fugitive'
+  -- I'm trying to move to neovim-remote with integrated terminal.
 
   --- Utils
   use 'moll/vim-bbye'
