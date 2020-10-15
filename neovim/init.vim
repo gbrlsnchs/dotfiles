@@ -24,3 +24,4 @@ set timeoutlen=500
 set splitright
 set splitbelow
 set tabstop=2 shiftwidth=2
+set hidden
