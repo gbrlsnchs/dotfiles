@@ -35,6 +35,15 @@ end
 local configs = {
   cssls = {},
   gopls = {},
+  rust_analyzer = {
+    setting = {
+      ['rust-analyzer'] = {
+        checkOnSave = {
+          command = 'clipply',
+        },
+      },
+    },
+  },
   tsserver = {},
 }
 
