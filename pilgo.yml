@@ -27,6 +27,7 @@ options:
     - picom
     - sxhkd
     - unclutter
+    - xss-lock
     useHome: true
   ssh:
     link: .ssh
