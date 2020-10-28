@@ -29,3 +29,4 @@ set splitright
 set splitbelow
 set tabstop=2 shiftwidth=2
 set hidden
+set foldlevel=99
