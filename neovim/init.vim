@@ -4,6 +4,7 @@ let $VISUAL = "nvr -cc split --remote-wait +'setlocal bufhidden=wipe'"
 lua require('init')
 
 set nocompatible
+set noshowmode
 set number
 set signcolumn=yes:2
 set relativenumber

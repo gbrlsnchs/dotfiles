@@ -49,6 +49,12 @@ return require('packer').startup(function()
     ft = {'markdown'},
     cmd = 'MarkdownPreview',
   }
+  use {
+    'itchyny/lightline.vim',
+    requires = {
+      {'itchyny/vim-gitbranch'},
+    },
+  }
 
   --- Syntax
   use {
