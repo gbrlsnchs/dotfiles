@@ -14,9 +14,11 @@
 	insteadOf = https://github.com/
 [color]
 	pager = no
+[diff]
+	tool = nvr
+[difftool "nvr"]
+	cmd = nvr -s -d $LOCAL $REMOTE
 [merge]
-	tool = fugitive
-[mergetool]
-	keepBackup = false
-[mergetool "fugitive"]
-	cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+	tool = nvr
+[mergetool "nvr"]
+	cmd = nvr -s -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
