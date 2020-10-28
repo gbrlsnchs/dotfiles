@@ -10,6 +10,10 @@ super + {_,shift + } Return
 super + @space
 	xset s activate
 
+# suspend
+super + Delete
+	sudo ZZZ
+
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
