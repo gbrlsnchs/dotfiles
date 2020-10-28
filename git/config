@@ -22,3 +22,7 @@
 	tool = nvr
 [mergetool "nvr"]
 	cmd = nvr -s -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
+[alias]
+	pushf = push --force-with-lease
+	sdiff = diff --staged
+	rsoft = reset --soft HEAD^
