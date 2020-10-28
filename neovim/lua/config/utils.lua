@@ -7,9 +7,6 @@ vim.cmd [[
 
 vim.g.mkdp_browserfunc = 'g:Open_browser'
 
--- suda.vim
-vim.g.suda_smart_edit = true
-
 -- lightline.vim
 vim.g.lightline = {
   colorscheme = 'nord',
