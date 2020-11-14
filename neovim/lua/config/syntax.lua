@@ -9,3 +9,5 @@ require('nvim-treesitter.configs').setup({
     enable = true,
   },
 })
+
+vim.cmd [[autocmd BufEnter *.toml setlocal filetype=toml]]
