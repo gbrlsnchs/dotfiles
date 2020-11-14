@@ -3,6 +3,8 @@ let $VISUAL = "nvr -cc split --remote-wait +'setlocal bufhidden=wipe'"
 
 lua require('init')
 
+syntax on
+
 set nocompatible
 set noshowmode
 set number
@@ -32,3 +34,6 @@ set splitbelow
 set tabstop=2 shiftwidth=2
 set hidden
 set foldlevel=99
+set spell
+
+autocmd TermOpen * setlocal nospell
