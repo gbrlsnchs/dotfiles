@@ -23,7 +23,7 @@ set backspace=2
 set virtualedit=block
 set expandtab
 set autoindent
-set tabstop=8
+set tabstop=4
 set shiftwidth=2
 set wrapmargin=0
 set wrap
