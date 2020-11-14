@@ -25,8 +25,9 @@ set expandtab
 set autoindent
 set tabstop=4
 set shiftwidth=2
-set wrapmargin=0
+set colorcolumn=100
 set wrap
+set linebreak
 set list lcs+=tab:‣\ ,eol:↴,trail:␣
 set timeoutlen=500
 set splitright
