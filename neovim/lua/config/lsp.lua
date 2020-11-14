@@ -36,10 +36,17 @@ local configs = {
   cssls = {},
   gopls = {},
   rust_analyzer = {
-    setting = {
+    settings = {
       ['rust-analyzer'] = {
         checkOnSave = {
           command = 'clipply',
+          overrideCommand = {
+            'cargo',
+            'clippy',
+            '--workspace',
+            '--message-format=json',
+            '--all-targets',
+          },
         },
       },
     },
