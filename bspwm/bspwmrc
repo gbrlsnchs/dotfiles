@@ -3,9 +3,12 @@
 feh --bg-scale $(xdg-user-dir PICTURES)/nord_void.png
 
 pkill polybar
-polybar --reload main &
+for m in $(polybar --list-monitors | cut -d":" -f1); do
+    MONITOR=$m polybar --reload main &
+done
 
-bspc monitor -d I II III IV V
+bspc monitor DP-0 -d 1 2 3 4 5
+bspc monitor DP-2 -d 6 7 8 9 0
 
 bspc config border_width         2
 bspc config window_gap           32
