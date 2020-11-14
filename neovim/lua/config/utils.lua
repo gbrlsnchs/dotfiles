@@ -19,6 +19,10 @@ vim.cmd [[
 ]]
 
 vim.g.lightline = {
+  enable = {
+    statusline = true,
+    tabline = true,
+  },
   colorscheme = 'nord',
   active = {
     left = {
