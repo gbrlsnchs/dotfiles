@@ -63,6 +63,7 @@ return require('packer').startup(function()
     'nvim-treesitter/nvim-treesitter',
     opt = true,
   }
+  use 'editorconfig/editorconfig-vim'
 
   --- Theme
   use 'arcticicestudio/nord-vim'
