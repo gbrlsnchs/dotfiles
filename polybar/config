@@ -176,6 +176,8 @@ format-prefix = "TEMP "
 format-prefix-foreground = ${colors.foreground-alt}
 
 format-warn = <label-warn>
+format-warn-prefix = "TEMP "
+format-warn-prefix-foreground = ${colors.foreground-alt}
 
 label = %temperature-c%
 label-warn = %temperature-c%
