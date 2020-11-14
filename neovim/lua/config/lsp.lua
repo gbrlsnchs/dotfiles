@@ -34,6 +34,40 @@ end
 
 local configs = {
   cssls = {},
+  diagnosticls = {
+    filetypes = {
+      'typescript',
+      'typescriptreact',
+      'typescript.tsx',
+    },
+    root_dir = nvim_lsp.util.root_pattern('package.json'),
+    init_options = {
+      formatters = {
+        ['prettier-ts'] = {
+          command = './node_modules/.bin/prettier',
+          args = {'--stdin-filepath', '%filename'},
+          rootPatterns = {'package.json'},
+          requiredFiles = {
+            '.prettierrc',
+            '.prettierrc.json',
+            '.prettierrc.yml',
+            '.prettierrc.yaml',
+            '.prettierrc.json5',
+            '.prettierrc.js',
+            '.prettierrc.cjs',
+            '.prettierrc.toml',
+            'prettier.config.js',
+            'prettier.config.cjs',
+          },
+        },
+      },
+      formatFiletypes = {
+        typescript = 'prettier-ts',
+        typescriptreact = 'prettier-ts',
+        ['typescript.tsx'] = 'prettier-ts',
+      },
+    },
+  },
   gopls = {},
   rust_analyzer = {
     settings = {
@@ -54,9 +88,20 @@ local configs = {
   tsserver = {},
 }
 
+-- Temporarily disable servers by adding their names here.
+local denylist = {
+  diagnosticls = true,
+}
+
 -- Add custom attach handler and register settings.
 for conf, settings in pairs(configs) do
+  if denylist[conf] then
+    goto continue
+  end
+
   settings.on_attach = custom_attach
 
   nvim_lsp[conf].setup(settings)
+
+  ::continue::
 end
