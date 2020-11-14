@@ -30,6 +30,7 @@ return require('packer').startup(function()
 
   --- Git
   -- I'm trying to move to neovim-remote with integrated terminal.
+  use 'airblade/vim-gitgutter'
 
   --- Utils
   use 'moll/vim-bbye'
