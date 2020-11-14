@@ -8,7 +8,7 @@ local completion = require('completion')
 local diagnostic = require('diagnostic')
 local nvim_lsp = require('nvim_lsp')
 
-local function custom_attach()
+local function custom_attach(client)
   --- Custom LSP keybindings
   vim.cmd [[nnoremap <buffer><silent> gd                <Cmd>lua vim.lsp.buf.declaration()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> <C-]>             <Cmd>lua vim.lsp.buf.definition()<CR>]]
@@ -28,8 +28,8 @@ local function custom_attach()
   vim.cmd [[augroup END]]
 
   --- Custom attachments
-  completion.on_attach()
-  diagnostic.on_attach()
+  completion.on_attach(client)
+  diagnostic.on_attach(client)
 end
 
 local configs = {
