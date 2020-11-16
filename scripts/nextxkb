@@ -1,0 +1,4 @@
+#!/bin/sh
+
+xkb-switch --next
+notify-send "Keyboard layout changed" "Current layout: $(xkb-switch)"
