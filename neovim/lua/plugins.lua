@@ -25,7 +25,12 @@ return require('packer').startup(function()
 
   --- Git
   -- I'm trying to move to neovim-remote with integrated terminal.
-  use 'airblade/vim-gitgutter'
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    }
+  }
 
   --- Utils
   use 'moll/vim-bbye'
