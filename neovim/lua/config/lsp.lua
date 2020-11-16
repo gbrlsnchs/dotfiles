@@ -1,19 +1,17 @@
 vim.cmd [[packadd vim-vsnip]]
 vim.cmd [[packadd vim-vsnip-integ]]
 vim.cmd [[packadd completion-nvim]]
-vim.cmd [[packadd diagnostic-nvim]]
 vim.cmd [[packadd nvim-lspconfig]]
 
 local completion = require('completion')
-local diagnostic = require('diagnostic')
-local nvim_lsp = require('nvim_lsp')
+local nvim_lsp = require('lspconfig')
 
 local function custom_attach(client)
   --- Custom LSP keybindings
   vim.cmd [[nnoremap <buffer><silent> gd                <Cmd>lua vim.lsp.buf.declaration()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> <C-]>             <Cmd>lua vim.lsp.buf.definition()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> K                 <Cmd>lua vim.lsp.buf.hover()<CR>]]
-  vim.cmd [[nnoremap <buffer><silent> <C-h>             <Cmd>lua require('jumpLoc').openLineDiagnostics()<CR>]]
+  vim.cmd [[nnoremap <buffer><silent> <C-h>             <Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> gD                <Cmd>lua vim.lsp.buf.implementation()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> <C-k>             <Cmd>lua vim.lsp.buf.signature_help()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> 1gD               <Cmd>lua vim.lsp.buf.type_definition()<CR>]]
@@ -27,10 +25,21 @@ local function custom_attach(client)
   vim.cmd       [[au! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
   vim.cmd [[augroup END]]
 
+  vim.cmd [[sign define LspDiagnosticsSignError text=🅴 texthl=LspDiagnosticsSignError linehl= numhl=]]
+  vim.cmd [[sign define LspDiagnosticsSignWarning text=🆆 texthl=LspDiagnosticsSignWarning linehl= numhl=]]
+  vim.cmd [[sign define LspDiagnosticsSignInformation text=🅸 texthl=LspDiagnosticsSignInformation linehl= numhl=]]
+  vim.cmd [[sign define LspDiagnosticsSignHint text=🅷 texthl=LspDiagnosticsSignHint linehl= numhl=]]
   --- Custom attachments
   completion.on_attach(client)
-  diagnostic.on_attach(client)
 end
+
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    virtual_text = false,
+    signs = true,
+  }
+)
 
 local configs = {
   cssls = {},

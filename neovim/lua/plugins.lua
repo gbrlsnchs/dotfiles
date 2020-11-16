@@ -1,7 +1,6 @@
 -- TODO: Dinamically download packer.nvim when it doesn't exist.
 -- TODO: Use `vim.cmd` after upgrading to nightly builds.
 vim.cmd [[packadd packer.nvim]]
-vim._update_package_paths()
 
 return require('packer').startup(function()
   use {'wbthomason/packer.nvim', opt = true}
@@ -22,10 +21,6 @@ return require('packer').startup(function()
       {'hrsh7th/vim-vsnip', opt = true},
       {'hrsh7th/vim-vsnip-integ', opt = true},
     },
-  }
-  use {
-    'nvim-lua/diagnostic-nvim',
-    opt = true,
   }
 
   --- Git
