@@ -33,6 +33,34 @@ local function custom_attach(client)
   completion.on_attach(client)
 end
 
+vim.g.completion_customize_lsp_label = {
+  Function = 'ƒ (function)',
+  Method = '⊞ (method)',
+  Variable = '⍺ (variable)',
+  Constant = 'π (constant)',
+  Struct = '⍋ (struct)',
+  Class = '🯅 (class)',
+  Interface = '⍦ (interface)',
+  Text = '¶ (text)',
+  Enum = '⚑ (enum)',
+  EnumMember = '⚐ (enum member)',
+  Module = '⌹ (module)',
+  Color = '⊳ (color)',
+  Property = '⊡ (property)',
+  Field = '⊙ (field)',
+  Unit = '⊡ (unit)',
+  File = '🮚 (file)',
+  Value = '⅓ (value)',
+  Event = '⚡(event)',
+  Folder = '≣ (folder)',
+  Keyword = '≝ (keyword)',
+  Snippet = '⊕ (snippet)',
+  Operator = '✚ (operator)',
+  Reference = '≔ (reference)',
+  TypeParameter = '⍶ (type parameter)',
+  Default = '⍰ (default)',
+}
+
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics,
   {
