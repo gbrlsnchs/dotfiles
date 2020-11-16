@@ -127,3 +127,6 @@ super + {Left,Down,Up,Right}
 # special keys
 super + Print
 	printscreen
+
+super + ctrl + q
+	nextxkb
