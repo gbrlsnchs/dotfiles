@@ -15,7 +15,10 @@ require('gitsigns').setup({
     change =       { hl = 'GitGutterChange', text = '░' },
     delete =       { hl = 'GitGutterDelete' },
     changedelete = { hl = 'GitGutterChangeDelete' },
-  }
+  },
+  keymaps = {
+    noremap = false,
+  },
 })
 
 vim.cmd [[augroup TreeSitterFolds]]

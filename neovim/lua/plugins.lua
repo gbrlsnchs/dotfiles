@@ -56,7 +56,7 @@ return require('packer').startup(function()
       {'itchyny/vim-gitbranch'},
     },
   }
-  use 'christianrondeau/vim-base64'
+  use 'spinks/vim-leader-guide'
 
   --- Syntax
   use {
