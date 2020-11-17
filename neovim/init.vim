@@ -34,6 +34,5 @@ set splitright
 set splitbelow
 set hidden
 set foldlevel=99
-set spell
 
 autocmd TermOpen * setlocal nospell
