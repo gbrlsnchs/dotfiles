@@ -14,4 +14,8 @@ M.lightline_gitbranch = function()
   return ' ' .. git_branch
 end
 
+M.lightline_githunks = function()
+  return vim.b.gitsigns_status or ''
+end
+
 return M

@@ -16,6 +16,10 @@ vim.cmd [[
   function! g:LightlineGitBranch()
     return luaeval("require('functions.utils').lightline_gitbranch()")
   endfunction
+
+  function! g:LightlineGitHunks()
+    return luaeval("require('functions.utils').lightline_githunks()")
+  endfunction
 ]]
 
 vim.g.lightline = {
@@ -27,7 +31,7 @@ vim.g.lightline = {
   active = {
     left = {
       {'mode', 'paste'},
-      {'gitbranch', 'readonly', 'filename', 'modified'},
+      {'gitbranch', 'githunks', 'readonly', 'filename', 'modified'},
     },
     right = {
       {'lineinfo'},
@@ -41,6 +45,7 @@ vim.g.lightline = {
   },
   component_function = {
     gitbranch = 'LightlineGitBranch',
+    githunks = 'LightlineGitHunks',
     readonly = 'LightlineReadonly',
   },
   component_type = {
