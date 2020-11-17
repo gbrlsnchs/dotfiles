@@ -10,7 +10,7 @@ set noshowmode
 set number
 set laststatus=2
 set showtabline=2
-set signcolumn=yes:4
+set signcolumn=yes:1
 set relativenumber
 set pumheight=10
 set title
