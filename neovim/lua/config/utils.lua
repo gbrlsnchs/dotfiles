@@ -20,6 +20,10 @@ vim.cmd [[
   function! g:LightlineGitHunks()
     return luaeval("require('functions.utils').lightline_githunks()")
   endfunction
+
+  function! g:LightlineFilename()
+    return expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  endfunction
 ]]
 
 vim.g.lightline = {
@@ -47,6 +51,7 @@ vim.g.lightline = {
     gitbranch = 'LightlineGitBranch',
     githunks = 'LightlineGitHunks',
     readonly = 'LightlineReadonly',
+    filename = 'LightlineFilename',
   },
   component_type = {
     buffers = 'tabsel',
