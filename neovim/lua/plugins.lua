@@ -22,6 +22,10 @@ return require('packer').startup(function()
       {'hrsh7th/vim-vsnip-integ', opt = true},
     },
   }
+  use {
+    'tjdevries/nlua.nvim',
+    opt = true,
+  }
 
   --- Git
   -- I'm trying to move to neovim-remote with integrated terminal.

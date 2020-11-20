@@ -2,6 +2,7 @@ vim.cmd [[packadd vim-vsnip]]
 vim.cmd [[packadd vim-vsnip-integ]]
 vim.cmd [[packadd completion-nvim]]
 vim.cmd [[packadd nvim-lspconfig]]
+vim.cmd [[packadd nlua.nvim]]
 
 local completion = require('completion')
 local nvim_lsp = require('lspconfig')
@@ -142,3 +143,9 @@ for conf, settings in pairs(configs) do
 
   ::continue::
 end
+
+-- This is a special configuration for Neovim development.
+require('nlua.lsp.nvim').setup(nvim_lsp, {
+  on_attach = custom_attach,
+  cmd = {'lua-language-server'},
+})
