@@ -7,6 +7,7 @@ require('config.navigation')
 require('config.lsp')
 require('config.syntax')
 require('config.utils')
+require('config.git')
 
 vim.o.compatible = false
 vim.o.showmode = false
@@ -39,20 +40,6 @@ vim.o.splitbelow = true
 vim.o.hidden = true
 vim.o.foldlevel = 99
 
-
--- TODO: config.git
-require('gitsigns').setup({
-  signs = {
-    add          = { hl = 'GitGutterAdd', text = '▒' },
-    change       = { hl = 'GitGutterChange', text = '░' },
-    delete       = { hl = 'GitGutterDelete' },
-    topdelete    = { hl = 'GitGutterDelete' },
-    changedelete = { hl = 'GitGutterChangeDelete' },
-  },
-  keymaps = {
-    noremap = false,
-  },
-})
 
 vim.cmd [[augroup TreeSitterFolds]]
 vim.cmd   [[autocmd BufEnter * setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()]]
