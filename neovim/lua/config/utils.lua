@@ -71,15 +71,16 @@ vim.g.mapleader = ' '
 vim.g.lmap = {
   b = {
     name = 'buffers',
+    ['?'] = 'fzf-buffers',
     n = 'next-buffer',
     p = 'previous-buffer',
-    ['?'] = 'fzf-buffers',
   },
   f = {
     name = 'find',
-    b = 'find-in-buffer',
-    p = 'prompt-ripgrep',
-    ['?'] = 'ripgrep',
+    ['?'] = 'fzf-ripgrep',
+    b = 'fzf-buffer-lines',
+    f = 'fzf-files',
+    p = 'fzf-ripgrep-prompt', -- TODO: use vim.fn.prompt!
   },
   l = {
     name = 'lsp',
@@ -90,22 +91,25 @@ vim.g.lmap = {
     name = 'terminal',
     s = 'split-terminal',
     v = 'vsplit-terminal',
+    t = 'tabnew-terminal',
   },
 }
 
 vim.fn['leaderGuide#register_prefix_descriptions']('<Space>', 'g:lmap')
 vim.cmd [[nnoremap <silent> <Leader> :<C-u>LeaderGuide '<Space>'<CR>]]
 --- Buffer mappings
+vim.cmd [[nnoremap <Leader>b? :Buffers<CR>]]
 vim.cmd [[nnoremap <Leader>bn :bnext<CR>]]
 vim.cmd [[nnoremap <Leader>bp :bprevious<CR>]]
-vim.cmd [[nnoremap <Leader>b? :Buffers<CR>]]
 --- Find mappings
-vim.cmd [[nnoremap <Leader>fb :BLines<CR>]]
-vim.cmd [[nnoremap <Leader>fp :Rg ]]
 vim.cmd [[nnoremap <Leader>f? :Rg<CR>]]
+vim.cmd [[nnoremap <Leader>fb :BLines<CR>]]
+vim.cmd [[nnoremap <Leader>ff :Files<CR>]]
+vim.cmd [[nnoremap <Leader>fp :Rg ]]
 --- LSP mappings
 vim.cmd [[nnoremap <Leader>lc :lua vim.lsp.buf.code_action()<CR>]]
 vim.cmd [[nnoremap <Leader>lr :lua vim.lsp.buf.rename()<CR>]]
 --- Terminal mappings
 vim.cmd [[nnoremap <Leader>ts :split +terminal<CR>]]
 vim.cmd [[nnoremap <Leader>tv :vsplit +terminal<CR>]]
+vim.cmd [[nnoremap <Leader>tt :tabnew +terminal<CR>]]
