@@ -24,13 +24,13 @@ vim.o.tabstop = 4
 vim.o.shiftwidth = 2
 vim.o.wrap = true
 vim.o.linebreak = true
-vim.o.list = true
 vim.o.listchars = table.concat({'tab:⇥ ', 'space:‧', 'eol:↴', 'trail:␣'}, ',')
 vim.o.timeoutlen = 500
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.hidden = true
 
+vim.wo.list = true
 vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = 'yes:2'
