@@ -27,10 +27,10 @@ alert = ${xrdb:color9}
 
 [bar/main]
 monitor = ${env:MONITOR:DP-0}
-width = 100%
+width = 80%
 height = 32
-offset-x = 0%
-offset-y = 0%
+offset-x = 10%
+offset-y = 4%
 fixed-center = false
 
 background = ${colors.background}
@@ -192,7 +192,7 @@ compositing-foreground = over
 compositing-border = over
 
 [global/wm]
-margin-top = 1.5
-margin-bottom = 0
+margin-top = 5
+margin-bottom = 5
 
 ; vim:ft=dosini
