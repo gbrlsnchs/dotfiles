@@ -1,3 +1,4 @@
+vim.o.termguicolors = true
 vim.o.compatible = false
 vim.o.showmode = false
 vim.o.laststatus = 2
