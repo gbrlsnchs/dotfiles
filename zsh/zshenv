@@ -1,7 +1,19 @@
-export EDITOR=$(which nvr)
-export MANPAGER='nvim +Man!'
+if [[ -z "${NVIM_LISTEN_ADDRESS}" ]]; then
+  export EDITOR="nvim"
+  export VISUAL="nvim"
+  export MANPAGER='nvim +Man!'
+  export PAGER="nvim +'Man!'"
+  export GIT_PAGER="nvim +'Man! | setfiletype git'"
+else
+  export EDITOR="nvr"
+  export VISUAL="nvr -cc tabnew --remote-wait +'setlocal bufhidden=wipe'"
+  export MANPAGER="nvr -cc tabnew --remote-wait +'Man! | setlocal bufhidden=wipe'"
+  export PAGER="nvr -cc tabnew --remote-wait +'Man! | setlocal bufhidden=wipe' -"
+  export GIT_PAGER="nvr -cc tabnew --remote-wait +'Man! | setlocal bufhidden=wipe | setfiletype git' -"
+fi
+
+export GIT_EDITOR=$VISUAL
 export MANWIDTH=999
-export PAGER=$(git config --global core.pager)
 
 # cargo
 path+=("$HOME/.cargo/bin")
