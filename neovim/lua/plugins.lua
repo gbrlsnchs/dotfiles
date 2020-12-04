@@ -31,9 +31,11 @@ return require('packer').startup(function()
   -- I'm trying to move to neovim-remote with integrated terminal.
   use {
     'lewis6991/gitsigns.nvim',
+    branch = 'main',
     requires = {
       'nvim-lua/plenary.nvim'
-    }
+    },
+    config = [[require('config.gitsigns')]],
   }
 
   --- Utils

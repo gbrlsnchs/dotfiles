@@ -10,4 +10,3 @@ require('gitsigns').setup({
     noremap = false,
   },
 })
-
