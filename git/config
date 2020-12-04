@@ -13,6 +13,7 @@
 	insteadOf = https://github.com/
 [color]
 	pager = no
+	diff = always
 [diff]
 	tool = nvr
 [difftool "nvr"]
