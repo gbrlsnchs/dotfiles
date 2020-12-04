@@ -83,6 +83,13 @@ vim.g.lmap = {
     g = 'fzf-git-files',
     p = 'fzf-ripgrep-prompt', -- TODO: use vim.fn.prompt!
   },
+  g = {
+    name = 'git',
+    r = 'reset-hunk',
+    s = 'stage-hunk',
+    p = 'preview-hunk',
+    u = 'undo-stage-hunk',
+  },
   l = {
     name = 'lsp',
     c = 'lsp-code-action',
@@ -108,6 +115,11 @@ vim.cmd [[nnoremap <Leader>f? <Cmd>Rg<CR>]]
 vim.cmd [[nnoremap <Leader>ff <Cmd>Files<CR>]]
 vim.cmd [[nnoremap <Leader>fg <Cmd>GitFiles<CR>]]
 vim.cmd [[nnoremap <Leader>fp :Rg ]]
+--- Git mappings
+vim.cmd [[nnoremap <Leader>gr <Cmd>lua require('gitsigns').reset_hunk()<CR>]]
+vim.cmd [[nnoremap <Leader>gs <Cmd>lua require('gitsigns').stage_hunk()<CR>]]
+vim.cmd [[nnoremap <Leader>gp <Cmd>lua require('gitsigns').preview_hunk()<CR>]]
+vim.cmd [[nnoremap <Leader>gu <Cmd>lua require('gitsigns').undo_stage_hunk()<CR>]]
 --- LSP mappings
 vim.cmd [[nnoremap <Leader>lc :lua vim.lsp.buf.code_action()<CR>]]
 vim.cmd [[nnoremap <Leader>lr :lua vim.lsp.buf.rename()<CR>]]
