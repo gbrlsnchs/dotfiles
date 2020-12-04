@@ -1,14 +1,3 @@
--- Load external plugins.
-require('plugins')
-
--- Load configs.
-require('config.theme')
-require('config.navigation')
-require('config.lsp')
-require('config.syntax')
-require('config.utils')
-require('config.git')
-
 vim.o.compatible = false
 vim.o.showmode = false
 vim.o.laststatus = 2
@@ -40,6 +29,16 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.wo.signcolumn = 'yes:1'
 vim.wo.colorcolumn = '100'
+
+-- Load external plugins.
+require('plugins')
+
+-- Load configs.
+require('config.theme')
+require('config.navigation')
+require('config.lsp')
+require('config.syntax')
+require('config.utils')
 
 vim.cmd [[augroup TreeSitterFolds]]
 vim.cmd   [[autocmd BufEnter * setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()]]
