@@ -72,13 +72,13 @@ vim.g.lmap = {
   b = {
     name = 'buffers',
     ['?'] = 'fzf-buffers',
+    l = 'fzf-buffer-lines',
     n = 'next-buffer',
     p = 'previous-buffer',
   },
   f = {
     name = 'find',
     ['?'] = 'fzf-ripgrep',
-    b = 'fzf-buffer-lines',
     f = 'fzf-files',
     p = 'fzf-ripgrep-prompt', -- TODO: use vim.fn.prompt!
   },
@@ -98,13 +98,13 @@ vim.g.lmap = {
 vim.fn['leaderGuide#register_prefix_descriptions']('<Space>', 'g:lmap')
 vim.cmd [[nnoremap <silent> <Leader> :<C-u>LeaderGuide '<Space>'<CR>]]
 --- Buffer mappings
-vim.cmd [[nnoremap <Leader>b? :Buffers<CR>]]
-vim.cmd [[nnoremap <Leader>bn :bnext<CR>]]
-vim.cmd [[nnoremap <Leader>bp :bprevious<CR>]]
+vim.cmd [[nnoremap <Leader>b? <Cmd>Buffers<CR>]]
+vim.cmd [[nnoremap <Leader>bl <Cmd>BLines<CR>]]
+vim.cmd [[nnoremap <Leader>bn <Cmd>bnext<CR>]]
+vim.cmd [[nnoremap <Leader>bp <Cmd>bprevious<CR>]]
 --- Find mappings
-vim.cmd [[nnoremap <Leader>f? :Rg<CR>]]
-vim.cmd [[nnoremap <Leader>fb :BLines<CR>]]
-vim.cmd [[nnoremap <Leader>ff :Files<CR>]]
+vim.cmd [[nnoremap <Leader>f? <Cmd>Rg<CR>]]
+vim.cmd [[nnoremap <Leader>ff <Cmd>Files<CR>]]
 vim.cmd [[nnoremap <Leader>fp :Rg ]]
 --- LSP mappings
 vim.cmd [[nnoremap <Leader>lc :lua vim.lsp.buf.code_action()<CR>]]
