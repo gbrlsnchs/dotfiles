@@ -5,7 +5,6 @@
 	email = gabriel@gsr.dev
 [core]
 	editor = /bin/nvim
-	pager = nvim -c 'Man! | setf git'
 [init]
 	defaultbranch = trunk
 [pull]
