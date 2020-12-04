@@ -46,9 +46,7 @@ return require('packer').startup(function()
   use 'lambdalisue/suda.vim'
   use {
     'norcalli/nvim-colorizer.lua',
-    config = function()
-      require('colorizer').setup()
-    end,
+    config = [[require('config.colorizer')]],
   }
   use {
     'iamcco/markdown-preview.nvim',
