@@ -107,6 +107,7 @@ local configs = {
     },
   },
   gopls = {},
+  pyright = {},
   rust_analyzer = {
     settings = {
       ['rust-analyzer'] = {
