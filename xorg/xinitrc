@@ -1,3 +1,4 @@
+autorandr -c
 xset s 300 5
 xrdb ~/.Xresources
 
