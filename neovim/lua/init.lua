@@ -29,7 +29,6 @@ vim.o.timeoutlen = 500
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.hidden = true
-vim.o.foldlevel = 99
 
 vim.wo.number = true
 vim.wo.relativenumber = true
@@ -47,5 +46,5 @@ require('config.syntax')
 require('config.utils')
 
 vim.cmd [[augroup TreeSitterFolds]]
-vim.cmd   [[autocmd BufEnter * setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr()]]
+vim.cmd   [[autocmd BufEnter * setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99]]
 vim.cmd [[augroup END]]
