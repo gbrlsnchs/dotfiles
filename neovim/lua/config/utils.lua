@@ -77,9 +77,10 @@ vim.g.lmap = {
     p = 'previous-buffer',
   },
   f = {
-    name = 'find',
+    name = 'files',
     ['?'] = 'fzf-ripgrep',
     f = 'fzf-files',
+    g = 'fzf-git-files',
     p = 'fzf-ripgrep-prompt', -- TODO: use vim.fn.prompt!
   },
   l = {
@@ -105,6 +106,7 @@ vim.cmd [[nnoremap <Leader>bp <Cmd>bprevious<CR>]]
 --- Find mappings
 vim.cmd [[nnoremap <Leader>f? <Cmd>Rg<CR>]]
 vim.cmd [[nnoremap <Leader>ff <Cmd>Files<CR>]]
+vim.cmd [[nnoremap <Leader>fg <Cmd>GitFiles<CR>]]
 vim.cmd [[nnoremap <Leader>fp :Rg ]]
 --- LSP mappings
 vim.cmd [[nnoremap <Leader>lc :lua vim.lsp.buf.code_action()<CR>]]
