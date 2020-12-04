@@ -7,7 +7,7 @@ super + {_,shift + } Return
 	{alacritty --working-directory ~/dev,chromium}
 
 # lock screen
-super + @space
+super + space
 	xset s activate
 
 # suspend
