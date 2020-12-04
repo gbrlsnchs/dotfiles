@@ -6,9 +6,15 @@ vim.o.pumheight = 10
 vim.o.title = true
 vim.o.incsearch = true
 vim.o.inccommand = 'split'
-vim.o.completeopt = vim.o.completeopt .. ',menuone,noinsert,noselect'
-vim.o.shortmess = vim.o.shortmess .. 'c'
-vim.o.diffopt = vim.o.diffopt .. ',algorithm:patience,indent-heuristic,iwhiteall,hiddenoff'
+vim.o.completeopt = 'menuone,noinsert,noselect'
+vim.o.shortmess = table.concat({vim.o.shortmess, 'c'}, '')
+vim.o.diffopt = table.concat({
+  vim.o.diffopt,
+  'algorithm:patience',
+  'indent-heuristic',
+  'iwhiteall',
+  'hiddenoff',
+}, ',')
 vim.o.backspace = '2'
 vim.o.virtualedit = 'block'
 vim.o.expandtab = true
@@ -18,7 +24,7 @@ vim.o.shiftwidth = 2
 vim.o.wrap = true
 vim.o.linebreak = true
 vim.o.list = true
-vim.o.listchars = vim.o.listchars .. ',tab:  ,eol:↴,trail:␣'
+vim.o.listchars = table.concat({'tab:⇥ ', 'space:‧', 'eol:↴', 'trail:␣'}, ',')
 vim.o.timeoutlen = 500
 vim.o.splitright = true
 vim.o.splitbelow = true
