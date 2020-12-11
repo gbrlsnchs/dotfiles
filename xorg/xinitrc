@@ -1,7 +1,7 @@
-autorandr -c
-xset s 300 5
-xrdb ~/.Xresources
-setxkbmap -layout us,us -variant ,intl
+autorandr -c && \
+  xset s 300 5 && \
+  xrdb ~/.Xresources && \
+  xsetroot -cursor_name left_ptr
 
 # Start session services, which may include WM, hotkey daemon, screen locker, etc.
 exec dbus-run-session -- runsvdir -P ~/sv
