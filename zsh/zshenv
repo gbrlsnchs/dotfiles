@@ -2,7 +2,7 @@ if [[ -z "${NVIM_LISTEN_ADDRESS}" ]]; then
   export EDITOR="nvim"
   export VISUAL="nvim"
   export MANPAGER='nvim +Man!'
-  export PAGER="nvim +'Man!'"
+  export PAGER="nvim +Man!"
   export GIT_PAGER="nvim +'Man! | setfiletype git'"
 else
   export EDITOR="nvr"
