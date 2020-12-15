@@ -5,7 +5,6 @@ targets:
 - fontconfig
 - git
 - neovim
-- nvimpager
 - picom
 - polybar
 - scripts
