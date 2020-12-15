@@ -1,5 +1,6 @@
 #!/bin/sh
 
+setxkbmap -layout us,us -variant ,intl
 feh --bg-scale $(xdg-user-dir PICTURES)/nord_void.png
 
 pkill polybar
