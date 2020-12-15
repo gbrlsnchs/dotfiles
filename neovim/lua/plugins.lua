@@ -63,8 +63,11 @@ return require('packer').startup(function()
   use {
     'iamcco/markdown-preview.nvim',
     run = 'cd app && yarn install',
-    ft = {'markdown'},
+    ft = {'markdown', 'plantuml'},
     cmd = 'MarkdownPreview',
+    config = function()
+      vim.g.mkdp_filetypes = {'markdown', 'plantuml'}
+    end,
   }
   use {
     'itchyny/lightline.vim',
@@ -80,6 +83,12 @@ return require('packer').startup(function()
     opt = true,
   }
   use 'editorconfig/editorconfig-vim'
+  use {
+    'https://github.com/aklt/plantuml-syntax',
+    config = function()
+      vim.g.plantuml_set_makepr = false
+    end,
+  }
 
   --- Theme
   use 'arcticicestudio/nord-vim'
