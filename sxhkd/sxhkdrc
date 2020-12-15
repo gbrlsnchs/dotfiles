@@ -130,3 +130,6 @@ super + Print
 
 super + ctrl + q
 	nextxkb
+
+super + ctrl + f
+	find-cursor
