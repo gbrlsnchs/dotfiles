@@ -76,6 +76,7 @@ return require('packer').startup(function()
     },
   }
   use 'spinks/vim-leader-guide'
+  use 'dstein64/nvim-scrollview'
 
   --- Syntax
   use {
