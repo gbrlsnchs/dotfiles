@@ -26,6 +26,19 @@ return require('packer').startup(function()
     'tjdevries/nlua.nvim',
     opt = true,
   }
+  use {
+    'ojroques/nvim-lspfuzzy',
+    opt = true,
+    requires = {
+      {'junegunn/fzf.vim'},
+    },
+    config = function()
+      require('config.lspfuzzy')
+    end,
+    cond = function()
+      return require('utils.lsp').is_enabled()
+    end,
+  }
 
   --- Git
   -- I'm trying to move to neovim-remote with integrated terminal.
