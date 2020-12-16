@@ -8,5 +8,6 @@ require('gitsigns').setup({
   },
   keymaps = {
     noremap = false,
+    buffer = false,
   },
 })
