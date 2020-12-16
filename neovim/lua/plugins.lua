@@ -57,8 +57,8 @@ return require('packer').startup(function()
   use 'tpope/vim-sleuth'
   use 'lambdalisue/suda.vim'
   use {
-    'norcalli/nvim-colorizer.lua',
-    config = [[require('config.colorizer')]],
+    'RRethy/vim-hexokinase',
+    run = 'make hexokinase',
   }
   use {
     'iamcco/markdown-preview.nvim',
