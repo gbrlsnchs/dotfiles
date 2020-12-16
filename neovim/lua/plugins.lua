@@ -82,6 +82,7 @@ return require('packer').startup(function()
   use {
     'nvim-treesitter/nvim-treesitter',
     opt = true,
+    run = ':TSUpdate',
   }
   use 'editorconfig/editorconfig-vim'
   use {
