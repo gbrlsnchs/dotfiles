@@ -9,7 +9,7 @@ else
   export VISUAL="nvr -cc tabnew --remote-wait +'setlocal bufhidden=wipe'"
   export MANPAGER="nvr -cc tabnew -c Man!"
   export PAGER="nvr -cc tabnew --remote-wait +'Man! | setlocal bufhidden=wipe' -"
-  export GIT_PAGER="nvr -cc tabnew --remote-wait +'Man! | setlocal bufhidden=wipe | setfiletype git' -"
+  export GIT_PAGER="nvr -cc tabnew -c 'Man! | setlocal bufhidden=wipe | setfiletype git' -"
 fi
 
 export GIT_EDITOR=$VISUAL
