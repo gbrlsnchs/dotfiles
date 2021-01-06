@@ -1,5 +1,6 @@
 ohmyzsh/ohmyzsh
 ohmyzsh/ohmyzsh path:plugins/git
+ohmyzsh/ohmyzsh path:plugins/gitfast
 ohmyzsh/ohmyzsh path:plugins/vi-mode
 ohmyzsh/ohmyzsh path:themes/zhann.zsh-theme
 zsh-users/zsh-completions
