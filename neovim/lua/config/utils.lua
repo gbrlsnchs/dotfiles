@@ -72,6 +72,8 @@ vim.g.lmap = {
   b = {
     name = 'buffers',
     ['?'] = 'fzf-buffers',
+    d = 'buffer-delete',
+    D = 'buffer-delete-stay',
     l = 'fzf-buffer-lines',
     n = 'next-buffer',
     p = 'previous-buffer',
@@ -107,6 +109,8 @@ vim.fn['leaderGuide#register_prefix_descriptions']('<Space>', 'g:lmap')
 vim.cmd [[nnoremap <silent> <Leader> :<C-u>LeaderGuide '<Space>'<CR>]]
 --- Buffer mappings
 vim.cmd [[nnoremap <Leader>b? <Cmd>Buffers<CR>]]
+vim.cmd [[nnoremap <Leader>bd <Cmd>bdelete<CR>]]
+vim.cmd [[nnoremap <Leader>bD <Cmd>Bdelete<CR>]]
 vim.cmd [[nnoremap <Leader>bl <Cmd>BLines<CR>]]
 vim.cmd [[nnoremap <Leader>bn <Cmd>bnext<CR>]]
 vim.cmd [[nnoremap <Leader>bp <Cmd>bprevious<CR>]]
