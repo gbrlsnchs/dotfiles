@@ -75,39 +75,26 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   }
 )
 
+local efm_formatters = {
+  prettier = {
+    formatCommand = [[./node_modules/.bin/prettier]],
+    rootMarkers = {'package.json'},
+  },
+}
+
 local configs = {
   cssls = {},
-  diagnosticls = {
-    filetypes = {
-      'typescript',
-      'typescriptreact',
-      'typescript.tsx',
-    },
-    root_dir = nvim_lsp.util.root_pattern('package.json'),
+  efm = {
+    cmd = {'efm-langserver', '-logfile', '/tmp/efm.log', '-loglevel', '5'},
     init_options = {
-      formatters = {
-        ['prettier-ts'] = {
-          command = './node_modules/.bin/prettier',
-          args = {'--stdin-filepath', '%filename'},
-          rootPatterns = {'package.json'},
-          requiredFiles = {
-            '.prettierrc',
-            '.prettierrc.json',
-            '.prettierrc.yml',
-            '.prettierrc.yaml',
-            '.prettierrc.json5',
-            '.prettierrc.js',
-            '.prettierrc.cjs',
-            '.prettierrc.toml',
-            'prettier.config.js',
-            'prettier.config.cjs',
-          },
-        },
-      },
-      formatFiletypes = {
-        typescript = 'prettier-ts',
-        typescriptreact = 'prettier-ts',
-        ['typescript.tsx'] = 'prettier-ts',
+      documentFormatting = true,
+    },
+    filetypes = {'typescript', 'typescriptreact'},
+    settings = {
+      rootMarkers = {'.git/'},
+      languages = {
+        typescript = {efm_formatters.prettier},
+        typescriptreact = {efm_formatters.prettier},
       },
     },
   },
@@ -137,9 +124,7 @@ local configs = {
 }
 
 -- Temporarily disable servers by adding their names here.
-local denylist = {
-  diagnosticls = true,
-}
+local denylist = {}
 
 -- Add custom attach handler and register settings.
 for conf, settings in pairs(configs) do
