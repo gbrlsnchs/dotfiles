@@ -23,10 +23,6 @@ return require('packer').startup(function()
     },
   }
   use {
-    'tjdevries/nlua.nvim',
-    opt = true,
-  }
-  use {
     'ojroques/nvim-lspfuzzy',
     opt = true,
     requires = {

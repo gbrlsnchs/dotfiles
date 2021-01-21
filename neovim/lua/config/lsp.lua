@@ -2,7 +2,6 @@ vim.cmd [[packadd vim-vsnip]]
 vim.cmd [[packadd vim-vsnip-integ]]
 vim.cmd [[packadd completion-nvim]]
 vim.cmd [[packadd nvim-lspconfig]]
-vim.cmd [[packadd nlua.nvim]]
 
 local completion = require('completion')
 local nvim_lsp = require('lspconfig')
@@ -116,6 +115,25 @@ local configs = {
       },
     },
   },
+  sumneko_lua = {
+    cmd = {'lua-language-server'},
+    settings = {
+      Lua = {
+        runtime = {
+          version = 'LuaJIT',
+        },
+        diagnostics = {
+          globals = {'use', 'vim'},
+        },
+        workspace = {
+          library = {
+            [vim.fn.expand('$VIMRUNTIME/lua')] = true,
+            [vim.fn.expand('$VIMRUNTIME/lua/vim/lsp')] = true,
+          },
+        },
+      },
+    },
+  },
   tsserver = {
     on_attach = function(client)
       client.resolved_capabilities.document_formatting = false
@@ -146,9 +164,3 @@ for conf, settings in pairs(configs) do
 
   ::continue::
 end
-
--- This is a special configuration for Neovim development.
-require('nlua.lsp.nvim').setup(nvim_lsp, {
-  on_attach = global_attach,
-  cmd = {'lua-language-server'},
-})
