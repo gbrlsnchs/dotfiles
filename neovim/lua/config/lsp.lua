@@ -129,7 +129,11 @@ local configs = {
       },
     },
   },
-  tsserver = {},
+  tsserver = {
+    on_attach = function(client)
+      client.resolved_capabilities.document_formatting = false
+    end,
+  },
 }
 
 -- Temporarily disable servers by adding their names here.
