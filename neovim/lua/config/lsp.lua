@@ -7,7 +7,7 @@ vim.cmd [[packadd nlua.nvim]]
 local completion = require('completion')
 local nvim_lsp = require('lspconfig')
 
-local function custom_attach(client)
+local function global_attach(client)
   --- Custom LSP keybindings
   vim.cmd [[nnoremap <buffer><silent> gd                <Cmd>lua vim.lsp.buf.declaration()<CR>]]
   vim.cmd [[nnoremap <buffer><silent> <C-]>             <Cmd>lua vim.lsp.buf.definition()<CR>]]
@@ -22,14 +22,19 @@ local function custom_attach(client)
   vim.cmd [[inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"]]
   vim.cmd [[inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"]]
 
-  vim.cmd [[augroup lsp]]
-  vim.cmd       [[au! BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
-  vim.cmd [[augroup END]]
+  if client.resolved_capabilities.document_formatting then
+    print('initting server ' .. client.name)
+    vim.cmd [[augroup lsp_formatting]]
+    vim.cmd [[autocmd!]]
+    vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd [[augroup END]]
+  end
 
   vim.cmd [[sign define LspDiagnosticsSignError text=🅴 texthl=LspDiagnosticsSignError linehl= numhl=]]
   vim.cmd [[sign define LspDiagnosticsSignWarning text=🆆 texthl=LspDiagnosticsSignWarning linehl= numhl=]]
   vim.cmd [[sign define LspDiagnosticsSignInformation text=🅸 texthl=LspDiagnosticsSignInformation linehl= numhl=]]
   vim.cmd [[sign define LspDiagnosticsSignHint text=🅷 texthl=LspDiagnosticsSignHint linehl= numhl=]]
+
   --- Custom attachments
   completion.on_attach(client)
 end
@@ -138,7 +143,15 @@ for conf, settings in pairs(configs) do
     goto continue
   end
 
-  settings.on_attach = custom_attach
+  local local_attach = settings.on_attach
+  if local_attach ~= nil then
+    settings.on_attach = function(client)
+      local_attach(client)
+      global_attach(client)
+    end
+  else
+    settings.on_attach = global_attach
+  end
 
   nvim_lsp[conf].setup(settings)
 
@@ -147,6 +160,6 @@ end
 
 -- This is a special configuration for Neovim development.
 require('nlua.lsp.nvim').setup(nvim_lsp, {
-  on_attach = custom_attach,
+  on_attach = global_attach,
   cmd = {'lua-language-server'},
 })
