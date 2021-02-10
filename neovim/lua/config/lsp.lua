@@ -81,6 +81,7 @@ local efm_formatters = {
 }
 
 local configs = {
+  clangd = {},
   cssls = {},
   efm = {
     cmd = {'efm-langserver', '-logfile', '/tmp/efm.log', '-loglevel', '5'},
