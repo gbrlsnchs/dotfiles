@@ -146,22 +146,22 @@ local configs = {
 local denylist = {}
 
 -- Add custom attach handler and register settings.
-for conf, settings in pairs(configs) do
-  if denylist[conf] then
+for server_name, server_opts in pairs(configs) do
+  if denylist[server_name] then
     goto continue
   end
 
-  local local_attach = settings.on_attach
+  local local_attach = server_opts.on_attach
   if local_attach ~= nil then
-    settings.on_attach = function(client)
+    server_opts.on_attach = function(client)
       local_attach(client)
       global_attach(client)
     end
   else
-    settings.on_attach = global_attach
+    server_opts.on_attach = global_attach
   end
 
-  nvim_lsp[conf].setup(settings)
+  nvim_lsp[server_name].setup(server_opts)
 
   ::continue::
 end
