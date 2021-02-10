@@ -1,5 +1,4 @@
 -- TODO: Dinamically download packer.nvim when it doesn't exist.
--- TODO: Use `vim.cmd` after upgrading to nightly builds.
 vim.cmd [[packadd packer.nvim]]
 
 return require('packer').startup(function()
