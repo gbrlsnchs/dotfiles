@@ -75,7 +75,7 @@ vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
 
 local efm_formatters = {
   prettier = {
-    formatCommand = [[./node_modules/.bin/prettier]],
+    formatCommand = './node_modules/.bin/prettier',
     rootMarkers = {'package.json'},
   },
 }
