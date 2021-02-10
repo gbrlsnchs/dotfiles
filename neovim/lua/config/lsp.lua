@@ -22,7 +22,6 @@ local function global_attach(client)
   vim.cmd [[inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"]]
 
   if client.resolved_capabilities.document_formatting then
-    print('initting server ' .. client.name)
     vim.cmd [[augroup lsp_formatting]]
     vim.cmd [[autocmd!]]
     vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
