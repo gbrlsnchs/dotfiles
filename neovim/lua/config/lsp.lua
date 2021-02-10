@@ -24,7 +24,7 @@ local function global_attach(client)
   if client.resolved_capabilities.document_formatting then
     vim.cmd [[augroup lsp_formatting]]
     vim.cmd [[autocmd!]]
-    vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync()]]
+    vim.cmd [[autocmd BufWritePre <buffer> :lua vim.lsp.buf.formatting_sync({}, 1000)]]
     vim.cmd [[augroup END]]
   end
 
