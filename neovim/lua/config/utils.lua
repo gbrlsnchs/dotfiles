@@ -99,6 +99,7 @@ vim.g.lmap = {
   },
   t = {
     name = 'terminal',
+    n = 'new-terminal',
     s = 'split-terminal',
     v = 'vsplit-terminal',
     t = 'tabnew-terminal',
@@ -128,6 +129,7 @@ vim.cmd [[nnoremap <Leader>gu <Cmd>lua require('gitsigns').undo_stage_hunk()<CR>
 vim.cmd [[nnoremap <Leader>lc <Cmd>lua vim.lsp.buf.code_action()<CR>]]
 vim.cmd [[nnoremap <Leader>lr <Cmd>lua vim.lsp.buf.rename()<CR>]]
 --- Terminal mappings
+vim.cmd [[nnoremap <Leader>tn <Cmd>terminal<CR>]]
 vim.cmd [[nnoremap <Leader>ts <Cmd>split +terminal<CR>]]
 vim.cmd [[nnoremap <Leader>tv <Cmd>vsplit +terminal<CR>]]
 vim.cmd [[nnoremap <Leader>tt <Cmd>tabnew +terminal<CR>]]
