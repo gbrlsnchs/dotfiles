@@ -14,15 +14,7 @@ return require('packer').startup(function()
   use 'tpope/vim-sleuth'
   use 'lambdalisue/suda.vim'
   use(require('specs.hexokinase'))
-  use {
-    'iamcco/markdown-preview.nvim',
-    run = 'cd app && yarn install',
-    ft = {'markdown', 'plantuml'},
-    cmd = 'MarkdownPreview',
-    config = function()
-      vim.g.mkdp_filetypes = {'markdown', 'plantuml'}
-    end,
-  }
+  use(require('specs.markdown_preview'))
   use {
     'itchyny/lightline.vim',
     requires = {
