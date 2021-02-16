@@ -8,8 +8,6 @@ return require('packer').startup(function()
   use(require('specs.compe'))
   use(require('specs.gitsigns'))
   use(require('specs.leader_guide'))
-
-  --- Utils
   use 'moll/vim-bbye'
   use 'tpope/vim-surround'
   use 'tpope/vim-commentary'
@@ -35,8 +33,6 @@ return require('packer').startup(function()
     },
   }
   use 'dstein64/nvim-scrollview'
-
-  --- Syntax
   use {
     'nvim-treesitter/nvim-treesitter',
     opt = true,
@@ -49,7 +45,5 @@ return require('packer').startup(function()
       vim.g.plantuml_set_makepr = false
     end,
   }
-
-  --- Theme
   use 'arcticicestudio/nord-vim'
 end)
