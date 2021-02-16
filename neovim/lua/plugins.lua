@@ -1,5 +1,4 @@
--- TODO: Dinamically download packer.nvim when it doesn't exist.
-vim.cmd [[packadd packer.nvim]]
+require('utils.packer').bootstrap()
 
 return require('packer').startup(function()
   use {'wbthomason/packer.nvim', opt = true}
