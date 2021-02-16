@@ -2,8 +2,6 @@ require('utils.packer').bootstrap()
 
 return require('packer').startup(function()
   use(require('specs.packer'))
-
-  --- Navigation
   use(require('specs.startify'))
   use(require('specs.fzf'))
   use(require('specs.lspconfig'))
