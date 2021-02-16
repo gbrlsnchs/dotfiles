@@ -7,11 +7,6 @@ return require('packer').startup(function()
   use(require('specs.startify'))
   use(require('specs.fzf'))
 
-  --- LSP
-  use {
-    'neovim/nvim-lspconfig',
-    opt = true,
-  }
   use {
     'nvim-lua/completion-nvim',
     opt = true,
@@ -30,6 +25,7 @@ return require('packer').startup(function()
     },
     config = [[require('config.gitsigns')]],
   }
+  use(require('specs.lspconfig'))
 
   --- Utils
   use 'moll/vim-bbye'
