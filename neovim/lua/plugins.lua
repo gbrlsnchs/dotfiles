@@ -13,10 +13,7 @@ return require('packer').startup(function()
   use 'tpope/vim-commentary'
   use 'tpope/vim-sleuth'
   use 'lambdalisue/suda.vim'
-  use {
-    'RRethy/vim-hexokinase',
-    run = 'make hexokinase',
-  }
+  use(require('specs.hexokinase'))
   use {
     'iamcco/markdown-preview.nvim',
     run = 'cd app && yarn install',
