@@ -7,15 +7,6 @@ return require('packer').startup(function()
   use(require('specs.startify'))
   use(require('specs.fzf'))
 
-  use {
-    'nvim-lua/completion-nvim',
-    opt = true,
-    requires = {
-      {'hrsh7th/vim-vsnip', opt = true},
-      {'hrsh7th/vim-vsnip-integ', opt = true},
-    },
-  }
-
   --- Git
   -- I'm trying to move to neovim-remote with integrated terminal.
   use {
@@ -26,6 +17,7 @@ return require('packer').startup(function()
     config = [[require('config.gitsigns')]],
   }
   use(require('specs.lspconfig'))
+  use(require('specs.compe'))
 
   --- Utils
   use 'moll/vim-bbye'
