@@ -5,7 +5,7 @@ return require('packer').startup(function()
 
   --- Navigation
   use(require('specs.startify'))
-  use 'junegunn/fzf.vim'
+  use(require('specs.fzf'))
 
   --- LSP
   use {
@@ -19,19 +19,6 @@ return require('packer').startup(function()
       {'hrsh7th/vim-vsnip', opt = true},
       {'hrsh7th/vim-vsnip-integ', opt = true},
     },
-  }
-  use {
-    'ojroques/nvim-lspfuzzy',
-    opt = true,
-    requires = {
-      {'junegunn/fzf.vim'},
-    },
-    config = function()
-      require('config.lspfuzzy')
-    end,
-    cond = function()
-      return require('utils.lsp').is_enabled()
-    end,
   }
 
   --- Git
