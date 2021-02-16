@@ -105,31 +105,3 @@ vim.g.lmap = {
     t = 'tabnew-terminal',
   },
 }
-
-vim.fn['leaderGuide#register_prefix_descriptions']('<Space>', 'g:lmap')
-vim.cmd [[nnoremap <silent> <Leader> :<C-u>LeaderGuide '<Space>'<CR>]]
---- Buffer mappings
-vim.cmd [[nnoremap <Leader>b? <Cmd>Buffers<CR>]]
-vim.cmd [[nnoremap <Leader>bd <Cmd>bdelete<CR>]]
-vim.cmd [[nnoremap <Leader>bD <Cmd>Bdelete<CR>]]
-vim.cmd [[nnoremap <Leader>bl <Cmd>BLines<CR>]]
-vim.cmd [[nnoremap <Leader>bn <Cmd>bnext<CR>]]
-vim.cmd [[nnoremap <Leader>bp <Cmd>bprevious<CR>]]
---- Find mappings
-vim.cmd [[nnoremap <Leader>f? <Cmd>Rg<CR>]]
-vim.cmd [[nnoremap <Leader>ff <Cmd>Files<CR>]]
-vim.cmd [[nnoremap <Leader>fg <Cmd>GitFiles<CR>]]
-vim.cmd [[nnoremap <Leader>fp :Rg ]]
---- Git mappings
-vim.cmd [[nnoremap <Leader>gr <Cmd>lua require('gitsigns').reset_hunk()<CR>]]
-vim.cmd [[nnoremap <Leader>gs <Cmd>lua require('gitsigns').stage_hunk()<CR>]]
-vim.cmd [[nnoremap <Leader>gp <Cmd>lua require('gitsigns').preview_hunk()<CR>]]
-vim.cmd [[nnoremap <Leader>gu <Cmd>lua require('gitsigns').undo_stage_hunk()<CR>]]
---- LSP mappings
-vim.cmd [[nnoremap <Leader>lc <Cmd>lua vim.lsp.buf.code_action()<CR>]]
-vim.cmd [[nnoremap <Leader>lr <Cmd>lua vim.lsp.buf.rename()<CR>]]
---- Terminal mappings
-vim.cmd [[nnoremap <Leader>tn <Cmd>terminal<CR>]]
-vim.cmd [[nnoremap <Leader>ts <Cmd>split +terminal<CR>]]
-vim.cmd [[nnoremap <Leader>tv <Cmd>vsplit +terminal<CR>]]
-vim.cmd [[nnoremap <Leader>tt <Cmd>tabnew +terminal<CR>]]

@@ -9,6 +9,7 @@ return require('packer').startup(function()
   use(require('specs.lspconfig'))
   use(require('specs.compe'))
   use(require('specs.gitsigns'))
+  use(require('specs.leader_guide'))
 
   --- Utils
   use 'moll/vim-bbye'
@@ -35,7 +36,6 @@ return require('packer').startup(function()
       {'itchyny/vim-gitbranch'},
     },
   }
-  use 'spinks/vim-leader-guide'
   use 'dstein64/nvim-scrollview'
 
   --- Syntax
