@@ -1,7 +1,7 @@
 require('utils.packer').bootstrap()
 
 return require('packer').startup(function()
-  use {'wbthomason/packer.nvim', opt = true}
+  use(require('specs.packer'))
 
   --- Navigation
   use 'mhinz/vim-startify'
