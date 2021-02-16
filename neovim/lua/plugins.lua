@@ -4,7 +4,7 @@ return require('packer').startup(function()
   use(require('specs.packer'))
 
   --- Navigation
-  use 'mhinz/vim-startify'
+  use(require('specs.startify'))
   use 'junegunn/fzf.vim'
 
   --- LSP
