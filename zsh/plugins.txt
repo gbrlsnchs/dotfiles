@@ -2,7 +2,7 @@ ohmyzsh/ohmyzsh
 ohmyzsh/ohmyzsh path:plugins/git
 ohmyzsh/ohmyzsh path:plugins/gitfast
 ohmyzsh/ohmyzsh path:plugins/vi-mode
-ohmyzsh/ohmyzsh path:themes/zhann.zsh-theme
+ohmyzsh/ohmyzsh path:themes/agnoster.zsh-theme
 zsh-users/zsh-completions
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-history-substring-search
