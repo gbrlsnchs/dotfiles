@@ -15,12 +15,7 @@ return require('packer').startup(function()
   use 'lambdalisue/suda.vim'
   use(require('specs.hexokinase'))
   use(require('specs.markdown_preview'))
-  use {
-    'itchyny/lightline.vim',
-    requires = {
-      {'itchyny/vim-gitbranch'},
-    },
-  }
+  use(require('specs.lightline'))
   use 'dstein64/nvim-scrollview'
   use {
     'nvim-treesitter/nvim-treesitter',
