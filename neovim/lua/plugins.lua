@@ -25,5 +25,5 @@ return require('packer').startup(function()
       vim.g.plantuml_set_makepr = false
     end,
   }
-  use 'arcticicestudio/nord-vim'
+  use {'gbrlsnchs/nord-vim', branch = 'fix-neovim-lsp'}
 end)
