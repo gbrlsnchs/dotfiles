@@ -17,11 +17,7 @@ return require('packer').startup(function()
   use(require('specs.markdown_preview'))
   use(require('specs.lightline'))
   use 'dstein64/nvim-scrollview'
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    opt = true,
-    run = ':TSUpdate',
-  }
+  use(require('specs.treesitter'))
   use 'editorconfig/editorconfig-vim'
   use {
     'https://github.com/aklt/plantuml-syntax',
