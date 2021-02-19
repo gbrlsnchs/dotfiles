@@ -103,7 +103,19 @@ M.config = function()
 				},
 			},
 		},
-		texlab = {},
+		texlab = {
+			settings = {
+				latex = {
+					build = {
+						onSave = true,
+					},
+					forwardSearch = {
+						executable = 'zathura',
+						args = {'--synctex-forward', '%l:1:%f', '%p'},
+					},
+				},
+			},
+		},
 		tsserver = {
 			on_attach = function(client)
 				client.resolved_capabilities.document_formatting = false
