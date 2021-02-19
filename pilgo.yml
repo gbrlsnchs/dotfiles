@@ -13,6 +13,7 @@ targets:
 - sxhkd
 - xdg
 - xorg
+- zathura
 - zsh
 options:
   neovim:
