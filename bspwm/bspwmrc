@@ -24,3 +24,4 @@ bspc config active_border_color "#A3BE8C"
 bspc config presel_feedback_color "#8FBCBB"
 
 bspc rule -a \*:fzfmenu state=floating
+bspc rule -a Zathura state=tiled
