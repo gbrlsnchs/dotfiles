@@ -4,6 +4,7 @@ targets:
 - dunst
 - fontconfig
 - git
+- latex
 - neovim
 - picom
 - polybar
@@ -16,6 +17,14 @@ targets:
 - zathura
 - zsh
 options:
+  latex:
+    targets:
+    - latexmkrc
+    options:
+      latexmkrc:
+        link: .latexmkrc
+    flatten: true
+    useHome: true
   neovim:
     link: nvim
   scripts:
