@@ -30,6 +30,7 @@ vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.hidden = true
 vim.o.formatoptions = table.concat({'t', 'c', 'q', 'n', ']', 'j'}, '')
+vim.o.textwidth = 100
 
 vim.wo.list = true
 vim.wo.number = true
