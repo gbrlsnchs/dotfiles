@@ -71,10 +71,10 @@ M.config = function()
 		fp = ':Rg ',
 
 		-- Git
-		gr = "<Cmd>lua require('gitsigns').reset_hunk()",
-		gs = "<Cmd>lua require('gitsigns').stage_hunk()",
-		gp = "<Cmd>lua require('gitsigns').preview_hunk()",
-		gu = "<Cmd>lua require('gitsigns').undo_hunk()",
+		gr = "<Cmd>lua require('gitsigns').reset_hunk()<CR>",
+		gs = "<Cmd>lua require('gitsigns').stage_hunk()<CR>",
+		gp = "<Cmd>lua require('gitsigns').preview_hunk()<CR>",
+		gu = "<Cmd>lua require('gitsigns').undo_hunk()<CR>",
 
 		-- LSP
 		lc = lsp_cmd_name('code_action'),
