@@ -29,6 +29,7 @@ vim.o.timeoutlen = 500
 vim.o.splitright = true
 vim.o.splitbelow = true
 vim.o.hidden = true
+vim.o.formatoptions = table.concat({'t', 'c', 'q', 'n', ']', 'j'}, '')
 
 vim.wo.list = true
 vim.wo.number = true
