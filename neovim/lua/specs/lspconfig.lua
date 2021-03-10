@@ -20,19 +20,19 @@ M.setup = function()
 		numhl = '',
 	})
 	vim.fn.sign_define('LspDiagnosticsSignWarning', {
-		text = '🅴',
+		text = '🆆',
 		texthl = 'LspDiagnosticsSignWarning',
 		linehl = '',
 		numhl = '',
 	})
 	vim.fn.sign_define('LspDiagnosticsSignInformation', {
-		text = '🅴',
+		text = '🅸',
 		texthl = 'LspDiagnosticsSignInformation',
 		linehl = '',
 		numhl = '',
 	})
 	vim.fn.sign_define('LspDiagnosticsSignHint', {
-		text = '🅴',
+		text = '🅷',
 		texthl = 'LspDiagnosticsSignHint',
 		linehl = '',
 		numhl = '',
