@@ -14,11 +14,13 @@ M.config = function()
 	vim.wo.foldmethod = 'expr'
 	vim.wo.foldexpr = 'nvim_treesitter#foldexpr()'
 
-	vim.cmd('augroup treesitter')
-	vim.cmd('autocmd!')
-	vim.cmd('autocmd BufEnter * setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99')
-	vim.cmd('autocmd TermOpen * TSBufDisable highlight')
-	vim.cmd('augroup END')
+	vim.api.nvim_exec([[
+augroup treesitter
+	autocmd!
+	autocmd BufEnter * setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99
+	autocmd TermOpen * TSBufDisable highlight
+augroup END
+	]], false)
 end
 
 M.run = ':TSUpdate'
