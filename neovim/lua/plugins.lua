@@ -1,6 +1,12 @@
 require('utils.packer').bootstrap()
 
-return require('packer').startup(function()
+local config = {
+	display = {
+		open_fn = require('packer.util').float,
+	},
+}
+
+return require('packer').startup({function()
 	use(require('specs.packer'))
 	use(require('specs.startify'))
 	use(require('specs.fzf'))
@@ -26,4 +32,4 @@ return require('packer').startup(function()
 		end,
 	}
 	use {'gbrlsnchs/nord-vim', branch = 'fix-neovim-lsp'}
-end)
+end, config = config})
