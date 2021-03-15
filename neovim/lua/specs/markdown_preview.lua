@@ -9,7 +9,7 @@ M.ft = {'markdown', 'plantuml'}
 M.config = function()
 	vim.cmd([[
 function! g:Open_browser(url)
-	silent exec 'silent !chromium --new-window ' . a:url
+	silent exec 'silent !firefox -new-window ' . a:url
 endfunction
 	]])
 
