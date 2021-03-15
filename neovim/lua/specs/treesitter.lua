@@ -18,6 +18,7 @@ M.config = function()
 augroup treesitter
 	autocmd!
 	autocmd BufEnter * setlocal foldmethod=expr foldexpr=nvim_treesitter#foldexpr() foldlevel=99
+	autocmd BufEnter *.toml setfiletype toml
 	autocmd TermOpen * TSBufDisable highlight
 augroup END
 	]], false)
