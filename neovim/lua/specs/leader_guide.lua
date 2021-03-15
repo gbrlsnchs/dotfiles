@@ -37,6 +37,7 @@ M.config = function()
 			},
 			f = 'lsp-format',
 			r = 'lsp-rename',
+			s = 'lsp-document-symbol',
 		},
 		t = {
 			name = 'terminal',
@@ -83,6 +84,7 @@ M.config = function()
 		lds = '<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
 		lf = lsp_cmd_name('formatting'),
 		lr = lsp_cmd_name('rename'),
+		ls = lsp_cmd_name('document_symbol'),
 
 		-- Terminal
 		tn = '<Cmd>terminal<CR>',
