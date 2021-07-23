@@ -1,2 +1,4 @@
+neovim/.netrwhist
+
 !systemd/**/*.{service,target}
 systemd/**/*.wants/
