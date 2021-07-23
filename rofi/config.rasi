@@ -1,0 +1,18 @@
+configuration {
+	modi: "drun,window";
+	combi-modi: "drun,window";
+	theme: "gruvbox";
+	font: "sans 10";
+	show-icons: false;
+	icon-theme: "Papirus-Dark";
+}
+
+element-icon {
+	size: 24;
+	border: 0px;
+}
+
+element-text {
+    expand: true;
+    vertical-align: 0.5;
+}
