@@ -1,0 +1,6 @@
+[Unit]
+Description=WM session
+Documentation=
+BindsTo=graphical-session.target
+Wants=graphical-session-pre.target
+After=graphical-session-pre.target

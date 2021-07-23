@@ -1,0 +1,11 @@
+[Unit]
+Description=Listen to systemd events/DPMS to lock the screen
+Documentation=
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/xss-lock -n /usr/libexec/xsecurelock/dimmer -l -- lockscreen
+
+[Install]
+WantedBy=wm-session.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=Polybar support for monitor %i
+Documentation=
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/polybar --reload main
+Environment=MONITOR=%i
+
+[Install]
+WantedBy=wm-session.target
