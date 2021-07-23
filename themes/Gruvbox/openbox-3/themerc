@@ -1,0 +1,132 @@
+!# Clearlooks-Evolving
+!# Clearlooks as it evolves in gnome-git...
+!# Last updated 09/03/10
+
+# Fonts
+# these are really halos, but who cares?
+
+*.font: shadow=n
+window.active.label.text.font:shadow=y:shadowtint=30:shadowoffset=0
+window.inactive.label.text.font:shadow=y:shadowtint=00:shadowoffset=0
+menu.items.font:shadow=y:shadowtint=0:shadowoffset=0
+
+!# general stuff
+
+border.width: 2
+padding.width: 2
+padding.height: 2
+window.handle.width: 3
+window.client.padding.width: 0
+menu.overlap: 2
+*.justify: center
+
+!# lets set our damn shadows here, eh?
+
+*.bg.highlight: 50
+*.bg.shadow:    05
+
+window.active.title.bg.highlight: 35
+window.active.title.bg.shadow:    05
+
+window.inactive.title.bg.highlight: 30
+window.inactive.title.bg.shadow:    05
+
+window.*.grip.bg.highlight: 50
+window.*.grip.bg.shadow:    30
+
+window.*.handle.bg.highlight: 50
+window.*.handle.bg.shadow:    30
+
+!# Menu settings
+
+menu.border.color: #aaaaaa
+menu.border.width: 1
+
+menu.title.bg: Flat Solid
+menu.title.bg.color: #E6E7E6
+menu.title.text.color: #111111
+
+menu.items.bg: Flat Solid
+menu.items.bg.color: #ffffff
+menu.items.text.color: #111111
+menu.items.disabled.text.color: #aaaaaa
+
+menu.items.active.bg: Flat Gradient splitvertical border
+
+menu.items.active.bg.color: #97b8e2
+menu.items.active.bg.color.splitTo: #a8c5e9
+
+menu.items.active.bg.colorTo: #91b3de
+menu.items.active.bg.colorTo.splitTo: #80a7d6
+menu.items.active.bg.border.color: #4b6e99
+menu.items.active.text.color: #ffffff
+
+menu.separator.width: 0
+menu.separator.padding.width: 0
+menu.separator.padding.height: 0
+menu.separator.color: #aaaaaa
+
+!# set handles here and only the once?
+
+window.*.handle.bg: Flat Solid
+window.*.handle.bg.color: #282828
+
+window.*.grip.bg: Flat Solid
+window.*.grip.bg.color: #282828
+
+!# Active
+
+window.active.border.color: #928374
+
+window.active.title.separator.height: 0
+window.active.title.separator.color: #EBDBB2
+
+*.title.bg: Flat
+*.title.bg.color: #928374
+
+window.active.label.bg: ParentRelative
+window.active.label.text.color: #32302F
+
+window.active.button.*.bg: Flat Border
+window.active.button.*.bg.color: #928374
+window.active.button.*.bg.border.color: #32302F
+window.active.button.*.image.color: #32302F
+
+!# inactive
+
+window.inactive.border.color: #32302F
+window.inactive.title.separator.color: #928374
+
+window.inactive.title.bg: Flat
+window.inactive.title.bg.color: #32302F
+
+window.inactive.label.bg: ParentRelative
+window.inactive.label.text.color: #928374
+
+window.inactive.button.*.bg: Flat Border
+window.inactive.button.*.bg.color: #32302F
+window.inactive.button.*.bg.border.color: #928374
+window.inactive.button.*.image.color: #928374
+
+
+!# osd (pop ups and what not, dock?)
+
+osd.border.width: 2
+osd.border.color: #EBDBB2
+
+osd.bg: Flat
+osd.bg.color: #282828
+
+osd.bg.border.color: #282828
+
+osd.active.label.bg: ParentRelative
+osd.active.label.text.color: #EBDBB2
+
+osd.inactive.label.bg: ParentRelative
+osd.inactive.label.text.color: #928374
+
+!# yeah whatever, this is fine anyhoo?
+osd.hilight.bg: Flat
+osd.hilight.bg.color: #928374
+osd.unhilight.bg: Flat Solid
+osd.unhilight.bg.color: #282828
