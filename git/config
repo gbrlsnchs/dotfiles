@@ -1,0 +1,31 @@
+# vim: ft=gitconfig
+
+[user]
+	name = Gabriel Sanches
+	email = gabriel@gsr.dev
+[core]
+	editor = /bin/nvim
+[init]
+	defaultBranch = trunk
+[pull]
+	rebase = true
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+[url "git@gitlab.com:"]
+	insteadOf = https://gitlab.com/
+[color]
+	diff = never
+[diff]
+	tool = nvr
+[difftool "nvr"]
+	cmd = nvr -s -d $LOCAL $REMOTE
+[merge]
+	tool = nvr
+[mergetool "nvr"]
+	cmd = nvr -s -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
+[alias]
+	pushf = push --force-with-lease
+	sdiff = diff --staged
+	rsoft = reset --soft HEAD^
+[mergetool]
+	keepBackup = false
