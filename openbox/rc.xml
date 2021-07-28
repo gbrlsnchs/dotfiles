@@ -58,7 +58,7 @@ Copy the file to $HOME/.config/openbox/ instead. -->
 		<animateIconify>yes</animateIconify>
 		<font place="ActiveWindow">
 			<name>sans</name>
-			<size>11</size>
+			<size>12</size>
 			<!-- font size in points -->
 			<weight>normal</weight>
 			<!-- 'bold' or 'normal' -->
