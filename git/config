@@ -13,8 +13,6 @@
 	insteadOf = https://github.com/
 [url "git@gitlab.com:"]
 	insteadOf = https://gitlab.com/
-[color]
-	diff = never
 [diff]
 	tool = nvr
 [difftool "nvr"]
