@@ -7,16 +7,19 @@ if [[ -z "${NVIM_LISTEN_ADDRESS}" ]]; then
   export VISUAL="nvim"
   export MANPAGER="nvim +'Man! | setlocal number relativenumber'"
   export PAGER="nvim +'Man! | setlocal number relativenumber'"
+
+  export GIT_EDITOR="nvim"
   export GIT_PAGER="nvim +'Man! | setfiletype git | setlocal number relativenumber'"
 else
   export EDITOR="nvr"
-  export VISUAL="nvr -cc tabnew --remote-wait +'setlocal bufhidden=wipe'"
+  export VISUAL="nvr -cc 'wincmd k' --remote-wait"
   export MANPAGER="nvr -cc tabnew --remote-wait +'Man! | setlocal number relativenumber'"
   export PAGER="nvr -cc tabnew --remote-wait +'Man! | setlocal bufhidden=wipe number relativenumber' -"
+
+  export GIT_EDITOR="nvr -cc tabnew --remote-wait +'setlocal bufhidden=wipe'"
   export GIT_PAGER="nvr -cc tabnew --remote-wait +'Man! | setlocal bufhidden=wipe number relativenumber | setfiletype git' -"
 fi
 
-export GIT_EDITOR=$VISUAL
 export MANWIDTH=999
 
 # cargo
