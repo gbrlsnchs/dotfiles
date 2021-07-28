@@ -111,6 +111,16 @@ return function()
 		},
 	}
 
+	local capabilities = vim.lsp.protocol.make_client_capabilities()
+	capabilities.textDocument.completion.completionItem.snippetSupport = true
+	capabilities.textDocument.completion.completionItem.resolveSupport = {
+		properties = {
+			"documentation",
+			"detail",
+			"additionalTextEdits",
+		},
+	}
+
 	local servers = {
 		efm = {
 			init_options = {
@@ -162,7 +172,16 @@ return function()
 				},
 			},
 		}),
-		rust_analyzer = {},
+		rust_analyzer = {
+			capabilities = capabilities,
+			settings = {
+				["rust-analyzer"] = {
+					checkOnSave = {
+						command = "clippy",
+					},
+				},
+			},
+		},
 	}
 
 	local denylist = {}
