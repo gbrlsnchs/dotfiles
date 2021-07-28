@@ -2,13 +2,14 @@ configuration {
 	modi: "drun,window";
 	combi-modi: "drun,window";
 	theme: "gruvbox";
-	font: "sans 10";
+	font: "serif 10";
 	show-icons: false;
 	icon-theme: "Papirus-Dark";
+	eh: 1;
 }
 
 element-icon {
-	size: 24;
+	size: 32;
 	border: 0px;
 }
 
