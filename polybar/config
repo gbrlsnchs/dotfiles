@@ -17,7 +17,7 @@
 ;==========================================================
 
 [colors]
-background = ${xrdb:softbg}
+background = ${xrdb:darkbg}
 background-alt = ${xrdb:color0}
 foreground = ${xrdb:foreground}
 foreground-alt = ${xrdb:color8}
@@ -32,7 +32,7 @@ height = 24
 offset-x = 0
 offset-y = 0
 fixed-center = true
-bottom = true
+bottom = false
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -50,9 +50,9 @@ module-margin-right = 1
 
 font-0 = sans:pixelsize=10;3
 
-modules-left = xkeyboard
-modules-center = date 
-modules-right = cpu memory temperature eth
+modules-left = date xkeyboard
+modules-center = ewmh 
+modules-right = polywins cpu memory temperature eth
 
 ;wm-restack = bspwm
 ;override-redirect = false
@@ -80,9 +80,9 @@ pin-workspaces = true
 format = <label-state>
 
 label-active = %name%
-label-active-background = ${colors.background-alt}
+;label-active-background = ${colors.background-alt}
 label-active-foreground = ${colors.primary}
-label-active-underline = ${colors.foreground-alt}
+;label-active-underline = ${colors.foreground-alt}
 label-active-padding = 4
 
 label-occupied = %name%

@@ -3,9 +3,9 @@
 
 # SETTINGS {{{ ---
 
-active_text_color="$(xrdb -query | grep '*foreground'| awk '{print $NF}')"
+active_text_color="$(xrdb -query | grep '*color11'| awk '{print $NF}')"
 active_bg=
-active_underline="$(xrdb -query | grep '*color4'| awk '{print $NF}')"
+active_underline=
 
 inactive_text_color="$(xrdb -query | grep '*color8'| awk '{print $NF}')"
 inactive_bg=
