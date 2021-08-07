@@ -18,7 +18,7 @@ empty_desktop_message="Desktop"
 
 char_limit=20
 max_windows=15
-char_case="normal" # normal, upper, lower
+char_case="lower" # normal, upper, lower
 add_spaces="true"
 resize_increment=16
 wm_border_width=1 # setting this might be required for accurate resize position
