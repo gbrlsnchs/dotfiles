@@ -150,14 +150,14 @@ type = internal/cpu
 interval = 2
 format-prefix = "CPU "
 format-prefix-foreground = ${colors.foreground-alt}
-label = %percentage:3%%
+label = %percentage:4%%
 
 [module/memory]
 type = internal/memory
 interval = 2
 format-prefix = "MEM "
 format-prefix-foreground = ${colors.foreground-alt}
-label = %percentage_used:3%%
+label = %percentage_used:4%%
 
 [module/eth]
 type = internal/network
