@@ -24,6 +24,7 @@ local function paq_load()
 		"rktjmp/lush.nvim",
 
 		-- Theming
+		"famiu/feline.nvim",
 		"npxbr/gruvbox.nvim",
 
 		-- UX
@@ -34,7 +35,6 @@ local function paq_load()
 		"kevinhwang91/nvim-bqf",
 		"folke/which-key.nvim",
 		"lewis6991/gitsigns.nvim",
-		"famiu/feline.nvim",
 		"akinsho/nvim-bufferline.lua",
 		{
 			"RRethy/vim-hexokinase",

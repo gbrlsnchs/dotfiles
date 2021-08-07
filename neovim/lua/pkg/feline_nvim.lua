@@ -1,8 +1,8 @@
 return function()
 	local colors = require("gruvbox.colors")
-	local feline_defauls = require("feline.defaults")
+	local feline_defaults = require("feline.defaults")
 
-	feline_defauls.colors = {
+	feline_defaults.colors = {
 		bg = tostring(colors.dark0_soft),
 		black = tostring(colors.dark0_hard),
 		skyblue = tostring(colors.bright_blue),
