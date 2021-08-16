@@ -53,6 +53,7 @@ local function paq_load()
 				vim.cmd("TSUpdate")
 			end,
 		},
+		"lewis6991/spellsitter.nvim",
 		"trsdln/vim-grepper",
 		"voldikss/vim-floaterm",
 		"folke/lua-dev.nvim",
@@ -68,6 +69,7 @@ local function paq_load()
 	setup("which_key")
 	setup("nvim_lspconfig")
 	setup("nvim_treesitter")
+	setup("spellsitter")
 	setup("nvim_compe")
 	setup("vim_vsnip")
 	setup("gitsigns_nvim")
