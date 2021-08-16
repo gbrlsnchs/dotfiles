@@ -184,7 +184,7 @@ return function()
 		},
 		texlab = {
 			settings = {
-				latex = {
+				texlab = {
 					build = {
 						onSave = true,
 					},
