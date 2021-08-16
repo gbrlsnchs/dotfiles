@@ -63,6 +63,11 @@ augroup qf
 	autocmd!
 	autocmd FileType qf set nobuflisted
 augroup END
+
+augroup git
+	autocmd!
+	autocmd FileType gitcommit setlocal spell
+augroup END
 ]],
 	false
 )
