@@ -50,6 +50,8 @@ vim.opt.grepformat = "%f:%l:%c:%m"
 vim.g.mapleader = " "
 vim.g.netrw_bufsettings = "noma nomod number relativenumber nobl nowrap ro"
 
+vim.g.tex_flavor = "latex"
+
 vim.api.nvim_exec(
 	[[
 augroup editor
