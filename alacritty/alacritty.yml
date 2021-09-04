@@ -33,6 +33,6 @@ colors:
     white:   '0xebdbb2'
 
 font:
-  size: 11
+  size: 10
   normal:
     family: monospace
