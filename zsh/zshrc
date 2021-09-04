@@ -17,6 +17,7 @@ antigen apply
 
 # This is safe as long suda.vim is installed with smart edit on.
 alias visudo="nvim /etc/sudoers"
+alias vimdiff="nvim -d"
 
 # Completions.
 autoload -U compinit && compinit
