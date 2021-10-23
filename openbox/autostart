@@ -1,6 +1,0 @@
-autorandr --change
-xrdb $HOME/.Xresources
-feh --bg-scale $(xdg-user-dir PICTURES)/linux_gruvbox_dark_ultrawide.png
-nvidia-settings --load-config-only
-systemctl --user import-environment
-systemctl --user start wm-session.target
