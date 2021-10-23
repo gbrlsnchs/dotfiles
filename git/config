@@ -4,7 +4,7 @@
 	name = Gabriel Sanches
 	email = gabriel@gsr.dev
 [core]
-	editor = /bin/nvim
+	editor = nvim
 [init]
 	defaultBranch = trunk
 [pull]
@@ -14,16 +14,16 @@
 [url "git@gitlab.com:"]
 	insteadOf = https://gitlab.com/
 [diff]
-	tool = nvr
-[difftool "nvr"]
+	tool = neovim-remote
+[difftool "neovim-remote"]
 	cmd = nvr -s -d $LOCAL $REMOTE
 [merge]
-	tool = nvr
-[mergetool "nvr"]
+	tool = neovim-remote
+[mergetool]
+	keepBackup = false
+[mergetool "neovim-remote"]
 	cmd = nvr -s -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
 [alias]
 	pushf = push --force-with-lease
 	sdiff = diff --staged
 	rsoft = reset --soft HEAD^
-[mergetool]
-	keepBackup = false
