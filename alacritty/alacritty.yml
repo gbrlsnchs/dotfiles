@@ -9,4 +9,4 @@ indexed_colors:
 font:
   size: 10
   normal:
-    family: "IBM Plex Mono"
+    family: Monospace
