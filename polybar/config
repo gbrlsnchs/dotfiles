@@ -17,13 +17,13 @@
 ;==========================================================
 
 [colors]
-background = ${xrdb:darkbg}
-background-alt = ${xrdb:color0}
+background = ${xrdb:background}
+background-alt = ${xrdb:color8}
 foreground = ${xrdb:foreground}
-foreground-alt = ${xrdb:color8}
-primary = ${xrdb:color11}
-secondary = ${xrdb:color5}
-alert = ${xrdb:color9}
+foreground-alt = ${xrdb:color12}
+primary = ${xrdb:color6}
+secondary = ${xrdb:color4}
+alert = ${xrdb:color2}
 
 [bar/main]
 monitor = ${env:MONITOR:DP-0}
@@ -48,16 +48,13 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = sans:pixelsize=10;3
+font-0 = Monospace:size=10;3
 
-modules-left = date xkeyboard
-modules-center = ewmh 
-modules-right = polywins cpu memory temperature eth
-
-;wm-restack = bspwm
-;override-redirect = false
-;scroll-up = ewmh.next
-;scroll-down = ewmh.previous
+modules-left = bspwm date xkeyboard
+modules-center =
+modules-right = xwindow cpu memory temperature
+wm-restack = bspwm
+override-redirect = false
 
 cursor-click = pointer
 cursor-scroll = pointer
@@ -71,44 +68,23 @@ interval = 0.1
 
 [module/xwindow]
 type = internal/xwindow
-label = %title:0:26:...%
-
-[module/ewmh]
-type = internal/xworkspaces
-pin-workspaces = true
-
-format = <label-state>
-
-label-active = %name%
-;label-active-background = ${colors.background-alt}
-label-active-foreground = ${colors.primary}
-;label-active-underline = ${colors.foreground-alt}
-label-active-padding = 4
-
-label-occupied = %name%
-label-occupied-padding = 4
-
-label-urgent = %name%
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 4
-
-label-empty = %name%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 4
+label = %title:0:128:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format = <label-layout><label-indicator>
-format-prefix = "LAYOUT "
-format-prefix-foreground = ${colors.foreground-alt}
+format = " <label-layout><label-indicator>"
+format-prefix = " LAYOUT "
+format-prefix-background = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.background}
 
-label-layout = %name%
+label-layout = " %name%"
 
-label-indicator-padding = 2
-label-indicator-margin-left = 2
-label-indicator-background = ${colors.secondary}
+label-indicator-padding = 1
+label-indicator-margin-left = 1
+label-indicator-background = ${colors.alert}
+label-indicator-foreground = ${colors.background}
 
 [module/filesystem]
 type = internal/fs
@@ -129,12 +105,15 @@ label-tiled = t
 label-monocle = m
 
 label-focused = %name%
-label-focused-background = ${colors.background-alt}
-label-focused-foreground = ${colors.primary}
+label-focused-background = ${colors.foreground-alt}
+label-focused-foreground = ${colors.background}
 label-focused-underline = ${colors.foreground-alt}
 label-focused-padding = 2
 
 label-occupied = %name%
+label-occupied-background = ${colors.primary}
+label-occupied-foreground = ${colors.background}
+label-occupied-underline = ${colors.primary}
 label-occupied-padding = 2
 
 label-urgent = %name%
@@ -142,26 +121,41 @@ label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
 label-empty = %name%
-label-empty-foreground = ${colors.foreground-alt}
+label-empty-foreground = ${colors.foreground}
 label-empty-padding = 2
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "CPU "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = " CPU "
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.foreground-alt}
 label = %percentage:4%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = "MEM "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = " MEM "
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.foreground-alt}
 label = %percentage_used:4%%
 
-[module/eth]
+[module/eth0]
 type = internal/network
 interface = enp2s0
+interval = 3.0
+
+format-connected-prefix = "IP "
+format-connected-prefix-foreground = ${colors.foreground-alt}
+label-connected = %local_ip% / %local_ip6%
+
+format-disconnected = <label-disconnected>
+label-disconnected = %ifname% disconnected
+label-disconnected-foreground = ${colors.alert}
+
+[module/eth1]
+type = internal/network
+interface = eno1
 interval = 3.0
 
 format-connected-prefix = "IP "
@@ -179,8 +173,9 @@ interval = 1
 date = " %A, %Y-%m-%d"
 time = %H:%M:%S
 
-format-prefix = DATE
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = " DATE "
+format-prefix-background = ${colors.foreground-alt}
+format-prefix-foreground = ${colors.background}
 format  =%{A1:gsimplecal:}<label>%{A}
 
 label = %date% %time%
@@ -188,19 +183,21 @@ label = %date% %time%
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 50
 
 format = <label>
-format-prefix = "TEMP "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = " TEMP "
+format-prefix-foreground = ${colors.background}
+format-prefix-background = ${colors.foreground-alt}
 
 format-warn = <label-warn>
-format-warn-prefix = "TEMP "
-format-warn-prefix-foreground = ${colors.foreground-alt}
+format-warn-prefix = " TEMP "
+format-warn-prefix-foreground = ${colors.background}
+format-warn-prefix-background = ${colors.alert}
 
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.primary}
+label = " %temperature-c%"
+label-warn = " %temperature-c%"
+label-warn-foreground = ${colors.foreground}
 
 [module/polywins]
 type = custom/script
