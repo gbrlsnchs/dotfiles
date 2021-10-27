@@ -1,0 +1,13 @@
+[Unit]
+Description=Hotkey daemon for bspwm
+Documentation=
+PartOf=graphical-session.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/sxhkd -m -1
+; Environment=SXHKD_SHELL=/usr/bin/sh
+; Environment=PATH=/usr/bin:%h/.local/bin
+
+[Install]
+WantedBy=bspwm-session.target
