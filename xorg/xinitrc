@@ -1,0 +1,1 @@
+exec systemd-cat --identifier=bspwm bspwm
