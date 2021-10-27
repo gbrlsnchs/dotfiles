@@ -1,24 +1,3 @@
-source /usr/share/zsh/share/antigen.zsh
-
-antigen use oh-my-zsh
-antigen bundle git
-antigen bundle gitfast
-antigen bundle vi-mode
-antigen theme lambda
-
-antigen bundle zsh-users/zsh-completions
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-history-substring-search
-
-antigen bundle /usr/share/fzf
-antigen bundle Aloxaf/fzf-tab
-
-antigen apply
-
-# This is safe as long suda.vim is installed with smart edit on.
-alias visudo="nvim /etc/sudoers"
-alias vimdiff="nvim -d"
-
 # Completions.
 autoload -U compinit && compinit
 autoload -U +X bashcompinit && bashcompinit
@@ -28,3 +7,35 @@ complete -o nospace -C /usr/bin/terraform terraform
 
 # AWS CLI.
 complete -C $(which aws_completer) aws
+
+# Antigen.
+source /usr/share/zsh/share/antigen.zsh
+
+antigen use oh-my-zsh
+antigen bundle git
+antigen bundle gitfast
+antigen bundle vi-mode
+antigen theme lambda
+
+antigen bundle /usr/share/fzf
+antigen bundle Aloxaf/fzf-tab
+
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle zsh-users/zsh-history-substring-search
+
+antigen apply
+
+# Aliases.
+alias visudo="sudoedit /etc/sudoers"
+alias vimdiff="nvim -d"
+
+. "$XDG_CACHE_HOME/wal/colors.sh"
+
+export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude '.git'"
+
+zstyle ':fzf-tab:*' fzf-flags \
+    --color fg:"$foreground",bg:"$background",hl:"$color11" \
+	--color fg+:"$foreground",bg+:"$background",hl+:"$color3" \
+    --color info:"$foreground",prompt:"$color2",pointer:"$foreground" \
+	--color spinner:"$foreground",marker:"$foreground"

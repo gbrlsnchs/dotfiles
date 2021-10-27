@@ -1,26 +1,32 @@
 DISABLE_AUTO_UPDATE=true
 
-export GTK_THEME="gruvbox-dark-gtk"
+# XDG stuff.
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_BIN_HOME="$HOME/.local/bin"
+export XDG_STATE_HOME="$HOME/.local/state"
 
-if [[ -z "${NVIM_LISTEN_ADDRESS}" ]]; then
-	export EDITOR="nvim"
-	export VISUAL="nvim"
-	export MANPAGER="nvim +'Man! | setlocal number relativenumber'"
-	export PAGER="nvim +'Man! | setlocal number relativenumber'"
+export XDG_DATA_DIRS=/usr/local/share:/usr/share
+export XDG_CONFIG_DIRS=/etc/xdg
 
-	export GIT_EDITOR="nvim"
-	export GIT_PAGER="nvim +'Man! | setfiletype git | setlocal number relativenumber'"
-else
-	export EDITOR="nvr"
-	export VISUAL="nvr -cc 'wincmd k' --remote-wait"
-	export MANPAGER="nvr -cc tabnew --remote-wait +'Man! | setlocal number relativenumber'"
-	export PAGER="nvr -cc tabnew --remote-wait +'Man! | setlocal bufhidden=wipe number relativenumber' -"
+export XDG_MUSIC_DIR=$(xdg-user-dir MUSIC)
+export XDG_DESKTOP_DIR=$(xdg-user-dir DESKTOP)
+export XDG_DOCUMENTS_DIR=$(xdg-user-dir DOCUMENTS)
+export XDG_DOWNLOAD_DIR=$(xdg-user-dir DOWNLOAD)
+export XDG_PICTURES_DIR=$(xdg-user-dir PICTURES)
+export XDG_TEMPLATES_DIR=$(xdg-user-dir TEMPLATES)
+export XDG_VIDEOS_DIR=$(xdg-user-dir VIDEOS)
+export XDG_PUBLICSHARE_DIR=$(xdg-user-dir PUBLICSHARE)
 
-	export GIT_EDITOR="nvr -cc tabnew --remote-wait +'setlocal bufhidden=wipe'"
-	export GIT_PAGER="nvr -cc tabnew --remote-wait +'Man! | setlocal bufhidden=wipe number relativenumber | setfiletype git' -"
-fi
+# Editor stuff.
+export EDITOR="nvim"
+export VISUAL="nvim"
 
-export MANWIDTH=999
+# Others.
+export SXHKD_SHELL=/bin/sh
+
+# Time to set PATH.
 
 # cargo
 path+=("$HOME/.cargo/bin")
@@ -34,14 +40,8 @@ path+=("$HOME/.poetry/bin")
 # latex
 path+=("/opt/texlive/2021/bin/$(uname --machine)-$(uname --kernel-name | tr '[:upper:]' '[:lower:]')")
 
-export FZF_DEFAULT_OPTS='
-	--color fg:#ebdbb2,bg:#282828,hl:#fabd2f,fg+:#ebdbb2,bg+:#3c3836,hl+:#fabd2f
-	--color info:#83a598,prompt:#bdae93,spinner:#fabd2f,pointer:#83a598,marker:#fe8019,header:#665c54
-'
-export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude '.git'"
-
 # homemade scripts
-path+=("$HOME/scripts")
+path+=("$XDG_BIN_HOME")
 
 # Version managers.
 source /usr/share/nvm/init-nvm.sh
@@ -49,4 +49,4 @@ source /usr/share/nvm/init-nvm.sh
 typeset -U path
 
 # custom user completions
-fpath+=($XDG_DATA_HOME/zfunc)
+fpath+=("$XDG_DATA_HOME/zfunc")
