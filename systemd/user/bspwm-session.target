@@ -1,0 +1,6 @@
+[Unit]
+Description=bspwm session
+Documentation=
+BindsTo=graphical-session.target
+Wants=graphical-session-pre.target
+After=graphical-session-pre.target
