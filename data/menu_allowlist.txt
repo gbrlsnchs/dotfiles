@@ -1,0 +1,12 @@
+discord
+find-cursor
+firefox$
+google-chrome
+krita
+minecraft-launcher
+pavucontrol
+slack
+steam$
+telegram
+xournalpp$
+zoom
