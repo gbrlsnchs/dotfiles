@@ -12,7 +12,6 @@ function M.create_buf(opts)
 end
 
 function M.open_buf(bufnr, fn)
-	print("bufnr: " .. bufnr)
 	api.nvim_buf_call(bufnr, fn)
 	api.nvim_win_set_buf(0, bufnr)
 end
