@@ -3,4 +3,5 @@ neovim/plugin/packer_compiled.lua
 
 !systemd/**/*.{service,target}
 systemd/**/*.wants/
+systemd/**/.#override.*
 redshift
