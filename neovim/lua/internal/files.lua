@@ -25,8 +25,7 @@ function M.open(filename, direction)
 end
 
 function M.open_in_win(filename)
-	local winid = windows.pick_window()
-	vim.api.nvim_set_current_win(winid)
+	windows.pick_window()
 	M.open(filename)
 end
 

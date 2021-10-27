@@ -26,8 +26,7 @@ function M.pick_window()
 	end
 
 	util.hide_visual_cues()
-
-	return winid
+	api.nvim_set_current_win(winid)
 end
 
 return M

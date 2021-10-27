@@ -32,8 +32,7 @@ function M.open_tab(fn, opts)
 end
 
 function M.open_in_win(fn, opts)
-	local winid = windows.pick_window()
-	api.nvim_set_current_win(winid)
+	windows.pick_window()
 	util.open_buf(util.create_buf(opts), fn)
 end
 
