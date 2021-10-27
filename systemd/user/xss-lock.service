@@ -5,7 +5,7 @@ PartOf=graphical-session.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/xss-lock -n /usr/libexec/xsecurelock/dimmer -l -- lockscreen
+ExecStart=/usr/bin/xss-lock --notifier=/usr/lib/xsecurelock/dimmer --transfer-sleep-lock -- lockscreen
 
 [Install]
 WantedBy=wm-session.target
