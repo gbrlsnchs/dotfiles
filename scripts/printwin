@@ -1,0 +1,6 @@
+#!/bin/sh
+
+img_name="$(date +%s).png"
+win_id=$(xdotool getactivewindow)
+maim -i $win_id $(xdg-user-dir PICTURES)/$img_name && \
+	notify-send "Screenshot taken for \"$(xdotool getwindowname $win_id)\"" $img_name

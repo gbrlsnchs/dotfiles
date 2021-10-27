@@ -1,0 +1,5 @@
+#!/bin/sh
+
+img_name="$(date +%s).png"
+maim $(xdg-user-dir PICTURES)/$img_name && \
+	notify-send "Screenshot taken" $img_name

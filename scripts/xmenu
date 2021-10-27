@@ -1,0 +1,12 @@
+#!/bin/sh
+
+app="xmenu"
+
+xdotool search --onlyvisible --desktop $(xdotool get_desktop) --classname $app windowunmap \
+  || xdotool search --onlyvisible --classname $app set_desktop_for_window $(xdotool get_desktop) \
+  || xdotool search --classname $app windowmap set_desktop_for_window $(xdotool get_desktop) \
+    && xdotool search --classname $app windowactivate \
+  || alacritty \
+	--class $app \
+	--title $app \
+	--command menu

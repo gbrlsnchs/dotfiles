@@ -1,0 +1,5 @@
+#!/bin/sh
+
+_wm=$1
+systemctl --user import-environment && \
+	systemd-cat --identifier=$_wm $_wm

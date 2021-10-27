@@ -1,0 +1,7 @@
+#!/bin/sh
+
+_file=$1
+_config="${XDG_DATA_HOME}/applications/${_file}.desktop"
+
+cp /usr/share/applications/${_file}.desktop $_config && \
+	echo "Hidden=true" >> $_config

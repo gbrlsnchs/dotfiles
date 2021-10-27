@@ -1,0 +1,6 @@
+#!/bin/sh
+
+pkill polybar
+for m in $(polybar --list-monitors | cut -d":" -f1); do
+    systemd-cat --identifier=polybar-$m  env MONITOR=$m polybar --reload main &
+done

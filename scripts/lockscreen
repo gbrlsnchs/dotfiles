@@ -1,0 +1,9 @@
+#!/bin/sh
+
+dunstctl set-paused true && \
+	env \
+	XSECURELOCK_NO_COMPOSITE=1 \
+	XSECURELOCK_DISCARD_FIRST_KEYPRESS=0 \
+	XSECURELOCK_FONT="Monospace" \
+	XSECURELOCK_PASSWORD_PROMPT=time \
+	xsecurelock; dunstctl set-paused false

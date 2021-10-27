@@ -1,0 +1,5 @@
+#!/bin/sh
+
+wd="${HOME}/${1}"
+
+kitty --directory $wd
