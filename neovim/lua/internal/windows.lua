@@ -21,7 +21,8 @@ function M.pick_window()
 			vim.cmd("mode")
 			return
 		end
-		local ascii_code = tonumber(vim.fn.toupper(choice))
+		choice = vim.fn.nr2char(choice):upper()
+		local ascii_code = vim.fn.char2nr(choice)
 		winid = mapped_wins[ascii_code]
 	end
 
