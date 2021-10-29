@@ -39,20 +39,28 @@ return function()
 		},
 		f = {
 			name = "find",
+			["."] = {
+				'<Cmd>lua require("internal.fuzzy").find({ use_file_cwd = true })<CR>',
+				"Find files in this file's current directory",
+			},
 			b = {
 				'<Cmd>lua require("internal.fuzzy").buffers()<CR>',
 				"Find listed buffers",
 			},
-			f = { "<Cmd>FZF<CR>", "Find files" },
+			d = {
+				'<Cmd>lua require("internal.fuzzy").find({ search_type = "directory" })<CR>',
+				"Find a directory",
+			},
+			f = { '<Cmd>lua require("internal.fuzzy").find()<CR>', "Find files" },
 			g = { '<Cmd>lua require("internal.fuzzy").git_diff()<CR>', "Find dirty files" },
 			h = { '<Cmd>lua require("internal.fuzzy").oldfiles()<CR>', "Find recente files" },
-			l = {
-				'<Cmd>lua require("internal.fuzzy").cword_file_line()<CR>',
-				"Find file:line under cursor",
-			},
 			t = {
 				'<Cmd>lua require("internal.fuzzy").terminals()<CR>',
 				"Find running terminals",
+			},
+			w = {
+				'<Cmd>lua require("internal.fuzzy").cword_file_line()<CR>',
+				"Find file(:line)? under the cursor",
 			},
 		},
 		p = {
