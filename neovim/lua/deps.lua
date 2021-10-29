@@ -16,6 +16,7 @@ local aliases = {
 local deps = {
 	["bufdelete.nvim"] = "famiu/bufdelete.nvim",
 	["editorconfig.nvim"] = "gpanders/editorconfig.nvim",
+	["filename.nvim"] = "nathom/filetype.nvim",
 	["fzf-lua"] = {
 		"ibhagwan/fzf-lua",
 		after = aliases["which-key.nvim"],
@@ -197,6 +198,7 @@ packer.startup({
 		-- Utility.
 		use(deps["editorconfig.nvim"])
 		use(deps["bufdelete.nvim"])
+		use(deps["filename.nvim"])
 		use(deps["vim-oldfiles"])
 		-- use(deps["surround.nvim"])
 		use(deps["nvim-comment"])
