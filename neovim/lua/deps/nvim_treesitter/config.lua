@@ -57,7 +57,7 @@ return function()
 			["container-name"] = "(container) ",
 			["tag-name"] = "(tag) ",
 		},
-		separator = " ᐳ ",
+		separator = " → ",
 	})
 
 	vim.opt.foldmethod = "expr"

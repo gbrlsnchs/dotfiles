@@ -11,7 +11,7 @@ return function()
 	end
 
 	local function get_filename()
-		return vim.b.term_name or vim.b.term_title or vim.fn.expand("%~"):gsub("/", " ᐳ ")
+		return vim.b.term_name or vim.b.term_title or vim.fn.expand("%~"):gsub("/", " > ")
 	end
 
 	local function get_lsp_clients()
