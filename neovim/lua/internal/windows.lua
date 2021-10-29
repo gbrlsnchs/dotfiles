@@ -6,6 +6,16 @@ local M = {}
 
 function M.pick_window()
 	local wins = api.nvim_tabpage_list_wins(0)
+
+	if #wins == 1 then
+		return wins[1]
+	end
+
+	wins = vim.tbl_filter(function(winid)
+		local bufnr = api.nvim_win_get_buf(winid)
+		return vim.fn.buflisted(bufnr) == 1
+	end, wins)
+
 	if #wins == 1 then
 		return wins[1]
 	end
