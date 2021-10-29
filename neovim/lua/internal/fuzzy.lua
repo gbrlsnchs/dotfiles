@@ -2,6 +2,8 @@ local buffers = require("internal.buffers")
 local files = require("internal.files")
 local Logger = require("internal.logger")
 
+local logger = Logger:new("fuzzy")
+
 local FuzzyCommand = require("internal.fuzzy.command")
 local util = require("internal.fuzzy.util")
 
@@ -23,6 +25,50 @@ local function make_bufname(buf)
 end
 
 local M = {}
+
+function M.find(opts)
+	opts = vim.tbl_deep_extend("keep", opts or {}, {
+		search_type = nil,
+		use_file_cwd = false,
+	})
+
+	local cmd = vim.env.FZF_DEFAULT_COMMAND
+	if opts.search_type then
+		cmd = cmd:gsub("file", opts.search_type)
+	end
+
+	local prompt = "Files"
+
+	if opts.use_file_cwd then
+		local file_cwd = vim.fn.expand("%:h")
+		if vim.fn.isdirectory(file_cwd) == 1 then
+			cmd = ("%s . %s"):format(cmd, file_cwd)
+			prompt = ("Files (%s)"):format(file_cwd)
+		else
+			logger:warn("Current buffer has no valid directory, falling back to cwd")
+		end
+	end
+
+	FuzzyCommand
+		:new({
+			prompt = prompt,
+			default_action = files.open_in_win,
+			actions = {
+				[FuzzyCommand.action_types.C_X] = function(filename)
+					files.open(filename, files.directions.HORIZONTAL)
+				end,
+				[FuzzyCommand.action_types.C_V] = function(filename)
+					files.open(filename, files.directions.VERTICAL)
+				end,
+				[FuzzyCommand.action_types.C_T] = function(filename)
+					files.open(filename, files.directions.TAB)
+				end,
+			},
+		})
+		:run(cmd, function(result)
+			result.action(result.item)
+		end)
+end
 
 function M.cword_file_line()
 	local query = vim.fn.expand("<cWORD>")
