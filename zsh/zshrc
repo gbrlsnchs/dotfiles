@@ -32,7 +32,7 @@ alias vimdiff="nvim -d"
 
 . "$XDG_CACHE_HOME/wal/colors.sh"
 
-export FZF_DEFAULT_COMMAND="fd --type f --hidden --exclude '.git'"
+export FZF_DEFAULT_COMMAND="fd --type file --hidden --no-ignore-vcs"
 
 zstyle ':fzf-tab:*' fzf-flags \
     --color fg:"$foreground",bg:"$background",hl:"$color11" \
