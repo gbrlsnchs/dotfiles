@@ -73,21 +73,20 @@ end
 function M.cword_file_line()
 	local query = vim.fn.expand("<cWORD>")
 	local partial_fname, line = query:match("(.+):(%d+)")
-
 	line = line or 1
+	local cmd = "fd -0 %s | xargs -0 ls -t1"
+	local prompt = ("%s:%s"):format(partial_fname, line)
 
 	if not partial_fname then
-		Logger:new("file:line"):warn("Invalid filename under cursor")
-		return
-	end
-
-	local function goto_line()
-		vim.api.nvim_win_set_cursor(0, { line, 0 })
+		-- Let's do a best-efforts search then.
+		partial_fname = query
+		cmd = "fd --full-path %s"
+		prompt = ("cWORD (%s)"):format(query)
 	end
 
 	FuzzyCommand
 		:new({
-			prompt = ("%s:%s>"):format(partial_fname, line),
+			prompt = prompt,
 			default_action = files.open_in_win,
 			actions = {
 				[FuzzyCommand.action_types.C_X] = function(filename)
@@ -101,9 +100,9 @@ function M.cword_file_line()
 				end,
 			},
 		})
-		:run(("fd -0 %s | xargs -0 ls -t1"):format(partial_fname), function(result)
+		:run(cmd:format(partial_fname), function(result)
 			result.action(result.item)
-			goto_line()
+			vim.api.nvim_win_set_cursor(0, { tonumber(line), 0 })
 		end)
 end
 
