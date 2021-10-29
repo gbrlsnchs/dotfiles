@@ -160,8 +160,8 @@ end
 function M.git_diff()
 	FuzzyCommand
 		:new({
-			default_action = files.open,
 			prompt = "Dirty",
+			default_action = files.open_in_win,
 			actions = {
 				[FuzzyCommand.action_types.C_X] = function(filename)
 					files.open(filename, files.directions.HORIZONTAL)
@@ -195,6 +195,7 @@ function M.terminals()
 	FuzzyCommand
 		:new({
 			prompt = "Terminals",
+			default_action = util.buffer_wrap(buffers.open_in_win),
 		})
 		:run(items, function(result)
 			local bufnr = result.item:match("%((%d+)%)$")
