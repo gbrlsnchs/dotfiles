@@ -33,7 +33,6 @@ local deps = {
 	["gruvbox.nvim"] = {
 		"ellisonleao/gruvbox.nvim",
 		as = aliases["gruvbox.nvim"],
-		after = aliases["lualine.nvim"],
 		requires = "rktjmp/lush.nvim",
 		setup = require("deps.gruvbox_nvim.setup"),
 		config = require("deps.gruvbox_nvim.config"),
@@ -41,7 +40,10 @@ local deps = {
 	["lualine.nvim"] = {
 		"nvim-lualine/lualine.nvim",
 		as = aliases["lualine.nvim"],
-		after = aliases["nvim-lspconfig"],
+		after = {
+			aliases["nvim-lspconfig"],
+			aliases["nvim-treesitter"],
+		},
 		config = require("deps.lualine_nvim.config"),
 		requires = "arkav/lualine-lsp-progress",
 	},
@@ -101,6 +103,7 @@ local deps = {
 			{ "JoosepAlviste/nvim-ts-context-commentstring" },
 			{ "p00f/nvim-ts-rainbow" },
 			{ "windwp/nvim-ts-autotag" },
+			{ "SmiteshP/nvim-gps" },
 		},
 	},
 	["packer.nvim"] = packer_repo,
