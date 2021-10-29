@@ -1,6 +1,7 @@
 return function()
 	local lspconfig = require("lspconfig")
 	local lsp_status = require("lsp-status")
+	local illuminate = require("illuminate")
 	local which_key = require("which-key")
 	local lspconfig_util = require("deps.nvim_lspconfig.util")
 
@@ -11,6 +12,7 @@ return function()
 
 	lspconfig_util.register_attachment(function(client, _)
 		lsp_status.on_attach(client)
+		illuminate.on_attach(client)
 	end)
 
 	-- Set up local keybindings for buffers.

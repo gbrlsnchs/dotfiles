@@ -87,6 +87,7 @@ local deps = {
 		requires = {
 			{ "folke/lua-dev.nvim" },
 			{ "nvim-lua/lsp-status.nvim" },
+			{ "RRethy/vim-illuminate" },
 		},
 		config = require("deps.nvim_lspconfig.config"),
 	},
