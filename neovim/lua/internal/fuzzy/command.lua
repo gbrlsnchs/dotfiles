@@ -40,7 +40,7 @@ function M:_build_args()
 		table.insert(args, "--header-lines=1")
 	end
 
-	table.insert(args, ("--prompt='%s '"):format(self.prompt))
+	table.insert(args, ("--prompt='%s ~ '"):format(self.prompt))
 
 	local expects = {}
 	for keystroke, _ in pairs(self.actions) do
