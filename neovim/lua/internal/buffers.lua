@@ -32,8 +32,9 @@ function M.open_tab(fn, opts)
 end
 
 function M.open_in_win(fn, opts)
-	windows.pick_window()
-	util.open_buf(util.create_buf(opts), fn)
+	if windows.pick_window() then
+		util.open_buf(util.create_buf(opts), fn)
+	end
 end
 
 function M.list()

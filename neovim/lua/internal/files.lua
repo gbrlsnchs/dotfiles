@@ -25,8 +25,9 @@ function M.open(filename, direction)
 end
 
 function M.open_in_win(filename)
-	windows.pick_window()
-	M.open(filename)
+	if windows.pick_window() then
+		M.open(filename)
+	end
 end
 
 return M

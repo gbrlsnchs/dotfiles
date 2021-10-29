@@ -29,7 +29,7 @@ function M.pick_window()
 		if not ok or tonumber(choice) == 27 then -- if Ctrl-C or Esc
 			util.hide_visual_cues()
 			vim.cmd("mode")
-			return
+			return false
 		end
 		choice = vim.fn.nr2char(choice):upper()
 		local ascii_code = vim.fn.char2nr(choice)
@@ -38,6 +38,8 @@ function M.pick_window()
 
 	util.hide_visual_cues()
 	api.nvim_set_current_win(winid)
+
+	return true
 end
 
 return M
