@@ -11,8 +11,14 @@ local levels = tables.readonly({
 local Logger = {}
 
 function Logger:new(prefix)
+	prefix = vim.tbl_filter(function(v)
+		return type(v) == "string"
+	end, {
+		self.prefix,
+		prefix,
+	})
 	local logger = {
-		prefix = prefix,
+		prefix = table.concat(prefix, " / "),
 	}
 	self.__index = self
 
@@ -45,4 +51,4 @@ function Logger:trace(msg, ...)
 	vim.notify(self:parse_msg(msg, ...), levels.TRACE)
 end
 
-return Logger
+return Logger:new("Neovim")
