@@ -15,9 +15,10 @@ M.action_types = tables.readonly({
 
 function M:new(opts)
 	opts = opts or {}
-	opts = vim.tbl_deep_extend("keep", opts, {
+	opts = vim.tbl_deep_extend("keep", opts or {}, {
 		show_header = false,
 		prompt = ">",
+		use_null_character = false,
 		default_action = util.buffer_wrap(buffers.open),
 		actions = {
 			[M.action_types.C_X] = util.buffer_wrap(buffers.open_horizontal),
@@ -41,6 +42,10 @@ function M:_build_args()
 	end
 
 	table.insert(args, ("--prompt='%s ~ '"):format(self.prompt))
+
+	if self.use_null_character then
+		table.insert(args, "--read0")
+	end
 
 	local expects = {}
 	for keystroke, _ in pairs(self.actions) do
