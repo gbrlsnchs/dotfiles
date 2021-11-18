@@ -1,4 +1,4 @@
-local windows = require("internal.windows")
+local winpick = require("winpick")
 
 local util = require("internal.buffers.util")
 
@@ -7,10 +7,18 @@ local api = vim.api
 local M = {}
 
 function M.open(fn, opts)
+	if not winpick.pick_window() then
+		return
+	end
+
 	util.open_buf(util.create_buf(opts), fn)
 end
 
 function M.open_horizontal(fn, opts)
+	if not winpick.pick_window() then
+		return
+	end
+
 	local bufnr = util.create_buf(opts)
 
 	vim.cmd(("sbuffer %d"):format(bufnr))
@@ -18,6 +26,10 @@ function M.open_horizontal(fn, opts)
 end
 
 function M.open_vertical(fn, opts)
+	if not winpick.pick_window() then
+		return
+	end
+
 	local bufnr = util.create_buf(opts)
 
 	vim.cmd(("vertical sbuffer %d"):format(bufnr))
@@ -25,16 +37,14 @@ function M.open_vertical(fn, opts)
 end
 
 function M.open_tab(fn, opts)
+	if not winpick.pick_window() then
+		return
+	end
+
 	local bufnr = util.create_buf(opts)
 
 	vim.cmd(("tab sbuffer %d"):format(bufnr))
 	util.open_buf(bufnr, fn)
-end
-
-function M.open_in_win(fn, opts)
-	if windows.pick_window() then
-		util.open_buf(util.create_buf(opts), fn)
-	end
 end
 
 function M.list()

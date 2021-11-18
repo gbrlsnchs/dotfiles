@@ -1,5 +1,6 @@
+local winpick = require("winpick")
+
 local tables = require("internal.tables")
-local windows = require("internal.windows")
 
 local M = {}
 
@@ -21,13 +22,11 @@ function M.open(filename, direction)
 		cmd = "edit"
 	end
 
-	vim.cmd(("%s %s"):format(cmd, filename))
-end
-
-function M.open_in_win(filename)
-	if windows.pick_window() then
-		M.open(filename)
+	if not winpick.pick_window() then
+		return
 	end
+
+	vim.cmd(("%s %s"):format(cmd, filename))
 end
 
 return M

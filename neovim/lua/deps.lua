@@ -48,6 +48,7 @@ local deps = {
 		config = require("deps.lualine_nvim.config"),
 		requires = "arkav/lualine-lsp-progress",
 	},
+	["winpick.nvim"] = "gbrlsnchs/winpick.nvim",
 	["nvim-bqf"] = "kevinhwang91/nvim-bqf",
 	["nvim-comment"] = {
 		"terrortylor/nvim-comment",
@@ -165,6 +166,7 @@ packer.startup({
 		-- Libraries.
 		use(deps["plenary.nvim"])
 		use(deps["nvim-fzf"])
+		use(deps["winpick.nvim"])
 
 		-- Themes.
 		use(deps["gruvbox.nvim"])

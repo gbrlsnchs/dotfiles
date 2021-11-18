@@ -33,9 +33,22 @@ return function()
 		},
 		e = {
 			name = "explorer",
-			e = { "<Cmd>Explore<CR>", "Open file explorer in current buffer" },
-			s = { "<Cmd>Sexplore<CR>", "Open file explorer horizontally" },
-			v = { "<Cmd>Vexplore<CR>", "Open file explorer vertically" },
+			e = {
+				'<Cmd>lua require("internal.explorer").open()<CR>',
+				"Open file explorer in current buffer",
+			},
+			s = {
+				'<Cmd>lua require("internal.explorer").open_horizontal()<CR>',
+				"Open file explorer horizontally",
+			},
+			v = {
+				'<Cmd>lua require("internal.explorer").open_vertical()<CR>',
+				"Open file explorer vertically",
+			},
+			t = {
+				'<Cmd>lua require("internal.explorer").open_tab()<CR>',
+				"Open file explorer in a new tab",
+			},
 		},
 		f = {
 			name = "find",
@@ -92,28 +105,30 @@ return function()
 		},
 		t = {
 			name = "terminal",
-			N = { "<Cmd>terminal<CR>", "Open a new anonymous terminal" },
-			S = { "<Cmd>split +terminal<CR>", "Open a new terminal horizontally" },
-			T = { "<Cmd>tabnew +terminal<CR>", "Open a new terminal in a new tab" },
-			V = { "<Cmd>vsplit +terminal<CR>", "Open a new terminal vertically" },
 			n = {
 				'<Cmd>lua require("internal.terminal").create()<CR>',
-				"Open a new named terminal",
+				"Open a new terminal",
 			},
 			s = {
 				'<Cmd>lua require("internal.terminal").create_horizontal()<CR>',
-				"Open a new named terminal horizontally",
+				"Open a new terminal horizontally",
 			},
 			t = {
 				'<Cmd>lua require("internal.terminal").create_tab()<CR>',
-				"Open a new named terminal in a new tab",
+				"Open a new terminal in a new tab",
 			},
 			v = {
 				'<Cmd>lua require("internal.terminal").create_vertical()<CR>',
-				"Open a new named terminal vertically",
+				"Open a new terminal vertically",
 			},
 		},
 	}, {
 		prefix = "<Leader>",
+	})
+
+	which_key.register({
+		["p"] = { '<Cmd> lua require("winpick").pick_window()<CR>', "Pick a window to focus" },
+	}, {
+		prefix = "<C-w>",
 	})
 end

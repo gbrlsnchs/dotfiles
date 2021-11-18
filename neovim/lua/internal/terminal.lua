@@ -1,31 +1,29 @@
-local buffers = require("internal.buffers")
+local winpick = require("winpick")
+
 local Prompt = require("internal.prompt")
 
 local M = {}
 
-local function create_named(open_fn)
-	local name = Prompt:new():input("Terminal name: ")
-
-	open_fn(function()
-		vim.cmd("terminal")
-		vim.api.nvim_buf_set_var(0, "term_name", name)
-	end)
+local function create(cmd)
+	if winpick.pick_window() then
+		vim.cmd(cmd)
+	end
 end
 
 function M.create()
-	create_named(buffers.open)
+	create("terminal")
 end
 
 function M.create_horizontal()
-	create_named(buffers.open_horizontal)
+	create("split +terminal")
 end
 
 function M.create_vertical()
-	create_named(buffers.open_vertical)
+	create("vsplit +terminal")
 end
 
 function M.create_tab()
-	create_named(buffers.open_tab)
+	create("tabedit +terminal")
 end
 
 return M
