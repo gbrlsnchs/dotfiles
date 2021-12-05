@@ -1,0 +1,2 @@
+setopt prompt_subst
+setopt share_history

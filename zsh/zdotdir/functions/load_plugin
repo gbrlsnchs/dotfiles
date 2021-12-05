@@ -1,0 +1,7 @@
+function load_plugin() {
+	local plugin_name=$1
+
+	source $XDG_DATA_HOME/zsh/plugins/$plugin_name/$plugin_name.plugin.zsh
+}
+
+load_plugin "$@"

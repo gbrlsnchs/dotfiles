@@ -1,11 +1,10 @@
-DISABLE_AUTO_UPDATE=true
-
-# XDG stuff.
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_BIN_HOME="$HOME/.local/bin"
 export XDG_STATE_HOME="$HOME/.local/state"
+
+path+=("$XDG_BIN_HOME")
 
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
 export XDG_CONFIG_DIRS=/etc/xdg
@@ -19,34 +18,11 @@ export XDG_TEMPLATES_DIR=$(xdg-user-dir TEMPLATES)
 export XDG_VIDEOS_DIR=$(xdg-user-dir VIDEOS)
 export XDG_PUBLICSHARE_DIR=$(xdg-user-dir PUBLICSHARE)
 
-# Editor stuff.
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# Others.
 export SXHKD_SHELL=/bin/sh
 
-# Time to set PATH.
-
-# cargo
-path+=("$HOME/.cargo/bin")
-
-# go
-path+=("$(go env GOPATH)/bin")
-
-# python
-path+=("$HOME/.poetry/bin")
-
-# latex
-path+=("/opt/texlive/2021/bin/$(uname --machine)-$(uname --kernel-name | tr '[:upper:]' '[:lower:]')")
-
-# homemade scripts
-path+=("$XDG_BIN_HOME")
-
-# Version managers.
-source /usr/share/nvm/init-nvm.sh
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 typeset -U path
-
-# custom user completions
-fpath+=("$XDG_DATA_HOME/zfunc")

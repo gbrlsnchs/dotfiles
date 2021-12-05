@@ -1,0 +1,1 @@
+/home/gbrlsnchs/dev/gitlab.com/gbrlsnchs/home/zsh/zshrc
