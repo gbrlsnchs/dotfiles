@@ -7,7 +7,6 @@ local logger = Logger:new("fuzzy")
 local FuzzyCommand = require("internal.fuzzy.command")
 
 -- ideas:
--- fd --print0 | fzf --print0
 -- git log (with checkout and preview): git log --oneline | fzf --preview 'git show --name-only {1}'
 -- fd file:line
 -- oldfiles
@@ -28,17 +27,16 @@ local M = {}
 function M.find(opts)
 	opts = vim.tbl_deep_extend("keep", opts or {}, {
 		search_type = nil,
+		prompt = "Files",
 		use_file_cwd = false,
 	})
 
-	local cmd = vim.env.FZF_DEFAULT_COMMAND
+	local cmd = ("%s -0"):format(vim.env.FZF_DEFAULT_COMMAND)
+	local prompt = opts.prompt
+
 	if opts.search_type then
 		cmd = cmd:gsub("file", opts.search_type)
-	end
-
-	local prompt = "Files"
-
-	if opts.use_file_cwd then
+	elseif opts.use_file_cwd then
 		local file_cwd = vim.fn.expand("%:h")
 		if vim.fn.isdirectory(file_cwd) == 1 then
 			cmd = ("%s . %s"):format(cmd, file_cwd)
@@ -51,7 +49,8 @@ function M.find(opts)
 	FuzzyCommand
 		:new({
 			prompt = prompt,
-			default_action = files.open_in_win,
+			default_action = files.open,
+			use_null_character = true,
 			actions = {
 				[FuzzyCommand.action_types.C_X] = function(filename)
 					files.open(filename, files.directions.HORIZONTAL)
