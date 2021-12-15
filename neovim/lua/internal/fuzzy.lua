@@ -155,7 +155,6 @@ function M.buffers()
 		:new({
 			prompt = "Buffers",
 			show_header = true,
-			default_action = util.buffer_wrap(buffers.open_in_win),
 		})
 		:run(items, function(result)
 			local _, line, bufnr = result.item:match("^(.+):(%d+)%s%((%d+)%)$")
