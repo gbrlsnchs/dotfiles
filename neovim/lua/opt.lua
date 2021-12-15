@@ -36,6 +36,7 @@ vim.opt.textwidth = 100
 -- Editor.
 vim.opt.title = true
 vim.opt.guicursor = ""
+vim.opt.cursorline = true
 vim.opt.virtualedit = "block"
 vim.opt.list = false
 vim.opt.listchars = {
