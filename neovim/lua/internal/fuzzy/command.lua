@@ -41,7 +41,7 @@ function M:_build_args()
 		table.insert(args, "--header-lines=1")
 	end
 
-	table.insert(args, ("--prompt='%s ~ '"):format(self.prompt))
+	table.insert(args, ("--prompt='%s> '"):format(self.prompt))
 
 	if self.use_null_character then
 		table.insert(args, "--read0")
