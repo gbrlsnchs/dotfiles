@@ -37,10 +37,6 @@ function M.open_vertical(fn, opts)
 end
 
 function M.open_tab(fn, opts)
-	if not winpick.pick_window() then
-		return
-	end
-
 	local bufnr = util.create_buf(opts)
 
 	vim.cmd(("tab sbuffer %d"):format(bufnr))

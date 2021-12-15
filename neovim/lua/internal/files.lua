@@ -12,17 +12,19 @@ M.directions = tables.readonly({
 
 function M.open(filename, direction)
 	local cmd
+	local pick_win = true
 	if direction == M.directions.HORIZONTAL then
 		cmd = "split +edit"
 	elseif direction == M.directions.VERTICAL then
 		cmd = "vsplit +edit"
 	elseif direction == M.directions.TAB then
 		cmd = "tabnew"
+		pick_win = false
 	else
 		cmd = "edit"
 	end
 
-	if not winpick.pick_window() then
+	if pick_win and not winpick.pick_window() then
 		return
 	end
 
