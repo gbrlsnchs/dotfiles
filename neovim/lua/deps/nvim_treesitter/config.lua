@@ -48,18 +48,6 @@ return function()
 		},
 	})
 
-	local gps = require("nvim-gps")
-	gps.setup({
-		icons = {
-			["class-name"] = "(class) ",
-			["function-name"] = "(function) ",
-			["method-name"] = "(method) ",
-			["container-name"] = "(container) ",
-			["tag-name"] = "(tag) ",
-		},
-		separator = " → ",
-	})
-
 	vim.opt.foldmethod = "expr"
 	-- vim.opt.foldexpr = vim.fn["nvim_treesitter#foldexpr"]()
 	vim.cmd("set foldexpr=nvim_treesitter#foldexpr()")
