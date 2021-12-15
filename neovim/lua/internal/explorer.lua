@@ -22,7 +22,8 @@ function M.open_vertical()
 end
 
 function M.open_tab()
-	open("Texplore")
+	local cd = vim.fn.expand("%:h")
+	vim.cmd(("Texplore %s"):format(cd))
 end
 
 return M
