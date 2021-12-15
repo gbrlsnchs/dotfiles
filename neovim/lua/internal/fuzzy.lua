@@ -8,8 +8,6 @@ local FuzzyCommand = require("internal.fuzzy.command")
 
 -- ideas:
 -- git log (with checkout and preview): git log --oneline | fzf --preview 'git show --name-only {1}'
--- fd file:line
--- oldfiles
 
 local function convert_to_relative(abs_path)
 	return vim.fn.fnamemodify(abs_path, ":~:.")
