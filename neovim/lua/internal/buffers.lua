@@ -45,7 +45,7 @@ end
 
 function M.list()
 	local cur_buf_id = api.nvim_get_current_buf()
-	local buf_info = vim.fn.getbufinfo({ buflisted = true, bufloaded = true })
+	local buf_info = vim.fn.getbufinfo({ buflisted = true, bufloaded = false })
 	local result = {
 		text_buffers = {},
 		term_buffers = {},
