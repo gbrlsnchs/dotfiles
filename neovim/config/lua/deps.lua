@@ -5,8 +5,6 @@ local common_deps = {
 }
 
 local aliases = {
-	["gruvbox.nvim"] = "gruvbox",
-	["lualine.nvim"] = "lualine",
 	["nvim-cmp"] = "nvim-cmp",
 	["nvim-lspconfig"] = "nvim-lsp",
 	["nvim-treesitter"] = "nvim-treesitter",
@@ -31,24 +29,15 @@ local deps = {
 		requires = common_deps.plenary_nvim,
 		config = require("deps.gitsigns_nvim.config"),
 	},
-	["gruvbox.nvim"] = {
-		"ellisonleao/gruvbox.nvim",
-		as = aliases["gruvbox.nvim"],
-		requires = "rktjmp/lush.nvim",
-		setup = require("deps.gruvbox_nvim.setup"),
-		config = require("deps.gruvbox_nvim.config"),
+	["indent-blankline.nvim"] = {
+		"lukas-reineke/indent-blankline.nvim",
+		after = aliases["nvim-treesitter"],
+		config = require("deps.indent_blankline_nvim.config"),
 	},
-	["lualine.nvim"] = {
-		"nvim-lualine/lualine.nvim",
-		as = aliases["lualine.nvim"],
-		after = {
-			aliases["nvim-lspconfig"],
-			aliases["nvim-treesitter"],
-		},
-		config = require("deps.lualine_nvim.config"),
-		requires = "arkav/lualine-lsp-progress",
+	["winpick.nvim"] = {
+		"~/dev/github.com/gbrlsnchs/winpick.nvim",
+		config = require("deps.winpick.config"),
 	},
-	["winpick.nvim"] = "gbrlsnchs/winpick.nvim",
 	["nvim-bqf"] = "kevinhwang91/nvim-bqf",
 	["nvim-comment"] = {
 		"terrortylor/nvim-comment",
@@ -91,7 +80,10 @@ local deps = {
 		requires = {
 			{ "folke/lua-dev.nvim" },
 			{ "nvim-lua/lsp-status.nvim" },
-			{ "RRethy/vim-illuminate" },
+			{
+				"RRethy/vim-illuminate",
+				config = require("deps.vim_illuminate.config"),
+			},
 		},
 		config = require("deps.nvim_lspconfig.config"),
 	},
@@ -99,13 +91,13 @@ local deps = {
 		"nvim-treesitter/nvim-treesitter",
 		as = aliases["nvim-treesitter"],
 		run = ":TSUpdate",
-		after = aliases["gruvbox.nvim"],
 		config = require("deps.nvim_treesitter.config"),
 		requires = {
 			{ "JoosepAlviste/nvim-ts-context-commentstring" },
 			{ "p00f/nvim-ts-rainbow" },
 			{ "windwp/nvim-ts-autotag" },
 			{ "SmiteshP/nvim-gps" },
+			-- { "romgrk/nvim-treesitter-context" },
 		},
 	},
 	["packer.nvim"] = packer_repo,
@@ -167,16 +159,14 @@ packer.startup({
 		use(deps["plenary.nvim"])
 		use(deps["nvim-fzf"])
 		use(deps["winpick.nvim"])
+		use("rktjmp/lush.nvim")
 
 		-- Themes.
-		use(deps["gruvbox.nvim"])
-		use(deps["lualine.nvim"])
+		-- use(deps["gruvbox.nvim"])
+		-- use(deps["lualine.nvim"])
 
 		-- Package manager.
 		use(deps["packer.nvim"])
-
-		-- Keybinding helper.
-		use(deps["which-key.nvim"])
 
 		-- Completion.
 		use(deps["nvim-cmp"])
@@ -192,17 +182,16 @@ packer.startup({
 		use(deps["spellsitter.nvim"])
 
 		-- Helpers.
+		use(deps["which-key.nvim"])
 		use(deps["nvim-bqf"])
-		use(deps["vim-bettergrep"])
 		use(deps["vim-startify"])
-		-- use(deps["fzf-lua"])
+		-- use(deps["indent-blankline.nvim"])
 
 		-- Utility.
 		use(deps["editorconfig.nvim"])
 		use(deps["bufdelete.nvim"])
 		use(deps["filename.nvim"])
 		use(deps["vim-oldfiles"])
-		-- use(deps["surround.nvim"])
 		use(deps["nvim-comment"])
 		use(deps["nvim-colorizer"])
 	end,
