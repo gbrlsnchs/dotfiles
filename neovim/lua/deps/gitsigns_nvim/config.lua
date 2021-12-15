@@ -3,10 +3,10 @@ return function()
 
 	gitsigns.setup({
 		signs = {
-			add = { text = "┃" },
-			change = { text = "┇" },
-			delete = { text = "━"},
-			changedelete = { text = "┅" },
+			add = { text = "█" },
+			change = { text = "▓" },
+			delete = { text = "░"},
+			changedelete = { text = "▒" },
 		},
 		keymaps = {
 			noremap = false,
