@@ -45,11 +45,16 @@ vim.opt.listchars = {
 	trail = "␣",
 	space = "·",
 }
+vim.opt.fillchars = {
+	vert = " ",
+	eob = "•",
+}
 vim.opt.signcolumn = "auto:9"
 vim.opt.colorcolumn = "100"
 vim.opt.foldlevel = 10
 vim.opt.hidden = true
 vim.opt.updatetime = 1000
+vim.opt.undofile = true
 
 -- Windows.
 vim.opt.splitright = true
