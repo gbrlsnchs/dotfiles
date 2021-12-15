@@ -81,8 +81,7 @@ vim.g.netrw_browsex_viewer = "xdg-open"
 -- Patches.
 vim.g.tex_flavor = "latex"
 
-vim.api.nvim_exec(
-	[[
+vim.cmd([[
 " Open buffers using relative paths.
 augroup editor
 	autocmd!
@@ -106,8 +105,6 @@ augroup highlight_yank
 	autocmd!
 	au TextYankPost * silent! lua vim.highlight.on_yank{ higroup="IncSearch", timeout=200 }
 augroup END
-]],
-	false
-)
+]])
 
 -- TODO: Set up env variables in order to use neovim-remote with Git.
