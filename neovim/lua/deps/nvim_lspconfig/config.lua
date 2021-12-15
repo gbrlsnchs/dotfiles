@@ -223,27 +223,6 @@ return function()
 		sumneko_lua = require("lua-dev").setup({
 			lspconfig = {
 				cmd = { "lua-language-server" },
-				settings = {
-					Lua = {
-						diagnostics = {
-							globals = {
-								-- Neovim
-								"vim",
-								-- Awesome
-								"awesome",
-								"client",
-								"root",
-								"screen",
-							},
-						},
-						workspace = {
-							library = {
-								-- [("%s/awesome"):format(os.getenv("XDG_CONFIG_HOME"))] = true,
-								-- ["/usr/share/awesome/lib"] = true,
-							},
-						},
-					},
-				},
 			},
 		}),
 		rust_analyzer = {
