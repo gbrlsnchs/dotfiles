@@ -179,7 +179,7 @@ function M.git_diff()
 				end,
 			},
 		})
-		:run("git --no-pager diff --name-only", function(result)
+		:run("git ls-files --modified --others --exclude-standard", function(result)
 			result.action(result.item)
 		end)
 end
