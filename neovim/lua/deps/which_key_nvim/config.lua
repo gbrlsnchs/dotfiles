@@ -63,7 +63,7 @@ return function()
 				"Find listed buffers",
 			},
 			d = {
-				'<Cmd>lua require("internal.fuzzy").find({ search_type = "directory" })<CR>',
+				'<Cmd>lua require("internal.fuzzy").find({ search_type = "directory", prompt = "Directories" })<CR>',
 				"Find a directory",
 			},
 			f = { '<Cmd>lua require("internal.fuzzy").find()<CR>', "Find files" },
