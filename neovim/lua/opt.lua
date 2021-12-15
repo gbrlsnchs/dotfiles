@@ -88,12 +88,6 @@ augroup editor
 	autocmd BufReadPost * silent! lcd .
 augroup END
 
-" Hide QF from buffer list.
-augroup quickfix
-	autocmd!
-	autocmd FileType qf set nobuflisted
-augroup END
-
 " Enable spellcheck for Git commits.
 augroup git
 	autocmd!
