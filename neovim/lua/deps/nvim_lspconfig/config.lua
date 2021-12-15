@@ -1,5 +1,6 @@
 return function()
 	local lspconfig = require("lspconfig")
+	local lsputil = require("lspconfig.util")
 	local lsp_status = require("lsp-status")
 	local illuminate = require("illuminate")
 	local which_key = require("which-key")
@@ -213,6 +214,10 @@ return function()
 					},
 				},
 			},
+		},
+		jdtls = {
+			cmd = { "jdtls" },
+			root_dir = lsputil.find_git_ancestor,
 		},
 		pyright = {},
 		sumneko_lua = require("lua-dev").setup({
