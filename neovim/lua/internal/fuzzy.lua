@@ -165,8 +165,8 @@ end
 function M.git_diff()
 	FuzzyCommand
 		:new({
-			prompt = "Dirty",
-			default_action = files.open_in_win,
+			prompt = "Changes",
+			default_action = files.open,
 			actions = {
 				[FuzzyCommand.action_types.C_X] = function(filename)
 					files.open(filename, files.directions.HORIZONTAL)
