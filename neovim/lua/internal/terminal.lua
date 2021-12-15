@@ -23,7 +23,7 @@ function M.create_vertical()
 end
 
 function M.create_tab()
-	create("tabedit +terminal")
+	vim.cmd("tabedit +terminal")
 end
 
 return M
