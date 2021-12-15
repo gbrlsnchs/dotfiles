@@ -5,7 +5,6 @@ local Logger = require("internal.logger")
 local logger = Logger:new("fuzzy")
 
 local FuzzyCommand = require("internal.fuzzy.command")
-local util = require("internal.fuzzy.util")
 
 -- ideas:
 -- fd --print0 | fzf --print0
@@ -195,7 +194,6 @@ function M.terminals()
 	FuzzyCommand
 		:new({
 			prompt = "Terminals",
-			default_action = util.buffer_wrap(buffers.open_in_win),
 		})
 		:run(items, function(result)
 			local bufnr = result.item:match("%((%d+)%)$")
