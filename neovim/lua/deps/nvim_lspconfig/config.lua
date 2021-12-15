@@ -250,14 +250,18 @@ return function()
 	}
 
 	local denylist = {}
+	local local_settings = lspconfig_util.get_local_settings() or {}
 	for name, config in pairs(servers) do
 		if denylist[name] then
 			goto continue
 		end
-		lspconfig[name].setup(vim.tbl_deep_extend("force", config, {
+
+		config = vim.tbl_deep_extend("force", config, local_settings[name] or {}, {
 			on_attach = lspconfig_util.on_attach,
 			capabilities = capabilities,
-		}))
+		})
+
+		lspconfig[name].setup(config)
 		::continue::
 	end
 end
