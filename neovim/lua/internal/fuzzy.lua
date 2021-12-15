@@ -124,7 +124,7 @@ function M.oldfiles()
 	FuzzyCommand
 		:new({
 			prompt = "Oldfiles",
-			default_action = files.open_in_win,
+			default_action = files.open,
 			actions = {
 				[FuzzyCommand.action_types.C_X] = function(filename)
 					files.open(filename, files.directions.HORIZONTAL)
