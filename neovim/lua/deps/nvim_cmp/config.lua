@@ -30,5 +30,9 @@ return function()
 			{ name = "buffer" },
 			{ name = "path" },
 		},
+		experimental = {
+			native_menu = true,
+			ghost_text = true,
+		},
 	})
 end
