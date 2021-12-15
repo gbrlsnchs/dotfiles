@@ -1,7 +1,6 @@
 vim.opt.termguicolors = true
 
 -- Statusline and Tabline
-vim.opt.showmode = false
 vim.opt.laststatus = 2
 vim.opt.showtabline = 2
 
