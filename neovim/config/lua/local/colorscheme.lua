@@ -31,7 +31,7 @@ return lush(function()
 		CursorLine({ SignColumn }),
 		CursorLineNr({ CursorLine, fg = palette.bright_gray }),
 		LineNr({ fg = palette.gray }),
-		Search({ bg = palette.bright_yellow, fg = palette.black }),
+		Search({ bg = palette.bg, fg = palette.bright_yellow, gui = "inverse" }),
 		IncSearch({ Search }),
 		MatchParen({ gui = "underline" }),
 		NonText({ CursorLine, fg = palette.gray }),
