@@ -1,20 +1,20 @@
 return function()
 	local ts = require("nvim-treesitter.configs")
 
-	local colors = require("gruvbox.colors")
-	local ts_rainbow_colors = {
-		colors.neutral_red, -- red
-		colors.neutral_orange, -- orange
-		colors.neutral_yellow, -- yellow
-		colors.neutral_green, -- green
-		colors.neutral_blue, -- blue
-		colors.neutral_aqua, -- indigo (cyan actually)
-		colors.neutral_purple, -- violet (magenta actually)
+	local palette = require("local.colorscheme.palette")
+	local rainbow = {
+		palette.bright_red,
+		palette.bright_green,
+		palette.bright_blue,
+		palette.bright_yellow,
+		palette.bright_purple,
+		palette.bright_cyan,
+		palette.bright_gray,
 	}
 
-	local hex_colors = {}
-	for _, color in ipairs(hex_colors) do
-		table.insert(hex_colors, tostring(color))
+	local hex_rainbow = {}
+	for _, color in ipairs(rainbow) do
+		table.insert(hex_rainbow, tostring(color))
 	end
 
 	ts.setup({
@@ -32,7 +32,7 @@ return function()
 			enable = true,
 			extended_mode = true,
 			max_file_lines = nil,
-			colors = ts_rainbow_colors.normal,
+			colors = hex_rainbow,
 		},
 		autotag = {
 			enable = true,
