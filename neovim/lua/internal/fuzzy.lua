@@ -189,7 +189,7 @@ function M.terminals()
 		local id = buf.id
 		line_list[tostring(id)] = buf.line_count
 
-		table.insert(items, ("[%s] %s (%d)"):format(buf.title, buf.name, id))
+		table.insert(items, ("%s (%d)"):format(buf.name, id))
 	end
 
 	FuzzyCommand

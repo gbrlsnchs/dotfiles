@@ -26,8 +26,7 @@ function M.parse_bufinfo(bufinfo)
 	end
 	return {
 		id = bufinfo.bufnr,
-		name = vars.term_name or bufinfo.name,
-		title = vars.term_title,
+		name = vars.term_title or bufinfo.name,
 		line = line,
 		line_count = bufinfo.linecount,
 	}
