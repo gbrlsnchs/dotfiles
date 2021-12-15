@@ -88,12 +88,6 @@ augroup editor
 	autocmd BufReadPost * silent! lcd .
 augroup END
 
-" Enable spellcheck for Git commits.
-augroup git
-	autocmd!
-	autocmd FileType gitcommit setlocal spell
-augroup END
-
 " Self-explanatory!
 augroup highlight_yank
 	autocmd!
