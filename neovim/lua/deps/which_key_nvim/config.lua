@@ -30,6 +30,8 @@ return function()
 			name = "buffer",
 			D = { "<Cmd>bdelete<CR>", "Delete buffer and quit window" },
 			d = { "<Cmd>Bdelete<CR>", "Delete buffer, preserve window" },
+			W = { "<Cmd>bwipeout<CR>", "Wipe out buffer and quit window" },
+			w = { "<Cmd>Bwipeout<CR>", "Wipe out buffer, preserve window" },
 		},
 		e = {
 			name = "explorer",
