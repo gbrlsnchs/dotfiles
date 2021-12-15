@@ -20,11 +20,11 @@ return function()
 		which_key.register({
 			["<C-]>"] = { "<Cmd>lua vim.lsp.buf.definition()<CR>", "Go to definition" },
 			["]e"] = {
-				'<Cmd>lua vim.lsp.diagnostic.goto_next({ popup_opts = { border = "single" } })<CR>',
+				"<Cmd>lua vim.diagnostic.goto_next()<CR>",
 				"Go to definition",
 			},
 			["[e"] = {
-				'<Cmd>lua vim.lsp.diagnostic.goto_prev({ popup_opts = { border = "single" } })<CR>',
+				"<Cmd>lua vim.diagnostic.goto_prev()<CR>",
 				"Go to definition",
 			},
 			K = { "<Cmd>lua vim.lsp.buf.hover()<CR>", "Hover symbol" },
@@ -50,7 +50,7 @@ return function()
 			R = { "<Cmd>lua vim.lsp.buf.references()<CR>", "Show references" },
 			c = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Run code action" },
 			d = {
-				'<Cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })<CR>',
+				'<Cmd>lua vim.diagnostic.open_float(0, { scope = "line", float = { border = "single" } })<CR>',
 				"Show line diagnostics",
 			},
 			f = { "<Cmd>lua vim.lsp.buf.formatting()<CR>", "Format code" },
@@ -117,13 +117,11 @@ return function()
 		prefix = "<Leader>l",
 	})
 
-	vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-		vim.lsp.diagnostic.on_publish_diagnostics,
-		{
-			virtual_text = false,
-			signs = true,
-		}
-	)
+	vim.diagnostic.config({
+		virtual_text = false,
+		signs = true,
+		float = { border = "single" },
+	})
 
 	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = nil })
 
