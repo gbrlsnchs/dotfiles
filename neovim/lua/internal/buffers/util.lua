@@ -12,8 +12,10 @@ function M.create_buf(opts)
 end
 
 function M.open_buf(bufnr, fn)
-	api.nvim_buf_call(bufnr, fn)
+	-- Let's load the buffer first in case it's not loaded yet.
 	api.nvim_win_set_buf(0, bufnr)
+	-- Then we proceed to execute fn in the buffer.
+	api.nvim_buf_call(bufnr, fn)
 end
 
 function M.parse_bufinfo(bufinfo)
