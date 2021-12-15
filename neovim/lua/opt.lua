@@ -9,7 +9,7 @@ vim.opt.pumheight = 10
 
 -- Search.
 vim.opt.incsearch = true
-vim.opt.inccommand = "split"
+vim.opt.inccommand = "nosplit"
 
 --
 vim.opt.shortmess = "aF"
