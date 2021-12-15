@@ -47,7 +47,10 @@ return function()
 				"<Cmd>lua vim.diagnostic.setloclist()<CR>",
 				"Show diagnostics for current buffer",
 			},
-			R = { "<Cmd>lua vim.lsp.buf.references()<CR>", "Show references" },
+			R = {
+				"<Cmd>lua vim.lsp.buf.references({ includeDeclaration = false })<CR>",
+				"Show references",
+			},
 			c = { "<Cmd>lua vim.lsp.buf.code_action()<CR>", "Run code action" },
 			d = {
 				'<Cmd>lua vim.diagnostic.open_float(0, { scope = "line", float = { border = "single" } })<CR>',
