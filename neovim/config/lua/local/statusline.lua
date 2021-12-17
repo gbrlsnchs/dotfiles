@@ -1,3 +1,5 @@
+local util = require("lib.win")
+
 local Builder = require("local.statusline.builder")
 
 local M = {}
@@ -44,7 +46,11 @@ local sline_bd = Builder
 		return is_active and { { "StatusLineActive", "" } }
 	end)
 
-function M.get_statusline(statusline_type)
+function M.build_statusline()
+	local current_win = vim.api.nvim_get_current_win()
+	local focused_win = util.get_focused_win()
+	local statusline_type = (current_win == focused_win and "active") or "inactive"
+
 	return sline_bd:build(statusline_type)
 end
 
