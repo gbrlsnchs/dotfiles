@@ -1,20 +1,23 @@
-vim.env.EDITOR = "nvr --remote-wait"
-vim.env.GIT_EDITOR = "nvr -cc tabnew --remote-wait +'setlocal bufhidden=wipe'"
-vim.env.GIT_PAGER =
-	"nvr -cc tabnew --remote-wait +'Man! | setlocal bufhidden=wipe number relativenumber | setfiletype git' -"
+local logger = require("lib.logger")
 
-vim.notify = require("internal.notify")
+local mods = {
+	"notification",
+	"env",
+	"colorscheme",
+	"statusline",
+}
 
-vim.opt.background = "dark"
-vim.cmd("colorscheme custom")
+for _, mod in ipairs(mods) do
+	local mod_path = "init." .. mod
+	local ok, err = pcall(require, mod_path)
+	if not ok then
+		logger.errorf("Unable to require %q: %s", mod_path, err)
+	else
+		logger.debugf("Initialized %q", mod_path)
+	end
+end
 
-vim.cmd([[
-augroup status_line
-	autocmd!
-	autocmd WinEnter,BufEnter * setlocal statusline=%{%v:lua.require('local.statusline').get_statusline('active')%}
-	autocmd WinLeave,BufLeave * setlocal statusline=%{%v:lua.require('local.statusline').get_statusline('inactive')%}
-augroup END
-]])
+logger.info("Initialized all modules")
 
 require("opt")
 require("deps")
