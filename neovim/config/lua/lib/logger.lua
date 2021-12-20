@@ -2,48 +2,48 @@
 local M = {}
 
 local levels = {
-	TRACE = vim.log.levels.TRACE,
-	DEBUG = vim.log.levels.DEBUG,
-	INFO = vim.log.levels.INFO,
-	WARN = vim.log.levels.WARN,
-	ERROR = vim.log.levels.ERROR,
+	ERROR = 0,
+	WARN = 1,
+	INFO = 2,
+	DEBUG = 3,
+	TRACE = 4,
 }
 
 M.levels = levels
 
 function M.error(msg)
-	vim.notify(msg, levels.ERROR)
+	M.errorf(msg)
 end
 function M.errorf(msg, ...)
-	vim.notify(msg:format(...), levels.ERROR)
+	vim.notify(("[ERROR] " .. msg):format(...), levels.ERROR)
 end
 
 function M.warn(msg)
-	vim.notify(msg, levels.WARN)
+	M.warnf(msg)
 end
 function M.warnf(msg, ...)
-	vim.notify(msg:format(...), levels.WARN)
+	vim.notify(("[WARN] " .. msg):format(...), levels.WARN)
 end
 
 function M.info(msg)
-	vim.notify(msg, levels.INFO)
+	M.infof(msg)
 end
 function M.infof(msg, ...)
-	vim.notify(msg:format(...), levels.INFO)
+	vim.notify(("[INFO] " .. msg):format(...), levels.INFO)
 end
 
 function M.debug(msg)
-	vim.notify(msg, levels.DEBUG)
+	M.debugf(msg)
 end
 function M.debugf(msg, ...)
-	vim.notify(msg:format(...), levels.DEBUG)
+	vim.notify(("[DEBUG] " .. msg):format(...), levels.DEBUG)
 end
 
 function M.trace(msg)
-	vim.notify(msg, levels.TRACE)
+	M.tracef(msg)
 end
 function M.tracef(msg, ...)
-	vim.notify(msg:format(...), levels.TRACE)
+	vim.notify(("[TRACE] " .. msg):format(...), levels.TRACE)
 end
 
 return M

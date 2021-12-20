@@ -13,3 +13,63 @@
 [submodule "neovim/data/start/vim-dirvish"]
 	path = neovim/data/start/vim-dirvish
 	url = https://github.com/justinmk/vim-dirvish
+[submodule "neovim/data/start/winpick.nvim"]
+	path = neovim/data/start/winpick.nvim
+	url = https://github.com/gbrlsnchs/winpick.nvim
+[submodule "neovim/data/start/which-key.nvim"]
+	path = neovim/data/start/which-key.nvim
+	url = https://github.com/folke/which-key.nvim
+[submodule "neovim/data/start/vim-oldfiles"]
+	path = neovim/data/start/vim-oldfiles
+	url = https://github.com/gpanders/vim-oldfiles
+[submodule "neovim/data/opt/which-key.nvim"]
+	path = neovim/data/opt/which-key.nvim
+	url = https://github.com/folke/which-key.nvim
+[submodule "neovim/data/start/editorconfig.nvim"]
+	path = neovim/data/start/editorconfig.nvim
+	url = https://github.com/gpanders/editorconfig.nvim
+[submodule "neovim/data/start/bufdelete.nvim"]
+	path = neovim/data/start/bufdelete.nvim
+	url = https://github.com/famiu/bufdelete.nvim
+[submodule "neovim/data/start/plenary.nvim"]
+	path = neovim/data/start/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim
+[submodule "neovim/data/opt/filetype.nvim"]
+	path = neovim/data/opt/filetype.nvim
+	url = https://github.com/nathom/filetype.nvim
+[submodule "neovim/data/start/nvim-fzf"]
+	path = neovim/data/start/nvim-fzf
+	url = https://github.com/vijaymarupudi/nvim-fzf
+[submodule "neovim/data/opt/gitsigns.nvim"]
+	path = neovim/data/opt/gitsigns.nvim
+	url = https://github.com/lewis6991/gitsigns.nvim
+[submodule "neovim/data/opt/indent-blankline.nvim"]
+	path = neovim/data/opt/indent-blankline.nvim
+	url = https://github.com/lukas-reineke/indent-blankline.nvim
+[submodule "neovim/data/opt/spellsitter.nvim"]
+	path = neovim/data/opt/spellsitter.nvim
+	url = https://github.com/lewis6991/spellsitter.nvim
+[submodule "neovim/data/opt/nvim-ts-autotag"]
+	path = neovim/data/opt/nvim-ts-autotag
+	url = https://github.com/windwp/nvim-ts-autotag
+[submodule "neovim/data/opt/nvim-ts-rainbow"]
+	path = neovim/data/opt/nvim-ts-rainbow
+	url = https://github.com/p00f/nvim-ts-rainbow
+[submodule "neovim/data/opt/nvim-ts-context-commentstring"]
+	path = neovim/data/opt/nvim-ts-context-commentstring
+	url = https://github.com/JoosepAlviste/nvim-ts-context-commentstring
+[submodule "neovim/data/opt/nvim-treesitter"]
+	path = neovim/data/opt/nvim-treesitter
+	url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule "neovim/data/opt/nvim-colorizer.lua"]
+	path = neovim/data/opt/nvim-colorizer.lua
+	url = https://github.com/norcalli/nvim-colorizer.lua
+[submodule "neovim/data/opt/nvim-lspconfig"]
+	path = neovim/data/opt/nvim-lspconfig
+	url = https://github.com/neovim/nvim-lspconfig
+[submodule "neovim/data/start/lush.nvim"]
+	path = neovim/data/start/lush.nvim
+	url = https://github.com/rktjmp/lush.nvim
+[submodule "neovim/data/opt/lua-dev.nvim"]
+	path = neovim/data/opt/lua-dev.nvim
+	url = https://github.com/folke/lua-dev.nvim

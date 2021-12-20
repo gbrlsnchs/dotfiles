@@ -1,6 +1,7 @@
 local winpick = require("winpick")
 
 local tables = require("internal.tables")
+local logger = require("lib.logger")
 
 local M = {}
 
@@ -14,9 +15,9 @@ function M.open(filename, direction)
 	local cmd
 	local pick_win = true
 	if direction == M.directions.HORIZONTAL then
-		cmd = "split +edit"
+		cmd = "split | edit"
 	elseif direction == M.directions.VERTICAL then
-		cmd = "vsplit +edit"
+		cmd = "vsplit | edit"
 	elseif direction == M.directions.TAB then
 		cmd = "tabnew"
 		pick_win = false
@@ -28,7 +29,10 @@ function M.open(filename, direction)
 		return
 	end
 
-	vim.cmd(("%s %s"):format(cmd, filename))
+	cmd = ("%s %s"):format(cmd, filename)
+	logger.debugf("Opening file with command %q", cmd)
+
+	vim.cmd(cmd)
 end
 
 return M

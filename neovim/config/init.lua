@@ -1,23 +1,31 @@
 local logger = require("lib.logger")
 
-local mods = {
-	"notification",
-	"env",
-	"colorscheme",
-	"statusline",
-}
+local function load_mods(dir, mods, allowlist)
+	allowlist = allowlist or {}
 
-for _, mod in ipairs(mods) do
-	local mod_path = "init." .. mod
-	local ok, err = pcall(require, mod_path)
-	if not ok then
-		logger.errorf("Unable to require %q: %s", mod_path, err)
-	else
-		logger.debugf("Initialized %q", mod_path)
+	for _, mod in ipairs(mods) do
+		local mod_path = ("%s.%s"):format(dir, mod)
+		local ok, err = pcall(require, mod_path)
+		if ok then
+			logger.debugf("Initialized %q", mod_path)
+		else
+			logger.errorf("Unable to require %q: %s", mod_path, err)
+		end
 	end
+
+	logger.infof("Loaded all modules from %q", dir)
 end
 
-logger.info("Initialized all modules")
-
-require("opt")
-require("deps")
+load_mods("opts", {
+	"notification",
+	"colorscheme",
+	"editor",
+	"env",
+	"mappings",
+	"completion",
+	"search",
+	"statusline",
+	"tabline",
+	"latex",
+})
+load_mods("deps", { "lsp", "tree_sitter", "git", "helpers", "explorer" })

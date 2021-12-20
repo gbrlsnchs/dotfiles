@@ -1,8 +1,7 @@
 local buffers = require("internal.buffers")
 local files = require("internal.files")
-local Logger = require("internal.logger")
-
-local logger = Logger:new("fuzzy")
+local command = require("lib.command")
+local logger = require("lib.logger")
 
 local FuzzyCommand = require("internal.fuzzy.command")
 
@@ -202,6 +201,23 @@ function M.terminals()
 		:run(items, function(result)
 			local bufnr = result.item:match("%((%d+)%)$")
 			result.action(tonumber(bufnr), tonumber(line_list[bufnr]))
+		end)
+end
+
+function M.commands()
+	local keymaps = command.list()
+
+	FuzzyCommand
+		:new({
+			prompt = "Command Palette",
+			default_action = function(desc)
+				local cmd = command.find(desc)
+				M.oldfiles()
+			end,
+			actions = nil,
+		})
+		:run(keymaps, function(result)
+			result.action(result.item)
 		end)
 end
 
