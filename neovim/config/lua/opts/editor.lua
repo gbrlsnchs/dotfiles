@@ -39,5 +39,6 @@ augroup editor
 	autocmd!
 	autocmd BufReadPost * silent! lcd .
 	autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+	autocmd TermOpen * startinsert
 augroup END
 ]])
