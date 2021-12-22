@@ -15,10 +15,11 @@ end
 
 -- Default value includes "error", "warn" and "info".
 -- Error logs cannot be disabled.
-local max_log_level = tonumber(vim.env.NVIM_LOG_LEVEL) or 2
+local max_log_level = tonumber(vim.env.NVIM_LOG_LEVEL) or logger.levels.INFO
 
 vim.notify = function(msg, log_level, _)
-	if log_level >= max_log_level then
+	log_level = log_level or max_log_level
+	if log_level > max_log_level then
 		return
 	end
 
