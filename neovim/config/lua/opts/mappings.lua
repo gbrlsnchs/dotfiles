@@ -1,4 +1,5 @@
 local command = require("lib.command")
+local command_util = require("lib.command.util")
 
 vim.g.mapleader = " "
 
@@ -6,13 +7,15 @@ local function nmap(key, cmd)
 	vim.api.nvim_set_keymap("n", key, cmd, { noremap = true })
 end
 
+local with_default_fuzzy_opts = command_util.create_factory({ group = "Fuzzy" })
+
 -- Buffers.
 nmap("]b", "<Cmd>bnext<CR>")
 nmap("[b", "<Cmd>bNext<CR>")
-nmap("<Leader>bD", "<Cmd>bdelete<CR>")
-nmap("<Leader>bd", "<Cmd>Bdelete<CR>")
-nmap("<Leader>bW", "<Cmd>bwipeout<CR>")
-nmap("<Leader>bw", "<Cmd>Bwipeout<CR>")
+command.add("bdelete", "Delete buffer", with_default_fuzzy_opts("<Leader>bD"))
+command.add("Bdelete", "Delete buffer and close window", with_default_fuzzy_opts("<Leader>bd"))
+command.add("bwipeout", "Wipe out buffer", with_default_fuzzy_opts("<Leader>bW"))
+command.add("Bwipeout", "Wipe out buffer and close window", with_default_fuzzy_opts("<Leader>bw"))
 
 -- Loclist/quickfix.
 nmap("]l", "<Cmd>lnext<CR>")
@@ -21,32 +24,94 @@ nmap("]q", "<Cmd>cnext<CR>")
 nmap("[q", "<Cmd>cprevious<CR>")
 
 -- Fuzzy finding.
-local fuzzy_group = "Fuzzy"
-
-nmap("<Leader>f.", '<Cmd>lua require("internal.fuzzy").find({ use_file_cwd = true })<CR>')
-nmap("<Leader>fb", '<Cmd>lua require("internal.fuzzy").buffers()<CR>')
-nmap("<Leader>fc", '<Cmd>lua require("internal.fuzzy").commands()<CR>')
-nmap(
-	"<Leader>fd",
-	'<Cmd>lua require("internal.fuzzy").find({ search_type = "directory", prompt = "Directories" })<CR>'
+command.add(
+	'lua require("internal.fuzzy").find({ use_file_cwd = true })',
+	"Find files in the current directory",
+	with_default_fuzzy_opts("<Leader>f.")
 )
-nmap("<Leader>ff", '<Cmd>lua require("internal.fuzzy").find()<CR>')
-nmap("<Leader>fg", '<Cmd>lua require("internal.fuzzy").git_diff()<CR>')
-command.add('lua require("internal.fuzzy").oldfiles()', "Find recent files", {
-	group = fuzzy_group,
-	keymap = { mode = "n", keys = "<Leader>fh" },
-})
-nmap("<Leader>ft", '<Cmd>lua require("internal.fuzzy").terminals()<CR>')
-nmap("<Leader>fw", '<Cmd>lua require("internal.fuzzy").cword_file_line()<CR>')
+command.add(
+	'lua require("internal.fuzzy").buffers()',
+	"Find buffers",
+	with_default_fuzzy_opts("<Leader>fb")
+)
+nmap("<Leader>fc", '<Cmd>lua require("internal.fuzzy").commands()<CR>')
+command.add(
+	'lua require("internal.fuzzy").find({ search_type = "directory", prompt = "Directories" })',
+	"Find a directory",
+	with_default_fuzzy_opts("<Leader>fd")
+)
+command.add(
+	'lua require("internal.fuzzy").find()',
+	"Find a file",
+	with_default_fuzzy_opts("<Leader>ff")
+)
+command.add(
+	'lua require("internal.fuzzy").git_diff()',
+	"Find a modified file",
+	with_default_fuzzy_opts("<Leader>fg")
+)
+command.add(
+	'lua require("internal.fuzzy").oldfiles()',
+	"Find a recent file",
+	with_default_fuzzy_opts("<Leader>fh")
+)
+command.add(
+	'lua require("internal.fuzzy").terminals()',
+	"Find a running terminal",
+	with_default_fuzzy_opts("<Leader>ft")
+)
+command.add(
+	'lua require("internal.fuzzy").cword_file_line()',
+	'Find "file:line:column" under cursor',
+	with_default_fuzzy_opts("<Leader>fw")
+)
 
 -- Searching.
-nmap("<Leader>sf", '<Cmd>lua require("internal.search").rg_smart_case()<CR>')
-nmap("<Leader>sg", '<Cmd>lua require("internal.search").git_grep()<CR>')
-nmap("<Leader>sw", '<Cmd>lua require("internal.search").rg_word()<CR>')
-nmap("<Leader>sW", '<Cmd>lua require("internal.search").rg_word({ WORD = true })<CR>')
+local with_default_search_opts = command_util.create_factory({ group = "Search" })
+
+command.add(
+	'lua require("internal.search").rg_smart_case()',
+	"Search for word",
+	with_default_search_opts("<Leader>sf")
+)
+command.add(
+	'lua require("internal.search").git_grep()',
+	"Search for word using Git",
+	with_default_search_opts("<Leader>sg")
+)
+command.add(
+	'lua require("internal.search").rg_word()',
+	"Search for word under cursor",
+	with_default_search_opts("<Leader>sw")
+)
+command.add(
+	'lua require("internal.search").rg_word({ WORD = true })',
+	"Search for WORD under cursor",
+	with_default_search_opts("<Leader>sW")
+)
 
 -- Terminal.
-nmap("<Leader>tn", '<Cmd>lua require("internal.terminal").create()<CR>')
-nmap("<Leader>ts", '<Cmd>lua require("internal.terminal").create_horizontal()<CR>')
-nmap("<Leader>tt", '<Cmd>lua require("internal.terminal").create_tab()<CR>')
-nmap("<Leader>tv", '<Cmd>lua require("internal.terminal").create_vertical()<CR>')
+local with_default_term_opts = command_util.create_factory({ group = "Terminal" })
+local tags = command.tags
+local term_desc = "Create a new terminal instance"
+
+command.add(
+	'lua require("internal.terminal").create()',
+	term_desc,
+	with_default_term_opts("<Leader>tn")
+)
+command.add(
+	'lua require("internal.terminal").create_horizontal()',
+	term_desc,
+	with_default_term_opts("<Leader>ts", tags.horizontal)
+)
+command.add(
+	'lua require("internal.terminal").create_tab()',
+	term_desc,
+	with_default_term_opts("<Leader>tt", tags.tab)
+)
+command.add(
+	'lua require("internal.terminal").create_vertical()',
+	term_desc,
+	with_default_term_opts("<Leader>tv", tags.vertical)
+)

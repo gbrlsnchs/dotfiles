@@ -1,5 +1,7 @@
 local features = require("features")
 local util = require("lib.util")
+local command = require("lib.command")
+local command_util = require("lib.command.util")
 
 if not util.feature_is_on(features.lsp.core) then
 	return
@@ -15,6 +17,13 @@ local function register_keymaps(bufnr)
 		vim.api.nvim_buf_set_keymap(bufnr, mode, key, cmd, { noremap = true })
 	end
 
+	local cmd_opts = {
+		bufnr = bufnr,
+		group = "LSP",
+	}
+
+	local with_default_cmd_settings = command_util.create_factory(cmd_opts)
+
 	set_keymap("n", "<C-]>", "<Cmd>lua vim.lsp.buf.definition()<CR>")
 	set_keymap("n", "]e", "<Cmd>lua vim.diagnostic.goto_next()<CR>")
 	set_keymap("n", "[e", "<Cmd>lua vim.diagnostic.goto_prev()<CR>")
@@ -26,12 +35,16 @@ local function register_keymaps(bufnr)
 	set_keymap("i", "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>")
 
 	set_keymap("n", "<Leader>lD", "<Cmd>lua vim.diagnostic.setloclist()<CR>")
-	set_keymap(
-		"n",
-		"<Leader>lR",
-		"<Cmd>lua vim.diagnostic.references({ includeDeclaration = false })<CR>"
+	command.add(
+		"lua vim.lsp.buf.references({ includeDeclaration = false })",
+		"Find references for symbol",
+		with_default_cmd_settings("<Leader>lR")
 	)
-	set_keymap("n", "<Leader>lc", "<Cmd>lua vim.lsp.buf.code_action()<CR>")
+	command.add(
+		"lua vim.lsp.buf.code_action()",
+		"Select a code action",
+		with_default_cmd_settings("<Leader>lc")
+	)
 	set_keymap("v", "<Leader>lc", "<Cmd>lua vim.lsp.buf.range_code_action()<CR>")
 	set_keymap(
 		"n",
@@ -40,7 +53,12 @@ local function register_keymaps(bufnr)
 	)
 
 	-- Formatting.
-	set_keymap("n", "<Leader>lf", "<Cmd>lua vim.lsp.buf.formatting()<CR>")
+	-- set_keymap("n", "<Leader>lf", "<Cmd>lua vim.lsp.buf.formatting()<CR>")
+	command.add(
+		"lua vim.lsp.buf.formatting()",
+		"Format code",
+		with_default_cmd_settings("<Leader>lf")
+	)
 	set_keymap("v", "<Leader>lf", "<Cmd>lua vim.lsp.buf.range_formatting()<CR>")
 
 	-- Calls and references.
@@ -52,15 +70,31 @@ local function register_keymaps(bufnr)
 	set_keymap("n", "<Leader>ls", "<Cmd>lua vim.lsp.buf.document_symbol()<CR>")
 
 	-- Workspace commands.
-	set_keymap("n", "<Leader>lwD", "<Cmd>lua vim.diagnostic.setqflist()<CR>")
-	set_keymap("n", "<Leader>lwa", "<Cmd>lua vim.lsp.buf.add_workspace_folder()<CR>")
-	set_keymap(
-		"n",
-		"<Leader>lwl",
-		"<Cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>"
+	command.add(
+		"lua vim.diagnostic.setqflist()",
+		"Show workspace diagnostics",
+		with_default_cmd_settings()
 	)
-	set_keymap("n", "<Leader>lwr", "<Cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>")
-	set_keymap("n", "<Leader>lws", "<Cmd>vim.lsp.buf.workspace_symbol()<CR>")
+	command.add(
+		"lua vim.lsp.buf.add_workspace_folder()",
+		"Add folder to workspace",
+		with_default_cmd_settings()
+	)
+	command.add(
+		"lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))",
+		"List workspace folders",
+		with_default_cmd_settings()
+	)
+	command.add(
+		"lua vim.lsp.buf.remove_workspace_folder()",
+		"Remove folder from workspace",
+		with_default_cmd_settings()
+	)
+	command.add(
+		"vim.lsp.buf.workspace_symbol()",
+		"Show workspace symbols",
+		with_default_cmd_settings()
+	)
 end
 
 local function config_ui()
