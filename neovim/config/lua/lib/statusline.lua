@@ -7,13 +7,13 @@ local M = {}
 local sline_bd = Builder
 	:new()
 	:add(function(is_active)
-		local hl = (is_active and "StatusLineActive") or "StatusLineNC"
+		local hl = (is_active and "StatusLineActive") or "StatusLineInactive"
 		local fillchars = vim.opt.fillchars:get()
 
 		return { { hl, fillchars.eob .. " " } }
 	end)
 	:add(function(is_active)
-		local hl = is_active and "StatusLineActive" or "StatusLineNC"
+		local hl = is_active and "StatusLineActive" or "StatusLineInactive"
 
 		if vim.bo.modified then
 			return { { hl .. "FileInfoModified", "%f" } }
@@ -22,7 +22,7 @@ local sline_bd = Builder
 		return { { hl .. "FileInfo", "%f" } }
 	end)
 	:add(function(is_active)
-		local hl = is_active and "StatusLineActive" or "StatusLineNC"
+		local hl = is_active and "StatusLineActive" or "StatusLineInactive"
 
 		return { { hl, " " } }
 	end)
@@ -43,7 +43,7 @@ local sline_bd = Builder
 			}
 	end)
 	:add(function(is_active)
-		return is_active and { { "StatusLineActive", "" } }
+		return { { is_active and "StatusLineActive" or "StatusLineInactive", "" } }
 	end)
 
 function M.build_statusline()
