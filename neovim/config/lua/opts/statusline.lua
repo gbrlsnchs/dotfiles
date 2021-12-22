@@ -3,7 +3,7 @@
 vim.cmd([[
 augroup status_line
 	autocmd!
-	autocmd WinEnter,BufWinEnter,BufEnter * lua require("lib.win").set_focused_win()
+	autocmd WinEnter,BufWinEnter,BufEnter,WinClosed * lua require("lib.win").set_focused_win()
 augroup END
 ]])
 
