@@ -27,7 +27,7 @@ if util.feature_is_on(features.tree_sitter.rainbow) then
 		palette.bright_yellow,
 		palette.bright_purple,
 		palette.bright_cyan,
-		palette.bright_gray,
+		palette.yellow,
 	}
 
 	local hex_rainbow = {}
