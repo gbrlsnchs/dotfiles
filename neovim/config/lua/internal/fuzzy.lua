@@ -205,16 +205,26 @@ function M.terminals()
 end
 
 function M.commands()
-	local keymaps = command.list()
+	local bufnr = vim.api.nvim_get_current_buf()
+	local keymaps = command.list(bufnr)
 
 	FuzzyCommand
 		:new({
 			prompt = "Command Palette",
 			default_action = function(desc)
-				local cmd = command.find(desc)
-				M.oldfiles()
+				command.run(bufnr, desc)
 			end,
-			actions = nil,
+			actions = {
+				[FuzzyCommand.action_types.C_X] = function(desc)
+					command.run(bufnr, desc, command.tags.horizontal)
+				end,
+				[FuzzyCommand.action_types.C_V] = function(desc)
+					command.run(bufnr, desc, command.tags.vertical)
+				end,
+				[FuzzyCommand.action_types.C_T] = function(desc)
+					command.run(bufnr, desc, command.tags.tab)
+				end,
+			},
 		})
 		:run(keymaps, function(result)
 			result.action(result.item)
