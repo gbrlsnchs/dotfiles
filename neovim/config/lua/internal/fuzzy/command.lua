@@ -35,7 +35,7 @@ function M:new(opts)
 end
 
 function M:_build_args()
-	local args = {}
+	local args = { "--layout=reverse" }
 
 	if self.show_header then
 		table.insert(args, "--header-lines=1")
@@ -62,8 +62,12 @@ function M:_build_args()
 end
 
 function M:run(input, f)
-	vim.schedule(coroutine.wrap(function()
-		local result = fzf.fzf(input, self:_build_args())
+	coroutine.wrap(function()
+		local result = fzf.fzf(input, self:_build_args(), {
+			row = 2,
+			width = 100,
+			height = 20,
+		})
 		if not result then
 			return
 		end
@@ -75,11 +79,8 @@ function M:run(input, f)
 
 		local action = self.actions[result[1]] or self.default_action
 
-		f({
-			item = item,
-			action = action,
-		})
-	end))
+		f({ item = item, action = action })
+	end)()
 end
 
 return M
