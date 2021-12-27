@@ -9,91 +9,196 @@ end
 
 util.packadd("nvim-lspconfig")
 
+local api = vim.api
+
 local lspconfig = require("lspconfig")
 local lsputil = require("lspconfig.util")
 
 local function register_keymaps(bufnr)
-	local function set_keymap(mode, key, cmd)
-		vim.api.nvim_buf_set_keymap(bufnr, mode, key, cmd, { noremap = true })
-	end
-
-	local cmd_opts = {
+	local wrap_cmd_opts = command_util.create_opts_factory({
 		bufnr = bufnr,
 		group = "LSP",
-	}
+	})
 
-	local with_default_cmd_settings = command_util.create_factory(cmd_opts)
-
-	set_keymap("n", "<C-]>", "<Cmd>lua vim.lsp.buf.definition()<CR>")
-	set_keymap("n", "]e", "<Cmd>lua vim.diagnostic.goto_next()<CR>")
-	set_keymap("n", "[e", "<Cmd>lua vim.diagnostic.goto_prev()<CR>")
-	set_keymap("n", "K", "<Cmd>lua vim.lsp.buf.hover()<CR>")
-	set_keymap("n", "gD", "<Cmd>lua vim.lsp.buf.implementation()<CR>")
-	set_keymap("n", "gd", "<Cmd>lua vim.lsp.buf.declaration()<CR>")
-	set_keymap("n", "<Leader>lt", "<Cmd>lua vim.lsp.buf.type_definition()<CR>")
-
-	set_keymap("i", "<C-k>", "<Cmd>lua vim.lsp.buf.signature_help()<CR>")
-
-	set_keymap("n", "<Leader>lD", "<Cmd>lua vim.diagnostic.setloclist()<CR>")
+	-- Diagnostics.
 	command.add(
-		"lua vim.lsp.buf.references({ includeDeclaration = false })",
+		"Show diagnostics information",
+		wrap_cmd_opts({
+			name = "LspShowDiagnostics",
+			exec = 'lua vim.diagnostic.open_float(0, { scope = "line", float = { border = "single" } })',
+			mappings = { bind = "<Leader>ld" },
+		})
+	)
+	command.add(
+		"Go to next diagnostic",
+		wrap_cmd_opts({
+			name = "LspNextDiagnostic",
+			exec = "lua vim.diagnostic.goto_next()",
+			mappings = { bind = "]e" },
+		})
+	)
+	command.add(
+		"Go to previous diagnostic",
+		wrap_cmd_opts({
+			name = "LspPrevDiagnostic",
+			exec = "lua vim.diagnostic.goto_prev()",
+			mappings = { bind = "[e" },
+		})
+	)
+	command.add(
+		"Show diagnostics for current buffer",
+		wrap_cmd_opts({
+			name = "LspDiagnostics",
+			exec = "lua vim.diagnostic.setloclist()",
+			mappings = { bind = "<Leader>lD" },
+		})
+	)
+	command.add(
+		"Show workspace diagnostics",
+		wrap_cmd_opts({
+			name = "LspWorkspaceDiagnostics",
+			exec = "lua vim.diagnostic.setqflist()",
+		})
+	)
+
+	-- Information.
+	command.add(
+		"Show information about symbol",
+		wrap_cmd_opts({
+			name = "LspHover",
+			exec = "lua vim.lsp.buf.hover()",
+			mappings = { bind = "K" },
+		})
+	)
+	api.nvim_buf_set_keymap(
+		bufnr,
+		"i",
+		"<C-k>",
+		"<Cmd>lua vim.lsp.buf.signature_help()<CR>",
+		{ noremap = true }
+	)
+
+	-- Jumps.
+	command.add(
+		"Go to definition",
+		wrap_cmd_opts({
+			name = "LspDefinition",
+			exec = "lua vim.lsp.buf.definition()",
+			mappings = { bind = "<C-]>" },
+		})
+	)
+	command.add(
+		"Go to implementation",
+		wrap_cmd_opts({
+			name = "LspImplementation",
+			exec = "lua vim.lsp.buf.implementation()",
+			mappings = { bind = "gD" },
+		})
+	)
+	command.add("gd", "<Cmd>lua vim.lsp.buf.declaration()<CR>")
+	command.add(
+		"Go to type definition",
+		wrap_cmd_opts({
+			name = "LspTypeDefinition",
+			exec = "lua vim.lsp.buf.type_definition()",
+		})
+	)
+	command.add(
+		"Show incoming calls",
+		wrap_cmd_opts({
+			name = "LspIncomingCalls",
+			exec = "lua vim.lsp.buf.incoming_calls()",
+		})
+	)
+	command.add(
+		"Show outgoing calls",
+		wrap_cmd_opts({
+			name = "LspOutgoingCalls",
+			exec = "lua vim.lsp.buf.outgoing_calls()",
+		})
+	)
+
+	-- Searches.
+	command.add(
 		"Find references for symbol",
-		with_default_cmd_settings("<Leader>lR")
+		wrap_cmd_opts({
+			name = "LspReferences",
+			exec = "lua vim.lsp.buf.references({ includeDeclaration = false })",
+			mappings = { bind = "<Leader>lR" },
+		})
 	)
 	command.add(
-		"lua vim.lsp.buf.code_action()",
-		"Select a code action",
-		with_default_cmd_settings("<Leader>lc")
-	)
-	set_keymap("v", "<Leader>lc", "<Cmd>lua vim.lsp.buf.range_code_action()<CR>")
-	set_keymap(
-		"n",
-		"<Leader>ld",
-		'<Cmd>lua vim.diagnostic.open_float(0, { scope = "line", float = { border = "single" } })<CR>'
+		"Search for symbols in current buffer",
+		wrap_cmd_opts({
+			name = "LspDocumentSymbol",
+			exec = "lua vim.lsp.buf.document_symbol()",
+			mappings = { bind = "<Leader>ls" },
+		})
 	)
 
-	-- Formatting.
-	-- set_keymap("n", "<Leader>lf", "<Cmd>lua vim.lsp.buf.formatting()<CR>")
+	-- Utils.
 	command.add(
-		"lua vim.lsp.buf.formatting()",
 		"Format code",
-		with_default_cmd_settings("<Leader>lf")
+		wrap_cmd_opts({
+			name = "LspFormat",
+			exec = "lua vim.lsp.buf.formatting()",
+			mappings = { bind = "<Leader>lf" },
+		})
 	)
-	set_keymap("v", "<Leader>lf", "<Cmd>lua vim.lsp.buf.range_formatting()<CR>")
-
-	-- Calls and references.
-	set_keymap("n", "<Leader>li", "<Cmd>lua vim.lsp.buf.incoming_calls()<CR>")
-	set_keymap("n", "<Leader>lo", "<Cmd>lua vim.lsp.buf.outgoing_calls()<CR>")
-
-	-- References.
-	set_keymap("n", "<Leader>lr", "<Cmd>lua vim.lsp.buf.rename()<CR>")
-	set_keymap("n", "<Leader>ls", "<Cmd>lua vim.lsp.buf.document_symbol()<CR>")
+	api.nvim_buf_set_keymap(bufnr, "v", "<Leader>lf", "<Cmd>lua vim.lsp.buf.range_formatting()<CR>")
+	command.add(
+		"Run a code action",
+		wrap_cmd_opts({
+			name = "LspCodeAction",
+			exec = "lua vim.lsp.buf.code_action()",
+			mappings = { bind = "<Leader>lc" },
+		})
+	)
+	api.nvim_buf_set_keymap(
+		bufnr,
+		"v",
+		"<Leader>lc",
+		"<Cmd>lua vim.lsp.buf.range_code_action()<CR>",
+		{ noremap = true }
+	)
+	command.add(
+		"Rename symbol under cursor",
+		wrap_cmd_opts({
+			name = "LspRename",
+			exec = "lua vim.lsp.buf.rename()",
+			mappings = { bind = "<Leader>lr" },
+		})
+	)
 
 	-- Workspace commands.
 	command.add(
-		"lua vim.diagnostic.setqflist()",
-		"Show workspace diagnostics",
-		with_default_cmd_settings()
-	)
-	command.add(
-		"lua vim.lsp.buf.add_workspace_folder()",
 		"Add folder to workspace",
-		with_default_cmd_settings()
+		wrap_cmd_opts({
+			name = "LspWorkspaceAddFolder",
+			exec = "lua vim.lsp.buf.add_workspace_folder()",
+		})
 	)
 	command.add(
-		"lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))",
 		"List workspace folders",
-		with_default_cmd_settings()
+		wrap_cmd_opts({
+			name = "LspWorkspaceListFolders",
+			exec = "lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))",
+		})
 	)
 	command.add(
-		"lua vim.lsp.buf.remove_workspace_folder()",
 		"Remove folder from workspace",
-		with_default_cmd_settings()
+		wrap_cmd_opts({
+			name = "LspWorkspaceRemoveFolder",
+			exec = "lua vim.lsp.buf.remove_workspace_folder()",
+		})
 	)
 	command.add(
-		"vim.lsp.buf.workspace_symbol()",
-		"Show workspace symbols",
-		with_default_cmd_settings()
+		"Find workspace symbol",
+		wrap_cmd_opts({
+			name = "LspWorkspaceSymbol",
+			nargs = "?",
+			exec = "lua vim.lsp.buf.workspace_symbol(<f-args>)",
+		})
 	)
 end
 
