@@ -95,7 +95,14 @@ local function register_keymaps(bufnr)
 			mappings = { bind = "gD" },
 		})
 	)
-	command.add("gd", "<Cmd>lua vim.lsp.buf.declaration()<CR>")
+	command.add(
+		"Go to declaration",
+		wrap_cmd_opts({
+			name = "LspDeclaration",
+			exec = "<Cmd>lua vim.lsp.buf.declaration()<CR>",
+			mappings = { bind = "gd" },
+		})
+	)
 	command.add(
 		"Go to type definition",
 		wrap_cmd_opts({
@@ -145,7 +152,13 @@ local function register_keymaps(bufnr)
 			mappings = { bind = "<Leader>lf" },
 		})
 	)
-	api.nvim_buf_set_keymap(bufnr, "v", "<Leader>lf", "<Cmd>lua vim.lsp.buf.range_formatting()<CR>")
+	api.nvim_buf_set_keymap(
+		bufnr,
+		"v",
+		"<Leader>lf",
+		"<Cmd>lua vim.lsp.buf.range_formatting()<CR>",
+		{ noremap = true }
+	)
 	command.add(
 		"Run a code action",
 		wrap_cmd_opts({
