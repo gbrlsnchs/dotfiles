@@ -1,3 +1,0 @@
-for file in "$ZDOTDIR"/zshrc.d/*.zsh(N) ; do
-	source $file
-done

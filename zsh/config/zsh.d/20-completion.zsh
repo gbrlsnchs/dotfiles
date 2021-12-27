@@ -7,4 +7,3 @@ complete -o nospace -C /usr/bin/terraform terraform
 complete -C $(which aws_completer) aws
 
 load_plugin zsh-completions
-load_plugin zsh-autosuggestions

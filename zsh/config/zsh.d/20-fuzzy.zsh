@@ -1,4 +1,5 @@
-export FZF_DEFAULT_COMMAND="fd --type file --hidden --no-ignore-vcs"
+export FZF_DEFAULT_COMMAND="fd --color=always --type file --hidden --no-ignore-vcs"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS --ansi"
 
 for file in /usr/share/fzf/*.zsh ; do
 	source $file
