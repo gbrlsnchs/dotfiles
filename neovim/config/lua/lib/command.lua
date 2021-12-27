@@ -154,12 +154,12 @@ function M.open_palette()
 		index_items = true,
 		header = "#\tGroup\tDescription\tKeymap\tCommand",
 		format_item = function(cmd)
-			local parts = {}
-
-			table.insert(parts, cmd.group or "---")
-			table.insert(parts, cmd.description)
-			table.insert(parts, cmd.mappings and cmd.mappings.bind or "---")
-			table.insert(parts, cmd.name)
+			local parts = {
+				cmd.group or "---",
+				cmd.description,
+				cmd.mappings and cmd.mappings.bind or "---",
+				cmd.name,
+			}
 
 			return table.concat(parts, "\t")
 		end,
