@@ -18,14 +18,17 @@ end
 
 load_mods("opts", {
 	"notification",
-	"colorscheme",
-	"editor",
 	"env",
-	"mappings",
+	"ui",
+	"editor",
+	"colorscheme",
+	"statusline",
+	"command",
+	"buffers",
+	"files",
 	"completion",
 	"search",
-	"statusline",
 	"tabline",
 	"latex",
 })
-load_mods("deps", { "lsp", "tree_sitter", "git", "helpers", "explorer" })
+load_mods("deps", { "lsp", "tree_sitter", "git", "helpers", "explorer", "editor" })
