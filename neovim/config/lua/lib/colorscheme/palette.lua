@@ -1,1 +1,1 @@
-/home/gbrlsnchs/.cache/home/neovim/palette.lua
+/home/gbrlsnchs/.cache/dotfiles/neovim/palette.lua
