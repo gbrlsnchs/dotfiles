@@ -16,15 +16,9 @@
 [submodule "neovim/data/start/winpick.nvim"]
 	path = neovim/data/start/winpick.nvim
 	url = https://github.com/gbrlsnchs/winpick.nvim
-[submodule "neovim/data/start/which-key.nvim"]
-	path = neovim/data/start/which-key.nvim
-	url = https://github.com/folke/which-key.nvim
 [submodule "neovim/data/start/vim-oldfiles"]
 	path = neovim/data/start/vim-oldfiles
 	url = https://github.com/gpanders/vim-oldfiles
-[submodule "neovim/data/opt/which-key.nvim"]
-	path = neovim/data/opt/which-key.nvim
-	url = https://github.com/folke/which-key.nvim
 [submodule "neovim/data/start/editorconfig.nvim"]
 	path = neovim/data/start/editorconfig.nvim
 	url = https://github.com/gpanders/editorconfig.nvim
