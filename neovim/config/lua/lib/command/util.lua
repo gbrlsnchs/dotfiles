@@ -1,16 +1,10 @@
 local M = {}
 
-function M.create_factory(defaults)
-	return function(keys, tag)
-		local keymap
-		if keys then
-			keymap = { keys = keys }
-		end
+function M.create_opts_factory(defaults)
+	defaults = defaults or {}
 
-		return vim.tbl_deep_extend("force", defaults, {
-			keymap = keymap or {},
-			tag = tag,
-		})
+	return function(opts)
+		return vim.tbl_deep_extend("force", defaults, opts or {})
 	end
 end
 
