@@ -1,1 +1,1 @@
-source "$XDG_CACHE_HOME/wal/colors.sh"
+/home/gbrlsnchs/.cache/dotfiles/zsh/00-colors.zsh
