@@ -27,3 +27,5 @@
 	pushf = push --force-with-lease
 	sdiff = diff --staged
 	rsoft = reset --soft HEAD^
+	shorts = status --short
+	vomit = commit --verbose
