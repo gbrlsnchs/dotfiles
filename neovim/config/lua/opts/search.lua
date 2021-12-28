@@ -12,7 +12,8 @@ command.add(
 	"Search",
 	wrap_cmd_opts({
 		name = "Grep",
-		exec = 'lua require("lib.grep").search()',
+		nargs = "*",
+		exec = 'lua require("lib.grep").search(<f-args>)',
 		mappings = { bind = "<Leader>gg" },
 	})
 )
@@ -21,7 +22,8 @@ command.add(
 	"Search with Git",
 	wrap_cmd_opts({
 		name = "GitGrep",
-		exec = 'lua require("lib.grep").git_search()',
+		nargs = "*",
+		exec = 'lua require("lib.grep").git_search(<f-args>)',
 		mappings = { bind = "<Leader>gG" },
 	})
 )

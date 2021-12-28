@@ -2,7 +2,12 @@ local Job = require("plenary.job")
 
 local logger = require("lib.logger")
 
-local function prompt()
+local function prompt(...)
+	local query = { ... }
+	if #query > 0 then
+		return table.concat(query, " ")
+	end
+
 	local word = vim.fn.input("Search for: ")
 
 	if not word or word:len() == 0 then
@@ -13,7 +18,7 @@ local function prompt()
 end
 
 local function run(cmd, ...)
-	local args = ...
+	local args = { ... }
 
 	Job
 		:new({
@@ -39,22 +44,24 @@ end
 
 local M = {}
 
-function M.search(query)
-	query = query or prompt()
+function M.search(...)
+	local query = prompt(...)
 	if not query then
 		logger.info("Search aborted!")
+		return
 	end
 
 	run("rg", "--vimgrep", "--no-heading", "--smart-case", query)
 end
 
-function M.git_search(query)
-	query = query or prompt()
+function M.git_search(...)
+	local query = prompt(...)
 	if not query then
-		logger.info("Search aborted!")
+		logger.info("Search with Git aborted!")
+		return
 	end
 
-	run("git grep", "git", "grep", "--column", "-n", query)
+	run("git", "grep", "--column", "-n", query)
 end
 
 return M
