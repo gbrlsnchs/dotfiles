@@ -1,3 +1,4 @@
+**/template/gencolors_*
 !systemd/**/*.{service,target}
 systemd/**/*.wants/
 systemd/**/.#override.*
