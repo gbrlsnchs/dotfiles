@@ -4,4 +4,4 @@ import:
 font:
   size: 10
   normal:
-    family: Monospace
+    family: monospace
