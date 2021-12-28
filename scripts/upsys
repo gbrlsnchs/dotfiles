@@ -1,6 +1,0 @@
-#!/bin/sh
-
-sudo pacman -Syu
-rua upgrade --devel
-antigen update
-echo "All set, now update your Neovim plugins!"
