@@ -16,3 +16,12 @@ command.add(
 		mappings = { bind = "<Leader>gg" },
 	})
 )
+
+command.add(
+	"Search with Git",
+	wrap_cmd_opts({
+		name = "GitGrep",
+		exec = 'lua require("lib.grep").git_search()',
+		mappings = { bind = "<Leader>gG" },
+	})
+)

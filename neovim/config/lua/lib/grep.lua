@@ -12,24 +12,19 @@ local function prompt()
 	return word
 end
 
-local M = {}
-
-function M.search(query)
-	query = query or prompt()
-	if not query then
-		logger.info("Search aborted!")
-	end
+local function run(cmd, ...)
+	local args = ...
 
 	Job
 		:new({
-			command = "rg",
-			args = { "--vimgrep", "--no-heading", "--smart-case", query },
+			command = cmd,
+			args = args,
 			interactive = false,
 			on_exit = vim.schedule_wrap(function(job, exit_code)
 				local result = job:result()
 
 				if exit_code ~= 0 or #result == 0 then
-					logger.infof("No results found for query %q", query)
+					logger.infof("No results found for query %q", args[-1])
 					return
 				end
 
@@ -40,6 +35,26 @@ function M.search(query)
 			end),
 		})
 		:start()
+end
+
+local M = {}
+
+function M.search(query)
+	query = query or prompt()
+	if not query then
+		logger.info("Search aborted!")
+	end
+
+	run("rg", "--vimgrep", "--no-heading", "--smart-case", query)
+end
+
+function M.git_search(query)
+	query = query or prompt()
+	if not query then
+		logger.info("Search aborted!")
+	end
+
+	run("git grep", "git", "grep", "--column", "-n", query)
 end
 
 return M
