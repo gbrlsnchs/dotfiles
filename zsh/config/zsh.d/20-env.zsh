@@ -1,5 +1,3 @@
-# source /usr/share/nvm/init-nvm.sh
-
 # cargo
 path+=("$HOME/.cargo/bin")
 
