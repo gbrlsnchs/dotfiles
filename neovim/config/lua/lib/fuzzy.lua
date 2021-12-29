@@ -36,7 +36,6 @@ function M.get_action()
 end
 
 function M.set_action(choice)
-	print("set_action: " .. choice)
 	-- This handles cancelations and default actions.
 	if not choice or choice == "" then
 		return nil
