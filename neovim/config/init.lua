@@ -26,6 +26,7 @@ load_mods("opts", {
 	"command",
 	"buffers",
 	"files",
+	"terminal",
 	"completion",
 	"search",
 	"tabline",
