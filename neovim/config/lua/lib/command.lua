@@ -1,9 +1,11 @@
+local fuzzy = require("lib.fuzzy")
 local logger = require("lib.logger")
 
 local global_cmdlist = {}
 local buffer_cmdlist = {}
 
 local api = vim.api
+local action_types = fuzzy.action_types
 
 local function make_excmd(name, bufnr, opts)
 	local nargs = opts.nargs or "0"
@@ -23,24 +25,51 @@ local function make_excmd(name, bufnr, opts)
 end
 
 local function make_mapping_fn(name, bufnr, opts)
-	local mappings = opts.mappings
+	local binds = {}
 
-	if not mappings then
+	local function push_bind(mappings, arg)
+		if not mappings then
+			return
+		end
+
+		local cmd = name
+		if arg then
+			cmd = name .. " " .. arg
+		end
+
+		table.insert(binds, {
+			mode = mappings.mode or "n",
+			keys = mappings.bind,
+			cmd = "<Cmd>" .. cmd .. "<CR>",
+		})
+	end
+
+	local mappings = opts.mappings
+	local mappings_opts = { noremap = true, silent = true }
+
+	push_bind(mappings)
+
+	local actions = opts.actions or {}
+	for _, action in pairs(actions) do
+		push_bind(action.mappings, action.arg)
+	end
+
+	if #binds == 0 then
 		return nil
 	end
 
-	local mode = mappings.mode or "n"
-	local exec = "<Cmd>" .. name .. "<CR>"
-	local mappings_opts = { noremap = true, silent = true }
-
 	if bufnr then
 		return function()
-			api.nvim_buf_set_keymap(bufnr, mode, mappings.bind, exec, mappings_opts)
+			for _, bind in ipairs(binds) do
+				api.nvim_buf_set_keymap(bufnr, bind.mode, bind.keys, bind.cmd, mappings_opts)
+			end
 		end
 	end
 
 	return function()
-		api.nvim_set_keymap(mode, mappings.bind, exec, mappings_opts)
+		for _, bind in ipairs(binds) do
+			api.nvim_set_keymap(bind.mode, bind.keys, bind.cmd, mappings_opts)
+		end
 	end
 end
 
@@ -99,6 +128,7 @@ function M.add(description, opts)
 		description = description,
 		group = opts.group,
 		mappings = opts.mappings,
+		actions = opts.actions,
 		name = name,
 	}
 end
@@ -151,6 +181,7 @@ function M.open_palette()
 
 	local opts = {
 		prompt = "Command palette:",
+		actions = { action_types.C_X, action_types.C_V, action_types.C_T },
 		index_items = true,
 		header = "#\tGroup\tDescription\tKeymap\tCommand",
 		format_item = function(cmd)
@@ -170,11 +201,20 @@ function M.open_palette()
 			return cmd
 		end
 
-		local name = cmd.name
+		local excmd = cmd.name
+		local chosen_action = fuzzy.get_action()
+		local actions = cmd.actions or {}
+
+		local action = actions[chosen_action] or {}
+		if action.arg then
+			excmd = excmd .. " " .. action.arg
+		end
 
 		vim.cmd("stopinsert")
-		api.nvim_feedkeys(":" .. name .. "\n", "n", false)
-		vim.fn.histadd("cmd", name)
+		api.nvim_feedkeys(":" .. excmd .. "\n", "n", false)
+		vim.fn.histadd("cmd", excmd)
+
+		logger.debugf("Executed the following command from the palette: %q", excmd)
 	end)
 end
 
