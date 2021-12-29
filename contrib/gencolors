@@ -19,9 +19,6 @@ color13="b294bb"
 color14="8abeb7"
 color15="c5c8c6"
 
-repo=$(basename $PWD)
-base_outdir="$XDG_CACHE_HOME/$repo"
-
 # Clean directories first.
 rm **/template/gencolors_*
 
