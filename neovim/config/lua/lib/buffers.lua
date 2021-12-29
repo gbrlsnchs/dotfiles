@@ -17,7 +17,7 @@ local function list()
 
 		table.insert(buffers, {
 			id = info.bufnr,
-			name = vars.term_title or info.name,
+			name = vars.term_title or vim.fn.fnamemodify(info.name, ":~:."),
 			lnum = math.max(info.lnum, 1),
 			type = vars.terminal_job_pid and "terminal" or "text",
 		})
