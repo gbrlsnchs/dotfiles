@@ -145,11 +145,27 @@ local function list(bufnr)
 	end
 
 	table.sort(cmdlist, function(a, b)
+		if not a.group and not b.group then
+			return a.description < b.description
+		end
+
 		if not a.group then
 			return true
 		end
 
-		return b.group and a.group < b.group
+		if not b.group then
+			return false
+		end
+
+		if a.group < b.group then
+			return true
+		end
+
+		if a.group > b.group then
+			return false
+		end
+
+		return a.description < b.description
 	end)
 
 	return cmdlist
