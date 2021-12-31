@@ -27,5 +27,5 @@
 	pushf = push --force-with-lease
 	sdiff = diff --staged
 	rsoft = reset --soft HEAD^
-	shorts = status --short
+	shorts = status --short --ignore-submodules=dirty
 	vomit = commit --verbose
