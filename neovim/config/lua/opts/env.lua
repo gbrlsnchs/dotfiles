@@ -1,5 +1,10 @@
 local logger = require("lib.logger")
 
+-- HACK: This lets us load LuaRocks packages from wherever we want.
+local rocks_home = vim.fn.stdpath("data") .. "/site/rocks"
+package.path = package.path .. ";" .. (rocks_home .. "/share/lua/5.1/?.lua")
+package.cpath = package.cpath .. ";" .. (rocks_home .. "/lib/lua/5.1/?.so")
+
 local editor_exe = "nvr"
 
 if vim.fn.executable(editor_exe) ~= 1 then
