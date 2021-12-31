@@ -10,16 +10,16 @@ vim.opt.title = true
 vim.opt.guicursor = ""
 vim.opt.cursorline = true
 vim.opt.virtualedit = "block"
-vim.opt.list = false
+vim.opt.list = true
 vim.opt.listchars = {
 	tab = "⇥ ",
 	eol = "↴",
 	trail = "␣",
-	space = "·",
+	space = "•",
 }
 vim.opt.fillchars = {
 	vert = " ",
-	eob = "•",
+	eob = "▸",
 }
 vim.opt.signcolumn = "auto:9"
 vim.opt.colorcolumn = ""
