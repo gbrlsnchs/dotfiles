@@ -4,4 +4,4 @@ repo=$1
 packadd_dir=${2:-"start"}
 plugin_dir=${repo##*/}
 
-git submodule add $repo neovim/data/$packadd_dir/$plugin_dir
+git submodule add $repo neovim/data/pack/$packadd_dir/$plugin_dir
