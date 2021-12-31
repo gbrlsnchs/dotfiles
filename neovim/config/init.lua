@@ -19,6 +19,7 @@ end
 load_mods("opts", {
 	"notification",
 	"env",
+	"session",
 	"ui",
 	"editor",
 	"colorscheme",
