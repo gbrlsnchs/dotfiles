@@ -1,0 +1,5 @@
+return {
+   dependencies = {
+      lsqlite3 = "0.9.5-1"
+   },
+}
