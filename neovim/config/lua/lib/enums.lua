@@ -7,11 +7,7 @@ M.orientations = {
 }
 
 function M.list_orientations()
-	return {
-		M.orientations.vertical,
-		M.orientations.horizontal,
-		M.orientations.tabnew,
-	}
+	return vim.tbl_keys(M.orientations)
 end
 
 return M
