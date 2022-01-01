@@ -184,7 +184,7 @@ function M.check_view_entry()
 	end
 
 	::delete::
-	logger.infof("Deleting file %q from oldfiles, as it no longer is valid", path)
+	logger.debugf("Deleting file %q from oldfiles, as it is no longer valid", path)
 
 	local _, err = db.exec_stmt(
 		"DELETE FROM oldfiles WHERE project_id = ? AND path = ?",
