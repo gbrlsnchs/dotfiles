@@ -91,6 +91,9 @@ function M.add(description, opts)
 			logger.debugf("Initializing command cache for buffer #%d", bufnr)
 
 			buffer_cmdlist[bufnr] = {}
+			api.nvim_buf_call(bufnr, function()
+				vim.cmd('autocmd BufDelete <buffer> ++once lua require("lib.command").clear()')
+			end)
 		end
 
 		cmdlist = buffer_cmdlist[bufnr]
@@ -109,9 +112,6 @@ function M.add(description, opts)
 	if bufnr then
 		api.nvim_buf_call(bufnr, function()
 			vim.cmd(excmd)
-			vim.cmd(
-				"autocmd BufDelete <buffer> call v:lua.require'lib.command'.clear(expand('<abuf>'))"
-			)
 		end)
 	else
 		vim.cmd(excmd)
@@ -184,7 +184,9 @@ end
 
 --func()
 
-function M.clear(bufnr)
+function M.clear()
+	local bufnr = tonumber(vim.fn.expand("<abuf>"))
+
 	logger.debugf("Clearing commands for buffer #%d", bufnr)
 
 	buffer_cmdlist[bufnr] = nil
