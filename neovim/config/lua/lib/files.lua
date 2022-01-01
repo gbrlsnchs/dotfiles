@@ -7,8 +7,12 @@ local session = require("lib.session")
 local logger = require("lib.logger")
 
 local api = vim.api
+local cwd = vim.loop.cwd()
+
 local action_types = fuzzy.action_types
 local project_id = session.get_project_id()
+
+local denylist = { ".git/" }
 
 local function open_file(filename)
 	if not filename then
@@ -41,23 +45,18 @@ local function open_file(filename)
 	vim.cmd(cmd)
 end
 
-local function is_local_file(cwd, fname)
-	return vim.fn.matchstrpos(fname, cwd)[2] ~= -1 and vim.fn.filereadable(fname) ~= 0
-end
-
 local function get_project_oldfiles()
-	local cwd = vim.loop.cwd()
 	local oldfiles = vim.v.oldfiles
 
 	oldfiles = vim.tbl_filter(function(fname)
-		return is_local_file(cwd, fname)
+		-- Checks whether the file belongs to current project.
+		return vim.fn.matchstrpos(fname, cwd)[2] ~= -1 and vim.fn.filereadable(fname) ~= 0
 	end, oldfiles)
 
 	oldfiles = vim.tbl_map(function(fname)
 		return Path:new(fname):make_relative(cwd)
 	end, oldfiles)
 
-	local denylist = { ".git/" }
 	oldfiles = vim.tbl_filter(function(fname)
 		for _, prefix in ipairs(denylist) do
 			if fname:find("^" .. prefix) ~= nil then
@@ -76,6 +75,15 @@ local function wrap_opts(prompt)
 		actions = { action_types.C_X, action_types.C_V, action_types.C_T },
 		index_items = false,
 	}
+end
+
+local function is_file_allowed(relative_path)
+	for _, prefix in ipairs(denylist) do
+		if relative_path:find("^" .. prefix) ~= nil then
+			return false
+		end
+	end
+	return true
 end
 
 local M = {}
@@ -116,6 +124,7 @@ function M.find_oldfiles()
 	vim.ui.select(oldfiles, opts, open_file)
 end
 
+-- TODO: Move most logic to a utility package and test them.
 function M.increment_view_count()
 	local is_text_buf = api.nvim_buf_get_option(0, "buftype") == ""
 	if not is_text_buf then
@@ -125,7 +134,7 @@ function M.increment_view_count()
 	local path = Path:new(api.nvim_buf_get_name(0))
 	local fname = path:make_relative()
 
-	if fname == "" or fname:find("^/") ~= nil or path:is_dir() then
+	if fname == "" or fname:find("^/") ~= nil or not is_file_allowed(fname) or path:is_dir() then
 		return
 	end
 
@@ -156,13 +165,27 @@ function M.increment_view_count()
 end
 
 function M.check_view_entry()
-	local fullpath = api.nvim_buf_get_name(0)
+	local bufnr = vim.fn.expand("<abuf>")
 
-	if vim.fn.empty(fullpath) or vim.fn.filereadable(fullpath) then
+	local is_text_buf = api.nvim_buf_get_option(bufnr, "buftype") == ""
+	if not is_text_buf then
 		return
 	end
 
-	local path = Path:new(api.nvim_buf_get_name(0)):make_relative()
+	local fullpath = api.nvim_buf_get_name(bufnr)
+	local path = Path:new(fullpath):make_relative(cwd)
+
+	if vim.fn.empty(fullpath) == 1 or vim.fn.filereadable(fullpath) == 1 then
+		if not is_file_allowed(path) then
+			goto delete
+		end
+
+		return
+	end
+
+	::delete::
+	logger.infof("Deleting file %q from oldfiles, as it no longer is valid", path)
+
 	local _, err = db.exec_stmt(
 		"DELETE FROM oldfiles WHERE project_id = ? AND path = ?",
 		project_id,
