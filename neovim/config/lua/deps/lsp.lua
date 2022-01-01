@@ -23,27 +23,33 @@ local function register_keymaps(bufnr)
 	end, {
 		group = cmd_group,
 		keymap = { keys = "<Leader>ld" },
+		bufnr = bufnr,
 	})
 	command.add("LspNextDiagnostic", "Go to next diagnostic", vim.diagnostic.goto_next, {
 		group = cmd_group,
 		keymap = { keys = "]e" },
+		bufnr = bufnr,
 	})
 	command.add("LspPrevDiagnostic", "Go to previous diagnostic", vim.diagnostic.goto_prev, {
 		group = cmd_group,
 		keymap = { keys = "[e" },
+		bufnr = bufnr,
 	})
 	command.add("LspDiagnostics", "Show diagnostics for current buffer", vim.diagnostic.setloclist, {
 		group = cmd_group,
 		keymap = { keys = "<Leader>lD" },
+		bufnr = bufnr,
 	})
 	command.add("LspWorkspaceDiagnostics", "Show workspace diagnostics", vim.diagnostic.setqflist, {
 		group = cmd_group,
+		bufnr = bufnr,
 	})
 
 	-- Information.
 	command.add("LspHover", "Show information about symbol", vim.lsp.buf.hover, {
 		group = cmd_group,
 		keymap = { keys = "K" },
+		bufnr = bufnr,
 	})
 	api.nvim_buf_set_keymap(
 		bufnr,
@@ -57,23 +63,29 @@ local function register_keymaps(bufnr)
 	command.add("LspDefinition", "Go to definition", vim.lsp.buf.definition, {
 		group = cmd_group,
 		keymap = { keys = "<C-]>" },
+		bufnr = bufnr,
 	})
 	command.add("LspImplementation", "Go to implementation", vim.lsp.buf.implementation, {
 		group = cmd_group,
 		keymap = { keys = "gD" },
+		bufnr = bufnr,
 	})
 	command.add("LspDeclaration", "Go to declaration", vim.lsp.buf.declaration, {
 		group = cmd_group,
 		keymap = { keys = "gd" },
+		bufnr = bufnr,
 	})
 	command.add("LspTypeDefinition", "Go to type definition", vim.lsp.buf.type_definition, {
 		group = cmd_group,
+		bufnr = bufnr,
 	})
 	command.add("LspIncomingCalls", "Show incoming calls", vim.lsp.buf.incoming_calls, {
 		group = cmd_group,
+		bufnr = bufnr,
 	})
 	command.add("LspOutgoingCalls", "Show outgoing calls", vim.lsp.buf.outgoing_calls, {
 		group = cmd_group,
+		bufnr = bufnr,
 	})
 
 	-- Searches.
@@ -82,6 +94,7 @@ local function register_keymaps(bufnr)
 	end, {
 		group = cmd_group,
 		keymap = { keys = "<Leader>lR" },
+		bufnr = bufnr,
 	})
 	command.add(
 		"LspDocumentSymbol",
@@ -90,6 +103,7 @@ local function register_keymaps(bufnr)
 		{
 			group = cmd_group,
 			keymap = { keys = "<Leader>ls" },
+			bufnr = bufnr,
 		}
 	)
 
@@ -97,6 +111,7 @@ local function register_keymaps(bufnr)
 	command.add("LspFormat", "Format code", vim.lsp.buf.formatting, {
 		group = cmd_group,
 		keymap = { keys = "<Leader>lf" },
+		bufnr = bufnr,
 	})
 	api.nvim_buf_set_keymap(
 		bufnr,
@@ -108,6 +123,7 @@ local function register_keymaps(bufnr)
 	command.add("LspCodeAction", "Run a code action", vim.lsp.buf.code_action, {
 		group = cmd_group,
 		keymap = { keys = "<Leader>lc" },
+		bufnr = bufnr,
 	})
 	api.nvim_buf_set_keymap(
 		bufnr,
@@ -119,16 +135,19 @@ local function register_keymaps(bufnr)
 	command.add("LspRename", "Rename symbol under cursor", vim.lsp.buf.rename, {
 		group = cmd_group,
 		keymap = { keys = "<Leader>lr" },
+		bufnr = bufnr,
 	})
 
 	-- Workspace commands.
 	command.add("LspWorkspaceAddFolder", "Add folder to workspace", vim.lsp.buf.add_workspace_folder, {
 		group = cmd_group,
+		bufnr = bufnr,
 	})
 	command.add("LspWorkspaceListFolders", "List workspace folders", function()
 		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
 	end, {
 		group = cmd_group,
+		bufnr = bufnr,
 	})
 	command.add(
 		"LspWorkspaceRemoveFolder",
@@ -136,6 +155,7 @@ local function register_keymaps(bufnr)
 		vim.lsp.buf.remove_workspace_folder,
 		{
 			group = cmd_group,
+			bufnr = bufnr,
 		}
 	)
 	command.add(
@@ -145,6 +165,7 @@ local function register_keymaps(bufnr)
 		{
 			group = cmd_group,
 			nargs = "?",
+			bufnr = bufnr,
 		}
 	)
 end
