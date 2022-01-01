@@ -111,7 +111,7 @@ return lush(function()
 		Boolean({ fg = palette.bright_red }),
 		Number({ fg = palette.bright_blue }),
 		String({ fg = palette.bright_green }),
-		Comment({ fg = palette.gray, gui = "italic" }),
+		Comment({ fg = palette.blue, gui = "italic" }),
 		Operator({ Special }),
 		Keyword({ fg = palette.yellow, gui = "bold" }),
 		Conditional({ Keyword }),
