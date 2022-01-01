@@ -2,8 +2,6 @@ local files = require("lib.files")
 local command = require("lib.command")
 local command_util = require("lib.command.util")
 
-local wrap_cmd_opts = command_util.create_opts_factory({ group = "Files" })
-
 vim.cmd([[
 augroup files
 	autocmd!
@@ -13,33 +11,23 @@ augroup files
 augroup END
 ]])
 
-command.add(
-	"Find a file or directory",
-	wrap_cmd_opts({
-		name = "FindFile",
-		nargs = "?",
-		complete = "dir",
-		exec = 'lua require("lib.files").find(<f-args>)',
-		mappings = { bind = "<Leader>ff" },
-	})
-)
+local cmd_group = "Files"
 
-command.add(
-	"Find a dirty file",
-	wrap_cmd_opts({
-		name = "FindDirtyFile",
-		nargs = "?",
-		complete = "dir",
-		exec = 'lua require("lib.files").find_dirty(<f-args>)',
-		mappings = { bind = "<Leader>fd" },
-	})
-)
+command.add("FindFile", "Find a file or directory", command_util.bind_fargs(files.find), {
+	group = cmd_group,
+	nargs = "?",
+	complete = "dir",
+	keymap = { keys = "<Leader>ff" },
+})
 
-command.add(
-	"Find recent files",
-	wrap_cmd_opts({
-		name = "FindOldfiles",
-		exec = 'lua require("lib.files").find_oldfiles()',
-		mappings = { bind = "<Leader>fo" },
-	})
-)
+command.add("FindDirtyFile", "Find a dirty file", command_util.bind_fargs(files.find_dirty), {
+	group = cmd_group,
+	nargs = "?",
+	complete = "dir",
+	keymap = { keys = "<Leader>fd" },
+})
+
+command.add("FindOldfiles", "Find recent files", files.find_oldfiles, {
+	group = cmd_group,
+	keymap = { keys = "<Leader>fo" },
+})

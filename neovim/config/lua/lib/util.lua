@@ -15,11 +15,19 @@ end
 
 function M.feature_is_on(feature)
 	if feature:is_on() then
-		logger.tracef("Feature %q is on, associated variable: %s", feature.label, feature:get_var_name())
+		logger.tracef(
+			"Feature %q is on, associated variable: %s",
+			feature.label,
+			feature:get_var_name()
+		)
 		return true
 	end
 
-	logger.infof("Feature %q was not loaded because it was disabled by %s", feature.label, feature:as_str())
+	logger.infof(
+		"Feature %q was not loaded because it was disabled by %s",
+		feature.label,
+		feature:as_str()
+	)
 	return false
 end
 

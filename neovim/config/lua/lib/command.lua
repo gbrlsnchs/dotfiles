@@ -7,127 +7,60 @@ local buffer_cmdlist = {}
 local api = vim.api
 local action_types = fuzzy.action_types
 
-local function make_excmd(name, bufnr, opts)
-	local nargs = opts.nargs or "0"
-	local complete = opts.complete
-
-	local excmd = "command -nargs=" .. nargs
-
-	if complete then
-		excmd = excmd .. " -complete=" .. complete
-	end
-
-	if bufnr then
-		excmd = excmd .. " -buffer"
-	end
-
-	return ("%s %s %s"):format(excmd, name, opts.exec)
-end
-
-local function make_mapping_fn(name, bufnr, opts)
-	local binds = {}
-
-	local function push_bind(mappings, arg)
-		if not mappings then
-			return
-		end
-
-		local cmd = name
-		if arg then
-			cmd = name .. " " .. arg
-		end
-
-		table.insert(binds, {
-			mode = mappings.mode or "n",
-			keys = mappings.bind,
-			cmd = "<Cmd>" .. cmd .. "<CR>",
-		})
-	end
-
-	local mappings = opts.mappings
-	local mappings_opts = { noremap = true, silent = true }
-
-	push_bind(mappings)
-
-	local actions = opts.actions or {}
-	for _, action in pairs(actions) do
-		push_bind(action.mappings, action.arg)
-	end
-
-	if #binds == 0 then
-		return nil
-	end
-
-	if bufnr then
-		return function()
-			for _, bind in ipairs(binds) do
-				api.nvim_buf_set_keymap(bufnr, bind.mode, bind.keys, bind.cmd, mappings_opts)
-			end
-		end
-	end
-
-	return function()
-		for _, bind in ipairs(binds) do
-			api.nvim_set_keymap(bind.mode, bind.keys, bind.cmd, mappings_opts)
-		end
-	end
-end
-
 local M = {}
 
-function M.add(description, opts)
-	opts = vim.tbl_deep_extend("keep", opts or {}, {
-		mappings = nil,
-		group = nil,
-		bufnr = nil,
-		actions = nil,
-	})
+function M.add(name, description, handler, opts)
+	opts = opts or {}
 
 	local cmdlist = global_cmdlist
-
 	local bufnr = opts.bufnr
+	local cmd_add = api.nvim_add_user_command
+	local keymap_add = api.nvim_set_keymap
+
 	if bufnr then
 		if not buffer_cmdlist[bufnr] then
 			logger.debugf("Initializing command cache for buffer #%d", bufnr)
 
 			buffer_cmdlist[bufnr] = {}
-			api.nvim_buf_call(bufnr, function()
-				vim.cmd('autocmd BufDelete <buffer> ++once lua require("lib.command").clear()')
-			end)
+			vim.cmd('autocmd BufDelete <buffer> ++once lua require("lib.command").clear()')
 		end
 
 		cmdlist = buffer_cmdlist[bufnr]
+		cmd_add = function(...)
+			api.nvim_buf_add_user_command(bufnr, ...)
+		end
+		keymap_add = function(...)
+			api.nvim_buf_set_keymap(bufnr, ...)
+		end
 	end
-
-	local name = opts.name
 
 	-- If the command is already set, we don't need to do anything else here.
 	if cmdlist[name] then
 		return
 	end
 
-	local excmd = make_excmd(name, bufnr, opts)
+	cmd_add(name, handler, {
+		nargs = opts.nargs,
+		complete = opts.complete,
+		desc = description,
+	})
 
-	-- First time registering the command, so let's set it up.
-	if bufnr then
-		api.nvim_buf_call(bufnr, function()
-			vim.cmd(excmd)
-		end)
-	else
-		vim.cmd(excmd)
+	local keymap = opts.keymap
+	if keymap then
+		local mode = keymap.mode or "n"
+		keymap_add(mode, keymap.keys, "", {
+			noremap = true,
+			desc = description,
+			callback = handler,
+		})
 	end
 
-	local map_keys = make_mapping_fn(name, bufnr, opts)
-	if map_keys then
-		map_keys()
-	end
-
-	logger.debugf("Registering %q with the following description: %q", name, description)
+	logger.debugf("Registering command %q", name)
 
 	cmdlist[name] = {
 		description = description,
 		group = opts.group,
-		mappings = opts.mappings,
+		keymap = opts.keymap,
 		actions = opts.actions,
 		name = name,
 	}
@@ -171,19 +104,6 @@ local function list(bufnr)
 	return cmdlist
 end
 
---Segment fault:
---local func = function()
---	vim.cmd("echo 'hello'")
---end
-
---if local_cmd then
---	func = function()
---		api.nvim_buf_call(bufnr, func)
---	end
---end
-
---func()
-
 function M.clear()
 	local bufnr = tonumber(vim.fn.expand("<abuf>"))
 
@@ -206,7 +126,7 @@ function M.open_palette()
 			local parts = {
 				cmd.group or "---",
 				cmd.description,
-				cmd.mappings and cmd.mappings.bind or "---",
+				cmd.keymap and cmd.keymap.keys or "---",
 				cmd.name,
 			}
 

@@ -1,31 +1,31 @@
-local command = require("lib.command")
 local fuzzy = require("lib.fuzzy")
+local terminal = require("lib.terminal")
 local enums = require("lib.enums")
+local command = require("lib.command")
+local command_util = require("lib.command.util")
 
-command.add("Open terminal instance", {
-	name = "TermOpen",
+command.add("TermOpen", "Open terminal instance", command_util.bind_fargs(terminal.open), {
 	nargs = "?",
-	complete = 'customlist,v:lua.require("lib.enums").list_orientations',
-	exec = 'lua require("lib.terminal").open(<f-args>)',
+	complete = enums.list_orientations,
 	actions = {
 		[fuzzy.action_types.C_X] = {
 			arg = enums.orientations.horizontal,
-			mappings = {
-				bind = "<Leader>ts",
+			keymap = {
+				keys = "<Leader>ts",
 			},
 		},
 		[fuzzy.action_types.C_V] = {
 			arg = enums.orientations.vertical,
-			mappings = {
-				bind = "<Leader>tv",
+			keymap = {
+				keys = "<Leader>tv",
 			},
 		},
 		[fuzzy.action_types.C_T] = {
 			arg = enums.orientations.tabnew,
-			mappings = {
-				bind = "<Leader>tt",
+			keymap = {
+				keys = "<Leader>tt",
 			},
 		},
 	},
-	mappings = { bind = "<Leader>to" },
+	keymap = { keys = "<Leader>to" },
 })

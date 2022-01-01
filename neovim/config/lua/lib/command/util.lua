@@ -1,10 +1,9 @@
 local M = {}
 
-function M.create_opts_factory(defaults)
-	defaults = defaults or {}
-
-	return function(opts)
-		return vim.tbl_deep_extend("force", defaults, opts or {})
+function M.bind_fargs(callback)
+	return function(cmd)
+		cmd = cmd or {}
+		callback(cmd.args)
 	end
 end
 

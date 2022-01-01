@@ -15,61 +15,36 @@ local lspconfig = require("lspconfig")
 local lsputil = require("lspconfig.util")
 
 local function register_keymaps(bufnr)
-	local wrap_cmd_opts = command_util.create_opts_factory({
-		bufnr = bufnr,
-		group = "LSP",
-	})
+	local cmd_group = "LSP"
 
 	-- Diagnostics.
-	command.add(
-		"Show diagnostics information",
-		wrap_cmd_opts({
-			name = "LspShowDiagnostics",
-			exec = 'lua vim.diagnostic.open_float(0, { scope = "line", float = { border = "single" } })',
-			mappings = { bind = "<Leader>ld" },
-		})
-	)
-	command.add(
-		"Go to next diagnostic",
-		wrap_cmd_opts({
-			name = "LspNextDiagnostic",
-			exec = "lua vim.diagnostic.goto_next()",
-			mappings = { bind = "]e" },
-		})
-	)
-	command.add(
-		"Go to previous diagnostic",
-		wrap_cmd_opts({
-			name = "LspPrevDiagnostic",
-			exec = "lua vim.diagnostic.goto_prev()",
-			mappings = { bind = "[e" },
-		})
-	)
-	command.add(
-		"Show diagnostics for current buffer",
-		wrap_cmd_opts({
-			name = "LspDiagnostics",
-			exec = "lua vim.diagnostic.setloclist()",
-			mappings = { bind = "<Leader>lD" },
-		})
-	)
-	command.add(
-		"Show workspace diagnostics",
-		wrap_cmd_opts({
-			name = "LspWorkspaceDiagnostics",
-			exec = "lua vim.diagnostic.setqflist()",
-		})
-	)
+	command.add("LspShowDiagnostics", "Show diagnostics information", function()
+		vim.diagnostic.open_float({ bufnr = bufnr, scope = "line", float = { border = "single" } })
+	end, {
+		group = cmd_group,
+		keymap = { keys = "<Leader>ld" },
+	})
+	command.add("LspNextDiagnostic", "Go to next diagnostic", vim.diagnostic.goto_next, {
+		group = cmd_group,
+		keymap = { keys = "]e" },
+	})
+	command.add("LspPrevDiagnostic", "Go to previous diagnostic", vim.diagnostic.goto_prev, {
+		group = cmd_group,
+		keymap = { keys = "[e" },
+	})
+	command.add("LspDiagnostics", "Show diagnostics for current buffer", vim.diagnostic.setloclist, {
+		group = cmd_group,
+		keymap = { keys = "<Leader>lD" },
+	})
+	command.add("LspWorkspaceDiagnostics", "Show workspace diagnostics", vim.diagnostic.setqflist, {
+		group = cmd_group,
+	})
 
 	-- Information.
-	command.add(
-		"Show information about symbol",
-		wrap_cmd_opts({
-			name = "LspHover",
-			exec = "lua vim.lsp.buf.hover()",
-			mappings = { bind = "K" },
-		})
-	)
+	command.add("LspHover", "Show information about symbol", vim.lsp.buf.hover, {
+		group = cmd_group,
+		keymap = { keys = "K" },
+	})
 	api.nvim_buf_set_keymap(
 		bufnr,
 		"i",
@@ -79,79 +54,50 @@ local function register_keymaps(bufnr)
 	)
 
 	-- Jumps.
-	command.add(
-		"Go to definition",
-		wrap_cmd_opts({
-			name = "LspDefinition",
-			exec = "lua vim.lsp.buf.definition()",
-			mappings = { bind = "<C-]>" },
-		})
-	)
-	command.add(
-		"Go to implementation",
-		wrap_cmd_opts({
-			name = "LspImplementation",
-			exec = "lua vim.lsp.buf.implementation()",
-			mappings = { bind = "gD" },
-		})
-	)
-	command.add(
-		"Go to declaration",
-		wrap_cmd_opts({
-			name = "LspDeclaration",
-			exec = "<Cmd>lua vim.lsp.buf.declaration()<CR>",
-			mappings = { bind = "gd" },
-		})
-	)
-	command.add(
-		"Go to type definition",
-		wrap_cmd_opts({
-			name = "LspTypeDefinition",
-			exec = "lua vim.lsp.buf.type_definition()",
-		})
-	)
-	command.add(
-		"Show incoming calls",
-		wrap_cmd_opts({
-			name = "LspIncomingCalls",
-			exec = "lua vim.lsp.buf.incoming_calls()",
-		})
-	)
-	command.add(
-		"Show outgoing calls",
-		wrap_cmd_opts({
-			name = "LspOutgoingCalls",
-			exec = "lua vim.lsp.buf.outgoing_calls()",
-		})
-	)
+	command.add("LspDefinition", "Go to definition", vim.lsp.buf.definition, {
+		group = cmd_group,
+		keymap = { keys = "<C-]>" },
+	})
+	command.add("LspImplementation", "Go to implementation", vim.lsp.buf.implementation, {
+		group = cmd_group,
+		keymap = { keys = "gD" },
+	})
+	command.add("LspDeclaration", "Go to declaration", vim.lsp.buf.declaration, {
+		group = cmd_group,
+		keymap = { keys = "gd" },
+	})
+	command.add("LspTypeDefinition", "Go to type definition", vim.lsp.buf.type_definition, {
+		group = cmd_group,
+	})
+	command.add("LspIncomingCalls", "Show incoming calls", vim.lsp.buf.incoming_calls, {
+		group = cmd_group,
+	})
+	command.add("LspOutgoingCalls", "Show outgoing calls", vim.lsp.buf.outgoing_calls, {
+		group = cmd_group,
+	})
 
 	-- Searches.
+	command.add("LspReferences", "Find references for symbol", function()
+		vim.lsp.buf.references({ includeDeclaration = false })
+	end, {
+		group = cmd_group,
+		keymap = { keys = "<Leader>lR" },
+	})
 	command.add(
-		"Find references for symbol",
-		wrap_cmd_opts({
-			name = "LspReferences",
-			exec = "lua vim.lsp.buf.references({ includeDeclaration = false })",
-			mappings = { bind = "<Leader>lR" },
-		})
-	)
-	command.add(
+		"LspDocumentSymbol",
 		"Search for symbols in current buffer",
-		wrap_cmd_opts({
-			name = "LspDocumentSymbol",
-			exec = "lua vim.lsp.buf.document_symbol()",
-			mappings = { bind = "<Leader>ls" },
-		})
+		vim.lsp.buf.document_symbol,
+		{
+			group = cmd_group,
+			keymap = { keys = "<Leader>ls" },
+		}
 	)
 
 	-- Utils.
-	command.add(
-		"Format code",
-		wrap_cmd_opts({
-			name = "LspFormat",
-			exec = "lua vim.lsp.buf.formatting()",
-			mappings = { bind = "<Leader>lf" },
-		})
-	)
+	command.add("LspFormat", "Format code", vim.lsp.buf.formatting, {
+		group = cmd_group,
+		keymap = { keys = "<Leader>lf" },
+	})
 	api.nvim_buf_set_keymap(
 		bufnr,
 		"v",
@@ -159,14 +105,10 @@ local function register_keymaps(bufnr)
 		"<Cmd>lua vim.lsp.buf.range_formatting()<CR>",
 		{ noremap = true }
 	)
-	command.add(
-		"Run a code action",
-		wrap_cmd_opts({
-			name = "LspCodeAction",
-			exec = "lua vim.lsp.buf.code_action()",
-			mappings = { bind = "<Leader>lc" },
-		})
-	)
+	command.add("LspCodeAction", "Run a code action", vim.lsp.buf.code_action, {
+		group = cmd_group,
+		keymap = { keys = "<Leader>lc" },
+	})
 	api.nvim_buf_set_keymap(
 		bufnr,
 		"v",
@@ -174,44 +116,36 @@ local function register_keymaps(bufnr)
 		"<Cmd>lua vim.lsp.buf.range_code_action()<CR>",
 		{ noremap = true }
 	)
-	command.add(
-		"Rename symbol under cursor",
-		wrap_cmd_opts({
-			name = "LspRename",
-			exec = "lua vim.lsp.buf.rename()",
-			mappings = { bind = "<Leader>lr" },
-		})
-	)
+	command.add("LspRename", "Rename symbol under cursor", vim.lsp.buf.rename, {
+		group = cmd_group,
+		keymap = { keys = "<Leader>lr" },
+	})
 
 	-- Workspace commands.
+	command.add("LspWorkspaceAddFolder", "Add folder to workspace", vim.lsp.buf.add_workspace_folder, {
+		group = cmd_group,
+	})
+	command.add("LspWorkspaceListFolders", "List workspace folders", function()
+		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+	end, {
+		group = cmd_group,
+	})
 	command.add(
-		"Add folder to workspace",
-		wrap_cmd_opts({
-			name = "LspWorkspaceAddFolder",
-			exec = "lua vim.lsp.buf.add_workspace_folder()",
-		})
-	)
-	command.add(
-		"List workspace folders",
-		wrap_cmd_opts({
-			name = "LspWorkspaceListFolders",
-			exec = "lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))",
-		})
-	)
-	command.add(
+		"LspWorkspaceRemoveFolder",
 		"Remove folder from workspace",
-		wrap_cmd_opts({
-			name = "LspWorkspaceRemoveFolder",
-			exec = "lua vim.lsp.buf.remove_workspace_folder()",
-		})
+		vim.lsp.buf.remove_workspace_folder,
+		{
+			group = cmd_group,
+		}
 	)
 	command.add(
+		"LspWorkspaceSymbol",
 		"Find workspace symbol",
-		wrap_cmd_opts({
-			name = "LspWorkspaceSymbol",
+		command_util.bind_fargs(vim.lsp.buf.workspace_symbol),
+		{
+			group = cmd_group,
 			nargs = "?",
-			exec = "lua vim.lsp.buf.workspace_symbol(<f-args>)",
-		})
+		}
 	)
 end
 
@@ -233,9 +167,9 @@ local function config_ui()
 	)
 end
 
--- Set up local keybindings for buffers.
+-- Set up local keykeysings for buffers.
 
--- This is a buffer-independent keybinding.
+-- This is a buffer-independent keykeysing.
 
 local efm_formatters = {
 	prettier = {

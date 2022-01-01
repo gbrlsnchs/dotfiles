@@ -6,24 +6,20 @@ vim.opt.smartcase = true
 vim.opt.incsearch = true
 vim.opt.inccommand = "nosplit"
 
-local wrap_cmd_opts = command_util.create_opts_factory({ group = "Grep" })
+local cmd_group = "Grep"
 
-command.add(
-	"Search",
-	wrap_cmd_opts({
-		name = "Grep",
-		nargs = "*",
-		exec = 'lua require("lib.grep").search(<f-args>)',
-		mappings = { bind = "<Leader>gg" },
-	})
-)
+command.add("Grep", "Search", function(cmd)
+	grep.search(cmd.args)
+end, {
+	group = cmd_group,
+	nargs = "*",
+	keymap = { keys = "<Leader>gg" },
+})
 
-command.add(
-	"Search with Git",
-	wrap_cmd_opts({
-		name = "GitGrep",
-		nargs = "*",
-		exec = 'lua require("lib.grep").git_search(<f-args>)',
-		mappings = { bind = "<Leader>gG" },
-	})
-)
+command.add("GitGrep", "Search with Git", function(cmd)
+	grep.git_search(cmd.args)
+end, {
+	group = cmd_group,
+	nargs = "*",
+	keymap = { keys = "<Leader>gG" },
+})
