@@ -188,10 +188,6 @@ local function config_ui()
 	)
 end
 
--- Set up local keykeysings for buffers.
-
--- This is a buffer-independent keykeysing.
-
 local efm_formatters = {
 	prettier = {
 		formatCommand = "./node_modules/.bin/prettier --stdin-filepath ${INPUT}",
