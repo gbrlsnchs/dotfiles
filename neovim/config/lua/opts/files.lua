@@ -22,6 +22,15 @@ command.add("FindFile", "Find a file or directory", command_util.bind_fargs(file
 	keymap = { keys = "<Leader>ff" },
 })
 
+command.add("FindFileCwd", "Find a file or directory is the current working directory", function()
+	local dir = vim.fn.expand("%:h")
+
+	files.find(dir)
+end, {
+	group = cmd_group,
+	keymap = { keys = "<Leader>fF" },
+})
+
 command.add("FindDirtyFile", "Find a dirty file", command_util.bind_fargs(files.find_dirty), {
 	group = cmd_group,
 	nargs = "?",
