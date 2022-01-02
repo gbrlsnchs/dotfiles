@@ -7,6 +7,8 @@ augroup files
 	autocmd!
 	autocmd VimEnter * lua require("lib.files").init_session()
 	autocmd BufWinEnter ?* lua require("lib.files").increment_view_count()
+	autocmd WinEnter * if &g:relativenumber | setlocal relativenumber | endif
+	autocmd WinLeave * setlocal norelativenumber
 	autocmd BufDelete ?* lua require("lib.files").check_view_entry()
 augroup END
 ]])
