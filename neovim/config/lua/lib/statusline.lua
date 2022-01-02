@@ -135,7 +135,7 @@ local tabline_builder = Builder
 		end
 	end)
 	:add(function()
-		return { { "TabLineSel", ("cwd: %s "):format(cwd) } }
+		return { { "TabLineSel", ("%s "):format(cwd) } }
 	end)
 	:add(function()
 		local lsp_clients = vim.lsp.get_active_clients()
