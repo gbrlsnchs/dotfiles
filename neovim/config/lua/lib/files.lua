@@ -119,7 +119,7 @@ function M.find_oldfiles()
 	local oldfiles = vim.tbl_map(function(row)
 		return row.path
 	end, result.rows)
-	local opts = wrap_opts("Recent files: ")
+	local opts = wrap_opts("Recent files:")
 
 	vim.ui.select(oldfiles, opts, open_file)
 end
