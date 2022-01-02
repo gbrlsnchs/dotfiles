@@ -53,6 +53,22 @@ function M.add(name, description, handler, opts)
 			desc = description,
 			callback = handler,
 		})
+
+		local actions = opts.actions or {}
+		for _, action_opts in pairs(actions) do
+			local action_keymap = action_opts.keymap
+			if action_keymap then
+				local arg = action_opts.arg
+				keymap_add(mode, action_keymap.keys, "", {
+					noremap = true,
+					desc = string.format("%s (%s)", description, arg),
+					callback = function(cmd)
+						cmd = cmd or { args = arg }
+						handler(cmd)
+					end,
+				})
+			end
+		end
 	end
 
 	logger.debugf("Registering command %q", name)
