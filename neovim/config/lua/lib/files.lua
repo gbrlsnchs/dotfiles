@@ -91,7 +91,7 @@ local M = {}
 function M.find(dir)
 	dir = dir or ""
 
-	local cmd = ("fd . './%s' --hidden --no-ignore-vcs --color=always %s"):format(dir)
+	local cmd = ("fd --hidden --no-ignore-vcs --color=always . './%s'"):format(dir)
 	local opts = wrap_opts("Files:")
 
 	vim.ui.select(cmd, opts, open_file)
