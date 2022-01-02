@@ -206,21 +206,6 @@ local efm_formatters = {
 	},
 }
 
-local capabilities = vim.tbl_deep_extend("force", vim.lsp.protocol.make_client_capabilities(), {
-	textDocument = {
-		completion = {
-			completionItem = {
-				snippetSupport = false,
-				resolveSupport = {
-					"documentation",
-					"detail",
-					"additionalTextEdits",
-				},
-			},
-		},
-	},
-})
-
 local servers = {
 	efm = {
 		init_options = {
@@ -305,7 +290,6 @@ for name, config in pairs(servers) do
 			register_keymaps(bufnr)
 			vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 		end,
-		capabilities = capabilities,
 	})
 
 	lspconfig[name].setup(config)
