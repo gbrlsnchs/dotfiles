@@ -8,17 +8,13 @@ vim.opt.inccommand = "nosplit"
 
 local cmd_group = "Grep"
 
-command.add("Grep", "Search", function(cmd)
-	grep.search(cmd.args)
-end, {
+command.add("Grep", "Search", command_util.bind_fargs(grep.search), {
 	group = cmd_group,
 	nargs = "*",
 	keymap = { keys = "<Leader>gg" },
 })
 
-command.add("GitGrep", "Search with Git", function(cmd)
-	grep.git_search(cmd.args)
-end, {
+command.add("GitGrep", "Search with Git", command_util.bind_fargs(grep.git_search), {
 	group = cmd_group,
 	nargs = "*",
 	keymap = { keys = "<Leader>gG" },
