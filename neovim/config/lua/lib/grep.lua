@@ -29,7 +29,7 @@ local function run(cmd, ...)
 				local result = job:result()
 
 				if exit_code ~= 0 or #result == 0 then
-					logger.infof("No results found for query %q", args[-1])
+					logger.infof("No results found for query %q", args[#args])
 					return
 				end
 
