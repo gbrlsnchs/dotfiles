@@ -24,6 +24,10 @@ local function make_args(opts)
 		table.insert(args, ("--expect='%s'"):format(expect_value))
 	end
 
+	if not opts.sort then
+		table.insert(args, "--no-sort")
+	end
+
 	return args
 end
 
@@ -55,6 +59,7 @@ vim.ui.select = function(items, opts, on_choice)
 		args = {},
 		actions = {},
 		index_items = true,
+		sort = true,
 	})
 
 	local formatted_lines
