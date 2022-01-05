@@ -166,6 +166,7 @@ end
 
 function M.check_view_entry()
 	local bufnr = vim.fn.expand("<abuf>")
+	bufnr = tonumber(bufnr)
 
 	local is_text_buf = api.nvim_buf_get_option(bufnr, "buftype") == ""
 	if not is_text_buf then
