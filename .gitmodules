@@ -13,9 +13,6 @@
 [submodule "neovim/data/start/winpick.nvim"]
 	path = neovim/data/pack/start/winpick.nvim
 	url = https://github.com/gbrlsnchs/winpick.nvim
-[submodule "neovim/data/start/vim-oldfiles"]
-	path = neovim/data/pack/start/vim-oldfiles
-	url = https://github.com/gpanders/vim-oldfiles
 [submodule "neovim/data/start/editorconfig.nvim"]
 	path = neovim/data/pack/start/editorconfig.nvim
 	url = https://github.com/gpanders/editorconfig.nvim
