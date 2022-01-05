@@ -7,6 +7,7 @@ end
 
 util.packadd("nvim-treesitter")
 local ts = require("nvim-treesitter.configs")
+local ts_parsers = require("nvim-treesitter.parsers")
 
 local settings = {
 	highlight = { enable = true },
@@ -59,6 +60,16 @@ if util.feature_is_on(features.tree_sitter.auto_tagging) then
 		},
 	}
 end
+
+local parsers_dir = vim.fn.stdpath("data") .. "/site/parsers"
+local parsers_config = ts_parsers.get_parser_configs()
+
+parsers_config.just = {
+	install_info = {
+		url = parsers_dir .. "/tree-sitter-just",
+		files = { "src/parser.c", "src/scanner.cc" },
+	},
+}
 
 ts.setup(settings)
 

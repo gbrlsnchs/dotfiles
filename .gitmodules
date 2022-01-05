@@ -58,3 +58,6 @@
 [submodule "neovim/data/start/sqlite.lua"]
 	path = neovim/data/start/sqlite.lua
 	url = https://github.com/tami5/sqlite.lua
+[submodule "neovim/data/parsers/tree-sitter-just"]
+	path = neovim/data/parsers/tree-sitter-just
+	url = https://github.com/IndianBoy42/tree-sitter-just
