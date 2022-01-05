@@ -69,13 +69,7 @@ local function get_project_oldfiles()
 	return oldfiles
 end
 
-local function wrap_opts(prompt)
-	return {
-		prompt = prompt,
-		actions = { action_types.C_X, action_types.C_V, action_types.C_T },
-		index_items = false,
-	}
-end
+local file_open_actions = { action_types.C_X, action_types.C_V, action_types.C_T }
 
 local function is_file_allowed(relative_path)
 	for _, prefix in ipairs(denylist) do
@@ -92,7 +86,11 @@ function M.find(dir)
 	dir = dir or ""
 
 	local cmd = ("fd --hidden --no-ignore-vcs --color=always . './%s'"):format(dir)
-	local opts = wrap_opts("Files:")
+	local opts = {
+		prompt = "Files:",
+		index_items = false,
+		actions = file_open_actions,
+	}
 
 	vim.ui.select(cmd, opts, open_file)
 end
@@ -101,7 +99,11 @@ function M.find_dirty(dir)
 	dir = dir or "."
 
 	local cmd = ("git ls-files --modified --others --exclude-standard %s"):format(dir)
-	local opts = wrap_opts("Dirty files: ")
+	local opts = {
+		prompt = "Dirty files:",
+		index_items = false,
+		actions = file_open_actions,
+	}
 
 	vim.ui.select(cmd, opts, open_file)
 end
@@ -119,7 +121,12 @@ function M.find_oldfiles()
 	local oldfiles = vim.tbl_map(function(row)
 		return row.path
 	end, result.rows)
-	local opts = wrap_opts("Recent files:")
+	local opts = {
+		prompt = "Recent files:",
+		index_items = false,
+		actions = file_open_actions,
+		sort = false,
+	}
 
 	vim.ui.select(oldfiles, opts, open_file)
 end
