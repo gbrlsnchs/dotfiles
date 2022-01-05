@@ -23,6 +23,7 @@ load_mods("opts", {
 	"env",
 	"session",
 	"ui",
+	"filetype",
 	"editor",
 	"colorscheme",
 	"statusline",
