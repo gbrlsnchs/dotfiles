@@ -50,9 +50,9 @@ local sline_bd = Builder
 			return
 		end
 
-		local ft = api.nvim_buf_get_option(0, "filetype")
+		local bufnr = api.nvim_get_current_buf()
 		local lsp_clients = vim.tbl_filter(function(client)
-			return vim.tbl_contains(client.config.filetypes, ft)
+			return client.attached_buffers[bufnr]
 		end, vim.lsp.get_active_clients())
 
 		if #lsp_clients == 0 then
