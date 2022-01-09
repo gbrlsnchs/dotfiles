@@ -25,9 +25,9 @@ if util.feature_is_on(features.tree_sitter.rainbow) then
 		palette.bright_red,
 		palette.bright_green,
 		palette.bright_blue,
-		palette.bright_yellow,
-		palette.bright_purple,
 		palette.bright_cyan,
+		palette.bright_purple,
+		palette.bright_yellow,
 		palette.yellow,
 	}
 
