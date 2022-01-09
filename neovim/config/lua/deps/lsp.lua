@@ -289,6 +289,7 @@ for name, config in pairs(servers) do
 		on_attach = function(_, bufnr)
 			register_keymaps(bufnr)
 			vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
+			vim.cmd("autocmd! BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 1000)")
 		end,
 	})
 
