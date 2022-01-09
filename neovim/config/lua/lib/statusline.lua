@@ -83,8 +83,15 @@ local sline_bd = Builder
 			diagnostic_count[diagnostic.severity] = diagnostic_count[diagnostic.severity] + 1
 		end
 
+		local has_signs = true
 		local function get_sign(name)
 			local signs = vim.fn.sign_getdefined(name)
+
+			if not signs[1] then
+				has_signs = false
+				return
+			end
+
 			local text = signs[1].text
 
 			return text:sub(1, -2)
@@ -97,26 +104,27 @@ local sline_bd = Builder
 			hint = get_sign("DiagnosticSignHint"),
 		}
 
-		return {
+		return vim.list_extend({
 			{ "StatusLineActive", "%=" },
 			{ "StatusLineLSPServer", client_names },
+		}, has_signs and {
 			{
 				"StatusLineLSPError",
 				(" %s: %d "):format(signs.error, diagnostic_count[severity.ERROR]),
 			},
-			{
+			has_signs and {
 				"StatusLineLSPWarn",
 				(" %s: %d "):format(signs.warn, diagnostic_count[severity.WARN]),
 			},
-			{
+			has_signs and {
 				"StatusLineLSPInfo",
 				(" %s: %d "):format(signs.info, diagnostic_count[severity.INFO]),
 			},
-			{
+			has_signs and {
 				"StatusLineLSPHint",
 				(" %s: %d "):format(signs.hint, diagnostic_count[severity.HINT]),
 			},
-		}
+		} or {})
 	end)
 	:add(function(is_active)
 		return { { is_active and "StatusLineActive" or "StatusLineInactive", "" } }
@@ -156,8 +164,15 @@ local tabline_builder = Builder
 			diagnostic_count[diagnostic.severity] = diagnostic_count[diagnostic.severity] + 1
 		end
 
+		local has_signs = true
 		local function get_sign(name)
 			local signs = vim.fn.sign_getdefined(name)
+
+			if not signs[1] then
+				has_signs = false
+				return
+			end
+
 			local text = signs[1].text
 
 			return text:sub(1, -2)
@@ -170,25 +185,26 @@ local tabline_builder = Builder
 			hint = get_sign("DiagnosticSignHint"),
 		}
 
-		return {
-			{ "TabLine", "%=" },
-			{
-				"TabLineLSPError",
-				(" %s: %d "):format(signs.error, diagnostic_count[severity.ERROR]),
-			},
-			{
-				"TabLineLSPWarn",
-				(" %s: %d "):format(signs.warn, diagnostic_count[severity.WARN]),
-			},
-			{
-				"TabLineLSPInfo",
-				(" %s: %d "):format(signs.info, diagnostic_count[severity.INFO]),
-			},
-			{
-				"TabLineLSPHint",
-				(" %s: %d "):format(signs.hint, diagnostic_count[severity.HINT]),
-			},
-		}
+		return has_signs
+			and {
+				{ "TabLine", "%=" },
+				{
+					"TabLineLSPError",
+					(" %s: %d "):format(signs.error, diagnostic_count[severity.ERROR]),
+				},
+				{
+					"TabLineLSPWarn",
+					(" %s: %d "):format(signs.warn, diagnostic_count[severity.WARN]),
+				},
+				{
+					"TabLineLSPInfo",
+					(" %s: %d "):format(signs.info, diagnostic_count[severity.INFO]),
+				},
+				{
+					"TabLineLSPHint",
+					(" %s: %d "):format(signs.hint, diagnostic_count[severity.HINT]),
+				},
+			}
 	end)
 	:add(function()
 		return { { "TabLine", "" } }
