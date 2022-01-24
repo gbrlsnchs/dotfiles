@@ -26,6 +26,11 @@ bspc rule -a \*:xmenu state=floating locked=on
 bspc rule -a Zathura state=tiled
 bspc rule -a zoom state=floating
 
+rm -f $XDG_CONFIG_HOME/chromium-flags.conf
+
+export XDG_SESSION_TYPE=x11
+export XDG_CURRENT_DESKTOP=bspwm
+
 # Start essential services.
 # TODO: Pick which variables are needed to run the bspwm session.
 systemctl --user import-environment; \
