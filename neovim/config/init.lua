@@ -34,6 +34,7 @@ load_mods("opts", {
 	"completion",
 	"search",
 	"tabline",
+	"macros",
 	"latex",
 })
 load_mods("deps", { "lsp", "tree_sitter", "git", "helpers", "explorer", "editor" })
