@@ -1,0 +1,7 @@
+#!/usr/bin/env sh
+
+git submodule update --init --recursive
+./contrib/nvimrock
+./contrib/gencolors
+envsubst < park/colors.toml | park --link
+envsubst < park/configs.toml | park --link
