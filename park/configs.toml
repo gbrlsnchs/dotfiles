@@ -1,0 +1,94 @@
+tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
+base_dir = "$XDG_CONFIG_HOME"
+
+# Xorg only
+[targets.bspwm]
+tags.all_of = ["x11", "bspwm"]
+
+[targets.sxhkd]
+tags.all_of = ["x11", "bspwm"]
+
+[targets.picom]
+tags.all_of = ["x11"]
+tags.any_of = ["bspwm"]
+
+[targets.polybar]
+tags.all_of = ["x11"]
+tags.any_of = ["bspwm"]
+
+[targets.alacritty]
+tags.all_of = ["x11"]
+
+[targets."xorg/xinitrc"]
+link.base_dir = "$HOME"
+link.name = ".xinitrc"
+tags.all_of = ["x11"]
+
+[targets."xorg/xserverrc"]
+link.base_dir = "$HOME"
+link.name = ".xserverrc"
+tags.all_of = ["x11"]
+
+# Wayland only
+[targets."foot/config"]
+tags.all_of = ["wayland"]
+link.name = "foot"
+
+[targets."river/config"]
+link.name = "river"
+tags.all_of = ["wayland", "river"]
+
+[targets."yambar/config"]
+link.name = "yambar"
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+
+# Others
+[targets."neovim/config"]
+link.name = "nvim"
+
+[targets."latex/latexmkrc"]
+link.base_dir = "$HOME"
+link.name = ".latexmkrc"
+
+[targets."dunst/config"]
+link.name = "dunst"
+tags.any_of = ["bspwm", "river"]
+
+# Service manager
+[targets.systemd]
+tags.all_of = ["systemd"]
+
+[targets.runit]
+tags.all_of = ["runit"]
+link.base_dir = "$XDG_DATA_HOME"
+link.name = "service"
+
+# Others
+[targets."zsh/data"]
+link.base_dir = "$XDG_DATA_HOME"
+link.name = "zsh"
+
+[targets."zsh/config/zshrc"]
+link.name = ".zshrc"
+link.base_dir = "$ZDOTDIR"
+
+[targets."zsh/config/functions"]
+link.base_dir = "$ZDOTDIR"
+
+[targets."zsh/config/zsh.d"]
+
+[targets."zsh/zshenv"]
+link.base_dir = "$HOME"
+link.name = ".zshenv"
+
+[targets.fontconfig]
+tags.any_of = ["bspwm", "river"]
+
+[targets.git]
+
+[targets."ssh/config"]
+link.base_dir = "$HOME/.ssh"
+
+[targets."cargo/config.toml"]
+link.base_dir = "$HOME/.cargo"
