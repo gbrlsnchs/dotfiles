@@ -139,6 +139,8 @@ riverctl csd-filter-add app-id "gedit"
 riverctl default-layout rivertile
 
 # Wayland compatibility layer
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=river
 export MOZ_ENABLE_WAYLAND=1
 echo "--enable-features=UseOzonePlatform --ozone-platform=wayland" > $XDG_CONFIG_HOME/chromium-flags.conf
 
