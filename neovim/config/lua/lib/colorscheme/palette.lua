@@ -1,1 +1,0 @@
-../../../../template/gencolors_palette.lua
