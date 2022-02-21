@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Wayland compatibility layer
+export XDG_SESSION_TYPE=wayland
+export XDG_CURRENT_DESKTOP=river
+export GDK_BACKEND=wayland
+export MOZ_ENABLE_WAYLAND=1
+
+exec dbus-run-session -- ssh-agent river
