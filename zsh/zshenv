@@ -21,6 +21,11 @@ export XDG_PUBLICSHARE_DIR=$(xdg-user-dir PUBLICSHARE)
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+export XKB_DEFAULT_LAYOUT="us,us"
+export XKB_DEFAULT_VARIANT=",intl"
+export XKB_DEFAULT_OPTIONS="grp:shift_toggle"
+export XCURSOR_THEME="Vanilla-DMZ"
+
 export SXHKD_SHELL=/bin/sh
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
