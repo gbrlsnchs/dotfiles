@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec rivertile -view-padding 6 -outer-padding 6 2>&1
