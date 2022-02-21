@@ -14,6 +14,12 @@ command.add("Grep", "Search", command_util.bind_fargs(grep.search), {
 	keymap = { keys = "<Leader>gg" },
 })
 
+command.add("GrepCd", "Search in buffer's current directory", command_util.bind_fargs(grep.search_in_dir), {
+	group = cmd_group,
+	nargs = "*",
+	keymap = { keys = "<Leader>gd" },
+})
+
 command.add("GitGrep", "Search with Git", command_util.bind_fargs(grep.git_search), {
 	group = cmd_group,
 	nargs = "*",

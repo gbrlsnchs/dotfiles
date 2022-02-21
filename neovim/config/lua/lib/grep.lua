@@ -2,13 +2,16 @@ local Job = require("plenary.job")
 
 local logger = require("lib.logger")
 
-local function prompt(...)
-	local query = { ... }
+local function prompt(scope, ...)
+	local query = vim.tbl_filter(function(word)
+		return #word > 0
+	end, { ... })
+
 	if #query > 0 then
 		return table.concat(query, " ")
 	end
 
-	local word = vim.fn.input("Search for: ")
+	local word = vim.fn.input(string.format("(%s) Search for: ", scope))
 
 	if not word or word:len() == 0 then
 		return
@@ -45,7 +48,7 @@ end
 local M = {}
 
 function M.search(...)
-	local query = prompt(...)
+	local query = prompt("global", ...)
 	if not query then
 		logger.info("Search aborted!")
 		return
@@ -54,8 +57,23 @@ function M.search(...)
 	run("rg", "--vimgrep", "--no-heading", "--smart-case", query)
 end
 
+function M.search_in_dir(...)
+	local file = vim.fn.expand("%")
+	if vim.fn.isdirectory(file) == 0 then
+		file = vim.fn.expand("%:h")
+	end
+
+	local query = prompt("directory", ...)
+	if not query then
+		logger.info("Search aborted!")
+		return
+	end
+
+	run("rg", "--vimgrep", "--no-heading", "--smart-case", query, file)
+end
+
 function M.git_search(...)
-	local query = prompt(...)
+	local query = prompt("git", ...)
 	if not query then
 		logger.info("Search with Git aborted!")
 		return
