@@ -8,6 +8,11 @@ mod="Mod4"
 # Programs.
 riverctl map normal $mod+Shift Return spawn foot
 
+# Notifications.
+riverctl map normal $mod Grave spawn "fnottctl actions"
+riverctl map normal $mod+Shift Grave spawn "fnottctl dismiss"
+riverctl map normal $mod+Shift+Control Grave spawn "fnottctl dismiss all"
+
 # Keybindings.
 riverctl map normal $mod Q close
 riverctl map normal $mod+Shift E exit
