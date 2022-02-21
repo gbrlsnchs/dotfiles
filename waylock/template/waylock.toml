@@ -1,0 +1,4 @@
+[colors]
+init_color = 0x{{background}}
+input_color = 0x{{foreground}}
+fail_color = 0x{{color1}}
