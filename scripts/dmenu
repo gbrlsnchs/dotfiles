@@ -1,0 +1,6 @@
+#!/bin/sh
+
+dmenu_file=/tmp/dmenu
+
+cat /dev/stdin > "$dmenu_file"
+foot --app-id dmenu --title dmenu sh -c "cat $dmenu_file | fzf"
