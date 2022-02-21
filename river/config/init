@@ -146,4 +146,4 @@ riverctl default-layout rivertile
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 xdg-user-dirs-update
 
-exec rivertile -view-padding 6 -outer-padding 6
+exec runsvdir -P "$XDG_DATA_HOME/service"
