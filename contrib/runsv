@@ -1,0 +1,6 @@
+#!/usr/bin/env sh
+
+target="$PWD/sv/$1"
+
+chmod u+x "$target/run" || exit 1
+ln -s "$target" "$XDG_DATA_HOME/service/"
