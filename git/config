@@ -25,3 +25,4 @@
 	rsoft = reset --soft HEAD^
 	shorts = status --short --ignore-submodules=dirty
 	vomit = commit --verbose
+	mend = commit --amend --no-edit
