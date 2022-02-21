@@ -1,2 +1,3 @@
-setopt prompt_subst
-setopt share_history
+setopt PROMPT_SUBST
+setopt SHARE_HISTORY
+setopt AUTO_PUSHD
