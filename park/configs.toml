@@ -34,14 +34,23 @@ tags.all_of = ["x11"]
 tags.all_of = ["wayland"]
 link.name = "foot"
 
+[targets."fnott/config"]
+tags.all_of = ["wayland"]
+link.name = "fnott"
+
 [targets."river/config"]
 link.name = "river"
 tags.all_of = ["wayland", "river"]
 
 [targets."yambar/config"]
-link.name = "yambar"
 tags.all_of = ["wayland"]
 tags.any_of = ["river"]
+link.name = "yambar"
+
+[targets."waylock/config"]
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+link.name = "waylock"
 
 # Others
 [targets."neovim/config"]
@@ -59,22 +68,15 @@ tags.any_of = ["bspwm", "river"]
 [targets.systemd]
 tags.all_of = ["systemd"]
 
-[targets.runit]
-tags.all_of = ["runit"]
-link.base_dir = "$XDG_DATA_HOME"
-link.name = "service"
-
 # Others
-[targets."zsh/data"]
-link.base_dir = "$XDG_DATA_HOME"
-link.name = "zsh"
-
 [targets."zsh/config/zshrc"]
 link.name = ".zshrc"
 link.base_dir = "$ZDOTDIR"
+tags.all_of = ["zsh"]
 
 [targets."zsh/config/functions"]
 link.base_dir = "$ZDOTDIR"
+tags.all_of = ["zsh"]
 
 [targets."zsh/config/zsh.d"]
 
@@ -87,8 +89,12 @@ tags.any_of = ["bspwm", "river"]
 
 [targets.git]
 
-[targets."ssh/config"]
-link.base_dir = "$HOME/.ssh"
-
 [targets."cargo/config.toml"]
 link.base_dir = "$HOME/.cargo"
+tags.all_of = ["cargo"]
+
+[targets."gtk/gtk3-settings.ini"]
+link.base_dir = "$XDG_CONFIG_HOME/gtk-3.0"
+link.name = "settings.ini"
+
+[targets."xdg/user-dirs.dirs"]

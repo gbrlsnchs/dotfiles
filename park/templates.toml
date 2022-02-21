@@ -3,16 +3,33 @@ base_dir = "$PWD"
 work_dir = "$XDG_CACHE_HOME/dotfiles"
 
 [targets."dunst/dunstrc"]
-tags.any_of = ["bspwm", "river"]
+tags.all_of = ["x11"]
+tags.any_of = ["bspwm"]
 link.base_dir = "$PWD/dunst/config"
 
 [targets."foot/foot.ini"]
 tags.all_of = ["wayland"]
+tags.any_of = ["river"]
 link.base_dir = "$PWD/foot/config"
+
+[targets."fnott/fnott.ini"]
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+link.base_dir = "$PWD/fnott/config"
+
+[targets."yambar/config.yml"]
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+link.base_dir = "$PWD/yambar/config"
 
 [targets."river/colors"]
 tags.all_of = ["wayland", "river"]
 link.base_dir = "$PWD/river/config"
+
+[targets."waylock/waylock.toml"]
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+link.base_dir = "$PWD/waylock/config"
 
 [targets."neovim/palette.lua"]
 link.base_dir = "$PWD/neovim/config/lua/lib/colorscheme"
