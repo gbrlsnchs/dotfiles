@@ -20,7 +20,6 @@ return lush(function()
 	return {
 		Normal({ bg = palette.bg, fg = palette.fg }),
 		Cursor({ gui = "inverse" }),
-		ErrorMsg({ bg = palette.red, fg = palette.bg }),
 		Float({ Normal }),
 		NormalFloat({ bg = palette.bg, fg = palette.fg }),
 		Visual({ bg = palette.blue, fg = palette.bg }),
@@ -46,7 +45,8 @@ return lush(function()
 		PmenuSbar({ bg = palette.bright_yellow }),
 		PmenuThumb({ bg = palette.yellow }),
 
-		DiagnosticWarn({ fg = commons.diagnostic.warn, guisp = commons.diagnostic.warn }),
+		WarningMsg({ fg = commons.diagnostic.warn, guisp = commons.diagnostic.warn }),
+		DiagnosticWarn({ WarningMsg }),
 		DiagnosticSignWarn({ SignColumn, fg = commons.diagnostic.warn }),
 		DiagnosticUnderlineWarn({
 			DiagnosticWarn,
@@ -55,15 +55,16 @@ return lush(function()
 			guisp = commons.diagnostic.warn,
 		}),
 		Error({ fg = commons.diagnostic.error, guisp = commons.diagnostic.error }),
-		DiagnosticError({ Error, guisp = palette.bright_red }),
-		DiagnosticSignError({ SignColumn, fg = palette.bright_red }),
+		ErrorMsg({ Error }),
+		DiagnosticError({ Error }),
+		DiagnosticSignError({ SignColumn, fg = commons.diagnostic.error }),
 		DiagnosticUnderlineError({
 			DiagnosticError,
 			bg = palette.black,
 			gui = "undercurl",
 			guisp = commons.diagnostic.error,
 		}),
-		DiagnosticInfo({ fg = commons.diagnostic.info, guisp = palette.bright_blue }),
+		DiagnosticInfo({ fg = commons.diagnostic.info, guisp = commons.diagnostic.info }),
 		DiagnosticSignInfo({ SignColumn, fg = palette.bright_blue }),
 		DiagnosticUnderlineInfo({
 			DiagnosticInfo,
