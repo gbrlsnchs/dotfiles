@@ -144,5 +144,6 @@ riverctl csd-filter-add app-id "gedit"
 riverctl default-layout rivertile
 
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+xdg-user-dirs-update
 
 exec rivertile -view-padding 6 -outer-padding 6
