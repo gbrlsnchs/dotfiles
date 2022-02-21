@@ -2,11 +2,11 @@ local Job = require("plenary.job")
 
 local logger = require("lib.logger")
 
-local function notify(msg, urgency_level)
+local function notify(msg, level_title, urgency_level)
 	Job
 		:new({
 			command = "notify-send",
-			args = { "--urgency", urgency_level, msg },
+			args = { "--app-name", "Neovim", "--urgency", urgency_level, level_title, msg },
 			cwd = vim.fn.getcwd(),
 			interactive = false,
 		})
@@ -24,14 +24,24 @@ vim.notify = function(msg, log_level, _)
 	end
 
 	local urgency
+	local level_title
 
 	if log_level == logger.levels.ERROR then
 		urgency = "critical"
+		level_title = "ERROR"
 	elseif log_level == logger.levels.WARN then
 		urgency = "normal"
+		level_title = "WARN"
 	else
 		urgency = "low"
+		if log_level == logger.levels.INFO then
+			level_title = "INFO"
+		elseif log_level == logger.levels.DEBUG then
+			level_title = "DEBUG"
+		else
+			level_title = "TRACE"
+		end
 	end
 
-	notify(msg, urgency)
+	notify(msg, level_title, urgency)
 end
