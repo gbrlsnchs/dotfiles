@@ -17,7 +17,7 @@
     separator_color = frame
     sort = yes
     idle_threshold = 120
-    font = "Monospace 12"
+    font = "monospace 12"
     line_height = 5
     markup = full
     format = "<b>%s</b>\n%b"
