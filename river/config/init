@@ -131,8 +131,8 @@ $XDG_CONFIG_HOME/river/colors
 riverctl set-repeat 50 300
 
 # Make certain views start floating
-riverctl float-filter-add app-id float
-riverctl float-filter-add title "popup title with spaces"
+riverctl float-filter-add app-id dmenu
+riverctl float-filter-add title "dmenu"
 
 # Set app-ids and titles of views which should use client side decorations
 riverctl csd-filter-add app-id "gedit"
