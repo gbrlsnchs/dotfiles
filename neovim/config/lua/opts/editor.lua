@@ -12,14 +12,14 @@ vim.opt.cursorline = true
 vim.opt.virtualedit = "block"
 vim.opt.list = true
 vim.opt.listchars = {
-	tab = "⇥ ",
-	eol = "↴",
-	trail = "␣",
+	tab = "⇆ ",
+	eol = "↲",
+	trail = "↶",
 	space = "•",
 }
 vim.opt.fillchars = {
 	vert = " ",
-	eob = "▸",
+	eob = "•",
 }
 vim.opt.signcolumn = "auto:9"
 vim.opt.colorcolumn = ""
