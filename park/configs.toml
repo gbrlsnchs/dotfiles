@@ -62,7 +62,7 @@ link.name = ".latexmkrc"
 
 [targets."dunst/config"]
 link.name = "dunst"
-tags.any_of = ["bspwm", "river"]
+tags.any_of = ["bspwm"]
 
 # Service manager
 [targets.systemd]
