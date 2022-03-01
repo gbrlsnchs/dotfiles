@@ -4,4 +4,6 @@ base_dir = "$XDG_BIN_HOME"
 [targets."scripts/riverstart"]
 tags.all_of = ["wayland", "river"]
 
+[targets."scripts/steamstart"]
+
 [targets."scripts/dmenu"]
