@@ -61,6 +61,7 @@ if util.feature_is_on(features.tree_sitter.auto_tagging) then
 	}
 end
 
+vim.cmd("packadd tree-sitter-just")
 local parsers_dir = vim.fn.stdpath("data") .. "/site/parsers"
 local parsers_config = ts_parsers.get_parser_configs()
 
