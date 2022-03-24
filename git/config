@@ -27,3 +27,4 @@
 	vomit = commit --verbose
 	mend = commit --amend --no-edit
 	flip = switch -
+	yank = pull --rebase --autostash
