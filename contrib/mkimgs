@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+
+for image in images/*; do
+	tag="$(basename "$image")"
+
+	echo "####################################################"
+	echo "Building image for $tag"
+	echo "####################################################"
+
+	podman build --tag "$tag" "$image"
+done
