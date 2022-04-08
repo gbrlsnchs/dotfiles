@@ -126,7 +126,9 @@ do
 done
 
 # Set background and border color
-$XDG_CONFIG_HOME/river/colors
+if [ -f "$XDG_CONFIG_HOME/river/colors" ]; then
+	$XDG_CONFIG_HOME/river/colors
+fi
 
 # Set keyboard repeat rate
 riverctl set-repeat 50 300
