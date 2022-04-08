@@ -6,6 +6,7 @@ bg_default: &bg_default
         size: 4
         color: "{{color3}}ff"
 bar:
+  monitor: {{secondary_monitor}}
   height: 24
   location: bottom
   font: monospace:pixelsize=12

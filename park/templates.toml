@@ -17,7 +17,12 @@ tags.all_of = ["wayland"]
 tags.any_of = ["river"]
 link.base_dir = "$PWD/fnott/config"
 
-[targets."yambar/config.yml"]
+[targets."yambar/ultrawide.yml"]
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+link.base_dir = "$PWD/yambar/config"
+
+[targets."yambar/portable.yml"]
 tags.all_of = ["wayland"]
 tags.any_of = ["river"]
 link.base_dir = "$PWD/yambar/config"
