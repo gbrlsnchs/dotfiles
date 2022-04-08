@@ -98,3 +98,8 @@ link.base_dir = "$XDG_CONFIG_HOME/gtk-3.0"
 link.name = "settings.ini"
 
 [targets."xdg/user-dirs.dirs"]
+
+[targets."xdg/desktop-portal-wlr"]
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+link.name = "xdg-desktop-portal-wlr"
