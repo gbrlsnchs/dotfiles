@@ -15,7 +15,7 @@ local function load_mods(dir, mods, allowlist)
 		end
 	end
 
-	logger.infof("Total modules loaded from %q: %d/%d", dir, total, #mods)
+	logger.debugf("Total modules loaded from %q: %d/%d", dir, total, #mods)
 end
 
 load_mods("opts", {
