@@ -258,6 +258,7 @@ local servers = {
 			},
 		},
 	},
+	tsserver = lsp_util.containerize("typescript-language-server"),
 }
 
 local local_settings = {}
