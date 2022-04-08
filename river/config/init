@@ -144,4 +144,8 @@ riverctl default-layout rivertile
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 xdg-user-dirs-update
 
+if [ -f "$XDG_CONFIG_HOME/river/screens" ]; then
+	$XDG_CONFIG_HOME/river/screens
+fi
+
 exec runsvdir -P "$XDG_DATA_HOME/service"
