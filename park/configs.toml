@@ -32,10 +32,12 @@ tags.all_of = ["x11"]
 # Wayland only
 [targets."foot/config"]
 tags.all_of = ["wayland"]
+tags.any_of = ["river"]
 link.name = "foot"
 
 [targets."fnott/config"]
 tags.all_of = ["wayland"]
+tags.any_of = ["river"]
 link.name = "fnott"
 
 [targets."river/config"]
