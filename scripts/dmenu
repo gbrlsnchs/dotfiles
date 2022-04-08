@@ -1,6 +1,10 @@
 #!/bin/sh
 
-dmenu_file=/tmp/dmenu
+dmenu_in=$(mktemp)
+dmenu_out=$(mktemp)
 
-cat /dev/stdin > "$dmenu_file"
-foot --app-id dmenu --title dmenu sh -c "cat $dmenu_file | fzf"
+cat /dev/stdin > "$dmenu_in"
+foot --app-id dmenu --title dmenu sh -c "cat $dmenu_in | fzf > $dmenu_out"
+rm "$dmenu_in"
+cat "$dmenu_out"
+rm "$dmenu_out"
