@@ -1,0 +1,36 @@
+tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP", "pipewire"]
+base_dir = "$XDG_DATA_HOME/service"
+work_dir = "$PWD/sv"
+
+[targets."fnott"]
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+
+[targets."gammastep"]
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+
+[targets."pipewire"]
+tags.any_of = ["river"]
+
+[targets."pipewire-media-session"]
+tags.all_of = ["pipewire-media-session"]
+tags.any_of = ["river"]
+
+[targets."pipewire-pulse"]
+tags.any_of = ["river"]
+
+[targets."rivertile"]
+tags.all_of = ["wayland", "river"]
+
+[targets."wireplumber"]
+tags.all_of = ["wireplumber"]
+tags.any_of = ["river"]
+
+[targets."yambar-DP-1"]
+tags.all_of = ["wayland", "ultrawide"]
+tags.any_of = ["river"]
+
+[targets."yambar-HDMI-A-1"]
+tags.all_of = ["wayland", "portable"]
+tags.any_of = ["river"]
