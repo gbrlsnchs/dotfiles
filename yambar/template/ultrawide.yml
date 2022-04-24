@@ -64,6 +64,10 @@ bar:
               unfocused:
                 map:
                   <<: *river_base
+                  deco:
+                    underline:
+                      size: 4
+                      color: "{{color7}}ff"
               invisible:
                 map:
                   tag: occupied
