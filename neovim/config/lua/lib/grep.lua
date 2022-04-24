@@ -31,9 +31,13 @@ local function run(cmd, ...)
 			on_exit = vim.schedule_wrap(function(job, exit_code)
 				local result = job:result()
 
-				if exit_code ~= 0 or #result == 0 then
+				if exit_code == 1 or #result == 0 then
 					logger.infof("No results found for query %q", args[#args])
 					return
+				end
+
+				if exit_code == 2 then
+					logger.warn("Search was partially successful (exit code 2)")
 				end
 
 				vim.fn.setqflist({}, "r", {
@@ -50,7 +54,7 @@ local M = {}
 function M.search(...)
 	local query = prompt("global", ...)
 	if not query then
-		logger.info("Search aborted!")
+		logger.info("Search aborted")
 		return
 	end
 
