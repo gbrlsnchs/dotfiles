@@ -64,3 +64,6 @@
 [submodule "neovim/data/pack/start/float-preview.nvim"]
 	path = neovim/data/pack/start/float-preview.nvim
 	url = https://github.com/ncm2/float-preview.nvim
+[submodule "neovim/data/pack/opt/null-ls.nvim"]
+	path = neovim/data/pack/opt/null-ls.nvim
+	url = https://github.com/jose-elias-alvarez/null-ls.nvim
