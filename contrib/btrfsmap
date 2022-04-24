@@ -1,0 +1,12 @@
+#!/bin/sh
+
+physical_size="$(\
+	sudo podman run --privileged --interactive --tty --rm --volume "/var/swap/swapfile:/swapfile" btrfs_map_physical \
+	| sed -n "2p" \
+	| awk "{print \$NF}" \
+)"
+
+page_size=$(getconf PAGESIZE)
+actual_size=$((physical_size / page_size))
+
+echo "$actual_size"
