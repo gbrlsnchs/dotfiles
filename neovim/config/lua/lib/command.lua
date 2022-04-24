@@ -14,7 +14,7 @@ function M.add(name, description, handler, opts)
 
 	local cmdlist = global_cmdlist
 	local bufnr = opts.bufnr
-	local cmd_add = api.nvim_add_user_command
+	local cmd_add = api.nvim_create_user_command
 	local keymap_add = api.nvim_set_keymap
 
 	if bufnr then
