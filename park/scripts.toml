@@ -1,9 +1,17 @@
 tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
 base_dir = "$XDG_BIN_HOME"
+work_dir = "$PWD/scripts"
 
-[targets."scripts/riverstart"]
+[targets.riverstart]
 tags.all_of = ["wayland", "river"]
 
-[targets."scripts/steamstart"]
+[targets.steamstart]
 
-[targets."scripts/dmenu"]
+[targets.dmenu]
+tags.any_of = ["river"]
+
+[targets.printscreen]
+tags.any_of = ["river"]
+
+[targets.printsnip]
+tags.any_of = ["river"]

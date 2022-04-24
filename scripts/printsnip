@@ -1,5 +1,15 @@
 #!/bin/sh
 
 img_name="$(date +%s).png"
-maim -s $(xdg-user-dir PICTURES)/$img_name && \
-	notify-send "Screenshot snippet taken" $img_name
+
+output="$(xdg-user-dir PICTURES)/$img_name"
+
+if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+	grim -g "$(slurp)" "$output"
+else
+	maim -s "$output"
+fi
+
+if [ "$?" -eq 0 ]; then
+	notify-send --expire-time=5000 "Screenshot taken" "$img_name"
+fi
