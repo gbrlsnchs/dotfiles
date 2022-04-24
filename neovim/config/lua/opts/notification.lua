@@ -6,7 +6,7 @@ local function notify(msg, level_title, urgency_level)
 	Job
 		:new({
 			command = "notify-send",
-			args = { "--app-name", "Neovim", "--urgency", urgency_level, level_title, msg },
+			args = { "--expire-time", "5000", "--app-name", "Neovim", "--urgency", urgency_level, level_title, msg },
 			cwd = vim.fn.getcwd(),
 			interactive = false,
 		})
