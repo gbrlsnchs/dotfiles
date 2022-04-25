@@ -27,7 +27,7 @@ function M.add(name, description, handler, opts)
 
 		cmdlist = buffer_cmdlist[bufnr]
 		cmd_add = function(...)
-			api.nvim_buf_add_user_command(bufnr, ...)
+			api.nvim_buf_create_user_command(bufnr, ...)
 		end
 		keymap_add = function(...)
 			api.nvim_buf_set_keymap(bufnr, ...)
