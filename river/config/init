@@ -12,7 +12,7 @@ riverctl map normal $mod+Shift Grave spawn "fnottctl dismiss"
 riverctl map normal $mod+Shift+Control Grave spawn "fnottctl dismiss all"
 
 # Keybindings.
-riverctl map normal $mod Q close
+riverctl map normal $mod+Shift Q close
 riverctl map normal $mod+Shift E exit
 riverctl map normal $mod J focus-view next
 riverctl map normal $mod K focus-view previous
