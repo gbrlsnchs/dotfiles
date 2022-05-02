@@ -67,3 +67,9 @@
 [submodule "neovim/data/pack/opt/null-ls.nvim"]
 	path = neovim/data/pack/opt/null-ls.nvim
 	url = https://github.com/jose-elias-alvarez/null-ls.nvim
+[submodule "neovim/data/pack/opt/nvim-pqf"]
+	path = neovim/data/pack/opt/nvim-pqf
+	url = https://gitlab.com/yorickpeterse/nvim-pqf
+[submodule "neovim/data/pack/start/winpick.nvim"]
+	path = neovim/data/pack/start/winpick.nvim
+	url = https://codeberg.org/gbrlsnchs/winpick.nvim

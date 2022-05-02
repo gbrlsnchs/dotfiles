@@ -1,5 +1,7 @@
 return {
    dependencies = {
-      lsqlite3 = "0.9.5-1"
+      lsqlite3 = "0.9.5-1",
+      lua = "5.1-1",
+      lyaml = "6.2.7-1"
    },
 }

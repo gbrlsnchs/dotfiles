@@ -1,40 +1,57 @@
-local logger = require("lib.logger")
+-- TODO: Log errors.
+local function bootstrap()
+	local rocks_home = vim.fn.stdpath("data") .. "/site/rocks"
 
-local function load_mods(dir, mods, allowlist)
-	allowlist = allowlist or {}
+	-- HACK: This lets us load LuaRocks packages from wherever we want.
+	package.path = package.path .. ";" .. (rocks_home .. "/share/lua/5.1/?.lua")
+	package.path = package.path .. ";" .. (rocks_home .. "/share/lua/5.1/?/init.lua")
+	package.cpath = package.cpath .. ";" .. (rocks_home .. "/lib/lua/5.1/?.so")
+	package.cpath = package.cpath .. ";" .. (rocks_home .. "/lib/lua/5.1/?/loadall.so")
 
-	local total = 0
-	for _, mod in ipairs(mods) do
-		local mod_path = ("%s.%s"):format(dir, mod)
-		local ok, err = pcall(require, mod_path)
-		if ok then
-			logger.debugf("Initialized %q", mod_path)
-			total = total + 1
-		else
-			logger.errorf("Unable to require %q: %s", mod_path, err)
-		end
+	local yml = require("lyaml")
+
+	local io = require("me.api.io")
+
+	local opts_yml = io.read_file("neovim.yml")
+
+	if not opts_yml then
+		return nil
 	end
 
-	logger.debugf("Total modules loaded from %q: %d/%d", dir, total, #mods)
+	-- Substitute environment variables.
+	opts_yml = opts_yml:gsub('$%$', '\0')
+		:gsub('${([%w_]+)}', os.getenv)
+		:gsub('$([%w_]+)', os.getenv)
+		:gsub('%z', '$')
+
+	return yml.load(opts_yml)
 end
 
-load_mods("opts", {
-	"notification",
-	"env",
+local opts = bootstrap() or {}
+
+-- Order of loading matters.
+-- TODO: Set up 'macros' and SQLite connection.
+local modules = {
 	"session",
-	"ui",
-	"filetype",
+	"env",
+	"options",
 	"editor",
-	"colorscheme",
+	"syntax",
+	"ui",
+	"diagnostics",
+	"lsp",
+	"git",
 	"statusline",
-	"command",
-	"buffers",
-	"files",
-	"terminal",
-	"completion",
-	"search",
-	"tabline",
-	"macros",
-	"latex",
-})
-load_mods("deps", { "lsp", "tree_sitter", "git", "helpers", "explorer", "editor" })
+}
+
+for _, module in ipairs(modules) do
+	local ok, mod = pcall(require, "me." .. module)
+
+	if not ok then
+		local errmsg = string.format("Could not load %q: %q", module, mod)
+
+		vim.notify(errmsg, vim.log.levels.WARN)
+	else
+		mod.setup(vim.tbl_get(opts, module))
+	end
+end
