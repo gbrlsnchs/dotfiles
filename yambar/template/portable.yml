@@ -9,7 +9,7 @@ bar:
   monitor: {{secondary_monitor}}
   height: 24
   location: bottom
-  font: monospace:pixelsize=12
+  font: monospace:pixelsize={{font_size}}
   background: "{{color0}}ff"
   foreground: "{{foreground}}ff"
 
