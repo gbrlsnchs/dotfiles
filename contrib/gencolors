@@ -47,6 +47,7 @@ for template in **/template/*; do
 		--expression "s/{{color13}}/$color13/g" \
 		--expression "s/{{color14}}/$color14/g" \
 		--expression "s/{{color15}}/$color15/g" \
+		--expression "s/{{font_size}}/14/g" \
 		--expression "s/{{primary_monitor}}/DP-1/g" \
 		--expression "s/{{secondary_monitor}}/HDMI-A-1/g" \
 		$template > $file || continue
