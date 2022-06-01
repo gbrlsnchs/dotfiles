@@ -29,3 +29,5 @@
 	flip = switch -
 	yank = pull --rebase --autostash
 	wipeout = restore .
+[include]
+	path = custom/config
