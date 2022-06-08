@@ -1,4 +1,4 @@
-autoload -Uz compinit && compinit
+autoload -Uz +X compinit bashcompinit
 
 # Custom functions.
 fpath+=("$XDG_DATA_HOME/zsh/zfunc" "$ZDOTDIR/functions")
