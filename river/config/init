@@ -125,8 +125,8 @@ do
     # riverctl map $mode None XF86MonBrightnessDown spawn 'light -U 5'
 done
 
-riverctl map normal None PrtScr spawn printscreen
-riverctl map normal Shift PrtScr spawn printsnip
+riverctl map normal None Print spawn printscreen
+riverctl map normal Shift Print spawn printsnip
 
 # Set background and border color
 if [ -f "$XDG_CONFIG_HOME/river/colors" ]; then
