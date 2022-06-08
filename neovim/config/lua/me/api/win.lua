@@ -29,4 +29,16 @@ function M.set_focused()
 	focused_win = api.nvim_get_current_win()
 end
 
+--- Focuses a window of given ID.
+--- @param win number: Window ID of windows to be focused.
+--- @return boolean: Whether the window has been focused.
+function M.focus(win)
+	if not win then
+		return false
+	end
+
+	api.nvim_set_current_win(win)
+	return true
+end
+
 return M
