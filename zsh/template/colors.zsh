@@ -22,3 +22,6 @@ color15='#{{color15}}'
 
 # Fix LS_COLORS being unreadable.
 export LS_COLORS="${LS_COLORS}:su=30;41:ow=30;42:st=30;44:"
+
+# Fix jq colors being unreadable.
+export JQ_COLORS="0;31:0;39:0;39:0;39:0;32:1;39:1;39"
