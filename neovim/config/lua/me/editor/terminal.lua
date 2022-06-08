@@ -1,5 +1,7 @@
 local winpick = require("winpick")
 
+local win = require("me.api.win")
+
 local M = {}
 
 function M.open(orientation)
@@ -20,7 +22,7 @@ function M.open(orientation)
 		cmd = string.format("%s +%s", precmd, cmd)
 	end
 
-	if pick_win and not winpick.focus() then
+	if pick_win and not win.focus(winpick.select()) then
 		return
 	end
 

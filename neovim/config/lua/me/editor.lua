@@ -267,7 +267,7 @@ function M.setup(opts)
 	vim.g["float_preview#docked"] = false
 
 	winpick.setup({
-		label_func = function(label)
+		format_label = function(label)
 			return label
 		end,
 	})

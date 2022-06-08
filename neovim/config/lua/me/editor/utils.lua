@@ -1,5 +1,7 @@
 local winpick = require("winpick")
 
+local win = require("me.api.win")
+
 local api = vim.api
 
 local function buf_rel_name(name)
@@ -9,12 +11,12 @@ end
 local M = {}
 
 function M.copy_buf_path()
-	local win = winpick.select()
-	if not win then
+	local selected_win = winpick.select()
+	if not selected_win then
 		return
 	end
 
-	local bufnr = api.nvim_win_get_buf(win)
+	local bufnr = api.nvim_win_get_buf(selected_win)
 	local buf_name = api.nvim_buf_get_name(bufnr)
 
 	if not buf_name then
@@ -25,10 +27,10 @@ function M.copy_buf_path()
 end
 
 function M.focus_win()
-	winpick.focus({
+	win.focus(winpick.select({
 		buf_excludes = false,
 		win_excludes = false,
-	})
+	}))
 end
 
 return M

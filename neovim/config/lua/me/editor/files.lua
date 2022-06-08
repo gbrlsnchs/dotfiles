@@ -1,5 +1,7 @@
 local winpick = require("winpick")
 
+local win = require("me.api.win")
+
 local actions = { "ctrl-x", "ctrl-v", "ctrl-t" }
 
 local function open_file(filename)
@@ -22,7 +24,7 @@ local function open_file(filename)
 			cmd = "edit"
 		end
 
-		if pick_win and not winpick.focus() then
+		if pick_win and not win.focus(winpick.select()) then
 			return
 		end
 

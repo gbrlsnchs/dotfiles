@@ -1,5 +1,7 @@
 local winpick = require("winpick")
 
+local win = require("me.api.win")
+
 local api = vim.api
 
 local function list()
@@ -57,7 +59,7 @@ function M.find()
 				pick_win = false
 			end
 
-			if pick_win and not winpick.focus() then
+			if pick_win and not win.focus(winpick.select()) then
 				return
 			end
 
