@@ -22,7 +22,16 @@ local function notify(msg, level)
 		first_write = false
 	end
 
-	local line_count = api.nvim_buf_line_count(buffer)
+	local msg_lines = {}
+	for s in msg:gmatch("[^\r\n]+") do
+		table.insert(msg_lines, s)
+	end
+
+	if #msg_lines == 0 then
+		return
+	end
+
+	msg = msg_lines[1]
 
 	if level == log_levels.ERROR then
 		msg = "ERROR " .. msg
@@ -37,6 +46,12 @@ local function notify(msg, level)
 	end
 
 	local lines = { now .. " " .. msg }
+	local padding = string.rep(" ", now:len() + 7)
+
+	local other_lines = vim.list_slice(msg_lines, 2)
+	for _, s in ipairs(other_lines) do
+		table.insert(lines, padding .. s)
+	end
 
 	api.nvim_buf_set_lines(buffer, index, -1, true, lines)
 
@@ -49,8 +64,8 @@ local function notify(msg, level)
 		return
 	end
 
+	local total_lines = api.nvim_buf_line_count(buffer)
 	local buf_max_limit = 1000
-	local total_lines = line_count + #lines
 	local diff = total_lines - buf_max_limit
 
 	if diff > 0 then
