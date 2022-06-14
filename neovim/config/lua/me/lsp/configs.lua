@@ -8,6 +8,7 @@ local lsp_commands = require("me.lsp.commands")
 -- Language settings.
 local defaults = {
 	gopls = require("me.lsp.configs.gopls"),
+	jdtls = require("me.lsp.configs.jdtls"),
 	sumneko_lua = require("me.lsp.configs.lua-language-server"),
 }
 
