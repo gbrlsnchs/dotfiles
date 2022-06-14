@@ -1,4 +1,4 @@
-tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP", "pipewire"]
+tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
 base_dir = "$XDG_DATA_HOME/service"
 work_dir = "$PWD/sv"
 

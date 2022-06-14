@@ -105,3 +105,5 @@ link.name = "settings.ini"
 tags.all_of = ["wayland"]
 tags.any_of = ["river"]
 link.name = "xdg-desktop-portal-wlr"
+
+[targets.pipewire]
