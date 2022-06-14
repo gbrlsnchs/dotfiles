@@ -207,7 +207,7 @@ local function setup_statusline(opts)
 
 	if opts.logs then
 		statusline
-			:add(spacing(1))
+			:add(spacing(2))
 			:add(function()
 				local unread_logs = log.get_unread()
 
