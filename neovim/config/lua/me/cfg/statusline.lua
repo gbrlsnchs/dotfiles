@@ -1,11 +1,9 @@
+local byob = require("byob")
+
 local util = require("me.api.util")
-local win = require("me.api.win")
-local line = require("me.api.line")
-local Builder = require("me.api.line.builder")
 local log = require("me.api.log")
 
 local api = vim.api
-local cwd = vim.loop.cwd()
 local log_levels = vim.log.levels
 local git_cache = {}
 
@@ -106,8 +104,8 @@ local function lsp_info(global)
 		}
 
 		return vim.list_extend((not global and {
-			spacing(1, "LSPServer"),
-			{ hl = "LSPServer", content = "[LSP] " .. client_names },
+			spacing(2, "LSPServer"),
+			{ hl = "LSPServer", content = client_names },
 		}) or {}, has_signs and {
 			spacing(1, "LSPError"),
 			{
@@ -137,38 +135,11 @@ local function lsp_info(global)
 	end
 end
 
---- Sets up winbar.
+--- Sets up statusline.
 --- @param opts table: Options for this bar.
 --- @return table: Builder that builds the bar.
-local function setup_winbar(opts)
-	local winbar = Builder
-		:new("WinBar")
-		:add(spacing(1, "FileInfo"))
-		:add("[Buffer]")
-		:add(spacing(1, "FileInfo"))
-		:add(function(is_focused)
-			local bufnr = api.nvim_get_current_buf()
-			local is_modified = api.nvim_buf_get_option(bufnr, "modified")
-			local hl_mod = (is_modified and "Modified") or ""
-
-			return {
-				hl = hl_focus("FileInfo" .. hl_mod, is_focused),
-				content = "%f",
-			}
-		end)
-		:add(spacing(1, "FileInfo"))
-		:add(align_right)
-
-	if opts.lsp then
-		winbar:add(lsp_info(false))
-	end
-
-	return winbar
-end
-
 local function setup_statusline(opts)
-	local statusline = Builder
-		:new("StatusLine")
+	local statusline = byob.new("StatusLine")
 
 	if opts.git then
 		statusline
@@ -188,9 +159,9 @@ local function setup_statusline(opts)
 				end
 
 				return branch and status and {
-					spacing(1),
-					{ hl = "Branch", content = "[Git] " .. branch },
-					spacing(1),
+					spacing(2),
+					{ hl = "Branch", content = branch },
+					spacing(2),
 					spacing(1, "DiffAdd"),
 					{ hl = "DiffAdd", content = string.format("+%d", status.added or 0) },
 					spacing(1, "DiffAdd"),
@@ -265,96 +236,31 @@ local function setup_statusline(opts)
 	return statusline
 end
 
-local function setup_tabline(opts)
-	local tabline = Builder
-		:new()
-		:add("    " .. cwd .. "    ")
+--- Sets up winbar.
+--- @param opts table: Options for this bar.
+--- @return table: Builder that builds the bar.
+local function setup_winbar(opts)
+	local winbar = byob
+		.new("WinBar")
+		:add(spacing(2, "FileInfo"))
+		:add(function(is_focused)
+			local bufnr = api.nvim_get_current_buf()
+			local is_modified = api.nvim_buf_get_option(bufnr, "modified")
+			local hl_mod = (is_modified and "Modified") or ""
 
-
-	tabline
-		:add(function()
-			return { { "TabLine", "%=" } }
+			return {
+				hl = hl_focus("FileInfo" .. hl_mod, is_focused),
+				content = "%f",
+			}
 		end)
-		:add(function()
-			local tabs = api.nvim_list_tabpages()
-			local current_tab = api.nvim_get_current_tabpage()
-
-			for i, tabpageid in ipairs(tabs) do
-				if tabpageid == current_tab then
-					return { { "TabLine", string.format("    Tab %d of %d    ", i, #tabs) } }
-				end
-			end
-		end)
+		:add(spacing(2, "FileInfo"))
+		:add(align_right)
 
 	if opts.lsp then
-		tabline
-			:add(function()
-				local lsp_clients = vim.lsp.get_active_clients()
-
-				if #lsp_clients == 0 then
-					return
-				end
-
-				local severity = vim.diagnostic.severity
-				local diagnostic_count = {
-					[severity.ERROR] = 0,
-					[severity.WARN] = 0,
-					[severity.INFO] = 0,
-					[severity.HINT] = 0,
-				}
-				local buf_diagnostics = vim.diagnostic.get()
-				for _, diagnostic in ipairs(buf_diagnostics) do
-					diagnostic_count[diagnostic.severity] = diagnostic_count[diagnostic.severity] + 1
-				end
-
-				local has_signs = true
-				local function get_sign(name)
-					local signs = vim.fn.sign_getdefined(name)
-
-					if not signs[1] then
-						has_signs = false
-						return
-					end
-
-					local text = signs[1].text
-
-					return text:sub(1, -2)
-				end
-
-				local signs = {
-					error = get_sign("DiagnosticSignError"),
-					warn = get_sign("DiagnosticSignWarn"),
-					info = get_sign("DiagnosticSignInfo"),
-					hint = get_sign("DiagnosticSignHint"),
-				}
-
-				return has_signs
-					and {
-						{
-							"TabLineLSPError",
-							("  %s: %d "):format(signs.error, diagnostic_count[severity.ERROR]),
-						},
-						{
-							"TabLineLSPWarn",
-							(" %s: %d "):format(signs.warn, diagnostic_count[severity.WARN]),
-						},
-						{
-							"TabLineLSPInfo",
-							(" %s: %d "):format(signs.info, diagnostic_count[severity.INFO]),
-						},
-						{
-							"TabLineLSPHint",
-							(" %s: %d "):format(signs.hint, diagnostic_count[severity.HINT]),
-						},
-					}
-			end)
+		winbar:add(lsp_info(false))
 	end
 
-	tabline:add(function()
-		return { { "TabLine", "" } }
-	end)
-
-	return tabline
+	return winbar
 end
 
 local M = {}
@@ -367,23 +273,13 @@ function M.setup(opts)
 		logs = true,
 	})
 
-	local group = api.nvim_create_augroup("bars", {})
-	api.nvim_create_autocmd({ "VimEnter", "WinEnter", "WinLeave" }, {
-		group = group,
-		callback = function()
-			win.set_focused()
-		end,
+	byob.setup({
+		statusline = setup_statusline(opts),
+		winbar = setup_winbar(opts),
 	})
 
-	line.set("statusline", setup_statusline(opts))
-	line.set("winbar", setup_winbar(opts))
-
-	vim.opt.statusline = [[%{%v:lua.require('me.api.line').get('statusline')%}]]
 	vim.opt.laststatus = 3
-
 	vim.opt.showtabline = 0
-
-	vim.opt.winbar = [[%{%v:lua.require('me.api.line').get('winbar')%}]]
 end
 
 return M
