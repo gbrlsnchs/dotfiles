@@ -1,7 +1,5 @@
 local api = vim.api
 
-local focused_win
-
 local M = {}
 
 --- Gets the window ID of the preview window.
@@ -16,17 +14,6 @@ function M.get_preview()
 	end
 
 	return nil
-end
-
---- Gets currently focused window.
---- @return number: Window ID of currently focused window.
-function M.get_focused()
-	return focused_win
-end
-
---- Sets focused window as the current one.
-function M.set_focused()
-	focused_win = api.nvim_get_current_win()
 end
 
 --- Focuses a window of given ID.

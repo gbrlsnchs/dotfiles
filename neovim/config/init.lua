@@ -41,7 +41,7 @@ local modules = {
 	"diagnostics",
 	"lsp",
 	"git",
-	"statusline",
+	"bars",
 }
 
 for _, module in ipairs(modules) do
