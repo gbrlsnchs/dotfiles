@@ -24,7 +24,7 @@ function M.setup(opts)
 	util.packadd("nvim-lspconfig")
 	util.packadd("null-ls.nvim")
 
-	local lsp_configs = require("me.lsp.configs")
+	local lsp_configs = require("me.cfg.lsp.configs")
 
 	override_handler("textDocument/hover", vim.lsp.handlers.hover, { border = "single" })
 	override_handler("textDocument/signatureHelp", vim.lsp.handlers.signature_help, { border = "single" })

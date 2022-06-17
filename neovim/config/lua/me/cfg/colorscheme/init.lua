@@ -1,5 +1,5 @@
 local util = require("me.api.util")
-local palette = require("me.colorscheme.palette")
+local palette = require("me.cfg.colorscheme.palette")
 
 local api = vim.api
 

@@ -3,13 +3,13 @@ local null_ls = require("null-ls")
 
 local util = require("me.api.util")
 
-local lsp_commands = require("me.lsp.commands")
+local lsp_commands = require("me.cfg.lsp.commands")
 
 -- Language settings.
 local defaults = {
-	gopls = require("me.lsp.configs.gopls"),
-	jdtls = require("me.lsp.configs.jdtls"),
-	sumneko_lua = require("me.lsp.configs.lua-language-server"),
+	gopls = require("me.cfg.lsp.configs.gopls"),
+	jdtls = require("me.cfg.lsp.configs.jdtls"),
+	sumneko_lua = require("me.cfg.lsp.configs.lua-language-server"),
 }
 
 --- Returns a list of sources based on whether their respective binaries are installed.

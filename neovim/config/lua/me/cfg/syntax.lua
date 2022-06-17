@@ -41,7 +41,7 @@ local function setup_tree_sitter(opts)
 	if opts.rainbow then
 		util.packadd("nvim-ts-rainbow")
 
-		local palette = require("me.colorscheme.palette")
+		local palette = require("me.cfg.colorscheme.palette")
 
 		settings.rainbow = {
 			enable = true,

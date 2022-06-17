@@ -1,5 +1,5 @@
 local util = require("me.api.util")
-local fzf = require("me.ui.fzf")
+local fzf = require("me.cfg.ui.fzf")
 
 --- Sets up indent guides.
 --- @param enabled boolean: Whether the feature should be loaded.

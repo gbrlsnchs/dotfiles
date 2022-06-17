@@ -45,7 +45,7 @@ local modules = {
 }
 
 for _, module in ipairs(modules) do
-	local ok, mod = pcall(require, "me." .. module)
+	local ok, mod = pcall(require, "me.cfg." .. module)
 
 	if not ok then
 		local errmsg = string.format("Could not load %q: %q", module, mod)

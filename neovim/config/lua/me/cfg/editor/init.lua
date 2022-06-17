@@ -2,13 +2,13 @@ local winpick = require("winpick")
 
 local excmd = require("me.api.excmd")
 local util = require("me.api.util")
-local palette = require("me.editor.palette")
-local files = require("me.editor.files")
-local grep = require("me.editor.grep")
-local terminal = require("me.editor.terminal")
-local buffers = require("me.editor.buffers")
-local utils = require("me.editor.utils")
-local logs = require("me.editor.logs")
+local palette = require("me.cfg.editor.palette")
+local files = require("me.cfg.editor.files")
+local grep = require("me.cfg.editor.grep")
+local terminal = require("me.cfg.editor.terminal")
+local buffers = require("me.cfg.editor.buffers")
+local utils = require("me.cfg.editor.utils")
+local logs = require("me.cfg.editor.logs")
 
 local api = vim.api
 
