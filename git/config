@@ -20,14 +20,14 @@
 [mergetool "neovim-remote"]
 	cmd = nvr -s -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
 [alias]
-	pushf = push --force-with-lease
-	sdiff = diff --staged
-	rsoft = reset --soft HEAD^
-	shorts = status --short --ignore-submodules=dirty
-	vomit = commit --verbose
+	force = push --force-with-lease
+	staged = diff --staged
+	rollback = reset --soft HEAD^
+	files = status --short --ignore-submodules=dirty
+	refer = commit --verbose
 	mend = commit --amend --no-edit
 	flip = switch -
 	yank = pull --rebase --autostash
-	wipeout = restore .
+	wipe = restore .
 [include]
 	path = custom/config
