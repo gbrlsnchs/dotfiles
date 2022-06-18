@@ -1,6 +1,9 @@
 local winpick = require("winpick")
 
 local excmd = require("me.api.excmd")
+local session = require("me.api.session")
+local db = require("me.api.db")
+local oldfiles = require("me.api.oldfiles")
 local util = require("me.api.util")
 local palette = require("me.cfg.editor.palette")
 local files = require("me.cfg.editor.files")
@@ -11,6 +14,8 @@ local utils = require("me.cfg.editor.utils")
 local logs = require("me.cfg.editor.logs")
 
 local api = vim.api
+
+local augroup = api.nvim_create_augroup("editor", {})
 
 --- Sets up EX commands for the command palette.
 local function setup_palette()
@@ -69,6 +74,15 @@ local function setup_files()
 						keymap = { keys = "<Leader>fD" },
 					},
 				},
+			},
+		},
+		FindRecentFiles = {
+			desc = "Find files that were opened recently",
+			callback = function()
+				files.find_oldfiles()
+			end,
+			opts = {
+				keymap = { keys = "<Leader>fo" },
 			},
 		},
 	})
@@ -204,23 +218,32 @@ local function setup_utils()
 	})
 end
 
+local function track_oldfiles(project_name)
+	api.nvim_create_autocmd("BufWinEnter", {
+		group = augroup,
+		pattern = "?*",
+		callback = function()
+			oldfiles.upsert_hits(project_name)
+		end,
+	})
+end
+
 --- Sets up automatic commands.
 local function setup_autocmds()
-	local group = api.nvim_create_augroup("editor", {})
 	api.nvim_create_autocmd("BufReadPost", {
-		group = group,
+		group = augroup,
 		pattern = "*",
 		command = "silent! lcd .",
 	})
 	api.nvim_create_autocmd("TextYankPost", {
-		group = group,
+		group = augroup,
 		pattern = "*",
 		callback = function()
 			vim.highlight.on_yank()
 		end,
 	})
 	api.nvim_create_autocmd("TermOpen", {
-		group = group,
+		group = augroup,
 		pattern = "*",
 		command = "startinsert",
 	})
@@ -235,7 +258,27 @@ local function setup_autocmds()
 			api.nvim_win_set_option(preview_win, "relativenumber", false)
 			api.nvim_win_set_option(preview_win, "cursorline", false)
 		end,
-		group = group,
+		group = augroup,
+	})
+
+	api.nvim_create_autocmd("VimEnter", {
+		group = augroup,
+		once = true,
+		callback = function()
+			local project_name = session.get_option("project_name")
+			if not project_name then
+				vim.notify("Skipping setup of oldfiles due to missing project name", vim.log.levels.WARN)
+				return true
+			end
+
+			local ok = oldfiles.init(project_name)
+
+			if ok then
+				track_oldfiles(project_name)
+			end
+
+			return true
+		end,
 	})
 end
 

@@ -1,6 +1,8 @@
 local winpick = require("winpick")
 
 local win = require("me.api.win")
+local session = require("me.api.session")
+local db = require("me.api.db")
 
 local actions = { "ctrl-x", "ctrl-v", "ctrl-t" }
 
@@ -68,6 +70,35 @@ function M.find_changed(base_dir)
 	vim.ui.select(cmd, opts, open_file)
 end
 
--- TODO: New oldfiles.
+--- Finds oldfiles sorted by relevance.
+function M.find_oldfiles()
+	local project_name = session.get_option("project_name")
+	if not project_name then
+		vim.notify("Could not retrieve oldfiles because there's not project name set")
+		return
+	end
+
+	local result, err = db.exec_stmt(
+		"SELECT path FROM oldfiles WHERE project_name = ? ORDER BY last_hit DESC, hits DESC LIMIT 50",
+		project_name
+	)
+	if err then
+		vim.notify("Could not fetch oldfiles: " .. err, vim.log.levels.ERROR)
+		return
+	end
+
+	local oldfiles = vim.tbl_map(function(row)
+		return row.path
+	end, result.rows)
+
+	local opts = {
+		prompt = "Recent files:",
+		index_items = false,
+		actions = actions,
+		sort = false,
+	}
+
+	vim.ui.select(oldfiles, opts, open_file)
+end
 
 return M
