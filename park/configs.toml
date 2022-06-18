@@ -107,3 +107,7 @@ tags.any_of = ["river"]
 link.name = "xdg-desktop-portal-wlr"
 
 [targets.pipewire]
+
+[targets."sqlite/sqliterc"]
+link.base_dir = "$HOME"
+link.name = ".sqliterc"
