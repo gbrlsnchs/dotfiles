@@ -37,7 +37,7 @@ tags.any_of = ["river"]
 link.base_dir = "$PWD/waylock/config"
 
 [targets."neovim/palette.lua"]
-link.base_dir = "$PWD/neovim/config/lua/me/colorscheme"
+link.base_dir = "$PWD/neovim/config/lua/me/cfg/colorscheme"
 
 [targets."zsh/colors.zsh"]
 link.base_dir = "$PWD/zsh/config/zsh.d"
