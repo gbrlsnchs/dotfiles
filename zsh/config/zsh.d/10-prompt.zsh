@@ -1,7 +1,7 @@
 _git_branch() {
 	local branch_name=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 	if [[ "$branch_name" != "" ]]; then
-		echo "(${branch_name}枝)"
+		echo "【${branch_name}枝】"
 	fi
 }
 
