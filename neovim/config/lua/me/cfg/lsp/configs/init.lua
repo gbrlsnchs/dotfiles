@@ -9,7 +9,8 @@ local lsp_commands = require("me.cfg.lsp.commands")
 local defaults = {
 	gopls = require("me.cfg.lsp.configs.gopls"),
 	jdtls = require("me.cfg.lsp.configs.jdtls"),
-	sumneko_lua = require("me.cfg.lsp.configs.lua-language-server"),
+	rust_analyzer = require("me.cfg.lsp.configs.rust_analyzer"),
+	sumneko_lua = require("me.cfg.lsp.configs.sumneko_lua"),
 }
 
 --- Returns a list of sources based on whether their respective binaries are installed.
