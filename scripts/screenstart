@@ -1,0 +1,5 @@
+#!/bin/sh
+
+wlr-randr \
+	--output DP-1 --on --pos 0,0 \
+	--output HDMI-A-1 --on --pos 320,1080
