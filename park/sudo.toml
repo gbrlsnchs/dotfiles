@@ -1,0 +1,9 @@
+tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
+base_dir = "/tmp"
+work_dir = "$PWD/scripts"
+
+[targets.screenstart]
+tags.all_of = ["wayland", "void"]
+tags.any_of = ["river"]
+link.base_dir = "/etc/zzz.d/resume"
+link.name = "10-screens.sh"
