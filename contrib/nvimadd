@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 repo=$1
 packadd_dir=${2:-"start"}

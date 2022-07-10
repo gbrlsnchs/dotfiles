@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 for image in images/*; do
 	tag="$(basename "$image")"

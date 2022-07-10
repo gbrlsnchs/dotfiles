@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/bin/sh
 
 background="1d1f21"
 foreground="c5c8c6"
