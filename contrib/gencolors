@@ -19,6 +19,9 @@ color13="b294bb"
 color14="8abeb7"
 color15="c5c8c6"
 
+MONITOR1="${MONITOR1:-'DP1'}"
+MONITOR2="${MONITOR2:-'HDMI-A-1'}"
+
 # Clean directories first.
 for template in **/template/*; do
 	outdir=$(dirname $template)
@@ -48,8 +51,8 @@ for template in **/template/*; do
 		--expression "s/{{color14}}/$color14/g" \
 		--expression "s/{{color15}}/$color15/g" \
 		--expression "s/{{font_size}}/12/g" \
-		--expression "s/{{primary_monitor}}/DP-1/g" \
-		--expression "s/{{secondary_monitor}}/HDMI-A-1/g" \
+		--expression "s/{{primary_monitor}}/$MONITOR1/g" \
+		--expression "s/{{secondary_monitor}}/$MONITOR2/g" \
 		$template > $file || continue
 	echo "Generated file from template: $file"
 done
