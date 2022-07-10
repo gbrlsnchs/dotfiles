@@ -29,5 +29,6 @@
 	flip = switch -
 	yank = pull --rebase --autostash
 	wipe = restore .
+	stem = rebase --autostash
 [include]
 	path = custom/config
