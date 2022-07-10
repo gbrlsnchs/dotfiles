@@ -30,4 +30,6 @@ export SXHKD_SHELL=/bin/sh
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
+export HOST
+
 typeset -U path
