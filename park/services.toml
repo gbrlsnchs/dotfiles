@@ -1,4 +1,4 @@
-tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
+tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP", "$HOST"]
 base_dir = "$XDG_DATA_HOME/service"
 work_dir = "$PWD/sv"
 
@@ -28,9 +28,9 @@ tags.all_of = ["wireplumber"]
 tags.any_of = ["river"]
 
 [targets."yambar-DP-1"]
-tags.all_of = ["wayland", "ultrawide"]
+tags.all_of = ["wayland", "ohara"]
 tags.any_of = ["river"]
 
 [targets."yambar-HDMI-A-1"]
-tags.all_of = ["wayland", "portable"]
+tags.all_of = ["wayland", "ohara"]
 tags.any_of = ["river"]
