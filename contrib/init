@@ -1,15 +1,4 @@
 #!/bin/sh
 
-# Install all dependencies for programs.
 git submodule update --init --recursive
-
-# Install Lua modules for Neovim.
-./contrib/nvimrock
-
-# Generate files from templates.
-./contrib/gencolors
-
-# Link configurations.
-for cfg in colors configs; do
-	envsubst < park/"$cfg".toml | park --link
-done
+envsubst < park/bootstrap.toml | park --link
