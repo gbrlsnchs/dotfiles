@@ -1,3 +1,3 @@
 #!/bin/sh
 
-exec yambar --config="/home/gbrlsnchs/.config/yambar/ultrawide.yml" 2>&1
+exec yambar --config="$XDG_CONFIG_HOME/yambar/ultrawide.yml" 2>&1
