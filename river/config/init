@@ -150,7 +150,7 @@ riverctl default-layout rivertile
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 xdg-user-dirs-update
 
-if [ command -v screenstart &> /dev/null ]; then
+if [ -f "$XDG_BIN_HOME/screenstart" ]; then
 	screenstart
 fi
 
