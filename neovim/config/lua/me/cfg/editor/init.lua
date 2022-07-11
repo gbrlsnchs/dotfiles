@@ -2,7 +2,6 @@ local winpick = require("winpick")
 
 local excmd = require("me.api.excmd")
 local session = require("me.api.session")
-local db = require("me.api.db")
 local oldfiles = require("me.api.oldfiles")
 local util = require("me.api.util")
 local palette = require("me.cfg.editor.palette")
