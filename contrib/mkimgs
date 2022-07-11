@@ -1,11 +1,19 @@
 #!/bin/sh
 
-for image in images/*; do
+target="$1"
+target="${target:-local}"
+
+for image in images/"$target"/*; do
 	tag="$(basename "$image")"
 
 	echo "####################################################"
-	echo "Building image for $tag"
+	echo "Building image for '$tag'"
+	echo "Context: '$image'"
 	echo "####################################################"
 
-	podman build --tag "$tag" "$image"
+	if [ "$target" = "root" ]; then
+		sudo podman build --tag "$tag" "$image"
+	else
+		podman build --tag "$tag" "$image"
+	fi
 done
