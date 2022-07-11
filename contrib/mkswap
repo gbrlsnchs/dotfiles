@@ -2,10 +2,13 @@
 
 set -e
 
-btrfs subvolume create /var/swap
+if [ ! -d /var/swap ]; then
+	btrfs subvolume create /var/swap
+fi
+
 truncate -s 0 /var/swap/swapfile
 chattr +C /var/swap/swapfile
-btrfs property set /var/swap/swapfile compression none
+btrfs property set /var/swap/swapfile compression ""
 chmod 600 /var/swap/swapfile
 dd if=/dev/zero of=/var/swap/swapfile bs=1G count=16 status=progress
 mkswap /var/swap/swapfile
