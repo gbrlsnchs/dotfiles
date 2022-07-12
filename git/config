@@ -30,5 +30,6 @@
 	yank = pull --rebase --autostash
 	wipe = restore .
 	stem = rebase --autostash
+	mirror = push --mirror mirror
 [include]
 	path = custom/config
