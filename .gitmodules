@@ -52,9 +52,6 @@
 [submodule "neovim/data/start/lush.nvim"]
 	path = neovim/data/pack/start/lush.nvim
 	url = https://github.com/rktjmp/lush.nvim
-[submodule "neovim/data/opt/lua-dev.nvim"]
-	path = neovim/data/pack/opt/lua-dev.nvim
-	url = https://github.com/folke/lua-dev.nvim
 [submodule "neovim/data/start/sqlite.lua"]
 	path = neovim/data/start/sqlite.lua
 	url = https://github.com/tami5/sqlite.lua
