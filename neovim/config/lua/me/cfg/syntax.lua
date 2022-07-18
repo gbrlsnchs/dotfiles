@@ -35,9 +35,6 @@ local function setup_tree_sitter(opts)
 	local settings = {
 		highlight = { enable = true },
 		indent = { enable = true },
-		-- context_commentstring = {
-		-- 	enable = true,
-		-- },
 	}
 
 	if opts.rainbow then
@@ -85,6 +82,13 @@ local function setup_tree_sitter(opts)
 		spellsitter.setup()
 	end
 
+	if opts.commentstring then
+		util.packadd("nvim-ts-context-commentstring")
+		settings.context_commentstring = {
+			enable = true,
+		}
+	end
+
 	util.packadd("tree-sitter-just")
 
 	local parsers_dir = vim.fn.stdpath("data") .. "/site/parsers"
@@ -123,6 +127,7 @@ function M.setup(opts)
 			rainbow = true,
 			auto_tagging = true,
 			spelling = true,
+			commentstring = true,
 		},
 		filetypes = nil, -- project's custom filetypes
 		colorizer = true,
