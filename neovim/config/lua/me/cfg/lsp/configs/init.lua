@@ -59,9 +59,11 @@ function M.setup(opts)
 	end
 
 	null_ls.setup({
-		sources = make_sources({
-			stylua = null_ls.builtins.formatting.stylua,
-		}),
+		sources = {
+			null_ls.builtins.code_actions.shellcheck,
+			null_ls.builtins.diagnostics.shellcheck,
+			null_ls.builtins.formatting.stylua,
+		},
 	})
 end
 
