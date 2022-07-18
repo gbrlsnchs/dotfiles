@@ -20,6 +20,8 @@ local function setup_filetypes(filetypes)
 	}))
 end
 
+--- Sets up tree-sitter core and its extensions.
+--- @param opts table: List of custom filetypes.
 local function setup_tree_sitter(opts)
 	if not opts.enabled then
 		return
@@ -94,6 +96,19 @@ local function setup_tree_sitter(opts)
 	vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 end
 
+--- Sets up hex code coloring.
+--- @param is_active boolean: Whether the feature is active.
+local function setup_colorizer(is_active)
+	if not is_active then
+		return
+	end
+
+	util.packadd("nvim-colorizer.lua")
+	local colorizer = require("colorizer")
+
+	colorizer.setup()
+end
+
 function M.setup(opts)
 	opts = util.tbl_merge(opts, {
 		tree_sitter = {
@@ -102,10 +117,12 @@ function M.setup(opts)
 			auto_tagging = true,
 		},
 		filetypes = nil, -- project's custom filetypes
+		colorizer = true,
 	})
 
 	setup_filetypes(opts.filetypes)
 	setup_tree_sitter(opts.tree_sitter)
+	setup_colorizer(opts.colorizer)
 end
 
 return M
