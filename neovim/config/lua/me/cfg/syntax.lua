@@ -78,6 +78,13 @@ local function setup_tree_sitter(opts)
 		}
 	end
 
+	if opts.spelling then
+		util.packadd("spellsitter.nvim")
+		local spellsitter = require("spellsitter")
+
+		spellsitter.setup()
+	end
+
 	util.packadd("tree-sitter-just")
 
 	local parsers_dir = vim.fn.stdpath("data") .. "/site/parsers"
@@ -115,6 +122,7 @@ function M.setup(opts)
 			enabled = true,
 			rainbow = true,
 			auto_tagging = true,
+			spelling = true,
 		},
 		filetypes = nil, -- project's custom filetypes
 		colorizer = true,
