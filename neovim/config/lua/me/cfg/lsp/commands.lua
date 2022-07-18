@@ -136,6 +136,43 @@ function M.setup(bufnr)
 				keymap = { keys = "<Leader>lr" },
 			},
 		},
+		LspWorkspaceAddFolder = {
+			desc = "Add folder to workspace",
+			callback = function()
+				vim.lsp.buf.add_workspace_folder()
+			end,
+			opts = {
+				buffer = bufnr,
+			},
+		},
+		LspWorkspaceListFolders = {
+			desc = "List workspace folders",
+			callback = function()
+				print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+			end,
+			opts = {
+				buffer = bufnr,
+			},
+		},
+		LspWorkspaceRemoveFolder = {
+			desc = "Remove folder from workspace",
+			callback = function()
+				vim.lsp.buf.remove_workspace_folder()
+			end,
+			opts = {
+				buffer = bufnr,
+			},
+		},
+		LspWorkspaceSymbol = {
+			desc = "Find workspace symbol",
+			callback = util.with_fargs(function(query)
+				vim.lsp.buf.workspace_symbol(query)
+			end),
+			opts = {
+				nargs = "?",
+				buffer = bufnr,
+			},
+		},
 	})
 
 	-- Information.
@@ -164,35 +201,6 @@ function M.setup(bufnr)
 		"<Cmd>lua vim.lsp.buf.range_code_action()<CR>",
 		{ noremap = true }
 	)
-
-	-- -- Workspace commands.
-	-- command.add("LspWorkspaceAddFolder", "Add folder to workspace", vim.lsp.buf.add_workspace_folder, {
-	-- 	group = cmd_group,
-	-- 	buffer = bufnr,
-	-- })
-	-- command.add("LspWorkspaceListFolders", "List workspace folders", function()
-	-- 	print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	-- end, {
-	-- 	group = cmd_group,
-	-- 	buffer = bufnr,
-	-- })
-	-- command.add("LspWorkspaceRemoveFolder",
-	-- 	"Remove folder from workspace",
-	-- 	vim.lsp.buf.remove_workspace_folder,
-	-- 	{
-	-- 		group = cmd_group,
-	-- 		buffer = bufnr,
-	-- 	}
-	-- )
-	-- command.add("LspWorkspaceSymbol",
-	-- 	"Find workspace symbol",
-	-- 	command_util.bind_fargs(vim.lsp.buf.workspace_symbol),
-	-- 	{
-	-- 		group = cmd_group,
-	-- 		nargs = "?",
-	-- 		buffer = bufnr,
-	-- 	}
-	-- )
 end
 
 return M
