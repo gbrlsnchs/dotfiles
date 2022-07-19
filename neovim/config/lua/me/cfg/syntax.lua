@@ -16,6 +16,7 @@ local function setup_filetypes(filetypes)
 		pattern = {
 			[".*/srcpkgs/.*/template"] = "sh", -- Void Linux templates.
 			[".*/river/.*/init"] = "sh",
+			["/var/tmp/grub%..*"] = "grub", -- For GRUB config edit via 'sudoedit'.
 		},
 	}))
 end
