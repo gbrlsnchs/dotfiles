@@ -38,7 +38,7 @@ function M.find()
 			}
 			return table.concat(parts, "\t")
 		end,
-		actions = { "ctrl-x", "ctrl-v", "ctrl-t" },
+		actions = { "ctrl-x", "ctrl-v", "ctrl-t", "ctrl-d" },
 	}
 
 	vim.ui.select(buffers, opts, function(buffer)
@@ -49,6 +49,11 @@ function M.find()
 
 			local precmd
 			local pick_win = true
+
+			if action == "ctrl-d" then
+				vim.cmd("bdelete " .. buffer.id)
+				return
+			end
 
 			if action == "ctrl-x" then
 				precmd = "split"

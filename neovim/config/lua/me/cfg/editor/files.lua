@@ -4,13 +4,38 @@ local win = require("me.api.win")
 local session = require("me.api.session")
 local db = require("me.api.db")
 
-local actions = { "ctrl-x", "ctrl-v", "ctrl-t" }
+local actions = { "ctrl-x", "ctrl-v", "ctrl-t", "ctrl-d" }
+local project_name = session.get_option("project_name")
 
-local function open_file(filename)
+--- Deletes an oldfile from the database.
+--- @param filename string: Name of the file to be deleted.
+local function delete_oldfile(filename)
+	if not project_name then
+		return
+	end
+
+	local _, err = db.exec_stmt(
+		"DELETE FROM oldfiles WHERE project_name = ? AND path = ?",
+		project_name,
+		filename
+	)
+
+	if err then
+		vim.notify("Could not delete oldfile entry: " .. err, vim.log.levels.ERROR)
+	end
+end
+
+--- Wrapper for the action handler for opening files.
+--- @param filename string | nil: Name of the chosen file.
+--- @param is_oldfile boolean: Whether the file is an oldfile.
+--- @return function: The action handler.
+local function open_file(filename, is_oldfile)
 	return function(action)
 		if not filename then
 			return
 		end
+
+		filename = filename:gsub("^%./", "")
 
 		local cmd
 		local pick_win = true
@@ -22,6 +47,13 @@ local function open_file(filename)
 		elseif action == "ctrl-t" then
 			cmd = "tabnew"
 			pick_win = false
+		elseif action == "ctrl-d" then
+			cmd = "bdelete"
+			pick_win = false
+
+			if is_oldfile then
+				delete_oldfile(filename)
+			end
 		else
 			cmd = "edit"
 		end
@@ -72,7 +104,6 @@ end
 
 --- Finds oldfiles sorted by relevance.
 function M.find_oldfiles()
-	local project_name = session.get_option("project_name")
 	if not project_name then
 		vim.notify("Could not retrieve oldfiles because there's not project name set")
 		return
@@ -98,7 +129,9 @@ function M.find_oldfiles()
 		sort = false,
 	}
 
-	vim.ui.select(oldfiles, opts, open_file)
+	vim.ui.select(oldfiles, opts, function(filename)
+		return open_file(filename, true)
+	end)
 end
 
 return M
