@@ -49,8 +49,8 @@ local common_hl = {
 
 	QuickFixLine = { bg = palette.bright_black, bold = true },
 
-	Pmenu = { bg = palette.bright_black, fg = palette.gray },
-	PmenuSel = { bg = palette.blue, fg = palette.bg, bold = true },
+	Pmenu = { bg = palette.bright_black, fg = palette.bright_gray },
+	PmenuSel = { bg = palette.bright_blue, fg = palette.bg, bold = true },
 	PmenuSbar = { bg = palette.black },
 	PmenuThumb = { bg = palette.yellow },
 }
