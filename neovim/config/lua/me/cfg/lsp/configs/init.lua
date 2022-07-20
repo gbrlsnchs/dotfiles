@@ -4,6 +4,27 @@ local null_ls = require("null-ls")
 local util = require("me.api.util")
 
 local lsp_commands = require("me.cfg.lsp.commands")
+local cwd = vim.loop.cwd()
+
+--- Wraps an LSP server in a Podman container.
+--- @param mod string: Path for the configuration module for the server.
+--- @return table: The patched server configuration.
+local function containerize(mod, image)
+	local server = require(mod)
+
+	server.cmd = {
+		"podman", "container", "run",
+		"--rm",
+		"--interactive",
+		"--network", "none",
+		"--workdir", cwd,
+		"--volume", string.format("%s:%s:z", cwd, cwd),
+		"--pid", "host",
+		image,
+	}
+
+	return server
+end
 
 -- Language settings.
 local defaults = {
