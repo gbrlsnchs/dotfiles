@@ -307,6 +307,7 @@ function M.setup(opts)
 	end
 
 	vim.g["float_preview#docked"] = false
+	vim.g["float_preview#max_width"] = 100
 
 	winpick.setup({
 		format_label = function(label)
