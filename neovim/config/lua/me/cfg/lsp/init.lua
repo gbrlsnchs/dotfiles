@@ -17,7 +17,7 @@ function M.setup(opts)
 	})
 
 	if opts.disabled then
-		-- TODO: Logs.
+		vim.notify("LSP functionality is disabled", vim.log.levels.WARN)
 		return
 	end
 
