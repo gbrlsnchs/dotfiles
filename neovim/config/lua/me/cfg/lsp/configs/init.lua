@@ -34,21 +34,6 @@ local defaults = {
 	sumneko_lua = require("me.cfg.lsp.configs.sumneko_lua"),
 }
 
---- Returns a list of sources based on whether their respective binaries are installed.
---- @param exes table: Map of binaries and their respective 'null-ls' sources.
---- @return table: Table of configured sources.
-local function make_sources(exes)
-	local sources = {}
-
-	for exe, source in pairs(exes) do
-		if vim.fn.executable(exe) == 1 then
-			table.insert(sources, source)
-		end
-	end
-
-	return sources
-end
-
 local M = {}
 
 --- Sets up LSP servers for languages.
