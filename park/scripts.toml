@@ -19,3 +19,5 @@ tags.any_of = ["river"]
 [targets.screenstart]
 tags.all_of = ["wayland"]
 tags.any_of = ["river"]
+
+[targets.minestart]
