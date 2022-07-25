@@ -111,3 +111,5 @@ link.name = "xdg-desktop-portal-wlr"
 [targets."sqlite/sqliterc"]
 link.base_dir = "$HOME"
 link.name = ".sqliterc"
+
+[targets.tiny]

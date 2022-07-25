@@ -1,0 +1,16 @@
+defaults:
+  realname: Gabriel Sanches
+  nicks: [gbrlsnchs]
+
+servers:
+  - addr: irc.libera.chat
+    port: 6697
+    tls: true
+    realname: Gabriel Sanches
+    nicks: [gbrlsnchs]
+    join:
+      - "#foot"
+      - "#neovim"
+      - "#river"
+      - "#voidlinux"
+      - "#zig"
