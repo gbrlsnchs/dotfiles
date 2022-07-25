@@ -14,5 +14,13 @@ servers:
       - "#river"
       - "#voidlinux"
       - "#zig"
+  - addr: irc.oftc.net
+    port: 6697
+    tls: true
+    realname: Gabriel Sanches
+    nicks: [gbrlsnchs]
+    join:
+      - "#alpine-linux"
+      - "#tiny"
 
 layout: aligned
