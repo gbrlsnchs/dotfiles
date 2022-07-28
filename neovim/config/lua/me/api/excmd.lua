@@ -2,39 +2,48 @@ local util = require("me.api.util")
 
 local api = vim.api
 
+local valid_modes = { "n", "v" }
+
 --- Global list of commands. Filled once, cannot be cleared.
-local global_cmdlist = {}
+local global_cmdlist = {
+	n = {},
+	v = {},
+}
 --- Buffer-only list of commands. Filled once, can be cleared.
-local buffer_cmdlist = {}
+local buffer_cmdlist = {
+	n = {},
+	v = {},
+}
 
 --- Registers a command, optionally setting keymaps for it.
 --- @param name string: Name of the command.
 --- @param desc string: Description of the command.
 --- @param callback function: Callback executed by the command.
 --- @param opts table: Options for the command.
-local function register(name, desc, callback, opts)
+local function register(name, desc, mode, callback, opts)
 	opts = opts or {}
 
-	local cmdlist = global_cmdlist
+	local cmdlist = global_cmdlist[mode]
 	local bufnr = opts.buffer
 	local cmd_add = api.nvim_create_user_command
 	local keymap_add = api.nvim_set_keymap
 
 	if bufnr then
-		if not buffer_cmdlist[bufnr] then
-			buffer_cmdlist[bufnr] = {}
+		cmdlist = buffer_cmdlist[mode]
+		if not cmdlist[bufnr] then
+			cmdlist[bufnr] = {}
 			api.nvim_create_autocmd("BufDelete", {
 				once = true,
 				buffer = bufnr,
 				callback = function(cmd)
-					buffer_cmdlist[cmd.buf] = nil
+					cmdlist[cmd.buf] = nil
 
 					return true
 				end,
 			})
 		end
 
-		cmdlist = buffer_cmdlist[bufnr]
+		cmdlist = cmdlist[bufnr]
 		cmd_add = function(...)
 			api.nvim_buf_create_user_command(bufnr, ...)
 		end
@@ -49,6 +58,7 @@ local function register(name, desc, callback, opts)
 	end
 
 	cmd_add(name, callback, {
+		range = opts.range,
 		nargs = opts.nargs,
 		complete = opts.complete,
 		desc = desc,
@@ -56,12 +66,18 @@ local function register(name, desc, callback, opts)
 
 	local keymap = opts.keymap
 	if keymap then
-		local mode = keymap.mode or "n"
-		keymap_add(mode, keymap.keys, "", {
-			noremap = true,
-			desc = desc,
-			callback = callback,
-		})
+		if mode == "n" then
+			keymap_add(mode, keymap.keys, "", {
+				noremap = true,
+				desc = desc,
+				callback = callback,
+			})
+		else
+			keymap_add(mode, keymap.keys, ":" .. name .. "<CR>", {
+				noremap = true,
+				desc = desc,
+			})
+		end
 
 		local actions = opts.actions or {}
 		for _, action_opts in pairs(actions) do
@@ -102,25 +118,39 @@ local M = {}
 --- @param commands table: List of commands to be registered to the group.
 function M.register(group, commands)
 	for cmd_name, config in pairs(commands) do
-		register(
-		cmd_name,
-			config.desc,
-			config.callback,
-			util.tbl_merge(config.opts, { group = group })
-		)
+		local opts = util.tbl_merge(config.opts, { group = group })
+		local modes = opts.modes or { "n" }
+
+		opts.range = vim.tbl_contains(modes, "v")
+
+		for _, mode in ipairs(modes) do
+			if vim.tbl_contains(valid_modes, mode) then
+				register(cmd_name, config.desc, mode, config.callback, opts)
+			else
+				vim.notify(
+					string.format("Tried to register invalid mode %q for command %q", mode, cmd_name),
+					vim.log.levels.WARN
+				)
+			end
+		end
 	end
 end
 
 --- Lists all registered commands. If 'bufnr' is passed, it tries to list all commands registered -
 --- for that buffer.
 --- @param bufnr number: Optional buffer number.
---- @return table: Table of registered commands.
-function M.list(bufnr)
+--- @return table | nil: Table of registered commands.
+function M.list(bufnr, mode)
+	if not vim.tbl_contains(valid_modes, mode) then
+		vim.notify(string.format("Invalid mode for command list: %q", mode), vim.log.levels.WARN)
+		return
+	end
+
 	local cmdlist = {}
-	for _, cmd in pairs(global_cmdlist) do
+	for _, cmd in pairs(global_cmdlist[mode]) do
 		table.insert(cmdlist, cmd)
 	end
-	for _, cmd in pairs(buffer_cmdlist[bufnr] or {}) do
+	for _, cmd in pairs(vim.tbl_get(buffer_cmdlist, mode, bufnr) or {}) do
 		table.insert(cmdlist, cmd)
 	end
 

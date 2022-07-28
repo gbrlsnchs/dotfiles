@@ -21,11 +21,14 @@ local function setup_palette()
 	excmd.register("Commands", {
 		CommandPalette = {
 			desc = "Open command palette",
-			callback = function()
-				palette.open()
-			end,
+			callback = util.with_range(function(range)
+				palette.open(range)
+			end),
 			opts = {
-				keymap = { keys = "<Leader><Tab>" },
+				modes = {"n", "v"},
+				keymap = {
+					keys = "<Leader><Tab>",
+				},
 			},
 		},
 	})

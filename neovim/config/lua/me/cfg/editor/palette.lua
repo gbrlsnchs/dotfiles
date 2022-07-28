@@ -6,15 +6,15 @@ local default_cmd_group = "---"
 local M = {}
 
 --- Open the command palette. Fun fact: it's recursive.
-function M.open()
+function M.open(range)
 	local bufnr = vim.api.nvim_get_current_buf()
-	local cmdlist = excmd.list(bufnr)
+	local cmdlist = excmd.list(bufnr, range and "v" or "n")
 
 	local opts = {
 		prompt = "Command palette:",
 		actions = { "ctrl-x", "ctrl-v", "ctrl-t", "ctrl-s" },
 		index_items = true,
-		header = "#\tGroup\tDescription\tKeymap\tCommand",
+		header = table.concat({ "#", "Group", "Description", "Keymap", "Command" }, "\t"),
 		format_item = function(cmd)
 			local parts = {
 				cmd.group or default_cmd_group,
@@ -51,6 +51,10 @@ function M.open()
 				end
 
 				excmd_name = excmd_name .. " " .. arg
+			end
+
+			if range then
+				excmd_name = string.format("%d,%d%s", range[1], range[2], excmd_name)
 			end
 
 			api.nvim_command(excmd_name)

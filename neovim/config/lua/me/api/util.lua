@@ -13,6 +13,7 @@ function M.tbl_merge(custom_opts, defaults)
 end
 
 --- Wraps a function in order to make it receive arguments from <f-args> from an ex command.
+--- @return function: Wrapped function that receives <f-args>.
 function M.with_fargs(fn)
 	return function(cmd)
 		cmd = cmd or {}
@@ -23,6 +24,25 @@ function M.with_fargs(fn)
 		end
 
 		return fn(fargs)
+	end
+end
+
+--- Wraps a function in order to make it receive arguments from <range> from an ex command.
+--- @return: function: Wrapped function that receives <range>.
+function M.with_range(fn)
+	return function(cmd)
+		cmd = cmd or {}
+		local range = cmd.range
+
+		if range == 1 then
+			return fn({ cmd.line1 })
+		end
+
+		if range == 2 then
+			return fn({ cmd.line1, cmd.line2 })
+		end
+
+		return fn()
 	end
 end
 
