@@ -48,13 +48,13 @@ local function setup_tree_sitter(opts)
 			extended_mode = true,
 			max_file_lines = nil,
 			colors = {
-				palette.bright_red,
-				palette.bright_green,
-				palette.bright_blue,
-				palette.bright_cyan,
-				palette.bright_purple,
-				palette.bright_yellow,
+				palette.red,
+				palette.green,
+				palette.blue,
+				palette.cyan,
+				palette.purple,
 				palette.yellow,
+				palette.gray,
 			},
 		}
 	end
@@ -125,7 +125,7 @@ function M.setup(opts)
 	opts = util.tbl_merge(opts, {
 		tree_sitter = {
 			enabled = true,
-			rainbow = true,
+			rainbow = false,
 			auto_tagging = true,
 			spelling = true,
 			commentstring = true,
