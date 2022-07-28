@@ -53,7 +53,9 @@ local function register(name, desc, mode, callback, opts)
 	end
 
 	-- If the command is already set, we don't need to do anything else here.
-	if cmdlist[name] then
+	-- This should only apply to global commands, but buffers come and go, and can also have ID
+	-- collision, so local commands should always be reset.
+	if not bufnr and cmdlist[name] then
 		return
 	end
 
