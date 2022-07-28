@@ -10,7 +10,7 @@ local unread_severity = 0
 
 --- Notifies message with given level to the logs buffer.
 --- @param msg string: The log message.
---- @param level number: Log severity level.
+--- @param level number | nil: Log severity level.
 local function notify(msg, level)
 	local now = os.date("%d/%m/%Y %H:%M:%S")
 
