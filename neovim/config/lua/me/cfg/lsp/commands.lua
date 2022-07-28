@@ -7,7 +7,10 @@ local M = {}
 
 --- Registers keymaps related to LSP.
 --- @param bufnr number: Local buffer identifier.
-function M.setup(bufnr)
+--- @param filters table | nil: List of client filters for LSP actions.
+function M.setup(bufnr, filters)
+	filters = filters or {}
+
 	excmd.register("LSP", {
 		LspHover = {
 			desc = "Show information about symbol under cursor",
@@ -99,30 +102,51 @@ function M.setup(bufnr)
 		},
 		LspFormat = {
 			desc = "Format current buffer",
-			callback = util.with_fargs(function(arg)
-				if arg == "sync" then
-					vim.lsp.buf.formatting_sync()
-				elseif arg == "sequential" then
-					vim.lsp.buf.formatting_seq_sync()
-				else
-					vim.lsp.buf.formatting()
+			callback = util.with_range(function(range)
+				if range then
+					range = vim.tbl_map(function(idx)
+						return { idx, 0 }
+					end, range)
+
+					vim.lsp.buf.range_formatting(nil, unpack(range))
+					return
 				end
+
+				local fmt_opts = { async = true }
+				local fmt_filters = filters.format or {}
+
+				if #fmt_filters == 1 then
+					fmt_opts.name = fmt_filters[1]
+				elseif #fmt_filters > 1 then
+					fmt_opts.filter = function(client)
+						return vim.tbl_contains(fmt_filters, client.name)
+					end
+				end
+
+				vim.lsp.buf.format(fmt_opts)
 			end),
 			opts = {
-				nargs = "?",
-				complete = function()
-					return { "sync", "sequential" }
-				end,
+				modes = { "n", "v" },
 				keymap = { keys = "<Leader>lf" },
 				buffer = bufnr,
 			},
 		},
 		LspCodeAction = {
 			desc = "Run a code action",
-			callback = function()
+			callback = util.with_range(function(range)
+				if range then
+					range = vim.tbl_map(function(idx)
+						return { idx, 0 }
+					end, range)
+
+					vim.lsp.buf.range_code_action(nil, unpack(range))
+					return
+				end
+
 				vim.lsp.buf.code_action()
-			end,
+			end),
 			opts = {
+				modes = { "n", "v" },
 				keymap = { keys = "<Leader>lc" },
 				buffer = bufnr,
 			},
@@ -176,31 +200,12 @@ function M.setup(bufnr)
 	})
 
 	-- Information.
-	api.nvim_buf_set_keymap(
-		bufnr,
-		"i",
-		"<C-k>",
-		"<Cmd>lua vim.lsp.buf.signature_help()<CR>",
-		{ noremap = true }
-	)
-
-	-- Utils.
-	-- TODO: Add this to visual command palette.
-	api.nvim_buf_set_keymap(
-		bufnr,
-		"v",
-		"<Leader>lf",
-		"<Cmd>lua vim.lsp.buf.range_formatting()<CR>",
-		{ noremap = true }
-	)
-
-	api.nvim_buf_set_keymap(
-		bufnr,
-		"v",
-		"<Leader>lc",
-		"<Cmd>lua vim.lsp.buf.range_code_action()<CR>",
-		{ noremap = true }
-	)
+	api.nvim_buf_set_keymap(bufnr, "i", "<C-k>", "", {
+		noremap = true,
+		callback = function()
+			vim.lsp.buf.signature_help()
+		end,
+	})
 end
 
 return M

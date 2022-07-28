@@ -36,6 +36,12 @@ local defaults = {
 	vuels = containerize("me.cfg.lsp.configs.vuels", "vls"),
 }
 
+local filters = {
+	sumneko_lua = {
+		format = { "null-ls" },
+	},
+}
+
 local M = {}
 
 --- Sets up LSP servers for languages.
