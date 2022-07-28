@@ -27,7 +27,11 @@ function M.setup(opts)
 	local lsp_configs = require("me.cfg.lsp.configs")
 
 	override_handler("textDocument/hover", vim.lsp.handlers.hover, { border = "single" })
-	override_handler("textDocument/signatureHelp", vim.lsp.handlers.signature_help, { border = "single" })
+	override_handler(
+		"textDocument/signatureHelp",
+		vim.lsp.handlers.signature_help,
+		{ border = "single" }
+	)
 
 	lsp_configs.setup(opts)
 end

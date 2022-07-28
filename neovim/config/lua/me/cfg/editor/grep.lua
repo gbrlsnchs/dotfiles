@@ -44,7 +44,10 @@ local function show_result(query)
 		end
 
 		if exit_code == 2 then
-			vim.notify(string.format("The query %q was only partially successful", query), vim.log.levels.WARN)
+			vim.notify(
+				string.format("The query %q was only partially successful", query),
+				vim.log.levels.WARN
+			)
 		end
 
 		vim.fn.setqflist({}, "r", {

@@ -142,23 +142,24 @@ local function setup_statusline(opts)
 	local statusline = byob.new("StatusLine")
 
 	if opts.git then
-		statusline
-			:add(function()
-				local branch = vim.b.gitsigns_head
-				if branch then
-					git_cache.branch = branch
-				else
-					branch = git_cache.branch
-				end
+		statusline:add(function()
+			local branch = vim.b.gitsigns_head
+			if branch then
+				git_cache.branch = branch
+			else
+				branch = git_cache.branch
+			end
 
-				local status = vim.b.gitsigns_status_dict
-				if status then
-					git_cache.status = status
-				else
-					status = git_cache.status
-				end
+			local status = vim.b.gitsigns_status_dict
+			if status then
+				git_cache.status = status
+			else
+				status = git_cache.status
+			end
 
-				return branch and status and {
+			return branch
+				and status
+				and {
 					spacing(2),
 					{ hl = "Branch", content = branch },
 					spacing(2),
@@ -173,7 +174,7 @@ local function setup_statusline(opts)
 					spacing(1, "DiffDelete"),
 					reset(),
 				}
-			end)
+		end)
 	end
 
 	if opts.logs then
@@ -207,9 +208,13 @@ local function setup_statusline(opts)
 
 				local count = unread_logs.count
 
-				return count > 0 and {
-					{ hl = "Notification" .. severity_hl, content = string.format(" There %s %d new log%s ", verb, count, plural) },
-				}
+				return count > 0
+					and {
+						{
+							hl = "Notification" .. severity_hl,
+							content = string.format(" There %s %d new log%s ", verb, count, plural),
+						},
+					}
 			end)
 			:add(spacing(1))
 			:add(reset())

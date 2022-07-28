@@ -47,15 +47,10 @@ local M = {}
 function M.init(project_name)
 	local result, err
 
-	result, err = db.exec_stmt(
-		"SELECT COUNT(*) AS count FROM oldfiles WHERE project_name = ?",
-		project_name
-	)
+	result, err =
+		db.exec_stmt("SELECT COUNT(*) AS count FROM oldfiles WHERE project_name = ?", project_name)
 	if err then
-		vim.notify(
-			"Could not retrieve count of oldfiles: " .. err,
-			vim.log.levels.ERROR
-		)
+		vim.notify("Could not retrieve count of oldfiles: " .. err, vim.log.levels.ERROR)
 		return false
 	end
 
@@ -80,7 +75,7 @@ function M.init(project_name)
 	end
 
 	local query = string.format(
-	[[
+		[[
 INSERT INTO oldfiles (project_name, path)
 VALUES
 	%s
@@ -106,7 +101,12 @@ function M.upsert_hits(project_name)
 	local path = Path:new(api.nvim_buf_get_name(0))
 	local fname = path:make_relative()
 
-	if fname:len() == 0 or fname:find("^/") ~= nil or not is_file_allowed(fname) or path:is_dir() then
+	if
+		fname:len() == 0
+		or fname:find("^/") ~= nil
+		or not is_file_allowed(fname)
+		or path:is_dir()
+	then
 		return true, nil
 	end
 

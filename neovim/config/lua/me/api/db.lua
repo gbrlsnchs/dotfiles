@@ -1,8 +1,6 @@
 local sqlite = require("lsqlite3")
 
-local db = sqlite.open(
-	vim.fn.stdpath("state") .. "/neovim.sqlite3"
-)
+local db = sqlite.open(vim.fn.stdpath("state") .. "/neovim.sqlite3")
 
 local M = {}
 

@@ -13,13 +13,19 @@ local function containerize(mod, image)
 	local server = require(mod)
 
 	server.cmd = {
-		"podman", "container", "run",
+		"podman",
+		"container",
+		"run",
 		"--rm",
 		"--interactive",
-		"--network", "none",
-		"--workdir", cwd,
-		"--volume", string.format("%s:%s:z", cwd, cwd),
-		"--pid", "host",
+		"--network",
+		"none",
+		"--workdir",
+		cwd,
+		"--volume",
+		string.format("%s:%s:z", cwd, cwd),
+		"--pid",
+		"host",
 		image,
 	}
 

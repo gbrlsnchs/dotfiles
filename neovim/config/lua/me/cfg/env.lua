@@ -9,7 +9,6 @@ else
 	remote_nvim = string.format("%s --server %s", vim.v.progname, listen_addr)
 end
 
-
 local M = {}
 
 --- Sets up environment variables and stuff.

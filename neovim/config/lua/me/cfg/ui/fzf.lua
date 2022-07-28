@@ -26,7 +26,7 @@ local function parse_column_widths(str)
 end
 
 --- Formats a table using elastic tabstops.
---- @return table|nil, number
+--- @return table|nil
 local function format_table(items, opts)
 	local formatted_lines
 	local max_column_sizes
@@ -37,7 +37,7 @@ local function format_table(items, opts)
 	-- FZF handles strings as external commands (for example the fd command).
 	-- Therefore it doesn't need any parsing and we can safely skip it.
 	if type(items) == "string" or not opts.index_items then
-		return nil
+		return
 	end
 
 	if opts.kind == "codeaction" then

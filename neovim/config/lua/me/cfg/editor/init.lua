@@ -25,14 +25,13 @@ local function setup_palette()
 				palette.open(range)
 			end),
 			opts = {
-				modes = {"n", "v"},
+				modes = { "n", "v" },
 				keymap = {
 					keys = "<Leader><Tab>",
 				},
 			},
 		},
 	})
-
 end
 
 --- Sets up EX commands for file operations.
@@ -132,7 +131,7 @@ local function setup_grep()
 				nargs = "*",
 				keymap = { keys = "<Leader>gG" },
 			},
-		}
+		},
 	})
 end
 
@@ -269,7 +268,10 @@ local function setup_autocmds()
 		callback = function()
 			local project_name = session.get_option("project_name")
 			if not project_name then
-				vim.notify("Skipping setup of oldfiles due to missing project name", vim.log.levels.WARN)
+				vim.notify(
+					"Skipping setup of oldfiles due to missing project name",
+					vim.log.levels.WARN
+				)
 				return true
 			end
 

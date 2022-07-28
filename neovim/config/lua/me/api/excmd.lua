@@ -130,7 +130,11 @@ function M.register(group, commands)
 				register(cmd_name, config.desc, mode, config.callback, opts)
 			else
 				vim.notify(
-					string.format("Tried to register invalid mode %q for command %q", mode, cmd_name),
+					string.format(
+						"Tried to register invalid mode %q for command %q",
+						mode,
+						cmd_name
+					),
 					vim.log.levels.WARN
 				)
 			end
