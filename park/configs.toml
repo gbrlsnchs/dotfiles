@@ -113,3 +113,6 @@ link.base_dir = "$HOME"
 link.name = ".sqliterc"
 
 [targets.tiny]
+
+[targets."catgirl/config"]
+link.name = "catgirl"
