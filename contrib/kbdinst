@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -e
+
+qmk json2c --output "${XDG_DATA_HOME}/qmk/keyboards/planck/keymaps/${USER}/keymap.c" kbd/planck.json
+qmk compile
