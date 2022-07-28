@@ -1,3 +1,4 @@
+local excmd = require("me.api.excmd")
 local util = require("me.api.util")
 
 local M = {}
@@ -9,7 +10,6 @@ function M.setup(opts)
 
 	if not opts.enabled then
 		vim.notify("Git module is disabled, skipping it")
-
 		return
 	end
 
@@ -28,21 +28,98 @@ function M.setup(opts)
 		keymaps = { noremap = false },
 	})
 
-	local function mapkeys(mode, keys, cmd)
-		vim.api.nvim_set_keymap(mode, keys, cmd, { noremap = true })
-	end
-
-	mapkeys("n", "]g", '<Cmd>lua require("gitsigns").next_hunk()<CR>')
-	mapkeys("n", "[g", '<Cmd>lua require("gitsigns").prev_hunk()<CR>')
-	mapkeys("n", "<Leader>gb", 'lua require("gitsigns").blame_line({ full = true })<CR>')
-	mapkeys("n", "<Leader>gp", 'lua require("gitsigns").preview_hunk()<CR>')
-	mapkeys("n", "<Leader>gr", 'lua require("gitsigns").reset_hunk()<CR>')
-	mapkeys("v", "<Leader>gr", 'lua require("gitsigns").reset_hunk()<CR>')
-	mapkeys("n", "<Leader>gR", 'lua require("gitsigns").reset_buffer()<CR>')
-	mapkeys("n", "<Leader>gs", 'lua require("gitsigns").stage_hunk()<CR>')
-	mapkeys("n", "<Leader>gS", 'lua require("gitsigns").stage_buffer()<CR>')
-	mapkeys("n", "<Leader>gu", 'lua require("gitsigns").undo_stage_hunk()<CR>')
-	mapkeys("n", "<Leader>gU", 'lua require("gitsigns").reset_buffer_index()<CR>')
+	excmd.register("Git", {
+		GitNextHunk = {
+			desc = "Go to next Git hunk",
+			callback = function()
+				gitsigns.next_hunk()
+			end,
+			opts = {
+				keymap = { keys = "]g" },
+			},
+		},
+		GitPrevHunk = {
+			desc = "Go to previous Git hunk",
+			callback = function()
+				gitsigns.prev_hunk()
+			end,
+			opts = {
+				keymap = { keys = "[g" },
+			},
+		},
+		GitBlame = {
+			desc = "Show blame for current line",
+			callback = function()
+				gitsigns.blame_line({ full = true })
+			end,
+			opts = {
+				keymap = { keys = "<Leader>g?" },
+			},
+		},
+		GitPreviewHunk = {
+			desc = "Preview changes for current hunk",
+			callback = function()
+				gitsigns.preview_hunk()
+			end,
+			opts = {
+				keymap = { keys = "<Leader>gp" },
+			},
+		},
+		GitResetHunk = {
+			desc = "Reset changes in current hunk",
+			callback = util.with_range(function(range)
+				-- TODO: Confirm this action.
+				gitsigns.reset_hunk(range)
+			end),
+			opts = {
+				modes = { "n", "v" },
+			},
+		},
+		GitResetBuffer = {
+			desc = "Reset changes in current buffer",
+			callback = function()
+				-- TODO: Confirm this action.
+				gitsigns.reset_buffer()
+			end,
+		},
+		GitStageHunk = {
+			desc = "Stage changes in current hunk",
+			callback = util.with_range(function(range)
+				print(vim.inspect(range))
+				gitsigns.stage_hunk(range)
+			end),
+			opts = {
+				modes = { "n", "v" },
+				keymap = {
+					keys = "<Leader>gs",
+				},
+			},
+		},
+		GitStageBuffer = {
+			desc = "Stage changes in current buffer",
+			callback = function()
+				gitsigns.stage_buffer()
+			end,
+			opts = {
+				keymap = { keys = "<Leader>gS" },
+			},
+		},
+		GitUndoStageHunk = {
+			desc = "Undo staging of changes in current hunk",
+			callback = util.with_range(function(range)
+				gitsigns.undo_stage_hunk(range)
+			end),
+			opts = {
+				keymap = { keys = "<Leader>gu" },
+			},
+		},
+		GitResetBufferIndex = {
+			desc = "Reset current buffer index",
+			callback = function()
+				gitsigns.reset_buffer_index()
+			end,
+		},
+	})
 end
 
 return M
