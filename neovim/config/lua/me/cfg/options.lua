@@ -37,7 +37,7 @@ function M.setup(_)
 	vim.opt.splitbelow = true
 
 	vim.opt.termguicolors = true
-	vim.opt.background = "dark"
+	vim.opt.background = "light"
 	vim.cmd("colorscheme me")
 
 	vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }

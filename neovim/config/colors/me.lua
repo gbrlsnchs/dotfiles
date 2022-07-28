@@ -1,4 +1,4 @@
-package.loaded["me.colorscheme"] = nil
+package.loaded["me.cfg.colorscheme"] = nil
 
 local colorscheme = require("me.cfg.colorscheme")
 local cache = require("me.cfg.colorscheme.cache")
