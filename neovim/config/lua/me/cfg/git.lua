@@ -110,6 +110,7 @@ function M.setup(opts)
 				gitsigns.undo_stage_hunk(range)
 			end),
 			opts = {
+				modes = { "n", "v" },
 				keymap = { keys = "<Leader>gu" },
 			},
 		},
