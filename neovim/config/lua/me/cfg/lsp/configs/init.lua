@@ -62,7 +62,7 @@ function M.setup(opts)
 		end
 
 		local function on_attach(_, bufnr)
-			lsp_commands.setup(bufnr)
+			lsp_commands.setup(bufnr, filters)
 
 			vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 
