@@ -68,18 +68,31 @@ local function register(name, desc, mode, callback, opts)
 
 	local keymap = opts.keymap
 	if keymap then
-		if mode == "n" then
-			keymap_add(mode, keymap.keys, "", {
-				noremap = true,
-				desc = desc,
-				callback = callback,
-			})
-		else
-			keymap_add(mode, keymap.keys, ":" .. name .. "<CR>", {
-				noremap = true,
-				desc = desc,
-			})
-		end
+		keymap_add(mode, keymap.keys, "", {
+			noremap = true,
+			desc = desc,
+			callback = function()
+				local args
+
+				if mode == "v" then
+					local line1 = vim.fn.line("v")
+					local line2 = vim.fn.line(".")
+
+					-- In case the selection is made backwards, let's feed it in the correct order.
+					if line1 > line2 then
+						line1, line2 = line2, line1
+					end
+
+					args = {
+						range = 2,
+						line1 = line1,
+						line2 = line2,
+					}
+				end
+
+				callback(args)
+			end,
+		})
 
 		local actions = opts.actions or {}
 		for _, action_opts in pairs(actions) do
