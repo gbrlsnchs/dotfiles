@@ -16,9 +16,10 @@ function M.setup(_)
 	vim.opt.virtualedit = "block"
 	vim.opt.list = true
 	vim.opt.listchars = {
-		tab = "⇆ ",
+		tab = "——⟶",
 		eol = "↲",
-		trail = "↶",
+		trail = "‡",
+		nbsp = "↶",
 		space = "•",
 	}
 	vim.opt.fillchars = {
