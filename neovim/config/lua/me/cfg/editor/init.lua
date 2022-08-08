@@ -249,19 +249,6 @@ local function setup_autocmds()
 		command = "startinsert",
 	})
 
-	api.nvim_create_autocmd("User", {
-		pattern = "FloatPreviewWinOpen",
-		callback = function()
-			local preview_win = vim.g["float_preview#win"]
-
-			api.nvim_win_set_option(preview_win, "list", false)
-			api.nvim_win_set_option(preview_win, "number", false)
-			api.nvim_win_set_option(preview_win, "relativenumber", false)
-			api.nvim_win_set_option(preview_win, "cursorline", false)
-		end,
-		group = augroup,
-	})
-
 	api.nvim_create_autocmd("VimEnter", {
 		group = augroup,
 		once = true,
@@ -286,12 +273,59 @@ local function setup_autocmds()
 	})
 end
 
+local function setup_completion()
+	util.packadd("nvim-cmp")
+	util.packadd("cmp-nvim-lsp")
+	util.packadd("cmp-buffer")
+	util.packadd("cmp-path")
+	util.packadd("cmp-cmdline")
+
+	local cmp = require("cmp")
+	if cmp == nil then
+		return
+	end
+
+	cmp.setup({
+		window = {
+			documentation = cmp.config.window.bordered(),
+		},
+		mapping = cmp.mapping.preset.insert({
+			["<C-b>"] = cmp.mapping.scroll_docs(-4),
+			["<C-f>"] = cmp.mapping.scroll_docs(4),
+			["<C-Space>"] = cmp.mapping.complete(),
+			["<C-e>"] = cmp.mapping.abort(),
+			["<CR>"] = cmp.mapping.confirm({ select = true }),
+		}),
+		sources = {
+			{ name = "nvim_lsp" },
+			{ name = "buffer" },
+			{ name = "path" },
+		},
+	})
+
+	cmp.setup.cmdline("/", {
+		mapping = cmp.mapping.preset.cmdline(),
+		sources = {
+			{ name = "buffer" },
+		},
+	})
+
+	cmp.setup.cmdline(":", {
+		mapping = cmp.mapping.preset.cmdline(),
+		sources = {
+			{ name = "buffer" },
+			{ name = "path" },
+		},
+	})
+end
+
 local M = {}
 
 --- Sets up core editor functions.
 function M.setup(opts)
 	opts = util.tbl_merge(opts, {
 		cfilter = true,
+		autocompletion = true,
 	})
 
 	-- Disable Netrw so Dirvish can take over.
@@ -307,12 +341,13 @@ function M.setup(opts)
 
 	setup_autocmds()
 
+	if opts.autocompletion then
+		setup_completion()
+	end
+
 	if opts.cfilter then
 		util.packadd("cfilter")
 	end
-
-	vim.g["float_preview#docked"] = false
-	vim.g["float_preview#max_width"] = 100
 
 	winpick.setup({
 		format_label = function(label)

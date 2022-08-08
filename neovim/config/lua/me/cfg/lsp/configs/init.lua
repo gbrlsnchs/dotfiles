@@ -55,6 +55,17 @@ local M = {}
 function M.setup(opts)
 	local configs = util.tbl_merge(opts.overrides, defaults)
 
+	if opts.autocompletion then
+		local lsp_cmp = require("cmp_nvim_lsp")
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+
+		configs = vim.tbl_map(function(cfg)
+			cfg.capabilities = lsp_cmp.update_capabilities(cfg.capabilities or capabilities)
+
+			return cfg
+		end, configs)
+	end
+
 	for name, config in pairs(configs) do
 		-- This allows turning a language server off per project.
 		if opts.denylist[name] then
@@ -63,8 +74,6 @@ function M.setup(opts)
 
 		local function on_attach(_, bufnr)
 			lsp_commands.setup(bufnr, filters)
-
-			vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
 
 			if opts.folders[name] then
 				for _, folder in ipairs(opts.folders[name]) do

@@ -58,9 +58,6 @@
 [submodule "neovim/data/pack/opt/tree-sitter-just"]
 	path = neovim/data/pack/opt/tree-sitter-just
 	url = https://github.com/IndianBoy42/tree-sitter-just
-[submodule "neovim/data/pack/start/float-preview.nvim"]
-	path = neovim/data/pack/start/float-preview.nvim
-	url = https://github.com/ncm2/float-preview.nvim
 [submodule "neovim/data/pack/opt/null-ls.nvim"]
 	path = neovim/data/pack/opt/null-ls.nvim
 	url = https://github.com/jose-elias-alvarez/null-ls.nvim
@@ -73,3 +70,18 @@
 [submodule "neovim/data/pack/start/vim-commentary"]
 	path = neovim/data/pack/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
+[submodule "neovim/data/pack/opt/nvim-cmp"]
+	path = neovim/data/pack/opt/nvim-cmp
+	url = https://github.com/hrsh7th/nvim-cmp
+[submodule "neovim/data/pack/opt/cmp-nvim-lsp"]
+	path = neovim/data/pack/opt/cmp-nvim-lsp
+	url = https://github.com/hrsh7th/cmp-nvim-lsp
+[submodule "neovim/data/pack/opt/cmp-buffer"]
+	path = neovim/data/pack/opt/cmp-buffer
+	url = https://github.com/hrsh7th/cmp-buffer
+[submodule "neovim/data/pack/opt/cmp-path"]
+	path = neovim/data/pack/opt/cmp-path
+	url = https://github.com/hrsh7th/cmp-path
+[submodule "neovim/data/pack/opt/cmp-cmdline"]
+	path = neovim/data/pack/opt/cmp-cmdline
+	url = https://github.com/hrsh7th/cmp-cmdline

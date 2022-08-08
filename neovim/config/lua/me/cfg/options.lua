@@ -41,7 +41,7 @@ function M.setup(_)
 	vim.opt.background = "light"
 	vim.cmd("colorscheme me")
 
-	vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
+	vim.opt.completeopt = { "menu", "noinsert", "noselect" }
 	vim.opt.pumheight = 10
 end
 
