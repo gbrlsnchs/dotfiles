@@ -150,7 +150,7 @@ local bars_hl = {
 	TabLine = {},
 	TabLineFill = {},
 
-	WinBar = { bg = palette.black, fg = palette.bright_gray },
+	WinBar = { bg = palette.bg, fg = palette.bright_gray },
 	WinBarNC = { bg = palette.bg },
 	WinBarFileInfo = { bg = palette.bg, fg = palette.bright_gray, bold = true },
 	WinBarFileInfoModified = {
@@ -228,6 +228,7 @@ local tree_sitter_hl = {
 	TSRepeat = commons.syntax.keyword,
 	TSNamespace = commons.syntax.special,
 	TSInclude = util.tbl_merge(commons.syntax.keyword, { bold = true }),
+	TreesitterContext = { bg = palette.black },
 }
 
 local diff_hl = {

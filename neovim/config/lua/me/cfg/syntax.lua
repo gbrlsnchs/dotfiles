@@ -29,6 +29,7 @@ local function setup_tree_sitter(opts)
 	end
 
 	util.packadd("nvim-treesitter")
+	util.packadd("nvim-treesitter-textobjects")
 
 	local ts = require("nvim-treesitter.configs")
 	local ts_parsers = require("nvim-treesitter.parsers")
@@ -36,6 +37,55 @@ local function setup_tree_sitter(opts)
 	local settings = {
 		highlight = { enable = true },
 		indent = { enable = true },
+		textobjects = {
+			select = {
+				enable = true,
+				lookahead = true,
+				keymaps = {
+					["af"] = "@function.outer",
+					["if"] = "@function.inner",
+					["ac"] = "@class.outer",
+					["ic"] = "@class.inner",
+				},
+				selection_modes = {
+					["@parameter.outer"] = "v", -- charwise
+					["@function.outer"] = "V", -- linewise
+					["@class.outer"] = "<c-v>", -- blockwise
+				},
+			},
+			swap = {
+				enable = true,
+				swap_next = {
+					["]a"] = "@parameter.inner",
+				},
+				swap_previous = {
+					["[a"] = "@parameter.inner",
+				},
+			},
+			move = {
+				enable = true,
+				set_jumps = true,
+				goto_next_start = {
+					["]m"] = "@function.outer",
+					["]]"] = "@class.outer",
+				},
+				goto_next_end = {
+					["]M"] = "@function.outer",
+					["]["] = "@class.outer",
+				},
+				goto_previous_start = {
+					["[m"] = "@function.outer",
+					["[["] = "@class.outer",
+				},
+				goto_previous_end = {
+					["[M"] = "@function.outer",
+					["[]"] = "@class.outer",
+				},
+			},
+			lsp_interop = {
+				enable = false,
+			},
+		},
 	}
 
 	if opts.rainbow then
@@ -90,6 +140,13 @@ local function setup_tree_sitter(opts)
 		}
 	end
 
+	if opts.context then
+		util.packadd("nvim-treesitter-context")
+		local ctx = require("treesitter-context")
+
+		ctx.setup()
+	end
+
 	util.packadd("tree-sitter-just")
 
 	local parsers_dir = vim.fn.stdpath("data") .. "/site/parsers"
@@ -129,6 +186,7 @@ function M.setup(opts)
 			auto_tagging = true,
 			spelling = true,
 			commentstring = true,
+			context = true,
 		},
 		filetypes = nil, -- project's custom filetypes
 		colorizer = true,
