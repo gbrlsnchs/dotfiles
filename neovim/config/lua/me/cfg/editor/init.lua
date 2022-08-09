@@ -285,6 +285,24 @@ local function setup_completion()
 		return
 	end
 
+	local function action_or_complete(action)
+		return function(_)
+			if cmp.visible() then
+				action()
+
+				return
+			end
+
+			cmp.complete({
+				config = {
+					sources = {
+						{ name = "buffer" },
+					},
+				},
+			})
+		end
+	end
+
 	cmp.setup({
 		window = {
 			documentation = cmp.config.window.bordered(),
@@ -292,9 +310,11 @@ local function setup_completion()
 		mapping = cmp.mapping.preset.insert({
 			["<C-b>"] = cmp.mapping.scroll_docs(-4),
 			["<C-f>"] = cmp.mapping.scroll_docs(4),
+			["<C-n>"] = action_or_complete(cmp.select_next_item),
+			["<C-p>"] = action_or_complete(cmp.select_prev_item),
 			["<C-Space>"] = cmp.mapping.complete(),
 			["<C-e>"] = cmp.mapping.abort(),
-			["<CR>"] = cmp.mapping.confirm({ select = true }),
+			["<CR>"] = cmp.mapping.confirm({ select = false }),
 		}),
 		sources = {
 			{ name = "nvim_lsp" },
@@ -313,7 +333,7 @@ local function setup_completion()
 	cmp.setup.cmdline(":", {
 		mapping = cmp.mapping.preset.cmdline(),
 		sources = {
-			{ name = "buffer" },
+			{ name = "cmdline" },
 			{ name = "path" },
 		},
 	})
