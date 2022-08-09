@@ -295,9 +295,9 @@ local function setup_completion()
 
 			cmp.complete({
 				config = {
-					sources = {
+					sources = cmp.config.sources({
 						{ name = "buffer" },
-					},
+					}),
 				},
 			})
 		end
@@ -316,26 +316,26 @@ local function setup_completion()
 			["<C-e>"] = cmp.mapping.abort(),
 			["<CR>"] = cmp.mapping.confirm({ select = false }),
 		}),
-		sources = {
+		sources = cmp.config.sources({
 			{ name = "nvim_lsp" },
 			{ name = "buffer" },
 			{ name = "path" },
-		},
+		}),
 	})
 
 	cmp.setup.cmdline("/", {
 		mapping = cmp.mapping.preset.cmdline(),
-		sources = {
+		sources = cmp.config.sources({
 			{ name = "buffer" },
-		},
+		}),
 	})
 
 	cmp.setup.cmdline(":", {
 		mapping = cmp.mapping.preset.cmdline(),
-		sources = {
+		sources = cmp.config.sources({
 			{ name = "cmdline" },
 			{ name = "path" },
-		},
+		}),
 	})
 end
 
