@@ -370,6 +370,13 @@ function M.setup(opts)
 	end
 
 	winpick.setup({
+		win_filter = function(winid)
+			local should_ignore = api.nvim_win_get_option(winid, "previewwindow")
+				or pcall(api.nvim_win_get_var, winid, "treesitter_context")
+				or pcall(api.nvim_win_get_var, winid, "treesitter_context_line_number")
+
+			return not should_ignore
+		end,
 		format_label = function(label)
 			return label
 		end,
