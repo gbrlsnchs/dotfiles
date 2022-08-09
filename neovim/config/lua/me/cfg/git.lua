@@ -24,7 +24,7 @@ function M.setup(opts)
 			delete = { text = "█" },
 			changedelete = { text = "▒" },
 		},
-		current_line_blame = true,
+		current_line_blame = false,
 		keymaps = { noremap = false },
 	})
 
