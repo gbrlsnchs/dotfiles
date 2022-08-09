@@ -16,9 +16,6 @@
 [submodule "neovim/data/start/editorconfig.nvim"]
 	path = neovim/data/pack/start/editorconfig.nvim
 	url = https://github.com/gpanders/editorconfig.nvim
-[submodule "neovim/data/start/bufdelete.nvim"]
-	path = neovim/data/pack/start/bufdelete.nvim
-	url = https://github.com/famiu/bufdelete.nvim
 [submodule "neovim/data/start/plenary.nvim"]
 	path = neovim/data/pack/start/plenary.nvim
 	url = https://github.com/nvim-lua/plenary.nvim
@@ -91,3 +88,6 @@
 [submodule "neovim/data/pack/opt/nvim-treesitter-textobjects"]
 	path = neovim/data/pack/opt/nvim-treesitter-textobjects
 	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects
+[submodule "neovim/data/pack/start/vim-bunlink"]
+	path = neovim/data/pack/start/vim-bunlink
+	url = https://github.com/orlp/vim-bunlink
