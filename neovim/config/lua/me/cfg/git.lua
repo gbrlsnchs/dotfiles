@@ -120,6 +120,12 @@ function M.setup(opts)
 				gitsigns.reset_buffer_index()
 			end,
 		},
+		GitDiff = {
+			desc = "Show diff of current buffer",
+			callback = function()
+				gitsigns.diffthis()
+			end,
+		},
 	})
 end
 
