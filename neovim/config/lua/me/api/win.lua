@@ -3,7 +3,7 @@ local api = vim.api
 local M = {}
 
 --- Gets the window ID of the preview window.
---- @return number: Window ID of the preview window.
+--- @return number | nil: Window ID of the preview window.
 function M.get_preview()
 	local wins = api.nvim_list_wins()
 
