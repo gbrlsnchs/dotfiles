@@ -180,6 +180,15 @@ local function setup_buffers()
 				keymap = { keys = "<Leader>b?" },
 			},
 		},
+		BufferUnlink = {
+			desc = "Unlink current buffer",
+			callback = function()
+				vim.cmd("Bunlink")
+			end,
+			opts = {
+				keymap = { keys = "<Leader>bu" },
+			},
+		},
 	})
 end
 
