@@ -1,7 +1,9 @@
 local util = require("me.api.util")
 
-local function override_handler(handler, fn, opts)
-	vim.lsp.handlers[handler] = vim.lsp.with(fn, opts)
+local function wrap_handler(method, opts)
+	local fn = vim.lsp.handlers[method]
+
+	vim.lsp.handlers[method] = vim.lsp.with(fn, opts)
 end
 
 local M = {}
@@ -26,12 +28,8 @@ function M.setup(opts)
 
 	local lsp_configs = require("me.cfg.lsp.configs")
 
-	override_handler("textDocument/hover", vim.lsp.handlers.hover, { border = "single" })
-	override_handler(
-		"textDocument/signatureHelp",
-		vim.lsp.handlers.signature_help,
-		{ border = "single" }
-	)
+	wrap_handler("textDocument/hover", { border = "single" })
+	wrap_handler("textDocument/signatureHelp", { border = "single" })
 
 	lsp_configs.setup(opts)
 end
