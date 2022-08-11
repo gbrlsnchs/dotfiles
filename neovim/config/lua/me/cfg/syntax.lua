@@ -6,9 +6,6 @@ local M = {}
 --- @param filetypes table: List of custom filetypes.
 local function setup_filetypes(filetypes)
 	-- NOTE: Remove these after support for filetype.lua is official.
-	vim.g.did_load_filetypes = 0
-	vim.g.do_filetype_lua = 1
-
 	vim.filetype.add(util.tbl_merge(filetypes, {
 		extension = {
 			gcfg = "dosini",
