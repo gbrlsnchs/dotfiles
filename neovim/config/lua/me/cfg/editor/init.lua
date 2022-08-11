@@ -284,43 +284,58 @@ end
 
 local function setup_completion()
 	util.packadd("nvim-cmp")
+	util.packadd("LuaSnip")
+
 	util.packadd("cmp-nvim-lsp")
 	util.packadd("cmp-buffer")
 	util.packadd("cmp-path")
 	util.packadd("cmp-cmdline")
+	util.packadd("cmp_luasnip")
 
 	local cmp = require("cmp")
-	if cmp == nil then
-		return
-	end
+	local luasnip = require("luasnip")
 
-	local function action_or_complete(action)
-		return function(_)
-			if cmp.visible() then
-				action()
-
-				return
-			end
-
-			cmp.complete({
-				config = {
-					sources = cmp.config.sources({
-						{ name = "buffer" },
-					}),
-				},
-			})
-		end
+	local function complete_words()
+		cmp.complete({
+			config = {
+				sources = cmp.config.sources({
+					{ name = "buffer" },
+				}),
+			},
+		})
 	end
 
 	cmp.setup({
 		window = {
+			completion = cmp.config.window.bordered(),
 			documentation = cmp.config.window.bordered(),
+		},
+		snippet = {
+			expand = function(args)
+				luasnip.lsp_expand(args.body)
+			end,
 		},
 		mapping = cmp.mapping.preset.insert({
 			["<C-b>"] = cmp.mapping.scroll_docs(-4),
 			["<C-f>"] = cmp.mapping.scroll_docs(4),
-			["<C-n>"] = action_or_complete(cmp.select_next_item),
-			["<C-p>"] = action_or_complete(cmp.select_prev_item),
+			["<C-n>"] = cmp.mapping(function()
+				if cmp.visible() then
+					cmp.select_next_item()
+				elseif luasnip.expand_or_jumpable() then
+					luasnip.expand_or_jump()
+				else
+					complete_words()
+				end
+			end, { "i", "s" }),
+			["<C-p>"] = cmp.mapping(function()
+				if cmp.visible() then
+					cmp.select_prev_item()
+				elseif luasnip.jumpable(-1) then
+					luasnip.jump(-1)
+				else
+					complete_words()
+				end
+			end, { "i", "s" }),
 			["<C-Space>"] = cmp.mapping.complete(),
 			["<C-e>"] = cmp.mapping.abort(),
 			["<CR>"] = cmp.mapping.confirm({ select = false }),
@@ -340,7 +355,22 @@ local function setup_completion()
 	})
 
 	cmp.setup.cmdline(":", {
-		mapping = cmp.mapping.preset.cmdline(),
+		mapping = cmp.mapping.preset.cmdline({
+			["<C-n>"] = cmp.mapping(function(fallback)
+				if cmp.visible() then
+					cmp.select_next_item()
+				else
+					fallback()
+				end
+			end, { "c" }),
+			["<C-p>"] = cmp.mapping(function(fallback)
+				if cmp.visible() then
+					cmp.select_prev_item()
+				else
+					fallback()
+				end
+			end, { "c" }),
+		}),
 		sources = cmp.config.sources({
 			{ name = "cmdline" },
 			{ name = "path" },

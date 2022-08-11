@@ -91,3 +91,9 @@
 [submodule "neovim/data/pack/start/vim-bunlink"]
 	path = neovim/data/pack/start/vim-bunlink
 	url = https://github.com/orlp/vim-bunlink
+[submodule "neovim/data/pack/opt/LuaSnip"]
+	path = neovim/data/pack/opt/LuaSnip
+	url = https://github.com/L3MON4D3/LuaSnip
+[submodule "neovim/data/pack/opt/cmp_luasnip"]
+	path = neovim/data/pack/opt/cmp_luasnip
+	url = https://github.com/saadparwaiz1/cmp_luasnip
