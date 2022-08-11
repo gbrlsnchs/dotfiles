@@ -39,8 +39,8 @@ local common_hl = {
 	Float = { bg = palette.bg, fg = palette.fg },
 	FloatBorder = { bg = palette.bg, fg = palette.fg },
 
-	Visual = { bg = palette.black },
-	VisualNOS = { bg = palette.black },
+	Visual = { bg = palette.blue, fg = palette.black },
+	VisualNOS = { bg = palette.blue, fg = palette.black },
 
 	ColorColumn = { bg = palette.black },
 	SignColumn = { bg = palette.bg, fg = palette.fg },

@@ -245,6 +245,7 @@ local function setup_autocmds()
 		pattern = "*",
 		command = "silent! lcd .",
 	})
+
 	api.nvim_create_autocmd("TextYankPost", {
 		group = augroup,
 		pattern = "*",
@@ -252,10 +253,31 @@ local function setup_autocmds()
 			vim.highlight.on_yank()
 		end,
 	})
+
 	api.nvim_create_autocmd("TermOpen", {
 		group = augroup,
 		pattern = "*",
 		command = "startinsert",
+	})
+
+	api.nvim_create_autocmd("ModeChanged", {
+		group = augroup,
+		pattern = "*:[vV\x16]*",
+		callback = function()
+			vim.schedule(function()
+				vim.opt_local.list = false
+			end)
+		end,
+	})
+
+	api.nvim_create_autocmd("ModeChanged", {
+		group = augroup,
+		pattern = "[vV\x16]*:*",
+		callback = function()
+			vim.schedule(function()
+				vim.opt_local.list = true
+			end)
+		end,
 	})
 
 	api.nvim_create_autocmd("VimEnter", {
@@ -280,6 +302,11 @@ local function setup_autocmds()
 			return true
 		end,
 	})
+end
+
+local function setup_keymaps()
+	api.nvim_set_keymap("i", "<C-c>", "<Esc>", {})
+	api.nvim_set_keymap("v", "<C-c>", "<Esc>", {})
 end
 
 local function setup_completion()
@@ -399,6 +426,7 @@ function M.setup(opts)
 	setup_utils()
 
 	setup_autocmds()
+	setup_keymaps()
 
 	if opts.autocompletion then
 		setup_completion()
