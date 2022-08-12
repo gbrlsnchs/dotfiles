@@ -260,26 +260,6 @@ local function setup_autocmds()
 		command = "startinsert",
 	})
 
-	api.nvim_create_autocmd("ModeChanged", {
-		group = augroup,
-		pattern = "*:[vV\x16]*",
-		callback = function()
-			vim.schedule(function()
-				vim.opt_local.list = false
-			end)
-		end,
-	})
-
-	api.nvim_create_autocmd("ModeChanged", {
-		group = augroup,
-		pattern = "[vV\x16]*:*",
-		callback = function()
-			vim.schedule(function()
-				vim.opt_local.list = true
-			end)
-		end,
-	})
-
 	api.nvim_create_autocmd("VimEnter", {
 		group = augroup,
 		once = true,

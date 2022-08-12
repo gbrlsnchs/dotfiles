@@ -1,9 +1,6 @@
 local util = require("me.api.util")
 local fzf = require("me.cfg.ui.fzf")
 
-local api = vim.api
-local augroup = api.nvim_create_augroup("ui", {})
-
 --- Sets up indent guides.
 --- @param enabled boolean: Whether the feature should be loaded.
 local function setup_indent_guides(enabled)
@@ -14,27 +11,6 @@ local function setup_indent_guides(enabled)
 	util.packadd("indent-blankline.nvim")
 
 	local indent_blankline = require("indent_blankline")
-	local indent_blankline_cmd = require("indent_blankline.commands")
-
-	api.nvim_create_autocmd("ModeChanged", {
-		group = augroup,
-		pattern = "*:[vV\x16]*",
-		callback = function()
-			vim.schedule(function()
-				indent_blankline_cmd.disable()
-			end)
-		end,
-	})
-
-	api.nvim_create_autocmd("ModeChanged", {
-		group = augroup,
-		pattern = "[vV\x16]*:*",
-		callback = function()
-			vim.schedule(function()
-				indent_blankline_cmd.enable()
-			end)
-		end,
-	})
 
 	indent_blankline.setup({
 		use_treesitter = true,
