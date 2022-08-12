@@ -9,12 +9,12 @@ local M = {}
 function M.copy_buf_path()
 	local winid, bufnr = winpick.select({
 		format_label = winpick.defaults.format_label,
-		filter = function(winid, bufnr)
+		filter = function(winid, bufnr, default_filter)
 			if api.nvim_buf_get_option(bufnr, "buftype") == "terminal" then
 				return false
 			end
 
-			return winpick.defaults.filter(winid, bufnr)
+			return default_filter(winid, bufnr)
 		end,
 	})
 
@@ -30,23 +30,10 @@ end
 
 function M.focus_win()
 	win.focus(winpick.select({
-		filter = M.pick_filter,
+		filter = function(winid, bufnr, default_filter)
+			return default_filter(winid, bufnr, nil, true)
+		end,
 	}))
-end
-
-function M.pick_filter(winid, _)
-	local win_var_denylist = {
-		"treesitter_context",
-		"treesitter_context_line_number",
-	}
-
-	for _, var in ipairs(win_var_denylist) do
-		if pcall(api.nvim_win_get_var, winid, var) then
-			return false
-		end
-	end
-
-	return true
 end
 
 return M

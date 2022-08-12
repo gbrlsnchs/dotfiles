@@ -417,8 +417,27 @@ function M.setup(opts)
 	end
 
 	winpick.setup({
-		filter = function(winid, bufnr)
-			return winpick.defaults.filter(winid, bufnr) and utils.pick_filter(winid, bufnr)
+		filter = function(winid, bufnr, _, allow_special)
+			if not allow_special and api.nvim_win_get_option(winid, "previewwindow") then
+				return false
+			end
+
+			if not allow_special and api.nvim_buf_get_option(bufnr, "buftype") == "quickfix" then
+				return false
+			end
+
+			local win_var_denylist = {
+				"treesitter_context",
+				"treesitter_context_line_number",
+			}
+
+			for _, var in ipairs(win_var_denylist) do
+				if pcall(api.nvim_win_get_var, winid, var) then
+					return false
+				end
+			end
+
+			return true
 		end,
 		format_label = false,
 	})
