@@ -95,10 +95,6 @@ tags.any_of = ["bspwm", "river"]
 link.base_dir = "$HOME/.cargo"
 tags.all_of = ["cargo"]
 
-[targets."gtk/gtk3-settings.ini"]
-link.base_dir = "$XDG_CONFIG_HOME/gtk-3.0"
-link.name = "settings.ini"
-
 [targets."xdg/user-dirs.dirs"]
 
 [targets."xdg/desktop-portal-wlr"]
