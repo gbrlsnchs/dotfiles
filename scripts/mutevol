@@ -1,0 +1,4 @@
+#!/bin/sh
+
+pamixer --toggle-mute 5 && \
+	( ( pamixer --get-mute >/dev/null && echo 0 ) || pamixer --get-volume ) > "$XDG_RUNTIME_DIR/wob.sock"

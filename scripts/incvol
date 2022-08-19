@@ -1,0 +1,3 @@
+#!/bin/sh
+
+pamixer --increase 5 && pamixer --get-volume > "$XDG_RUNTIME_DIR/wob.sock"
