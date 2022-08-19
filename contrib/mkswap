@@ -10,6 +10,6 @@ truncate -s 0 /var/swap/swapfile
 chattr +C /var/swap/swapfile
 btrfs property set /var/swap/swapfile compression ""
 chmod 600 /var/swap/swapfile
-dd if=/dev/zero of=/var/swap/swapfile bs=1G count=16 status=progress
+dd if=/dev/zero of=/var/swap/swapfile bs=1G count=16
 mkswap /var/swap/swapfile
 swapon /var/swap/swapfile
