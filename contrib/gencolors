@@ -22,6 +22,8 @@ color15="3c3836"
 MONITOR1="${MONITOR1:-DP-1}"
 MONITOR2="${MONITOR2:-HDMI-A-1}"
 
+CURSOR_THEME="${CURSOR_THEME:-simp1e-cursors-dark}"
+
 # Clean directories first.
 for template in **/template/*; do
 	outdir=$(dirname "$template")
@@ -53,6 +55,7 @@ for template in **/template/*; do
 		--expression "s/{{font_size}}/12/g" \
 		--expression "s/{{primary_monitor}}/$MONITOR1/g" \
 		--expression "s/{{secondary_monitor}}/$MONITOR2/g" \
+		--expression "s/{{cursor_theme}}/$CURSOR_THEME/g" \
 		"$template" > "$file" || continue
 	echo "Generated file from template: $file"
 done
