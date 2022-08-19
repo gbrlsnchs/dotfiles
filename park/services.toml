@@ -33,4 +33,7 @@ tags.any_of = ["river"]
 
 [targets."yambar-HDMI-A-1"]
 tags.all_of = ["wayland", "ohara"]
+
+[targets.wob]
+tags.all_of = ["wayland"]
 tags.any_of = ["river"]
