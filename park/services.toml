@@ -6,7 +6,7 @@ work_dir = "$PWD/sv"
 tags.all_of = ["wayland"]
 tags.any_of = ["river"]
 
-[targets."gammastep"]
+[targets.wlsunset]
 tags.all_of = ["wayland"]
 tags.any_of = ["river"]
 
