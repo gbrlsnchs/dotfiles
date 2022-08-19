@@ -1,0 +1,26 @@
+#!/bin/sh
+
+sv_name="$1"
+
+[ -z "$sv_name" ] && exit 1
+
+set -e
+
+sv_dir="sv/$sv_name"
+
+mkdir -p "$sv_dir/log"
+mkdir -p "$XDG_STATE_HOME/service/$sv_name"
+
+[ ! -f "$sv_dir/run" ] && cat <<EOF > "$sv_dir/run"
+#!/bin/sh
+
+exec echo "hello world" 2>&1
+EOF
+
+[ ! -f "$sv_dir/log/run" ] && cat <<EOF > "$sv_dir/log/run"
+#!/bin/sh
+
+exec svlogd -t "\$XDG_STATE_HOME/service/$sv_name"
+EOF
+
+chmod u+x "$sv_dir/run" "$sv_dir/log/run"
