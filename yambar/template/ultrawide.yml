@@ -1,14 +1,27 @@
 bg_default: &bg_default
-  stack:
-    - background:
-        color: "{{background}}ff"
-    - underline:
-        size: 4
-        color: "{{color3}}ff"
+  background:
+    color: "{{background}}ff"
+
+river_base: &river_base
+  left-margin: 8
+  right-margin: 8
+  tag: id
+  values:
+    1: {string: {text: 1}}
+    2: {string: {text: 2}}
+    3: {string: {text: 3}}
+    4: {string: {text: 4}}
+    5: {string: {text: 5}}
+    6: {string: {text: 6}}
+    7: {string: {text: 7}}
+    8: {string: {text: 8}}
+    9: {string: {text: 9}}
+    10: {string: {text: "*"}}
+
 bar:
   monitor: {{primary_monitor}}
   height: 24
-  location: bottom
+  location: top
   font: monospace:pixelsize={{font_size}}
   background: "{{color0}}ff"
   foreground: "{{foreground}}ff"
@@ -16,22 +29,7 @@ bar:
   left:
     - river:
         anchors:
-          - base: &river_base
-              left-margin: 8
-              right-margin: 8 
-              tag: id
-              values:
-                  1: {string: {text: 1}}
-                  2: {string: {text: 2}}
-                  3: {string: {text: 3}}
-                  4: {string: {text: 4}}
-                  5: {string: {text: 5}}
-                  6: {string: {text: 6}}
-                  7: {string: {text: 7}}
-                  8: {string: {text: 8}}
-                  9: {string: {text: 9}}
-                  10: {string: {text: X}}
-
+          - base: *river_base
         content:
           map:
             on-click:
@@ -44,8 +42,9 @@ bar:
                 map:
                   <<: *river_base
                   deco:
-                    background:
-                      color: "{{color11}}ff"
+                    stack:
+                      - background:
+                          color: "{{color11}}ff"
               focused:
                 map:
                   <<: *river_base
@@ -64,10 +63,7 @@ bar:
               unfocused:
                 map:
                   <<: *river_base
-                  deco:
-                    underline:
-                      size: 4
-                      color: "{{color7}}ff"
+                  deco: *bg_default
               invisible:
                 map:
                   tag: occupied
@@ -75,12 +71,7 @@ bar:
                     false:
                       empty: {}
                     true:
-                      map:
-                        <<: *river_base
-                        deco:
-                          underline:
-                            size: 4
-                            color: "{{color6}}ff"
+                      map: *river_base
   right:
     - clock:
         content:
