@@ -22,4 +22,16 @@ tags.any_of = ["river"]
 
 [targets.minestart]
 
+[targets.incvol]
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+
+[targets.decvol]
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+
+[targets.mutevol]
+tags.all_of = ["wayland"]
+tags.any_of = ["river"]
+
 [targets.doasedit]
