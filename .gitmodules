@@ -10,9 +10,6 @@
 [submodule "neovim/data/start/vim-dirvish"]
 	path = neovim/data/pack/start/vim-dirvish
 	url = https://github.com/justinmk/vim-dirvish
-[submodule "neovim/data/start/winpick.nvim"]
-	path = neovim/data/pack/start/winpick.nvim
-	url = https://github.com/gbrlsnchs/winpick.nvim
 [submodule "neovim/data/start/editorconfig.nvim"]
 	path = neovim/data/pack/start/editorconfig.nvim
 	url = https://github.com/gpanders/editorconfig.nvim
@@ -63,7 +60,7 @@
 	url = https://gitlab.com/yorickpeterse/nvim-pqf
 [submodule "neovim/data/pack/start/winpick.nvim"]
 	path = neovim/data/pack/start/winpick.nvim
-	url = https://codeberg.org/gbrlsnchs/winpick.nvim
+	url = https://github.com/gbrlsnchs/winpick.nvim
 [submodule "neovim/data/pack/start/vim-commentary"]
 	path = neovim/data/pack/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary
