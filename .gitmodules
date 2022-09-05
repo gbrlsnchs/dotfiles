@@ -97,3 +97,6 @@
 [submodule "zsh/data/plugins/fzf-tab-completion"]
 	path = zsh/data/plugins/fzf-tab-completion
 	url = https://github.com/lincheney/fzf-tab-completion
+[submodule "neovim/data/pack/opt/lsp-inlayhints.nvim"]
+	path = neovim/data/pack/opt/lsp-inlayhints.nvim
+	url = https://github.com/lvimuser/lsp-inlayhints.nvim

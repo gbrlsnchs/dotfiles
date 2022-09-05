@@ -16,6 +16,7 @@ function M.setup(opts)
 		denylist = {},
 		overrides = {},
 		folders = {},
+		inlay_hints = true,
 	})
 
 	if opts.disabled then

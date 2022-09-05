@@ -55,6 +55,7 @@ local M = {}
 --- @param opts table: Table of options for each language server.
 function M.setup(opts)
 	local configs = util.tbl_merge(opts.overrides, defaults)
+	local inlay_hints
 
 	if opts.autocompletion then
 		local lsp_cmp = require("cmp_nvim_lsp")
@@ -67,19 +68,30 @@ function M.setup(opts)
 		end, configs)
 	end
 
+	if opts.inlay_hints then
+		util.packadd("lsp-inlayhints.nvim")
+
+		inlay_hints = require("lsp-inlayhints")
+		inlay_hints.setup()
+	end
+
 	for name, config in pairs(configs) do
 		-- This allows turning a language server off per project.
 		if opts.denylist[name] then
 			goto continue
 		end
 
-		local function on_attach(_, bufnr)
+		local function on_attach(client, bufnr)
 			lsp_commands.setup(bufnr, filters)
 
 			if opts.folders[name] then
 				for _, folder in ipairs(opts.folders[name]) do
 					vim.lsp.buf.add_workspace_folder(folder)
 				end
+			end
+
+			if opts.inlay_hints then
+				inlay_hints.on_attach(bufnr, client)
 			end
 		end
 
