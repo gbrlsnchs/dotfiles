@@ -2,7 +2,7 @@ tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP", "$HOST"]
 base_dir = "$XDG_DATA_HOME/service"
 work_dir = "$PWD/sv"
 
-[targets."fnott"]
+[targets.fnott]
 tags.all_of = ["wayland"]
 tags.any_of = ["river"]
 
@@ -10,29 +10,27 @@ tags.any_of = ["river"]
 tags.all_of = ["wayland"]
 tags.any_of = ["river"]
 
-[targets."pipewire"]
+[targets.pipewire]
 tags.any_of = ["river"]
 
-[targets."pipewire-media-session"]
-tags.all_of = ["pipewire-media-session"]
+[targets.pipewire-pulse]
 tags.any_of = ["river"]
 
-[targets."pipewire-pulse"]
-tags.any_of = ["river"]
-
-[targets."rivertile"]
+[targets.rivertile]
 tags.all_of = ["wayland", "river"]
 
-[targets."wireplumber"]
+[targets.wireplumber]
 tags.all_of = ["wireplumber"]
 tags.any_of = ["river"]
 
-[targets."yambar-DP-1"]
-tags.all_of = ["wayland", "ohara"]
+[targets.yambar-DP-1]
+tags.all_of = ["wayland", "yambar", "ohara"]
 tags.any_of = ["river"]
 
-[targets."yambar-HDMI-A-1"]
-tags.all_of = ["wayland", "ohara"]
+[targets.yambar-HDMI-A-1]
+tags.all_of = ["wayland", "yambar", "ohara"]
+tags.any_of = ["river"]
+
 
 [targets.wob]
 tags.all_of = ["wayland"]
