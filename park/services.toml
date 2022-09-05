@@ -31,6 +31,8 @@ tags.any_of = ["river"]
 tags.all_of = ["wayland", "yambar", "ohara"]
 tags.any_of = ["river"]
 
+[targets.river-tag-overlay]
+tags.all_of = ["wayland", "river", "river-tag-overlay"]
 
 [targets.wob]
 tags.all_of = ["wayland"]

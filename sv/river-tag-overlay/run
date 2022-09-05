@@ -1,0 +1,15 @@
+#!/bin/sh
+
+exec river-tag-overlay \
+	--background-colour="0x$BG_COLOR" \
+	--border-colour="0x$COLOR_8" \
+	--square-active-background-colour="0x$COLOR_4" \
+	--square-active-border-colour="0x$FG_COLOR" \
+	--square-active-occupied-colour="0x$COLOR_4" \
+	--square-inactive-background-colour="0x$BG_COLOR" \
+	--square-inactive-border-colour="0x$COLOR_15" \
+	--square-inactive-occupied-colour="0x$COLOR_0" \
+	--square-urgent-background-colour="0x$COLOR_3" \
+	--square-urgent-border-colour="0x$FG_COLOR" \
+	--square-urgent-occupied-colour="0x$COLOR_3" \
+	2>&1
