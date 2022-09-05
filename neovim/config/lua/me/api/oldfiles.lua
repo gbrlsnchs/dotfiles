@@ -60,8 +60,11 @@ function M.init(project_name)
 
 	vim.notify("Filling oldfiles with Neovim's own data")
 
-	local oldfiles = get_builtin()
-	if #oldfiles == 0 then
+	local ok, oldfiles = pcall(get_builtin)
+	if not ok then
+		oldfiles = {}
+	end
+	if vim.tbl_isempty(oldfiles) then
 		vim.notify("No oldfiles data found")
 		return true
 	end
