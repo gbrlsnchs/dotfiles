@@ -15,8 +15,8 @@ local M = {}
 --- @param opts table: List of custom environment variables to be set for the whole session.
 function M.setup(opts)
 	opts = util.tbl_merge(opts, {
-		EDITOR = string.format("%s --remote-tab-wait -c 'setlocal bufhidden=wipe'", remote_nvim),
-		VISUAL = string.format("%s --remote-tab-wait -c 'setlocal bufhidden=wipe'", remote_nvim),
+		EDITOR = string.format("%s --remote-tab-wait", remote_nvim),
+		VISUAL = string.format("%s --remote-tab-wait", remote_nvim),
 		GIT_EDITOR = string.format("%s --remote-tab-wait", remote_nvim),
 		GIT_PAGER = string.format("%s --remote-tab-wait +'Man! | setfiletype git' -", remote_nvim),
 	})
