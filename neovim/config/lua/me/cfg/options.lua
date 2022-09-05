@@ -38,8 +38,10 @@ function M.setup(_)
 	vim.opt.splitbelow = true
 
 	vim.opt.termguicolors = true
-	vim.opt.background = "light"
-	vim.cmd("colorscheme me")
+	if vim.env.TERM then
+		vim.opt.background = "light"
+		vim.cmd("colorscheme me")
+	end
 
 	vim.opt.completeopt = { "menu", "noinsert", "noselect" }
 	vim.opt.pumheight = 10
