@@ -1,7 +1,7 @@
 {
   "version": 1,
-  "notes": "",
-  "documentation": "\"This file is a QMK Configurator export. You can import this at <https://config.qmk.fm>. It can also be used directly with QMK's source code.\n\nTo setup your QMK environment check out the tutorial: <https://docs.qmk.fm/#/newbs>\n\nYou can convert this file to a keymap.c using this command: `qmk json2c {keymap}`\n\nYou can compile this keymap using this command: `qmk compile {keymap}`\"\n",
+  "notes": "Totally customized to my taste. Probably not usable by others.",
+  "documentation": "Run 'kbd*' scripts found in 'contrib/' within the same repository where this file is located.",
   "keyboard": "planck/rev6_drop",
   "keymap": "planck",
   "layout": "LAYOUT_planck_1x2uC",
@@ -301,5 +301,5 @@
       "TO(0)"
     ]
   ],
-  "author": ""
+  "author": "Gabriel Sanches <gabriel@gsr.dev>"
 }
