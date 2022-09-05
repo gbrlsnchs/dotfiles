@@ -13,7 +13,7 @@ local function setup_filetypes(filetypes)
 		pattern = {
 			[".nvimrc"] = "yaml",
 			[".*/srcpkgs/.*/template"] = "sh", -- Void Linux templates.
-			[".*/river/.*/init"] = "sh",
+			[".*/zsh/.*/functions/.*"] = "zsh",
 			["/var/tmp/grub%..*"] = "grub", -- For GRUB config edit via 'sudoedit'.
 		},
 	}))
