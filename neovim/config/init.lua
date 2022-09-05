@@ -1,3 +1,5 @@
+local util = require("me.api.util")
+
 -- TODO: Log errors.
 local function bootstrap()
 	local rocks_home = vim.fn.stdpath("data") .. "/site/rocks"
@@ -12,22 +14,25 @@ local function bootstrap()
 
 	local io = require("me.api.io")
 
-	local opts_yml = io.read_file("neovim.yml")
+	local opts_yml = io.read_file(".nvimrc")
 
 	if not opts_yml then
 		return nil
 	end
 
 	-- Substitute environment variables.
-	opts_yml = opts_yml:gsub('$%$', '\0')
-		:gsub('${([%w_]+)}', os.getenv)
-		:gsub('$([%w_]+)', os.getenv)
-		:gsub('%z', '$')
+	opts_yml = opts_yml
+		:gsub("$%$", "\0")
+		:gsub("${([%w_]+)}", os.getenv)
+		:gsub("$([%w_]+)", os.getenv)
+		:gsub("%z", "$")
 
 	return yml.load(opts_yml)
 end
 
-local opts = bootstrap() or {}
+local opts = util.tbl_merge({
+	session = { project_name = vim.loop.cwd() },
+}, bootstrap() or {})
 
 -- Order of loading matters.
 -- TODO: Set up 'macros' and SQLite connection.
