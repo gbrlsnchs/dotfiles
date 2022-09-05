@@ -40,6 +40,7 @@ local defaults = {
 	sumneko_lua = require("me.cfg.lsp.configs.sumneko_lua"),
 	tsserver = containerize("me.cfg.lsp.configs.tsserver", "typescript-language-server"),
 	vuels = containerize("me.cfg.lsp.configs.vuels", "vls"),
+	zls = require("me.cfg.lsp.configs.zls"),
 }
 
 local filters = {
