@@ -1,5 +1,5 @@
 tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
-base_dir = "$PWD"
+base_dir = ""
 work_dir = "$XDG_CACHE_HOME/dotfiles"
 
 [targets."dunst/dunstrc"]
