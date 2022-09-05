@@ -109,9 +109,9 @@ do
     # riverctl map $mode None XF86Eject spawn 'eject -T'
 
     # Control pulse audio volume with pamixer (https://github.com/cdemoulins/pamixer)
-    riverctl map $mode None XF86AudioRaiseVolume  spawn "pamixer --increase 5"
-    riverctl map $mode None XF86AudioLowerVolume  spawn "pamixer --decrease 5"
-    riverctl map $mode None XF86AudioMute         spawn "pamixer --toggle-mute"
+    riverctl map $mode None XF86AudioRaiseVolume  spawn incvol
+    riverctl map $mode None XF86AudioLowerVolume  spawn decvol
+    riverctl map $mode None XF86AudioMute         spawn mutevol
 
     # Control MPRIS aware media players with playerctl (https://github.com/altdesktop/playerctl)
     # riverctl map $mode None XF86AudioMedia spawn 'playerctl play-pause'
