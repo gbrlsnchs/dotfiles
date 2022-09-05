@@ -6,6 +6,7 @@ work_dir = "$PWD/scripts"
 tags.all_of = ["wayland", "river"]
 
 [targets.steamstart]
+tags.all_of = ["firejail"]
 
 [targets.dmenu]
 tags.any_of = ["river"]
@@ -21,6 +22,7 @@ tags.all_of = ["wayland"]
 tags.any_of = ["river"]
 
 [targets.minestart]
+tags.all_of = ["firejail"]
 
 [targets.incvol]
 tags.all_of = ["wayland"]
