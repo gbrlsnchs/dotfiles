@@ -21,3 +21,5 @@ tags.all_of = ["wayland"]
 tags.any_of = ["river"]
 
 [targets.minestart]
+
+[targets.doasedit]
