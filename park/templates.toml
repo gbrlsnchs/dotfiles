@@ -27,7 +27,7 @@ tags.all_of = ["wayland"]
 tags.any_of = ["river"]
 link.base_dir = "$PWD/yambar/config"
 
-[targets."river/colors"]
+[targets."river/theme"]
 tags.all_of = ["wayland", "river"]
 link.base_dir = "$PWD/river/config"
 

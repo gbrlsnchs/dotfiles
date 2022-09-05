@@ -1,0 +1,8 @@
+#!/bin/sh
+
+# {{notice}}
+
+# Set background and border color
+riverctl xcursor-theme "{{cursor_theme}}"
+
+gsettings set org.gnome.desktop.interface cursor-theme {{cursor_theme}} >/dev/null

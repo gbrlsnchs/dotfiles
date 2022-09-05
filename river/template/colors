@@ -1,8 +1,0 @@
-#!/bin/sh
-
-# {{notice}}
-
-# Set background and border color
-riverctl background-color 0x{{background}}
-riverctl border-color-focused 0x{{color9}}
-riverctl border-color-unfocused 0x{{color8}}

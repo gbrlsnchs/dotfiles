@@ -128,8 +128,12 @@ riverctl map normal None Print spawn printscreen
 riverctl map normal Shift Print spawn printsnip
 
 # Set background and border color
-if [ -f "${XDG_CONFIG_HOME}/river/colors" ]; then
-	"${XDG_CONFIG_HOME}/river/colors"
+riverctl background-color "0x$BG_COLOR"
+riverctl border-color-focused "0x$COLOR_8"
+riverctl border-color-unfocused "0x$COLOR_0"
+
+if [ -f "${XDG_CONFIG_HOME}/river/theme" ]; then
+	"${XDG_CONFIG_HOME}/river/theme"
 fi
 
 # Set keyboard repeat rate
