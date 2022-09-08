@@ -25,7 +25,7 @@ function M.setup(_)
 	vim.opt.fillchars = {
 		eob = "•",
 	}
-	vim.opt.signcolumn = "yes:1"
+	vim.opt.signcolumn = "auto:9"
 	vim.opt.colorcolumn = ""
 	vim.opt.foldlevel = 10
 	vim.opt.hidden = true

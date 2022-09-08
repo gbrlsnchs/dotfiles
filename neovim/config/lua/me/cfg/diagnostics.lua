@@ -6,23 +6,11 @@ local M = {}
 --- Sets up diagnostics.
 function M.setup(_)
 	vim.diagnostic.config({
-		virtual_text = {
-			format = function(_)
-				return ""
-			end,
-			prefix = "火",
-			spacing = 1,
-		},
-		signs = false,
+		virtual_text = false,
+		signs = true,
 		severity_sort = true,
 		float = { border = "single", source = true },
 	})
-
-	-- Despite not using signs, we need this in order to retrieve unified signs in other places.
-	vim.fn.sign_define("DiagnosticSignError", { text = "E" })
-	vim.fn.sign_define("DiagnosticSignWarn", { text = "W" })
-	vim.fn.sign_define("DiagnosticSignInfo", { text = "I" })
-	vim.fn.sign_define("DiagnosticSignHint", { text = "H" })
 
 	excmd.register("Diagnostics", {
 		DiagnosticsLine = {
