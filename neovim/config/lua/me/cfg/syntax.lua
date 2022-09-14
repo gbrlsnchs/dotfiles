@@ -188,11 +188,14 @@ function M.setup(opts)
 		},
 		filetypes = nil, -- project's custom filetypes
 		colorizer = true,
+		tex_flavor = "latex",
 	})
 
 	setup_filetypes(opts.filetypes)
 	setup_tree_sitter(opts.tree_sitter)
 	setup_colorizer(opts.colorizer)
+
+	vim.g.tex_flavor = opts.tex_flavor
 end
 
 return M
