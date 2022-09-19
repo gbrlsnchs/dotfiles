@@ -112,3 +112,5 @@ link.name = ".sqliterc"
 
 [targets."catgirl/config"]
 link.name = "catgirl"
+
+[targets.zathura]
