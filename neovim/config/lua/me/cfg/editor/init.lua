@@ -301,9 +301,49 @@ local function setup_autocmds(opts)
 	end
 end
 
-local function setup_keymaps()
+local function setup_keymaps(opts)
 	api.nvim_set_keymap("i", "<C-c>", "<Esc>", {})
 	api.nvim_set_keymap("v", "<C-c>", "<Esc>", {})
+
+	if not opts.autocompletion and opts.float_preview then
+		api.nvim_set_keymap("i", "<C-d>", "", {
+			expr = true,
+			callback = function()
+				local float_win = vim.g["float_preview#win"]
+				if not float_win then
+					return "<C-d>"
+				end
+
+				local scroll = vim.opt.scroll:get()
+				local cursor = api.nvim_win_get_cursor(float_win)
+				local float_buf = api.nvim_win_get_buf(float_win)
+				local remaining = api.nvim_buf_line_count(float_buf) - cursor[1]
+				cursor[1] = cursor[1] + math.min(scroll, remaining)
+
+				api.nvim_win_set_cursor(float_win, cursor)
+
+				return ""
+			end,
+		})
+		api.nvim_set_keymap("i", "<C-u>", "", {
+			expr = true,
+			callback = function()
+				local float_win = vim.g["float_preview#win"]
+				if not float_win then
+					return "<C-u>"
+				end
+
+				local scroll = vim.opt.scroll:get()
+				local cursor = api.nvim_win_get_cursor(float_win)
+				local remaining = cursor[1] - 1
+				cursor[1] = cursor[1] - math.min(scroll, remaining)
+
+				api.nvim_win_set_cursor(float_win, cursor)
+
+				return ""
+			end,
+		})
+	end
 end
 
 local function setup_completion()
@@ -409,7 +449,7 @@ function M.setup(opts)
 	opts = util.tbl_merge(opts, {
 		cfilter = true,
 		autocompletion = false,
-		float_preview = false,
+		float_preview = true,
 	})
 
 	-- Disable Netrw so Dirvish can take over.
@@ -424,7 +464,7 @@ function M.setup(opts)
 	setup_utils()
 
 	setup_autocmds(opts)
-	setup_keymaps()
+	setup_keymaps(opts)
 
 	if opts.autocompletion then
 		setup_completion()
@@ -435,17 +475,20 @@ function M.setup(opts)
 			pattern = "FloatPreviewWinOpen",
 			callback = function()
 				local preview_win = vim.g["float_preview#win"]
+				local preview_buf = api.nvim_win_get_buf(preview_win)
 
 				api.nvim_win_set_option(preview_win, "list", false)
 				api.nvim_win_set_option(preview_win, "number", false)
 				api.nvim_win_set_option(preview_win, "cursorline", false)
+				api.nvim_buf_set_option(preview_buf, "filetype", "markdown")
 			end,
 			group = augroup,
 		})
 
 		vim.g["float_preview#docked"] = false
 		vim.g["float_preview#max_width"] = 100
-		vim.g["float_preview#max_height"] = 9999
+	else
+		table.insert(vim.opt.completeopt, "preview")
 	end
 
 	if opts.cfilter then
