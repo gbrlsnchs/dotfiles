@@ -92,7 +92,7 @@ function M.setup(opts)
 			end
 
 			if opts.inlay_hints then
-				inlay_hints.on_attach(bufnr, client)
+				inlay_hints.on_attach(client, bufnr)
 			end
 		end
 
