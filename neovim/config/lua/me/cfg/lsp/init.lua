@@ -17,6 +17,7 @@ function M.setup(opts)
 		overrides = {},
 		folders = {},
 		inlay_hints = true,
+		autocompletion = false,
 	})
 
 	if opts.disabled then

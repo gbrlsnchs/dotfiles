@@ -97,3 +97,6 @@
 [submodule "neovim/data/pack/opt/lsp-inlayhints.nvim"]
 	path = neovim/data/pack/opt/lsp-inlayhints.nvim
 	url = https://github.com/lvimuser/lsp-inlayhints.nvim
+[submodule "neovim/data/pack/opt/float-preview.nvim"]
+	path = neovim/data/pack/opt/float-preview.nvim
+	url = https://github.com/ncm2/float-preview.nvim

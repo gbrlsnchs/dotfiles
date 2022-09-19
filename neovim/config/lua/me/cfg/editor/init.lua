@@ -239,7 +239,7 @@ local function track_oldfiles(project_name)
 end
 
 --- Sets up automatic commands.
-local function setup_autocmds()
+local function setup_autocmds(opts)
 	api.nvim_create_autocmd("BufReadPost", {
 		group = augroup,
 		pattern = "*",
@@ -282,6 +282,23 @@ local function setup_autocmds()
 			return true
 		end,
 	})
+
+	if not opts.autocompletion and not opts.float_preview then
+		api.nvim_create_autocmd("WinEnter", {
+			callback = function()
+				local is_preview = vim.opt_local.previewwindow:get()
+				local has_ft = vim.opt_local.filetype:get() ~= ""
+
+				print("is_preview", is_preview)
+				print("has_ft", has_ft)
+
+				if is_preview and not has_ft then
+					vim.opt_local.filetype = "markdown"
+				end
+			end,
+			group = augroup,
+		})
+	end
 end
 
 local function setup_keymaps()
@@ -391,7 +408,8 @@ local M = {}
 function M.setup(opts)
 	opts = util.tbl_merge(opts, {
 		cfilter = true,
-		autocompletion = true,
+		autocompletion = false,
+		float_preview = false,
 	})
 
 	-- Disable Netrw so Dirvish can take over.
@@ -405,11 +423,29 @@ function M.setup(opts)
 	setup_logs()
 	setup_utils()
 
-	setup_autocmds()
+	setup_autocmds(opts)
 	setup_keymaps()
 
 	if opts.autocompletion then
 		setup_completion()
+	elseif opts.float_preview then
+		util.packadd("float-preview.nvim")
+
+		api.nvim_create_autocmd("User", {
+			pattern = "FloatPreviewWinOpen",
+			callback = function()
+				local preview_win = vim.g["float_preview#win"]
+
+				api.nvim_win_set_option(preview_win, "list", false)
+				api.nvim_win_set_option(preview_win, "number", false)
+				api.nvim_win_set_option(preview_win, "cursorline", false)
+			end,
+			group = augroup,
+		})
+
+		vim.g["float_preview#docked"] = false
+		vim.g["float_preview#max_width"] = 100
+		vim.g["float_preview#max_height"] = 9999
 	end
 
 	if opts.cfilter then
