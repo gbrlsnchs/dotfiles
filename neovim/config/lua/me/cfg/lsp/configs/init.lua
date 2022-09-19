@@ -38,6 +38,7 @@ local defaults = {
 	jdtls = require("me.cfg.lsp.configs.jdtls"),
 	rust_analyzer = require("me.cfg.lsp.configs.rust_analyzer"),
 	sumneko_lua = require("me.cfg.lsp.configs.sumneko_lua"),
+	texlab = require("me.cfg.lsp.configs.texlab"),
 	tsserver = containerize("me.cfg.lsp.configs.tsserver", "typescript-language-server"),
 	vuels = containerize("me.cfg.lsp.configs.vuels", "vls"),
 	zls = require("me.cfg.lsp.configs.zls"),
