@@ -20,8 +20,8 @@ end
 --- Executes a query using a prepared statement.
 --- @param query string: The query to be executed.
 --- @param ... any: Variables to be used in the query, if any.
---- @return table: The result of the query containing rows and count (of affected rows).
---- @return string|nil: The error message if there are any errors with the statement.
+--- @return table | nil: The result of the query containing rows and count (of affected rows).
+--- @return string | nil: The error message if there are any errors with the statement.
 function M.exec_stmt(query, ...)
 	local stmt = db:prepare(query)
 	local vars = { ... }

@@ -1,12 +1,11 @@
 local excmd = require("me.api.excmd")
+local util = require("me.api.util")
 
 local api = vim.api
 local default_cmd_group = "---"
 
-local M = {}
-
 --- Open the command palette. Fun fact: it's recursive.
-function M.open(range)
+local function open(range)
 	local bufnr = vim.api.nvim_get_current_buf()
 	local cmdlist = excmd.list(bufnr, range and "v" or "n")
 
@@ -38,7 +37,7 @@ function M.open(range)
 			local chosen_action = actions[action]
 
 			if action and not chosen_action then
-				M.open()
+				open()
 				return
 			end
 
@@ -63,4 +62,17 @@ function M.open(range)
 	end)
 end
 
-return M
+excmd.register("Commands", {
+	CommandPalette = {
+		desc = "Open command palette",
+		callback = util.with_range(function(range)
+			open(range)
+		end),
+		opts = {
+			modes = { "n", "v" },
+			keymap = {
+				keys = "<Leader><Tab>",
+			},
+		},
+	},
+})

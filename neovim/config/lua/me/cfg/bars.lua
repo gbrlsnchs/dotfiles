@@ -1,6 +1,6 @@
 local byob = require("byob")
 
-local util = require("me.api.util")
+local config = require("me.api.config")
 local log = require("me.api.log")
 
 local api = vim.api
@@ -8,7 +8,7 @@ local log_levels = vim.log.levels
 local git_cache = {}
 
 --- Resolves highlight group based on whether the window is focused.
---- @param hl string: The highlight group.
+--- @param hl string | nil: The highlight group.
 --- @param is_focused boolean: Whether the current component is in a focused window.
 --- @return string: The resolved name for the highlight group.
 local function hl_focus(hl, is_focused)
@@ -20,7 +20,7 @@ end
 
 --- Returns a function that introduces blank gaps.
 --- @param size number: Gap size.
---- @param hl string: Highlight group for the gap.
+--- @param hl string | nil: Highlight group for the gap.
 --- @return function: Function that sets gap.
 local function spacing(size, hl)
 	local gap = string.rep(" ", size)
@@ -31,7 +31,7 @@ local function spacing(size, hl)
 end
 
 --- Returns a function that resets the bar to a given highlight group.
---- @param hl string: Highlight group for the reset.
+--- @param hl string | nil: Highlight group for the reset.
 --- @return function: Function that resets the bar.
 local function reset(hl)
 	return function(is_focused)
@@ -58,17 +58,16 @@ local function lsp_info(global)
 			return
 		end
 
-		local client_names = {}
+		local clients = {}
 		for _, client in ipairs(lsp_clients) do
-			table.insert(client_names, client.name)
+			table.insert(clients, client.name)
 		end
 
-		table.sort(client_names, function(a, b)
+		table.sort(clients, function(a, b)
 			return a < b
 		end)
 
-		client_names = table.concat(client_names, ", ")
-		client_names = client_names .. " "
+		local client_names = table.concat(clients, ", ") .. " "
 
 		local severity = vim.diagnostic.severity
 		local diagnostic_count = {
@@ -136,12 +135,11 @@ local function lsp_info(global)
 end
 
 --- Sets up statusline.
---- @param opts table: Options for this bar.
 --- @return table: Builder that builds the bar.
-local function setup_statusline(opts)
+local function setup_statusline()
 	local statusline = byob.new("StatusLine")
 
-	if opts.git then
+	if config.get("git", "enabled") then
 		statusline:add(function()
 			local branch = vim.b.gitsigns_head
 			if branch then
@@ -177,50 +175,46 @@ local function setup_statusline(opts)
 		end)
 	end
 
-	if opts.logs then
-		statusline
-			:add(spacing(2))
-			:add(function()
-				local unread_logs = log.get_unread()
-
-				local verb = "are"
-				local plural = "s"
-
-				if unread_logs.count == 1 then
-					verb = "is"
-					plural = ""
-				end
-
-				local severity_hl
-				local severity = unread_logs.severity
-
-				if severity == log_levels.ERROR then
-					severity_hl = "Error"
-				elseif severity == log_levels.WARN then
-					severity_hl = "Warn"
-				elseif severity == log_levels.INFO then
-					severity_hl = "Info"
-				elseif severity == log_levels.DEBUG then
-					severity_hl = "Debug"
-				elseif severity == log_levels.TRACE then
-					severity_hl = "Trace"
-				end
-
-				local count = unread_logs.count
-
-				return count > 0
-					and {
-						{
-							hl = "Notification" .. severity_hl,
-							content = string.format(" There %s %d new log%s ", verb, count, plural),
-						},
-					}
-			end)
-			:add(spacing(1))
-			:add(reset())
-	end
-
 	statusline
+		:add(spacing(2))
+		:add(function()
+			local unread_logs = log.get_unread()
+
+			local verb = "are"
+			local plural = "s"
+
+			if unread_logs.count == 1 then
+				verb = "is"
+				plural = ""
+			end
+
+			local severity_hl
+			local severity = unread_logs.severity
+
+			if severity == log_levels.ERROR then
+				severity_hl = "Error"
+			elseif severity == log_levels.WARN then
+				severity_hl = "Warn"
+			elseif severity == log_levels.INFO then
+				severity_hl = "Info"
+			elseif severity == log_levels.DEBUG then
+				severity_hl = "Debug"
+			elseif severity == log_levels.TRACE then
+				severity_hl = "Trace"
+			end
+
+			local count = unread_logs.count
+
+			return count > 0
+				and {
+					{
+						hl = "Notification" .. severity_hl,
+						content = string.format(" There %s %d new log%s ", verb, count, plural),
+					},
+				}
+		end)
+		:add(spacing(1))
+		:add(reset())
 		:add("%=")
 		:add(function()
 			local tabs = api.nvim_list_tabpages()
@@ -234,7 +228,7 @@ local function setup_statusline(opts)
 		end)
 		:add(spacing(2))
 
-	if opts.lsp then
+	if config.get("lsp", "enabled") then
 		statusline:add(lsp_info(true))
 	end
 
@@ -242,11 +236,9 @@ local function setup_statusline(opts)
 end
 
 --- Sets up winbar.
---- @param opts table: Options for this bar.
 --- @return table: Builder that builds the bar.
-local function setup_winbar(opts)
-	local winbar = byob
-		.new("WinBar")
+local function setup_winbar()
+	local winbar = byob.new("WinBar")
 		:add(spacing(2, "FileInfo"))
 		:add(function(is_focused)
 			local bufnr = api.nvim_get_current_buf()
@@ -261,30 +253,17 @@ local function setup_winbar(opts)
 		:add(spacing(2, "FileInfo"))
 		:add(align_right)
 
-	if opts.lsp then
+	if config.get("lsp", "enabled") then
 		winbar:add(lsp_info(false))
 	end
 
 	return winbar
 end
 
-local M = {}
+byob.setup({
+	statusline = setup_statusline(),
+	winbar = setup_winbar(),
+})
 
---- Sets up statusline.
-function M.setup(opts)
-	opts = util.tbl_merge(opts, {
-		git = true,
-		lsp = true,
-		logs = true,
-	})
-
-	byob.setup({
-		statusline = setup_statusline(opts),
-		winbar = setup_winbar(opts),
-	})
-
-	vim.opt.laststatus = 3
-	vim.opt.showtabline = 0
-end
-
-return M
+vim.opt.laststatus = 3
+vim.opt.showtabline = 0

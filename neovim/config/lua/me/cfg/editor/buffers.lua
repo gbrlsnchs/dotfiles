@@ -1,5 +1,6 @@
 local winpick = require("winpick")
 
+local excmd = require("me.api.excmd")
 local win = require("me.api.win")
 
 local api = vim.api
@@ -22,9 +23,7 @@ local function list()
 	return buffers
 end
 
-local M = {}
-
-function M.find()
+local function find()
 	local buffers = list()
 	local opts = {
 		prompt = "Buffers:",
@@ -78,4 +77,23 @@ function M.find()
 	end)
 end
 
-return M
+excmd.register("Buffers", {
+	Buffers = {
+		desc = "Search through open buffers",
+		callback = function()
+			find()
+		end,
+		opts = {
+			keymap = { keys = "<Leader>b?" },
+		},
+	},
+	BufferUnlink = {
+		desc = "Unlink current buffer",
+		callback = function()
+			vim.cmd("Bunlink")
+		end,
+		opts = {
+			keymap = { keys = "<Leader>bu" },
+		},
+	},
+})

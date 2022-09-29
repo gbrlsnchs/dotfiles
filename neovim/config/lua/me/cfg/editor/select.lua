@@ -156,10 +156,8 @@ local function make_args(opts)
 	return args
 end
 
-local M = {}
-
 --- Set of labels for FZF actions.
-function M.select(items, opts, on_choice)
+vim.ui.select = function(items, opts, on_choice)
 	opts = util.tbl_merge(opts, {
 		args = {},
 		actions = {},
@@ -234,5 +232,3 @@ function M.select(items, opts, on_choice)
 		end,
 	})
 end
-
-return M

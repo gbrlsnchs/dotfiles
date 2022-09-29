@@ -100,3 +100,9 @@
 [submodule "neovim/data/pack/opt/float-preview.nvim"]
 	path = neovim/data/pack/opt/float-preview.nvim
 	url = https://github.com/ncm2/float-preview.nvim
+[submodule "neovim/data/pack/opt/nvim-ufo"]
+	path = neovim/data/pack/opt/nvim-ufo
+	url = https://github.com/kevinhwang91/nvim-ufo
+[submodule "neovim/data/pack/opt/promise-async"]
+	path = neovim/data/pack/opt/promise-async
+	url = https://github.com/kevinhwang91/promise-async

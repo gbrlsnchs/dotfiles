@@ -1,9 +1,10 @@
 local exec = require("me.api.exec")
+local excmd = require("me.api.excmd")
 local util = require("me.api.util")
 
 --- Parses input from <f-args>, filtering empty strings.
 --- @param query table: List of strings that compose a query.
---- @return string: Whitespace-separated query.
+--- @return string | nil: Whitespace-separated query.
 local function parse_fargs(query)
 	-- TODO: Optimize?
 	if type(query) == "string" then
@@ -23,7 +24,6 @@ end
 
 --- Prompts for a query.
 --- @param msg string: Message displayed in the prompt.
---- @return string: Value returned by the prompt.
 local function prompt(msg, callback)
 	vim.ui.input({ prompt = string.format("%s: ", msg) }, function(query)
 		if not query or query:len() == 0 then
@@ -87,15 +87,54 @@ local function search(cmd, args, query, opts)
 	end
 end
 
-local M = {}
-
 --- Search using ripgrep or Git and fills the quickfix list with results.
-function M.search(query, opts)
+local function grep(query, opts)
 	search("rg", { "--vimgrep", "--no-heading", "--smart-case" }, query, opts)
 end
 
-function M.git_search(query, opts)
+local function git_grep(query, opts)
 	search("git", { "grep", "--column", "-n" }, query, opts)
 end
 
-return M
+excmd.register("Grep", {
+	Grep = {
+		desc = "Search text in files",
+		callback = util.with_fargs(function(query)
+			grep(query)
+		end),
+		opts = {
+			nargs = "*",
+			keymap = { keys = "<Leader>gf" },
+		},
+	},
+	GrepCd = {
+		desc = "Search text in files from current directory",
+		callback = util.with_fargs(function(query)
+			grep(query, { global = false })
+		end),
+		opts = {
+			nargs = "*",
+			keymap = { keys = "<Leader>gF" },
+		},
+	},
+	GitGrep = {
+		desc = "Search text in files using Git",
+		callback = util.with_fargs(function(query)
+			git_grep(query)
+		end),
+		opts = {
+			nargs = "*",
+			keymap = { keys = "<Leader>gg" },
+		},
+	},
+	GitGrepCd = {
+		desc = "Search text in files for current directory using Git",
+		callback = util.with_fargs(function(query)
+			git_grep(query, { global = false })
+		end),
+		opts = {
+			nargs = "*",
+			keymap = { keys = "<Leader>gG" },
+		},
+	},
+})

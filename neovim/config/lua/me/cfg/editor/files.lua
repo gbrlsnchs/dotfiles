@@ -1,11 +1,13 @@
 local winpick = require("winpick")
 
+local excmd = require("me.api.excmd")
+local util = require("me.api.util")
 local win = require("me.api.win")
-local session = require("me.api.session")
+local config = require("me.api.config")
 local db = require("me.api.db")
 
 local actions = { "ctrl-x", "ctrl-v", "ctrl-t", "ctrl-d" }
-local project_name = session.get_option("project_name")
+local project_name = config.get("session", "project_name")
 
 --- Deletes an oldfile from the database.
 --- @param filename string: Name of the file to be deleted.
@@ -66,11 +68,9 @@ local function open_file(filename, is_oldfile)
 	end
 end
 
-local M = {}
-
 --- Finds a file relative to 'base_dir'.
 --- @param base_dir string: Base directory for the search.
-function M.find(base_dir)
+local function find(base_dir)
 	if not base_dir or (base_dir and base_dir:len() == 0) then
 		base_dir = "./"
 	end
@@ -87,7 +87,7 @@ end
 
 --- Finds files that have been changed.
 --- @param base_dir string: Base directory for the search.
-function M.find_changed(base_dir)
+local function find_changed(base_dir)
 	if not base_dir or (base_dir and base_dir:len() == 0) then
 		base_dir = "."
 	end
@@ -103,7 +103,7 @@ function M.find_changed(base_dir)
 end
 
 --- Finds oldfiles sorted by relevance.
-function M.find_oldfiles()
+local function find_oldfiles()
 	if not project_name then
 		vim.notify("Could not retrieve oldfiles because there's not project name set")
 		return
@@ -134,4 +134,54 @@ function M.find_oldfiles()
 	end)
 end
 
-return M
+excmd.register("Files", {
+	FindFiles = {
+		desc = "Find files in the project",
+		callback = util.with_fargs(function(base_dir)
+			find(base_dir)
+		end),
+		opts = {
+			nargs = "?",
+			complete = "dir",
+			keymap = { keys = "<Leader>ff" },
+			actions = {
+				["ctrl-s"] = {
+					desc = "in current file directory",
+					arg = function(bufnr)
+						return util.get_buf_base_dir(bufnr, "./")
+					end,
+					keymap = { keys = "<Leader>fF" },
+				},
+			},
+		},
+	},
+	FindChangedFiles = {
+		desc = "Find changed files, modified or new",
+		callback = util.with_fargs(function(base_dir)
+			find_changed(base_dir)
+		end),
+		opts = {
+			nargs = "?",
+			complete = "dir",
+			keymap = { keys = "<Leader>fd" },
+			actions = {
+				["ctrl-s"] = {
+					desc = "in current file directory",
+					arg = function(bufnr)
+						return util.get_buf_base_dir(bufnr, ".")
+					end,
+					keymap = { keys = "<Leader>fD" },
+				},
+			},
+		},
+	},
+	FindRecentFiles = {
+		desc = "Find files that were opened recently",
+		callback = function()
+			find_oldfiles()
+		end,
+		opts = {
+			keymap = { keys = "<Leader>fo" },
+		},
+	},
+})

@@ -83,7 +83,7 @@ end
 local M = {}
 
 --- Initializes the logs buffer.
-function M.init()
+function M.setup()
 	buffer = api.nvim_create_buf(false, false)
 
 	api.nvim_buf_set_option(buffer, "buftype", "nofile")

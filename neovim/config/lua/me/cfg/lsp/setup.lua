@@ -1,15 +1,8 @@
 local config = require("me.api.config")
 
-config.set("lsp", {
-	enabled = true,
-	denylist = {},
-	overrides = {},
-	folders = {},
-	inlay_hints = true,
-})
-
 if not config.get("lsp", "enabled") then
-	error("LSP module is disabled")
+	vim.notify("LSP functionality is disabled", vim.log.levels.WARN)
+	return true
 end
 
 local util = require("me.api.util")
