@@ -34,9 +34,6 @@
 [submodule "neovim/data/opt/nvim-colorizer.lua"]
 	path = neovim/data/pack/opt/nvim-colorizer.lua
 	url = https://github.com/norcalli/nvim-colorizer.lua
-[submodule "neovim/data/opt/nvim-lspconfig"]
-	path = neovim/data/pack/opt/nvim-lspconfig
-	url = https://github.com/neovim/nvim-lspconfig
 [submodule "neovim/data/start/lush.nvim"]
 	path = neovim/data/pack/start/lush.nvim
 	url = https://github.com/rktjmp/lush.nvim

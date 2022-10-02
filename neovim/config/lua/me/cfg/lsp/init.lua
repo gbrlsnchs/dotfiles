@@ -11,7 +11,3 @@ config.set("lsp", {
 if not config.get("lsp", "enabled") then
 	error("LSP module is disabled")
 end
-
-local util = require("me.api.util")
-
-util.packadd("nvim-lspconfig")
