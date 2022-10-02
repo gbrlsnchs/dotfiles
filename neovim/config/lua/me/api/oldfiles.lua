@@ -102,14 +102,12 @@ function M.upsert_hits(project_name)
 		return true, nil
 	end
 
-	local path = vim.fn.fnamemodify(api.nvim_buf_get_name(0), ":~:.")
-	local fname = path:make_relative()
+	local fname = vim.fn.fnamemodify(api.nvim_buf_get_name(0), ":~:.")
 
 	if
-		fname:len() == 0
-		or fname:find("^/") ~= nil
+		fname == ""
 		or not is_file_allowed(fname)
-		or path:is_dir()
+		or vim.fn.isdirectory(fname) == 1
 	then
 		return true, nil
 	end

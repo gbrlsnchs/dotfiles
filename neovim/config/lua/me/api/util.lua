@@ -1,5 +1,3 @@
-local Path = require("plenary.path")
-
 local api = vim.api
 
 local M = {}
@@ -58,9 +56,7 @@ function M.get_buf_base_dir(bufnr, default)
 	if vim.fn.isdirectory(buf_name) == 0 then
 		buf_name = vim.fn.fnamemodify(buf_name, ":h")
 	end
-	local path = Path:new(buf_name)
-
-	return path:make_relative(vim.loop.cwd())
+	return vim.fn.fnamemodify(buf_name, ":~:.")
 end
 
 --- Loads a Vim package by calling 'packadd'.
