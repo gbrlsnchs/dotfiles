@@ -1,5 +1,3 @@
-local Path = require("plenary.path")
-
 local db = require("me.api.db")
 
 local api = vim.api
@@ -27,7 +25,7 @@ local function get_builtin()
 	end, oldfiles)
 
 	oldfiles = vim.tbl_map(function(fname)
-		return Path:new(fname):make_relative(cwd)
+		return vim.fn.fnamemodify(fname, ":~:.")
 	end, oldfiles)
 
 	oldfiles = vim.tbl_filter(function(fname)
@@ -101,7 +99,7 @@ function M.upsert_hits(project_name)
 		return true, nil
 	end
 
-	local path = Path:new(api.nvim_buf_get_name(0))
+	local path = vim.fn.fnamemodify(api.nvim_buf_get_name(0), ":~:.")
 	local fname = path:make_relative()
 
 	if
