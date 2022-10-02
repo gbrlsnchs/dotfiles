@@ -8,6 +8,9 @@ local oldfiles_excludes = {
 }
 
 local function is_file_allowed(relative_path)
+	if vim.fn.filereadable(relative_path) == 0 then
+		return false
+	end
 	for _, prefix in ipairs(oldfiles_excludes) do
 		if relative_path:find("^" .. prefix) ~= nil then
 			return false
