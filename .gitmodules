@@ -16,9 +16,6 @@
 [submodule "neovim/data/start/plenary.nvim"]
 	path = neovim/data/pack/start/plenary.nvim
 	url = https://github.com/nvim-lua/plenary.nvim
-[submodule "neovim/data/opt/gitsigns.nvim"]
-	path = neovim/data/pack/opt/gitsigns.nvim
-	url = https://github.com/lewis6991/gitsigns.nvim
 [submodule "neovim/data/opt/indent-blankline.nvim"]
 	path = neovim/data/pack/opt/indent-blankline.nvim
 	url = https://github.com/lukas-reineke/indent-blankline.nvim
@@ -106,3 +103,6 @@
 [submodule "neovim/data/pack/opt/promise-async"]
 	path = neovim/data/pack/opt/promise-async
 	url = https://github.com/kevinhwang91/promise-async
+[submodule "neovim/data/pack/opt/vim-signify"]
+	path = neovim/data/pack/opt/vim-signify
+	url = https://github.com/mhinz/vim-signify

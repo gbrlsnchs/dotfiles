@@ -28,7 +28,6 @@ vim.opt.signcolumn = "auto:9"
 vim.opt.colorcolumn = ""
 vim.opt.foldlevel = 10
 vim.opt.hidden = true
-vim.opt.updatetime = 200
 vim.opt.undofile = true
 vim.opt.number = true
 vim.opt.relativenumber = true
