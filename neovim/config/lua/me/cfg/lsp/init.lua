@@ -15,4 +15,3 @@ end
 local util = require("me.api.util")
 
 util.packadd("nvim-lspconfig")
-util.packadd("null-ls.nvim")

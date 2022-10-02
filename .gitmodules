@@ -46,9 +46,6 @@
 [submodule "neovim/data/pack/opt/tree-sitter-just"]
 	path = neovim/data/pack/opt/tree-sitter-just
 	url = https://github.com/IndianBoy42/tree-sitter-just
-[submodule "neovim/data/pack/opt/null-ls.nvim"]
-	path = neovim/data/pack/opt/null-ls.nvim
-	url = https://github.com/jose-elias-alvarez/null-ls.nvim
 [submodule "neovim/data/pack/opt/nvim-pqf"]
 	path = neovim/data/pack/opt/nvim-pqf
 	url = https://gitlab.com/yorickpeterse/nvim-pqf

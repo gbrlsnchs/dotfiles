@@ -1,5 +1,4 @@
 local nvim_lspconfig = require("lspconfig")
-local null_ls = require("null-ls")
 
 local config = require("me.api.config")
 local excmd = require("me.api.excmd")
@@ -301,7 +300,7 @@ local defaults = {
 
 local filters = {
 	sumneko_lua = {
-		format = { "null-ls" },
+		format = {},
 	},
 }
 
