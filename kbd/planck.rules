@@ -1,0 +1,5 @@
+# STM32 DFU
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="0483", ATTRS{idProduct}=="df11", MODE="0660", GROUP="plugdev"
+
+# hid_listen
+KERNEL=="hidraw*", MODE="0660", GROUP="plugdev", TAG+="udev-acl"

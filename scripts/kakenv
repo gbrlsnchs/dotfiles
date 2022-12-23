@@ -1,0 +1,11 @@
+#!/bin/sh
+
+set -e
+
+vars="$(yq 'to_entries | (.[].value | select(. | type != "!!str")) |= (. | join(",")) | .[] | .key + "=\"" + .value + "\""' .kakenv | xargs --delimiter '\n')"
+
+if [ ! -z "$vars" ]; then
+	eval "export $vars"
+fi
+
+/usr/bin/kak $*

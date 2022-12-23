@@ -1,0 +1,198 @@
+add-highlighter global/ number-lines -relative -hlcursor -separator "  "
+add-highlighter global/ wrap
+
+set-option global indentwidth 0
+set-option global tabstop 4
+set-option global grepcmd "rg --vimgrep --smart-case"
+
+# Use EditorConfig.
+hook global BufCreate .* %{
+	editorconfig-load
+	autoconfigtab
+}
+
+# LSP setup.
+evaluate-commands %sh{
+	# Use local config if it exists.
+	# if [ -f kak-lsp.toml ]; then
+	# 	config="/tmp/kak-lsp/configs/$kak_session.toml"
+
+	# 	mkdir --parents "$(dirname "$config")"
+	# 	envsubst < kak-lsp.toml > "$config"
+
+	# 	lsp_config_opt="--config $config"
+	# fi
+
+	kak-lsp --kakoune -s $kak_session
+}
+
+set-option global lsp_auto_highlight_references true
+set-option global lsp_hover_anchor true
+set-option global lsp_config %sh{
+	envsubst < .kaklsp || echo ""
+}
+
+lsp-enable
+lsp-inlay-hints-enable global
+lsp-auto-signature-help-enable
+
+hook global WinSetOption filetype=.* %{
+	hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
+	hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
+	hook window -group semantic-tokens InsertIdle .* lsp-semantic-tokens
+	hook -once -always window WinSetOption filetype=.* %{
+		remove-hooks window semantic-tokens
+	}
+}
+
+map global user l %{:enter-user-mode lsp<ret>} -docstring "LSP mode"
+map global insert <tab> '<a-;>:try lsp-snippets-select-next-placeholders catch %{ execute-keys -with-hooks <lt>tab> }<ret>' -docstring 'Select next snippet placeholder'
+map global object a '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+map global object <a-a> '<a-semicolon>lsp-object<ret>' -docstring 'LSP any symbol'
+map global object e '<a-semicolon>lsp-object Function Method<ret>' -docstring 'LSP function or method'
+map global object k '<a-semicolon>lsp-object Class Interface Struct<ret>' -docstring 'LSP class interface or struct'
+map global object d '<a-semicolon>lsp-diagnostic-object --include-warnings<ret>' -docstring 'LSP errors and warnings'
+map global object D '<a-semicolon>lsp-diagnostic-object<ret>' -docstring 'LSP errors'
+
+declare-option str foot_server_path %sh{ printf "%s" "$XDG_RUNTIME_DIR/foot-kakoune-$kak_session.sock" }
+set-option global foot_normal_flags %sh{ printf "%s" "--server=$kak_opt_foot_server_path" }
+set-option global foot_panel_flags '--app-id=panel' %sh{ printf "%s" "--server=$kak_opt_foot_server_path" }
+set-option global foot_popup_flags '--app-id=popup' %sh{ printf "%s" "--server=$kak_opt_foot_server_path" }
+
+define-command start-foot-server -docstring "Start foot server for this session" %{
+	nop %sh{
+		export EDITOR="kak -c $kak_session"
+		
+		foot --server="$kak_opt_foot_server_path" > /dev/null 2>&1 < /dev/null &
+		process=$!
+		printf "%s\n" "
+		hook -once -always global KakEnd .* %{ nop %sh{ rm -rf $kak_opt_foot_server_path; kill $process } }
+		" | kak -p $kak_session
+	}
+}
+
+hook global KakBegin .* %{
+	start-foot-server
+
+	nop %sh{ mkdir --parents /tmp/kak/cmd }
+
+	nop %sh{
+		cat << 'EOF' > /tmp/kak/cmd/open
+#!/bin/sh
+
+session="$1"
+client="$2"
+bufname="$3"
+search_type="${4:-file}"
+eval_cmd="${5:-edit}"
+
+FZF_DEFAULT_COMMAND="fd --color=always --type "$search_type" --hidden --no-ignore-vcs . '$(dirname "$bufname")'" fzf \
+	| xargs -I {} echo "evaluate-commands -client $client %{ $eval_cmd '{}' }" \
+	| kak -p "$session"
+EOF
+		chmod u+x /tmp/kak/cmd/open
+	}
+
+	nop %sh{
+		db_home="$XDG_STATE_HOME/kak/db"
+
+		mkdir --parents "$db_home"
+		sqlite3 "$db_home/data.db" << EOF
+CREATE TABLE IF NOT EXISTS favorites (
+	directory TEXT NOT NULL,
+	buffer    TEXT NOT NULL,
+	PRIMARY KEY (directory, buffer)
+);
+EOF
+
+		cat << 'EOF' > /tmp/kak/cmd/favs
+#!/bin/sh
+
+session="$1"
+client="$2"
+
+sqlite3 --noheader \
+	"$XDG_STATE_HOME/kak/db/data.db" \
+	"SELECT buffer FROM favorites WHERE directory = '$PWD'" 2>/dev/null \
+	| fzf \
+	| xargs -I {} echo "eval -client $client edit '{}'" \
+	| kak -p "$session"
+EOF
+
+		chmod u+x /tmp/kak/cmd/favs
+	}
+}
+
+# Git
+hook global WinCreate .* %{ git show-diff }
+hook global BufWritePost .* %{ git update-diff }
+
+define-command set-favorite -docstring "Set buffer as favorite for the current project" %{
+	nop %sh{
+		if [ ! -f "$kak_bufname" ]; then
+			exit 1
+		fi
+
+		db_home="$XDG_STATE_HOME/kak/db"
+
+		sqlite3 "$db_home/data.db" << EOF
+INSERT INTO favorites (directory, buffer) VALUES ('$PWD', '$kak_bufname')
+	ON CONFLICT DO NOTHING;
+EOF
+ 	}
+}
+
+define-command unset-favorite -docstring "Remove buffer from project's favorites" %{
+	nop %sh{
+		db_home="$XDG_STATE_HOME/kak/db"
+
+		sqlite3 "$db_home/data.db" << EOF
+DELETE FROM favorites WHERE directory = '$PWD' AND buffer = '$kak_bufname';
+EOF
+ 	}
+}
+
+set-option global disabled_hooks .*-(insert|indent)
+hook global InsertChar \n %{
+	try %{ exec -itersel -draft ';K<a-&>' }
+}
+
+hook global WinSetOption filetype=yaml %{
+	set-option buffer indentwidth 2
+	set-option buffer softtabstop 2
+	expandtab
+}
+
+hook global BufCreate .*\.gcfg %{ set-option buffer filetype ini }
+hook global BufCreate .*\.kakenv %{ set-option buffer filetype yaml }
+hook global BufCreate .*\.kaklsp %{ set-option buffer filetype toml }
+
+# Custom commands.
+define-command find-file -docstring "Find a file using fuzzy search" %{
+	terminal-popup /tmp/kak/cmd/open %val{session} %val{client}
+}
+alias global fd find-file
+
+define-command find-directory -docstring "Find a directory using fuzzy search and write it to prompt" %{
+	terminal-popup /tmp/kak/cmd/open %val{session} %val{client} "" directory "execute-keys :edit<space>"
+}
+alias global fdd find-directory
+
+define-command find-file-relative -docstring "Find a file in current buffer's directory using fuzzy search" %{
+	terminal-popup /tmp/kak/cmd/open %val{session} %val{client} %val{bufname}
+}
+alias global fdr find-file-relative
+
+define-command find-directory-relative -docstring "Find a directory using fuzzy search and write it to prompt" %{
+	terminal-popup /tmp/kak/cmd/open %val{session} %val{client} %{bufname} directory "execute-keys :edit<space>"
+}
+alias global fdp find-directory-relative
+
+define-command find-favorites -docstring "Find favorited files" %{
+	terminal-popup /tmp/kak/cmd/favs %val{session} %val{client}
+}
+alias global fdf find-favorites
+
+map -docstring "Insert current buffer's directory" global prompt <a-/> '%sh{dirname "$kak_bufname"}<a-!>/'
+
+colorscheme custom

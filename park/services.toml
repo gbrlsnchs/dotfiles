@@ -2,38 +2,59 @@ tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP", "$HOST"]
 base_dir = "$XDG_DATA_HOME/service"
 work_dir = "$PWD/sv"
 
+###############
+### DISPLAY ###
+###############
+
+[targets.rivertile]
+tags.all_of = ["wayland", "river", "display"]
+
 [targets.fnott]
-tags.all_of = ["wayland"]
+tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
 
 [targets.wlsunset]
-tags.all_of = ["wayland"]
+tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
 
-[targets.pipewire]
+[targets.yambar-primary]
+tags.all_of = ["wayland", "ohara", "display"]
 tags.any_of = ["river"]
 
-[targets.pipewire-pulse]
-tags.any_of = ["river"]
-
-[targets.rivertile]
-tags.all_of = ["wayland", "river"]
-
-[targets.wireplumber]
-tags.all_of = ["wireplumber"]
-tags.any_of = ["river"]
-
-[targets.yambar-DP-1]
-tags.all_of = ["wayland", "yambar", "ohara"]
-tags.any_of = ["river"]
-
-[targets.yambar-HDMI-A-1]
-tags.all_of = ["wayland", "yambar", "ohara"]
+[targets.yambar-secondary]
+tags.all_of = ["wayland", "ohara", "display"]
 tags.any_of = ["river"]
 
 [targets.river-tag-overlay]
-tags.all_of = ["wayland", "river", "river-tag-overlay"]
+tags.all_of = ["wayland", "river", "display"]
+
+[targets.kanshi]
+tags.all_of = ["wayland", "display"]
+tags.any_of = ["river"]
+
+#############
+### AUDIO ###
+#############
+
+[targets.pipewire]
+tags.all_of = ["audio"]
+tags.any_of = ["river"]
+
+[targets.pipewire-pulse]
+tags.all_of = ["audio"]
+tags.any_of = ["river"]
+
+[targets.wireplumber]
+tags.all_of = ["audio"]
+tags.any_of = ["river"]
 
 [targets.wob]
-tags.all_of = ["wayland"]
+tags.all_of = ["wayland", "audio", "display"]
 tags.any_of = ["river"]
+
+#############
+### TOOLS ###
+#############
+
+[targets.footserver]
+tags.all_of = ["tools"]

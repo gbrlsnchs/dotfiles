@@ -2,5 +2,13 @@
 
 set -e
 
-qmk json2c --output "${XDG_DATA_HOME}/qmk/keyboards/planck/keymaps/${USER}/keymap.c" kbd/planck.json
+keymap_dir="$PWD/kbd/qmk_firmware/keyboards/planck/keymaps/$USER"
+
+qmk json2c --output "$keymap_dir/keymap.c" kbd/planck.json
+grep --quiet --line-regexp --fixed-strings "#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD" "$keymap_dir/config.h" \
+	|| sed --in-place '$ a#define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD' "$keymap_dir/config.h"
+grep --quiet --line-regexp --fixed-strings "CAPS_WORD_ENABLE = yes" "$keymap_dir/rules.mk" \
+	|| sed --in-place '$ aCAPS_WORD_ENABLE = yes' "$keymap_dir/rules.mk"
+grep --quiet --line-regexp --fixed-strings "#define RGBLIGHT_SLEEP" "$keymap_dir/config.h" \
+	|| sed --in-place '$ a#define RGBLIGHT_SLEEP' "$keymap_dir/config.h"
 qmk compile --clean

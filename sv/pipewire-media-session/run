@@ -1,4 +1,0 @@
-#!/bin/sh
-
-sv start "$XDG_DATA_HOME/service/pipewire" || exit 1
-exec pipewire-media-session 2>&1

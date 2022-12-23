@@ -3,22 +3,10 @@
 [user]
 	name = Gabriel Sanches
 	email = gabriel@gsr.dev
-[core]
-	editor = nvim
 [init]
 	defaultBranch = trunk
 [pull]
 	rebase = true
-[diff]
-	tool = neovim-remote
-[difftool "neovim-remote"]
-	cmd = nvr -s -d $LOCAL $REMOTE
-[merge]
-	tool = neovim-remote
-[mergetool]
-	keepBackup = false
-[mergetool "neovim-remote"]
-	cmd = nvr -s -d $LOCAL $BASE $REMOTE $MERGED -c 'wincmd J | wincmd ='
 [alias]
 	shove = push --force-with-lease
 	peek = diff --staged

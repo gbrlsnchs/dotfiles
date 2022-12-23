@@ -1,7 +1,0 @@
-import:
-  - ~/.cache/wal/alacritty_colors.yml
-
-font:
-  size: 10
-  normal:
-    family: monospace

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+url="${1:-"https://download1.rstudio.org/desktop/jammy/amd64/rstudio-2022.07.2-576-amd64.deb"}"
+version="$(basename "$url")"
+image="rstudio-ide-${version//\.deb}"
+image="${image//\./-}"
+
+echo "Building $image"
+
+podman build "$(dirname "$0")" -t "$image" -f - <<EOF
+FROM ubuntu
+ARG DEBIAN_FRONTEND=noninteractive
+ADD $url rstudio-ide.deb
+RUN echo 'deb https://cloud.r-project.org/bin/linux/ubuntu jammy-cran40/' >> /etc/apt/sources.list && \
+	apt-get update && apt-get --yes install \
+	libssl-dev libclang-dev libxkbcommon-x11-0 libsqlite3-0 libpq5 libglib2.0-0 libnss3 libatk1.0-0 libatk-bridge2.0-0 libcups2 \
+ 	libdrm2 libgtk-3-0 libgbm1 libasound2 libcurl4-openssl-dev r-base
+RUN dpkg -i rstudio-ide.deb
+EOF

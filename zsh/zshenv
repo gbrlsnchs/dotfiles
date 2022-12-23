@@ -4,9 +4,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_BIN_HOME="$HOME/.local/bin"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-path+=("$XDG_BIN_HOME")
+path=("$XDG_BIN_HOME" $path)
 
-export XDG_DATA_DIRS=/usr/local/share:/usr/share
+export XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/flatpak/exports/share
 export XDG_CONFIG_DIRS=/etc/xdg
 
 export XDG_MUSIC_DIR=$(xdg-user-dir MUSIC)
@@ -18,14 +18,9 @@ export XDG_TEMPLATES_DIR=$(xdg-user-dir TEMPLATES)
 export XDG_VIDEOS_DIR=$(xdg-user-dir VIDEOS)
 export XDG_PUBLICSHARE_DIR=$(xdg-user-dir PUBLICSHARE)
 
-export EDITOR="nvim"
-export VISUAL="nvim"
-
 export XKB_DEFAULT_LAYOUT="us,us"
 export XKB_DEFAULT_VARIANT=",intl"
 export XKB_DEFAULT_OPTIONS="grp:shift_toggle"
-
-export SXHKD_SHELL=/bin/sh
 
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 

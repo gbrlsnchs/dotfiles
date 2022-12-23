@@ -1,5 +1,0 @@
-host = irc.oftc.net
-join = #alpine-linux
-hash = 0,15
-timestamp
-cert = certs/ohara.pem

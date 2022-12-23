@@ -1,0 +1,1 @@
+/home/gbrlsnchs/.cache/dotfiles/templates/zsh/colors.zsh

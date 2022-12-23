@@ -3,11 +3,53 @@
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-alias ls='ls --color=auto'
-PS1='[\u@\h \W]\$ '
-
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_BIN_HOME="$HOME/.local/bin"
 export XDG_STATE_HOME="$HOME/.local/state"
+
+PATH="$PATH:$XDG_BIN_HOME"
+
+export XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/flatpak/exports/share
+export XDG_CONFIG_DIRS=/etc/xdg
+
+export XDG_MUSIC_DIR=$(xdg-user-dir MUSIC)
+export XDG_DESKTOP_DIR=$(xdg-user-dir DESKTOP)
+export XDG_DOCUMENTS_DIR=$(xdg-user-dir DOCUMENTS)
+export XDG_DOWNLOAD_DIR=$(xdg-user-dir DOWNLOAD)
+export XDG_PICTURES_DIR=$(xdg-user-dir PICTURES)
+export XDG_TEMPLATES_DIR=$(xdg-user-dir TEMPLATES)
+export XDG_VIDEOS_DIR=$(xdg-user-dir VIDEOS)
+export XDG_PUBLICSHARE_DIR=$(xdg-user-dir PUBLICSHARE)
+
+BLUE="\[$(tput setaf 15)\]"
+LIGHT_BLUE="\[$(tput setaf 8)\]"
+LIGHT_RED="\[$(tput setaf 9)\]"
+BOLD="\[$(tput bold)\]"
+ITALIC="\[$(tput sitm)\]"
+RESET="\[$(tput sgr0)\]"
+
+alias ls='ls --color=auto'
+
+_exit_status() {
+	if [[ $? == 0 ]]; then
+		echo "$(tput setaf 10)○$(tput sgr0)"
+	else
+		echo "$(tput setaf 9)×$(tput sgr0)"
+	fi
+}
+
+_git_branch() {
+	(git symbolic-ref HEAD 2> /dev/null \
+		| sed --expression "s/^refs\/heads\///" \
+		| xargs -I {} echo ":{}") \
+		|| ""
+}
+
+kana_name="$(kana --katakana "$HOSTNAME")"
+PS1="\$(_exit_status) ${BLUE}${BOLD}\u@$kana_name${RESET} ${LIGHT_BLUE}${ITALIC}\W\$(_git_branch)${RESET}> "
+
+source /usr/share/fzf/key-bindings.bash
+#source "$XDG_DATA_HOME/bash/fzf-tab-completion/bash/fzf-bash-completion.sh"
+#bind -x '"\t": fzf_bash_completion'

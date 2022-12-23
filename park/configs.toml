@@ -1,116 +1,112 @@
 tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
 base_dir = "$XDG_CONFIG_HOME"
 
-# Xorg only
-[targets.bspwm]
-tags.all_of = ["x11", "bspwm"]
-
-[targets.sxhkd]
-tags.all_of = ["x11", "bspwm"]
-
-[targets.picom]
-tags.all_of = ["x11"]
-tags.any_of = ["bspwm"]
-
-[targets.polybar]
-tags.all_of = ["x11"]
-tags.any_of = ["bspwm"]
-
-[targets.alacritty]
-tags.all_of = ["x11"]
-
-[targets."xorg/xinitrc"]
+[targets."bash/bashrc"]
 link.base_dir = "$HOME"
-link.name = ".xinitrc"
-tags.all_of = ["x11"]
+link.name = ".bashrc"
+tags.all_of = ["bootstrap"]
 
-[targets."xorg/xserverrc"]
-link.base_dir = "$HOME"
-link.name = ".xserverrc"
-tags.all_of = ["x11"]
+#############
+### AUDIO ###
+#############
 
-# Wayland only
-[targets."foot/config"]
-tags.all_of = ["wayland"]
+[targets.pipewire]
+tags.all_of = ["audio"]
+
+###############
+### DISPLAY ###
+###############
+
+[targets."river"]
+tags.all_of = ["wayland", "river", "display"]
+
+[targets.kanshi]
+tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
-link.name = "foot"
 
-[targets."fnott/config"]
-tags.all_of = ["wayland"]
+[targets."fnott"]
+tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
-link.name = "fnott"
 
-[targets."river/config"]
-link.name = "river"
-tags.all_of = ["wayland", "river"]
-
-[targets."yambar/config"]
-tags.all_of = ["wayland"]
+[targets."yambar"]
+tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
-link.name = "yambar"
 
-[targets."waylock/config"]
-tags.all_of = ["wayland"]
+[targets."xdg/desktop-portal-wlr"]
+tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
-link.name = "waylock"
+link.name = "xdg-desktop-portal-wlr"
 
-# Others
-[targets."neovim/config"]
-link.name = "nvim"
+[targets.fontconfig]
+tags.all_of = ["display"]
+tags.any_of = ["river"]
+
+#############
+### TOOLS ###
+#############
+
+[targets.kakoune]
+link.name = "kak"
+tags.all_of = ["tools"]
+
+[targets.kak-lsp]
+tags.all_of = ["tools"]
+
+[targets."foot"]
+tags.all_of = ["wayland", "tools"]
+tags.any_of = ["river"]
 
 [targets."latex/latexmkrc"]
 link.base_dir = "$HOME"
 link.name = ".latexmkrc"
-
-[targets."dunst/config"]
-link.name = "dunst"
-tags.any_of = ["bspwm"]
-
-# Service manager
-[targets.systemd]
-tags.all_of = ["systemd"]
-
-# Others
-[targets."zsh/config/zshrc"]
-link.name = ".zshrc"
-link.base_dir = "$ZDOTDIR"
-tags.all_of = ["zsh"]
-
-[targets."zsh/config/functions"]
-link.base_dir = "$ZDOTDIR"
-tags.all_of = ["zsh"]
-
-[targets."zsh/config/zsh.d"]
-
-[targets."zsh/zshenv"]
-link.base_dir = "$HOME"
-link.name = ".zshenv"
-
-[targets.fontconfig]
-tags.any_of = ["bspwm", "river"]
-
-[targets.git]
+tags.all_of = ["tools"]
 
 [targets."cargo/config.toml"]
 link.base_dir = "$HOME/.cargo"
-tags.all_of = ["cargo"]
-
-[targets."xdg/user-dirs.dirs"]
-
-[targets."xdg/desktop-portal-wlr"]
-tags.all_of = ["wayland"]
-tags.any_of = ["river"]
-link.name = "xdg-desktop-portal-wlr"
-
-[targets.pipewire]
+tags.all_of = ["cargo", "tools"]
 
 [targets."sqlite/sqliterc"]
 link.base_dir = "$HOME"
 link.name = ".sqliterc"
-
-[targets.tiny]
-
-[targets."catgirl/config"]
-link.name = "catgirl"
+tags.all_of = ["tools"]
 
 [targets.zathura]
+tags.all_of = ["tools"]
+
+[targets.git]
+tags.all_of = ["tools"]
+
+[targets."zsh/zshenv"]
+link.base_dir = "$HOME"
+link.name = ".zshenv"
+tags.all_of = ["tools"]
+
+[targets."zsh/zshrc"]
+link.name = ".zshrc"
+link.base_dir = "$ZDOTDIR"
+tags.all_of = ["tools"]
+
+[targets."zsh/functions"]
+link.base_dir = "$ZDOTDIR"
+tags.all_of = ["tools"]
+
+[targets."zsh/zshrc.d"]
+link.base_dir = "$ZDOTDIR"
+link.name = ".zshrc.d"
+tags.all_of = ["tools"]
+
+[targets."zsh/data"]
+link.base_dir = "$XDG_DATA_HOME"
+link.name = "zsh"
+tags.all_of = ["tools"]
+
+############
+### MISC ###
+############
+
+[targets."waylock"]
+tags.all_of = ["wayland", "misc"]
+tags.any_of = ["river"]
+
+[targets."xdg/user-dirs.dirs"]
+tags.all_of = ["misc"]

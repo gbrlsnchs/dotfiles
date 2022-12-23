@@ -1,0 +1,11 @@
+#!/bin/sh
+
+read -r -d '' config <<'EOF'
+Steam: flatpak run com.valvesoftware.Steam
+Discord: flatpak run com.discordapp.Discord
+Firefox: firefox
+Foot: footclient
+EOF
+
+program="$(echo "$config" | sort | yq 'keys | .[]' | dmenu)"
+echo "$config" | yq ."$program" | xargs -I {} riverctl spawn '{}'

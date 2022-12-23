@@ -1,39 +1,48 @@
-tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
 base_dir = "$XDG_BIN_HOME"
 work_dir = "$PWD/scripts"
+tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
 
-[targets.riverstart]
-tags.all_of = ["wayland", "river"]
-
-[targets.steamstart]
-tags.all_of = ["firejail"]
-
-[targets.dmenu]
-tags.any_of = ["river"]
-
-[targets.printscreen]
-tags.any_of = ["river"]
-
-[targets.printsnip]
-tags.any_of = ["river"]
-
-[targets.screenstart]
-tags.all_of = ["wayland"]
-tags.any_of = ["river"]
-
-[targets.minestart]
-tags.all_of = ["firejail"]
-
-[targets.incvol]
-tags.all_of = ["wayland"]
-tags.any_of = ["river"]
+#############
+### AUDIO ###
+#############
 
 [targets.decvol]
-tags.all_of = ["wayland"]
-tags.any_of = ["river"]
+tags.all_of = ["audio"]
+
+[targets.incvol]
+tags.all_of = ["audio"]
 
 [targets.mutevol]
-tags.all_of = ["wayland"]
-tags.any_of = ["river"]
+tags.all_of = ["audio"]
+
+############
+### MISC ###
+############
 
 [targets.doasedit]
+tags.all_of = ["misc"]
+
+[targets.fuzzy]
+tags.all_of = ["misc"]
+
+[targets.printscreen]
+tags.all_of = ["misc"]
+
+[targets.printsnip]
+tags.all_of = ["misc"]
+
+###############
+### DISPLAY ###
+###############
+
+[targets.riverinit]
+link.name = "river"
+tags.all_of = ["wayland", "river", "display"]
+
+#############
+### TOOLS ###
+#############
+
+[targets.kakenv]
+tags.all_of = ["tools"]
+link.name = "kak"

@@ -1,41 +1,49 @@
 tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
 base_dir = ""
-work_dir = "$XDG_CACHE_HOME/dotfiles"
+work_dir = "$XDG_CACHE_HOME/dotfiles/templates"
 
-[targets."dunst/dunstrc"]
-tags.all_of = ["x11"]
-tags.any_of = ["bspwm"]
-link.base_dir = "$PWD/dunst/config"
-
-[targets."foot/foot.ini"]
-tags.all_of = ["wayland"]
-tags.any_of = ["river"]
-link.base_dir = "$PWD/foot/config"
+###############
+### DISPLAY ###
+###############
 
 [targets."fnott/fnott.ini"]
-tags.all_of = ["wayland"]
+link.base_dir = "$PWD/fnott"
+tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
-link.base_dir = "$PWD/fnott/config"
 
-[targets."yambar/ultrawide.yml"]
-tags.all_of = ["wayland"]
+[targets."yambar/primary.yml"]
+link.base_dir = "$PWD/yambar"
+tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
-link.base_dir = "$PWD/yambar/config"
 
-[targets."yambar/portable.yml"]
-tags.all_of = ["wayland"]
+[targets."yambar/secondary.yml"]
+link.base_dir = "$PWD/yambar"
+tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
-link.base_dir = "$PWD/yambar/config"
 
 [targets."river/theme"]
-tags.all_of = ["wayland", "river"]
-link.base_dir = "$PWD/river/config"
+link.base_dir = "$PWD/river/init.d"
+tags.all_of = ["wayland", "river", "display"]
 
-[targets."waylock/waylock.toml"]
-tags.all_of = ["wayland"]
+#############
+### TOOLS ###
+#############
+
+[targets."foot/foot.ini"]
+link.base_dir = "$PWD/foot"
+tags.all_of = ["wayland", "tools"]
 tags.any_of = ["river"]
-link.base_dir = "$PWD/waylock/config"
 
 [targets."zsh/colors.zsh"]
-link.base_dir = "$PWD/zsh/config/zsh.d"
+link.base_dir = "$ZDOTDIR/.zshrc.d"
 link.name = "00-colors.zsh"
+tags.all_of = ["tools"]
+
+############
+### MISC ###
+############
+
+[targets."waylock/waylock.toml"]
+tags.all_of = ["wayland", "misc"]
+tags.any_of = ["river"]
+link.base_dir = "$PWD/waylock"

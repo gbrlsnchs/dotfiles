@@ -1,7 +1,0 @@
-tags = ["$XDG_SESSION_TYPE", "$HOST"]
-base_dir = "/etc/xbps.d"
-
-[targets."xbps/void-gsr-dev.conf"]
-tags.all_of = ["wayland"]
-tags.any_of = ["ohara"]
-link.name = "10-void-gsr-dev.conf"

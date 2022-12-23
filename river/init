@@ -1,0 +1,150 @@
+#!/bin/sh
+
+# Programs.
+riverctl map normal Super Space spawn fuzzy
+
+# Notifications.
+riverctl map normal Super Grave spawn "fnottctl actions"
+riverctl map normal Super+Shift Grave spawn "fnottctl dismiss"
+riverctl map normal Super+Shift+Control Grave spawn "fnottctl dismiss all"
+
+# Keybindings.
+riverctl map normal Super+Shift Q close
+riverctl map normal Super+Shift E spawn "pkill runsv && riverctl exit"
+riverctl map normal Super J focus-view next
+riverctl map normal Super K focus-view previous
+riverctl map normal Super+Shift J swap next
+riverctl map normal Super+Shift K swap previous
+
+riverctl map normal Super Period focus-output next
+riverctl map normal Super Comma focus-output previous
+riverctl map normal Super+Shift Period send-to-output next
+riverctl map normal Super+Shift Comma send-to-output previous
+
+# Mod+Z to bump the focused view to the top of the layout stack
+riverctl map normal Super Z zoom
+
+# Mod+H and Mod+L to decrease/increase the main ratio of rivertile(1)
+riverctl map normal Super H send-layout-cmd rivertile "main-ratio +0.05"
+riverctl map normal Super L send-layout-cmd rivertile "main-ratio -0.05"
+
+# Mod+Shift+H and Mod+Shift+L to increment/decrement the main count of rivertile(1)
+riverctl map normal Super Up send-layout-cmd rivertile "main-count +1"
+riverctl map normal Super Down send-layout-cmd rivertile "main-count -1"
+riverctl map normal Super Left send-layout-cmd rivertile "main-count 1"
+
+# Mod+{Up,Right,Down,Left} to change layout orientation
+riverctl map normal Super+Shift L send-layout-cmd rivertile "main-location right"
+riverctl map normal Super+Shift H send-layout-cmd rivertile "main-location top"
+
+# Mod+Alt+{H,J,K,L} to move views
+riverctl map normal Super+Mod1 H move left 100
+riverctl map normal Super+Mod1 J move down 100
+riverctl map normal Super+Mod1 K move up 100
+riverctl map normal Super+Mod1 L move right 100
+
+# Mod+Alt+Control+{H,J,K,L} to snap views to screen edges
+riverctl map normal Super+Mod1+Control H snap left
+riverctl map normal Super+Mod1+Control J snap down
+riverctl map normal Super+Mod1+Control K snap up
+riverctl map normal Super+Mod1+Control L snap right
+
+# Mod+Alt+Shif+{H,J,K,L} to resize views
+riverctl map normal Super+Mod1+Shift H resize horizontal -100
+riverctl map normal Super+Mod1+Shift J resize vertical 100
+riverctl map normal Super+Mod1+Shift K resize vertical -100
+riverctl map normal Super+Mod1+Shift L resize horizontal 100
+
+# Mod + Left Mouse Button to move views
+riverctl map-pointer normal Super BTN_LEFT move-view
+
+# Mod + Right Mouse Button to resize views
+riverctl map-pointer normal Super BTN_RIGHT resize-view
+
+all_tags=$(((1 << 32) - 1))
+sticky_tag=$((1 << 31))
+
+# riverctl map normal Super S toggle-view-tags $sticky_tag
+# riverctl spawn-tagmask $(($all_tags ^ $sticky_tag))
+riverctl spawn-tagmask $(($all_tags))
+
+for i in $(seq 1 9)
+do
+    tags=$((1 << ($i - 1)))
+
+    # Mod+[1-9] to focus tag [0-8]
+	# riverctl map normal Super $i set-focused-tags $(($tags + $sticky_tag))
+	riverctl map normal Super $i set-focused-tags $(($tags))
+
+    # Mod+Shift+[1-9] to tag focused view with tag [0-8]
+    riverctl map normal Super+Shift $i set-view-tags $tags
+
+    # Mod+Ctrl+[1-9] to toggle focus of tag [0-8]
+    riverctl map normal Super+Control $i toggle-focused-tags $tags
+
+    # Mod+Shift+Ctrl+[1-9] to toggle tag [0-8] of focused view
+    riverctl map normal Super+Shift+Control $i toggle-view-tags $tags
+done
+
+# Mod+0 to focus all tags
+# Mod+Shift+0 to tag focused view with all tags
+riverctl map normal Super 0 set-focused-tags $all_tags
+riverctl map normal Super+Shift 0 set-view-tags $all_tags
+
+riverctl map normal Super Tab focus-previous-tags
+
+riverctl map normal Super F toggle-float
+riverctl map normal Super+Shift F toggle-fullscreen
+
+# Declare a passthrough mode. This mode has only a single mapping to return to
+# normal mode. This makes it useful for testing a nested wayland compositor
+riverctl declare-mode passthrough
+
+# Mod+F11 to enter passthrough mode
+riverctl map normal Super F11 enter-mode passthrough
+
+# Mod+F11 to return to normal mode
+riverctl map passthrough Super F11 enter-mode normal
+
+# Media keys
+for mode in normal locked; do
+    riverctl map $mode None XF86AudioRaiseVolume  spawn incvol
+    riverctl map $mode None XF86AudioLowerVolume  spawn decvol
+    riverctl map $mode None XF86AudioMute         spawn mutevol
+done
+
+riverctl map normal None Print spawn printscreen
+riverctl map normal Shift Print spawn printsnip
+
+# Set background and border color
+riverctl background-color "0x$BG_COLOR"
+riverctl border-color-focused "0x$COLOR_1"
+riverctl border-color-unfocused "0x$COLOR_0"
+
+initd="$XDG_CONFIG_HOME/river/init.d"
+if [ -d "$initd" ]; then
+	for script in "$initd"/*; do
+		"$script"
+	done
+fi
+
+# Set keyboard repeat rate
+riverctl set-repeat 50 300
+
+# Make certain views start floating
+riverctl float-filter-add app-id dmenu
+riverctl float-filter-add app-id popup
+riverctl float-filter-add title "dmenu"
+riverctl float-filter-add title " - Sharing Indicator"
+
+# Set app-ids and titles of views which should use client side decorations
+riverctl csd-filter-add app-id "gedit"
+
+# Set and exec into the default layout generator, rivertile.
+# River will send the process group of the init executable SIGTERM on exit.
+riverctl default-layout rivertile
+
+dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP FZF_DEFAULT_OPTS
+xdg-user-dirs-update
+
+exec runsvdir -P "$SVDIR"

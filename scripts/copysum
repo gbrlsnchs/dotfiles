@@ -1,3 +1,0 @@
-#!/bin/sh
-
-curl -sL $1 | sha256sum | awk '{print $1}' | xargs echo -ne | xclip -selection clipboard

@@ -1,3 +1,0 @@
-#!/bin/sh
-
-exec yambar --config="$XDG_CONFIG_HOME/yambar/portable.yml" 2>&1

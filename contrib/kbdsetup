@@ -4,10 +4,7 @@ SUDO="${1:-doas}"
 
 set -e
 
-qmk_home="${XDG_DATA_HOME}/qmk"
-
-qmk setup -H "$qmk_home"
+qmk setup -H "${PWD}/kbd/qmk_firmware"
 qmk config user.keyboard=planck/rev6_drop
 qmk config user.keymap="$USER"
 qmk new-keymap
-$SUDO cp "${qmk_home}/util/udev/50-qmk.rules" /etc/udev/rules.d/

@@ -1,3 +1,4 @@
 [screencast]
 chooser_type=dmenu
 chooser_cmd=dmenu
+max_fps=60

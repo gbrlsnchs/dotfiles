@@ -1,4 +1,4 @@
 #!/bin/sh
 
-sv start "$XDG_DATA_HOME/service/pipewire" || exit 1
+sv start pipewire || exit 1
 exec pipewire-pulse 2>&1

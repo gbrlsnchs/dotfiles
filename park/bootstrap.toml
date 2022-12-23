@@ -1,4 +1,0 @@
-base_dir = "$HOME"
-
-[targets."bash/bashrc"]
-link.name = ".bashrc"

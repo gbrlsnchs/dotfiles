@@ -1,6 +1,0 @@
-host = irc.libera.chat
-join = #foot,#neovim,#river,#voidlinux,#zig
-hash = 0,15
-timestamp
-cert = certs/ohara.pem
-sasl-external

@@ -1,0 +1,3 @@
+#!/bin/sh
+
+exec yambar --config="$XDG_CONFIG_HOME/yambar/primary.yml" 2>&1

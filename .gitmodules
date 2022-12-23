@@ -7,93 +7,18 @@
 [submodule "zsh/data/plugins/zsh-completions"]
 	path = zsh/data/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions
-[submodule "neovim/data/start/vim-dirvish"]
-	path = neovim/data/pack/start/vim-dirvish
-	url = https://github.com/justinmk/vim-dirvish
-[submodule "neovim/data/start/editorconfig.nvim"]
-	path = neovim/data/pack/start/editorconfig.nvim
-	url = https://github.com/gpanders/editorconfig.nvim
-[submodule "neovim/data/opt/indent-blankline.nvim"]
-	path = neovim/data/pack/opt/indent-blankline.nvim
-	url = https://github.com/lukas-reineke/indent-blankline.nvim
-[submodule "neovim/data/opt/spellsitter.nvim"]
-	path = neovim/data/pack/opt/spellsitter.nvim
-	url = https://github.com/lewis6991/spellsitter.nvim
-[submodule "neovim/data/opt/nvim-ts-autotag"]
-	path = neovim/data/pack/opt/nvim-ts-autotag
-	url = https://github.com/windwp/nvim-ts-autotag
-[submodule "neovim/data/opt/nvim-ts-rainbow"]
-	path = neovim/data/pack/opt/nvim-ts-rainbow
-	url = https://github.com/p00f/nvim-ts-rainbow
-[submodule "neovim/data/opt/nvim-ts-context-commentstring"]
-	path = neovim/data/pack/opt/nvim-ts-context-commentstring
-	url = https://github.com/JoosepAlviste/nvim-ts-context-commentstring
-[submodule "neovim/data/opt/nvim-treesitter"]
-	path = neovim/data/pack/opt/nvim-treesitter
-	url = https://github.com/nvim-treesitter/nvim-treesitter
-[submodule "neovim/data/opt/nvim-colorizer.lua"]
-	path = neovim/data/pack/opt/nvim-colorizer.lua
-	url = https://github.com/norcalli/nvim-colorizer.lua
-[submodule "neovim/data/start/lush.nvim"]
-	path = neovim/data/pack/start/lush.nvim
-	url = https://github.com/rktjmp/lush.nvim
-[submodule "neovim/data/start/sqlite.lua"]
-	path = neovim/data/start/sqlite.lua
-	url = https://github.com/tami5/sqlite.lua
-[submodule "neovim/data/pack/opt/tree-sitter-just"]
-	path = neovim/data/pack/opt/tree-sitter-just
-	url = https://github.com/IndianBoy42/tree-sitter-just
-[submodule "neovim/data/pack/opt/nvim-pqf"]
-	path = neovim/data/pack/opt/nvim-pqf
-	url = https://gitlab.com/yorickpeterse/nvim-pqf
-[submodule "neovim/data/pack/start/winpick.nvim"]
-	path = neovim/data/pack/start/winpick.nvim
-	url = https://github.com/gbrlsnchs/winpick.nvim
-[submodule "neovim/data/pack/start/vim-commentary"]
-	path = neovim/data/pack/start/vim-commentary
-	url = https://github.com/tpope/vim-commentary
-[submodule "neovim/data/pack/opt/nvim-cmp"]
-	path = neovim/data/pack/opt/nvim-cmp
-	url = https://github.com/hrsh7th/nvim-cmp
-[submodule "neovim/data/pack/opt/cmp-nvim-lsp"]
-	path = neovim/data/pack/opt/cmp-nvim-lsp
-	url = https://github.com/hrsh7th/cmp-nvim-lsp
-[submodule "neovim/data/pack/opt/cmp-buffer"]
-	path = neovim/data/pack/opt/cmp-buffer
-	url = https://github.com/hrsh7th/cmp-buffer
-[submodule "neovim/data/pack/opt/cmp-path"]
-	path = neovim/data/pack/opt/cmp-path
-	url = https://github.com/hrsh7th/cmp-path
-[submodule "neovim/data/pack/opt/cmp-cmdline"]
-	path = neovim/data/pack/opt/cmp-cmdline
-	url = https://github.com/hrsh7th/cmp-cmdline
-[submodule "neovim/data/pack/opt/nvim-treesitter-context"]
-	path = neovim/data/pack/opt/nvim-treesitter-context
-	url = https://github.com/nvim-treesitter/nvim-treesitter-context
-[submodule "neovim/data/pack/opt/nvim-treesitter-textobjects"]
-	path = neovim/data/pack/opt/nvim-treesitter-textobjects
-	url = https://github.com/nvim-treesitter/nvim-treesitter-textobjects
-[submodule "neovim/data/pack/start/vim-bunlink"]
-	path = neovim/data/pack/start/vim-bunlink
-	url = https://github.com/orlp/vim-bunlink
-[submodule "neovim/data/pack/opt/LuaSnip"]
-	path = neovim/data/pack/opt/LuaSnip
-	url = https://github.com/L3MON4D3/LuaSnip
-[submodule "neovim/data/pack/opt/cmp_luasnip"]
-	path = neovim/data/pack/opt/cmp_luasnip
-	url = https://github.com/saadparwaiz1/cmp_luasnip
-[submodule "neovim/data/pack/opt/lsp-inlayhints.nvim"]
-	path = neovim/data/pack/opt/lsp-inlayhints.nvim
-	url = https://github.com/lvimuser/lsp-inlayhints.nvim
-[submodule "neovim/data/pack/opt/float-preview.nvim"]
-	path = neovim/data/pack/opt/float-preview.nvim
-	url = https://github.com/ncm2/float-preview.nvim
-[submodule "neovim/data/pack/opt/nvim-ufo"]
-	path = neovim/data/pack/opt/nvim-ufo
-	url = https://github.com/kevinhwang91/nvim-ufo
-[submodule "neovim/data/pack/opt/promise-async"]
-	path = neovim/data/pack/opt/promise-async
-	url = https://github.com/kevinhwang91/promise-async
-[submodule "neovim/data/pack/opt/vim-signify"]
-	path = neovim/data/pack/opt/vim-signify
-	url = https://github.com/mhinz/vim-signify
+[submodule "kakoune/autoload/rc/foot.kak"]
+	path = kakoune/autoload/rc/foot.kak
+	url = https://github.com/kkga/foot.kak
+[submodule "kakoune/autoload/rc/pmanage.kak"]
+	path = kakoune/autoload/rc/pmanage.kak
+	url = https://gitlab.com/andreyorst/pmanage.kak
+[submodule "kakoune/autoload/rc/smarttab.kak"]
+	path = kakoune/autoload/rc/smarttab.kak
+	url = https://github.com/andreyorst/smarttab.kak
+[submodule "kakoune/autoload/rc/kakoune-find"]
+	path = kakoune/autoload/rc/kakoune-find
+	url = https://github.com/occivink/kakoune-find
+[submodule "kbd/qmk_firmware"]
+	path = kbd/qmk_firmware
+	url = https://github.com/qmk/qmk_firmware
