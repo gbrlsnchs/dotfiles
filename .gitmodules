@@ -12,7 +12,7 @@
 	url = https://github.com/kkga/foot.kak
 [submodule "kakoune/autoload/rc/pmanage.kak"]
 	path = kakoune/autoload/rc/pmanage.kak
-	url = https://gitlab.com/andreyorst/pmanage.kak
+	url = https://github.com/andreyorst/pmanage.kak
 [submodule "kakoune/autoload/rc/smarttab.kak"]
 	path = kakoune/autoload/rc/smarttab.kak
 	url = https://github.com/andreyorst/smarttab.kak
