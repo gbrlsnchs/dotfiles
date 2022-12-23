@@ -2,9 +2,7 @@ local config = require("me.api.config")
 
 config.set("lsp", {
 	enabled = true,
-	denylist = {},
-	overrides = {},
-	folders = {},
+	servers = {},
 	inlay_hints = true,
 })
 

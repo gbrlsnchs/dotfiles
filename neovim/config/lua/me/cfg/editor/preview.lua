@@ -1,6 +1,6 @@
 local config = require("me.api.config")
 
-if not config.get("editor", "preview") then
+if not config.get("editor", "preview") or config.get("editor", "autocompletion") then
 	return
 end
 

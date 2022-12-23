@@ -3,3 +3,5 @@
 vim.opt_local.bufhidden = "wipe"
 vim.opt_local.number = true
 vim.opt_local.relativenumber = true
+
+vim.cmd.Man({ bang = true })

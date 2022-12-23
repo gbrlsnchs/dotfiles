@@ -206,8 +206,8 @@ vim.ui.select = function(items, opts, on_choice)
 		sink = callback,
 		options = table.concat(args, " "),
 		window = {
-			width = 0.8,
-			height = 0.5,
+			width = 0.5,
+			height = 0.4,
 			yoffset = 0.1,
 		},
 	})

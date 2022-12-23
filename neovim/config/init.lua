@@ -42,6 +42,7 @@ local modprobe = {
 				quickfix = true,
 				filetypes = true,
 				treesitter = true,
+				autocompl = true,
 			},
 		},
 	},

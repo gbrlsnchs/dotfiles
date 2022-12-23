@@ -62,3 +62,5 @@ excmd.register("Utils", {
 		},
 	},
 })
+
+vim.keymap.set("t", "<S-Space>", "<Space>")

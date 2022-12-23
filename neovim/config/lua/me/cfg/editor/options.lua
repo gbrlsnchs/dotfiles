@@ -15,7 +15,7 @@ vim.opt.guicursor = ""
 vim.opt.cursorline = true
 vim.opt.cursorlineopt = "number"
 vim.opt.virtualedit = "block"
-vim.opt.list = true
+vim.opt.list = false
 vim.opt.listchars = {
 	tab = "›››",
 	eol = "˜",
@@ -37,9 +37,13 @@ vim.opt.splitbelow = true
 vim.opt.completeopt = { "menu", "menuone", "noinsert", "noselect" }
 vim.opt.pumheight = 10
 vim.opt.makeprg = opts.makeprg
-
 vim.opt.termguicolors = true
-if vim.env.TERM ~= "" then
+vim.opt.wildmenu = false
+
+if vim.env.TERM ~= "linux" then
 	vim.opt.background = "light"
-	vim.cmd("colorscheme me")
+	vim.cmd.colorscheme("me")
 end
+
+vim.opt.swapfile = false
+vim.g.mapleader = ","

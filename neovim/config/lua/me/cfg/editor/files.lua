@@ -71,7 +71,7 @@ end
 --- Finds a file relative to 'base_dir'.
 --- @param base_dir string: Base directory for the search.
 local function find(base_dir)
-	if not base_dir or (base_dir and base_dir:len() == 0) then
+	if type(base_dir) ~= "string" or base_dir:len() == 0 then
 		base_dir = "./"
 	end
 

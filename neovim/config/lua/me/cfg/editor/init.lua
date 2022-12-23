@@ -6,7 +6,8 @@ local api = vim.api
 
 config.set("editor", {
 	cfilter = true,
-	preview = true,
+	autocompletion = true,
+	preview = false,
 	folding = true,
 	colorizer = true,
 	indent_guides = true,

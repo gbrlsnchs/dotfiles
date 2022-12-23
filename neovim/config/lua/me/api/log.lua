@@ -1,3 +1,4 @@
+local config = require("me.api.config")
 local win = require("me.api.win")
 
 local api = vim.api
@@ -14,7 +15,12 @@ local unread_severity = 0
 local function notify(msg, level)
 	local now = os.date("%d/%m/%Y %H:%M:%S")
 
+	log_level = config.get("log_level") or log_levels.INFO
 	level = level or log_levels.INFO
+
+	if level < log_level then
+		return
+	end
 
 	local index = -1
 	if first_write then

@@ -3,7 +3,7 @@ local loop = vim.loop
 local M = {}
 
 local function handle(tbl)
-	return function(err, data)
+	return vim.schedule_wrap(function(err, data)
 		if err then
 			vim.notify(err, vim.log.levels.ERROR)
 			return
@@ -15,7 +15,7 @@ local function handle(tbl)
 				table.insert(tbl, l)
 			end
 		end
-	end
+	end)
 end
 
 --- Executes a non-interactive program and pass response to a callback.
