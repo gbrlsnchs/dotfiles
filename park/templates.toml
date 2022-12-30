@@ -47,3 +47,7 @@ tags.all_of = ["tools"]
 tags.all_of = ["wayland", "misc"]
 tags.any_of = ["river"]
 link.base_dir = "$PWD/waylock"
+
+[targets."gtk/settings.ini"]
+tags.all_of = ["misc"]
+link.base_dir = "$PWD/gtk"
