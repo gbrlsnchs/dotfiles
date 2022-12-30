@@ -28,7 +28,7 @@ MONITOR2_W="${MONITOR1:-1920}"
 MONITOR2_H="${MONITOR1:-1080}"
 MONITOR2_POS="${MONITOR2:-320,1080}"
 
-CURSOR_THEME="${CURSOR_THEME:-simp1e-cursors-dark}"
+CURSOR_THEME="${CURSOR_THEME:-Neutral_Plus}"
 WALLPAPER="$(xdg-user-dir PICTURES)/wallpaper.png"
 
 # Clean directories first.
