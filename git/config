@@ -20,4 +20,4 @@
 	stem = rebase --autostash
 	mirror = push --mirror mirror
 [include]
-	path = custom/config
+	path = config.d/unlisted
