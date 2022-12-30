@@ -4,6 +4,8 @@ fnott/fnott.ini
 
 foot/foot.ini
 
+gtk/settings.ini
+
 river/init.d
 
 ssh/config.d/unlisted
