@@ -2,8 +2,17 @@
 
 # Wayland compatibility layer
 export XDG_SESSION_TYPE=wayland
-export XDG_CURRENT_DESKTOP="$wm"
+export XDG_CURRENT_DESKTOP="river"
 export GDK_BACKEND=wayland
 export MOZ_ENABLE_WAYLAND=1
 
-exec dbus-launch --sh-syntax --exit-with-session -- ssh-agent /usr/bin/river
+if [ -z "$XDG_RUNTIME_DIR" ]; then
+	export XDG_RUNTIME_DIR=/tmp/runtime-dir-${UID}
+
+	if [ ! -d "$XDG_RUNTIME_DIR" ]; then
+		mkdir "$XDG_RUNTIME_DIR"
+		chmod 0700 "$XDG_RUNTIME_DIR"
+	fi
+fi
+
+exec dbus-run-session -- ssh-agent /usr/bin/river
