@@ -110,3 +110,10 @@ tags.any_of = ["river"]
 
 [targets."xdg/user-dirs.dirs"]
 tags.all_of = ["misc"]
+
+[targets.gtk]
+link.name = "gtk-3.0"
+tags.all_of = ["misc"]
+
+[targets.firejail]
+tags.all_of = ["misc"]
