@@ -1,10 +1,11 @@
 #!/bin/sh
 
 read -r -d '' config <<'EOF'
-Steam: flatpak run com.valvesoftware.Steam
-Discord: flatpak run com.discordapp.Discord
+Steam: steam
+Discord: discord
 Firefox: firefox
 Foot: footclient
+Lutris: lutris
 EOF
 
 program="$(echo "$config" | sort | yq 'keys | .[]' | dmenu)"
