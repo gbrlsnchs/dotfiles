@@ -18,11 +18,11 @@ tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
 
 [targets.yambar-primary]
-tags.all_of = ["wayland", "ohara", "display"]
+tags.all_of = ["wayland", "egguheddo", "display"]
 tags.any_of = ["river"]
 
 [targets.yambar-secondary]
-tags.all_of = ["wayland", "ohara", "display"]
+tags.all_of = ["wayland", "egguheddo", "display"]
 tags.any_of = ["river"]
 
 [targets.river-tag-overlay]
@@ -49,7 +49,7 @@ tags.all_of = ["audio"]
 tags.any_of = ["river"]
 
 [targets.wob]
-tags.all_of = ["wayland", "audio", "display"]
+tags.all_of = ["wayland", "audio"]
 tags.any_of = ["river"]
 
 #############
