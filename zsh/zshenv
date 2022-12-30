@@ -4,8 +4,6 @@ export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_BIN_HOME="$HOME/.local/bin"
 export XDG_STATE_HOME="$HOME/.local/state"
 
-path=("$XDG_BIN_HOME" $path)
-
 export XDG_DATA_DIRS=/usr/local/share:/usr/share:/var/lib/flatpak/exports/share
 export XDG_CONFIG_DIRS=/etc/xdg
 
