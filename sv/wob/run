@@ -4,4 +4,4 @@ wobsock="$XDG_RUNTIME_DIR/wob.sock"
 
 rm -f "$wobsock" && mkfifo "$wobsock"
 exec tail -f "$wobsock" \
-	| wob --border-color="#${FG_COLOR}ff" --background-color="#${BG_COLOR}ff" --bar-color="#${FG_COLOR}ff" 2>&1
+	| wob "#${FG_COLOR}ff" "#${BG_COLOR}ff" "#${FG_COLOR}ff" 2>&1
