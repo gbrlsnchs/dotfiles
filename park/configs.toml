@@ -17,18 +17,18 @@ tags.all_of = ["audio"]
 ### DISPLAY ###
 ###############
 
-[targets."river"]
+[targets.river]
 tags.all_of = ["wayland", "river", "display"]
 
 [targets.kanshi]
 tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
 
-[targets."fnott"]
+[targets.fnott]
 tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
 
-[targets."yambar"]
+[targets.yambar]
 tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
 
@@ -52,7 +52,7 @@ tags.all_of = ["tools"]
 [targets.kak-lsp]
 tags.all_of = ["tools"]
 
-[targets."foot"]
+[targets.foot]
 tags.all_of = ["wayland", "tools"]
 tags.any_of = ["river"]
 
@@ -104,7 +104,7 @@ tags.all_of = ["tools"]
 ### MISC ###
 ############
 
-[targets."waylock"]
+[targets.waylock]
 tags.all_of = ["wayland", "misc"]
 tags.any_of = ["river"]
 
