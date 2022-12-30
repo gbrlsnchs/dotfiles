@@ -1,22 +1,8 @@
+# {{notice}}
+
 bg_default: &bg_default
   background:
     color: "{{background}}ff"
-
-river_base: &river_base
-  left-margin: 8
-  right-margin: 8
-  tag: id
-  values:
-    1: {string: {text: "一"}}
-    2: {string: {text: "二"}}
-    3: {string: {text: "三"}}
-    4: {string: {text: "四"}}
-    5: {string: {text: "五"}}
-    6: {string: {text: "六"}}
-    7: {string: {text: "七"}}
-    8: {string: {text: "八"}}
-    9: {string: {text: "九"}}
-    10: {string: {text: "十"}}
 
 # content:
 bar:
@@ -30,49 +16,53 @@ bar:
   left:
     - river:
         anchors:
-          - base: *river_base
+          - base: &river_base
+              left-margin: 8
+              right-margin: 8
+              conditions:
+                id == 1: {string: {text: "一"}}
+                id == 2: {string: {text: "二"}}
+                id == 3: {string: {text: "三"}}
+                id == 4: {string: {text: "四"}}
+                id == 5: {string: {text: "五"}}
+                id == 6: {string: {text: "六"}}
+                id == 7: {string: {text: "七"}}
+                id == 8: {string: {text: "八"}}
+                id == 9: {string: {text: "九"}}
+                id == 10: {string: {text: "十"}}
         content:
           map:
             on-click:
               left: sh -c "riverctl set-focused-tags $((1 << ({id} - 1)))"
               right: sh -c "riverctl toggle-focused-tags $((1 << ({id} -1)))"
               middle: sh -c "riverctl toggle-view-tags $((1 << ({id} -1)))"
-            tag: state
-            values:
-              urgent:
+            conditions:
+              state == urgent:
                 map:
                   <<: *river_base
                   deco:
                     stack:
                       - background:
                           color: "{{color11}}ff"
-              focused:
+              state == focused:
                 map:
                   <<: *river_base
                   deco: *bg_default
-              visible:
-                map:
-                  tag: occupied
-                  values:
-                    false:
-                      map:
-                        <<: *river_base
-                    true:
-                      map:
-                        <<: *river_base
-                        deco: *bg_default
-              unfocused:
+              state == visible && occupied:
                 map:
                   <<: *river_base
                   deco: *bg_default
-              invisible:
+              state == visible && ~occupied:
                 map:
-                  tag: occupied
-                  values:
-                    false:
-                      empty: {}
-                    true:
-                      map: *river_base
+                  <<: *river_base
+              state == unfocused:
+                map:
+                  <<: *river_base
+                  deco: *bg_default
+              state == invisible && occupied:
+                map: *river_base
+              state == invisible && ~occupied:
+                empty: {}
   center:
     - clock:
         content:
