@@ -169,7 +169,7 @@ hook global BufCreate .*\.gcfg %{ set-option buffer filetype ini }
 hook global BufCreate .*\.kakenv %{ set-option buffer filetype yaml }
 hook global BufCreate .*\.kaklsp %{ set-option buffer filetype toml }
 hook global WinSetOption filetype=git-commit %{
-	hook buffer BufWritePost %val{bufname} %{ delete-buffer }
+	hook buffer BufWritePost %sh{ printf ".*$kak_bufname" } %{ delete-buffer }
 }
 
 # Custom commands.
