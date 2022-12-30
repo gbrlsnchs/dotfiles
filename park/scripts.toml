@@ -22,6 +22,9 @@ tags.all_of = ["audio"]
 [targets.doasedit]
 tags.all_of = ["misc"]
 
+[targets.dmenu]
+tags.all_of = ["misc"]
+
 [targets.fuzzy]
 tags.all_of = ["misc"]
 
