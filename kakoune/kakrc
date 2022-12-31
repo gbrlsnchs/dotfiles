@@ -129,6 +129,10 @@ EOF
 hook global WinCreate .* %{ git show-diff }
 hook global BufWritePost .* %{ git update-diff }
 
+hook global ModeChange pop:insert:.* %{
+	try %{ execute-keys -draft x 1s^(\h+)$<ret> d }
+}
+
 define-command set-favorite -docstring "Set buffer as favorite for the current project" %{
 	nop %sh{
 		if [ ! -f "$kak_bufname" ]; then
