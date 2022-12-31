@@ -8,3 +8,5 @@ complete -o nospace -C /usr/bin/terraform terraform
 
 # Completion for AWS CLI.
 complete -C $(which aws_completer) aws
+
+zstyle ":completion:*" rehash true
