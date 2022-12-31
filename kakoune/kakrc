@@ -175,6 +175,9 @@ hook global BufCreate .*\.kaklsp %{ set-option buffer filetype toml }
 hook global WinSetOption filetype=git-commit %{
 	hook buffer BufWritePost %sh{ printf ".*$kak_bufname" } %{ delete-buffer }
 }
+hook global WinSetOption filetype=justfile %{
+	require-module sh
+}
 
 # Custom commands.
 define-command find-file -docstring "Find a file using fuzzy search" %{
