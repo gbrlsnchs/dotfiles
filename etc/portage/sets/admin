@@ -1,0 +1,7 @@
+app-admin/doas
+app-admin/sysklogd
+app-eselect/eselect-repository
+app-portage/cpuid2cpuflags
+app-portage/gentoolkit
+app-shells/gentoo-zsh-completions
+sys-apps/pciutils

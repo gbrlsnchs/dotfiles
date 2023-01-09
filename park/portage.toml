@@ -1,0 +1,13 @@
+base_dir = "/etc/portage"
+work_dir = "$PWD/etc/portage"
+tags = ["$HOST"]
+
+[targets."egguheddo.conf"]
+link.name = "make.conf"
+tags.all_of = ["egguheddo"]
+
+[targets.sets]
+
+[targets."package.use"]
+
+[targets."package.accept_keywords"]

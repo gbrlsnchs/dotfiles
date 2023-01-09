@@ -1,0 +1,23 @@
+app-containers/docker-buildx       ~amd64
+app-editors/kak-lsp                ~amd64
+app-editors/kakoune                ~amd64
+app-misc/yq                        ~amd64
+dev-go/delve                       ~amd64
+dev-go/gopls                       ~amd64
+dev-lang/rust                      ~amd64
+dev-lang/zig                       ~amd64
+dev-zig/zls                        **
+games-util/game-device-udev-rules  
+games-util/lutris                  ~amd64
+gui-apps/fnott                     ~amd64
+gui-apps/kanshi                    ~amd64
+gui-apps/wlr-randr::guru           ~amd64
+gui-apps/wlsunset                  ~amd64
+gui-apps/wob                       ~amd64
+gui-apps/yambar::guru              ~amd64
+gui-wm/river::wayland-desktop      ~amd64
+media-fonts/gofont-mono            ~amd64
+media-fonts/twemoji                ~amd64
+*/*::steam-overlay                 
+sys-process/gotop                  ~amd64
+x11-themes/breezex-xcursors        ~amd64

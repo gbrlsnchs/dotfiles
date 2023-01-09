@@ -1,0 +1,11 @@
+app-crypt/tpm2-tss
+net-misc/chrony
+net-misc/dhcpcd
+sys-apps/rng-tools
+sys-boot/efibootmgr
+sys-fs/btrfs-progs
+sys-fs/cryptsetup
+sys-fs/dosfstools
+sys-kernel/dracut
+sys-kernel/gentoo-sources
+sys-kernel/linux-firmware
