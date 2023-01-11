@@ -5,3 +5,5 @@ app-portage/cpuid2cpuflags
 app-portage/gentoolkit
 app-shells/gentoo-zsh-completions
 sys-apps/pciutils
+sys-auth/solo1
+sys-libs/solo-udev-rules

@@ -21,5 +21,5 @@ gui-wm/river::wayland-desktop      ~amd64
 media-fonts/gofont-mono            ~amd64
 media-fonts/twemoji                ~amd64
 */*::steam-overlay                 
-sys-process/gotop                  ~amd64
+sys-libs/solo-udev-rules           ~amd64
 x11-themes/breezex-xcursors        ~amd64
