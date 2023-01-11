@@ -7,6 +7,7 @@ path+=("$CARGO_HOME/bin")
 
 # go
 path+=("$(go env GOPATH)/bin")
+export GOPROXY=direct
 
 # python
 path+=("$HOME/.poetry/bin")
