@@ -8,6 +8,8 @@ tags.all_of = ["egguheddo"]
 
 [targets.sets]
 
+[targets.patches]
+
 [targets."package.use"]
 
 [targets."package.accept_keywords"]
