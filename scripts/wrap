@@ -1,0 +1,5 @@
+#!/bin/sh
+
+size=${1:-80}
+
+fold --width="$size" --spaces | sed "s/ *$//g"

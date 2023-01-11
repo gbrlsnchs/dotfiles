@@ -22,6 +22,9 @@ tags.all_of = ["audio"]
 [targets.align]
 tags.all_of = ["misc"]
 
+[targets.wrap]
+tags.all_of = ["misc"]
+
 [targets.doasedit]
 tags.all_of = ["misc"]
 
