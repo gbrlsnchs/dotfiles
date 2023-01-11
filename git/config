@@ -3,6 +3,7 @@
 [user]
 	name = Gabriel Sanches
 	email = gabriel@gsr.dev
+	signingkey = gabriel@gsr.dev
 [init]
 	defaultBranch = trunk
 [pull]
