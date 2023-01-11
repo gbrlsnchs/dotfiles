@@ -10,7 +10,7 @@ riverctl map normal Super+Shift+Control Grave spawn "fnottctl dismiss all"
 
 # Keybindings.
 riverctl map normal Super+Shift Q close
-riverctl map normal Super+Shift E spawn "pkill runsv && riverctl exit"
+riverctl map normal Super+Shift E spawn "pkill runsv; pkill gpg-agent; riverctl exit"
 riverctl map normal Super J focus-view next
 riverctl map normal Super K focus-view previous
 riverctl map normal Super+Shift J swap next
@@ -146,5 +146,6 @@ riverctl default-layout rivertile
 
 dbus-update-activation-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP FZF_DEFAULT_OPTS
 xdg-user-dirs-update
+eval "$(gpg-agent --daemon)"
 
 exec runsvdir -P "$SVDIR"

@@ -17,3 +17,4 @@ path+=("/opt/texlive/2021/bin/$(uname --machine)-$(uname --kernel-name | tr '[:u
 export SVDIR="$XDG_DATA_HOME/service"
 export EDITOR="${EDITOR:-kak}"
 export VISUAL="$EDITOR"
+export GPG_TTY="$(tty)"
