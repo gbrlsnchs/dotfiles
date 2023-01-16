@@ -2,7 +2,7 @@
 
 set -e
 
-vars="$(yq 'to_entries | (.[].value | select(. | type != "!!str")) |= (. | join(",")) | .[] | .key + "=\"" + .value + "\""' .kakenv | xargs --delimiter '\n')"
+vars="$(yq --raw-output 'to_entries | (.[].value | select(. | type != "string")) |= (. | join(",")) | .[] | .key + "=\"" + .value + "\""' .kakenv | xargs --delimiter '\n')"
 
 if [ ! -z "$vars" ]; then
 	eval "export $vars"

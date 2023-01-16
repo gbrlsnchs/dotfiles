@@ -8,5 +8,5 @@ Foot: footclient
 Lutris: lutris
 EOF
 
-program="$(echo "$config" | sort | yq 'keys | .[]' | dmenu)"
-echo "$config" | yq ."$program" | xargs -I {} riverctl spawn '{}'
+program="$(echo "$config" | sort | yq --raw-output 'keys | .[]' | dmenu)"
+echo "$config" | yq --raw-output ."$program" | xargs -I {} riverctl spawn '{}'
