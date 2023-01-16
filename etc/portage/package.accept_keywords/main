@@ -1,7 +1,6 @@
 app-containers/docker-buildx       ~amd64
 app-editors/kak-lsp                ~amd64
 app-editors/kakoune                ~amd64
-app-misc/yq                        ~amd64
 dev-go/delve                       ~amd64
 dev-go/gopls                       ~amd64
 dev-lang/rust                      ~amd64
