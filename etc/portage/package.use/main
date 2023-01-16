@@ -1,13 +1,13 @@
 dev-lang/rust                      clippy llvm_targets_WebAssembly rust-src rustfmt system-llvm wasm
 games-util/game-device-udev-rules  -acl
-gui-apps/yambar                    -X -alsa -backlight -battery -cpu -disk-io -dwl -foreign-toplevel -i3 -memory -mpd -network -removables -script
+gui-apps/yambar                    -alsa -backlight -battery -cpu -disk-io -dwl -foreign-toplevel -i3 -memory -mpd -network -removables -script -X
 media-gfx/imv                      gif jpeg png svg tiff
 media-libs/libcanberra             alsa
 media-libs/libsdl2                 gles2
 media-libs/libsixel                jpeg png
 media-libs/vulkan-loader           abi_x86_32
 media-sound/pulseaudio             -daemon
-media-video/pipewire               sound-server pipewire-alsa
+media-video/pipewire               pipewire-alsa sound-server
 net-im/discord-bin                 system-ffmpeg
 net-misc/openssh                   security-key
 sys-apps/systemd-utils             abi_x86_32
