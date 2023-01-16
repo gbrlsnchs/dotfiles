@@ -1,4 +1,4 @@
-dev-lang/rust                      clippy llvm-libunwind rust-analyzer rust-src rustfmt system-llvm
+dev-lang/rust                      clippy llvm_targets_WebAssembly rust-src rustfmt system-llvm wasm
 games-util/game-device-udev-rules  -acl
 gui-apps/yambar                    -X -alsa -backlight -battery -cpu -disk-io -dwl -foreign-toplevel -i3 -memory -mpd -network -removables -script
 media-gfx/imv                      gif jpeg png svg tiff
