@@ -22,3 +22,5 @@
 	mirror = push --mirror mirror
 [include]
 	path = config.d/unlisted
+[commit]
+	gpgsign = true
