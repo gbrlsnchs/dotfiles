@@ -1,0 +1,4 @@
+app-mobilephone/dfu-util
+dev-embedded/avrdude
+dev-embedded/dfu-programmer
+sys-devel/crossdev
