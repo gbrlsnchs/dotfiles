@@ -1,4 +1,5 @@
 app-admin/doas
+app-admin/park
 app-admin/sysklogd
 app-eselect/eselect-repository
 app-portage/cpuid2cpuflags
