@@ -1,0 +1,3 @@
+#!/bin/sh
+
+xargs --max-args=1 | sort --unique | xargs
