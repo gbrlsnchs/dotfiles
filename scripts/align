@@ -1,3 +1,3 @@
 #!/bin/sh
 
-tr --squeeze-repeats=" " | column --table --table-columns-limit=${1:-2}
+tr --squeeze-repeats " " | column --table --table-columns-limit ${1:-2}
