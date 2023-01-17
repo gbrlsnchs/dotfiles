@@ -1,3 +1,4 @@
+app-admin/pass                     -X
 dev-lang/rust                      clippy llvm_targets_WebAssembly rust-analyzer rustfmt rust-src system-llvm wasm
 games-util/game-device-udev-rules  -acl
 gui-apps/yambar                    -alsa -backlight -battery -cpu -disk-io -dwl -foreign-toplevel -i3 -memory -mpd -network -removables -script -X
@@ -8,7 +9,7 @@ media-libs/libsixel                jpeg png
 media-libs/vulkan-loader           abi_x86_32
 media-sound/pulseaudio             -daemon
 media-video/pipewire               pipewire-alsa sound-server
-net-im/discord-bin                 system-ffmpeg
+net-im/discord                     system-ffmpeg
 net-misc/openssh                   security-key
 sys-apps/systemd-utils             abi_x86_32
 sys-auth/seatd                     server
