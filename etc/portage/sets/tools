@@ -2,6 +2,7 @@ app-admin/terraform
 app-containers/docker
 app-containers/docker-buildx
 app-containers/docker-cli
+app-containers/docker-compose
 app-containers/podman
 app-editors/kakoune
 app-misc/jq
