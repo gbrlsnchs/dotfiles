@@ -4,6 +4,7 @@ gui-apps/foot
 gui-apps/grim
 gui-apps/kanshi
 gui-apps/slurp
+gui-apps/waylock
 gui-apps/wl-clipboard
 gui-apps/wlr-randr
 gui-apps/wlsunset

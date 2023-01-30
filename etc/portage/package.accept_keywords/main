@@ -5,6 +5,7 @@ dev-go/delve                       ~amd64
 dev-go/gopls                       ~amd64
 dev-lang/rust                      ~amd64
 dev-lang/zig                       ~amd64
+dev-libs/wayland-protocols         ~amd64
 dev-util/cargo-ebuild              ~amd64
 dev-util/cargo-license             ~amd64
 dev-zig/zls                        **
@@ -17,7 +18,7 @@ gui-apps/wlr-randr::guru           ~amd64
 gui-apps/wlsunset                  ~amd64
 gui-apps/wob                       ~amd64
 gui-apps/yambar::guru              ~amd64
-gui-wm/river::wayland-desktop      ~amd64
+gui-libs/wlroots                   ~amd64
 */*::local                         
 media-fonts/gofont-mono            ~amd64
 media-fonts/twemoji                ~amd64

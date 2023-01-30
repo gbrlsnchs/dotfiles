@@ -2,6 +2,7 @@ app-admin/terraform
 app-containers/docker
 app-containers/docker-buildx
 app-containers/docker-cli
+app-containers/podman
 app-editors/kakoune
 app-misc/jq
 app-misc/yq
@@ -9,14 +10,19 @@ app-shells/fzf
 app-shells/zsh
 app-text/aspell
 app-text/editorconfig-core-c
+app-text/grip
 dev-db/sqlite
 dev-go/delve
 dev-go/gopls
 dev-lang/rust
+dev-lang/zig
 dev-util/cargo-ebuild
 dev-util/cargo-license
+dev-util/fuzzbucket-client
 dev-vcs/git
+dev-zig/zls::local
 media-gfx/graphviz
 sys-apps/fd
 sys-apps/ripgrep
+sys-apps/yarn
 sys-devel/just

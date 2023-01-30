@@ -15,4 +15,4 @@ sys-apps/systemd-utils             abi_x86_32
 sys-auth/seatd                     server
 sys-kernel/linux-firmware          initramfs savedconfig
 sys-libs/glibc                     hash-sysv-compat
-www-client/firefox                 hwaccel screencast
+www-client/firefox                 hwaccel screencast system-png
