@@ -8,13 +8,14 @@ else
 	target="local"
 fi
 
-for image in images/"$target"/*; do
-	tag="$(basename "$image")"
+for img in images/"$target"/*; do
+	tag="$(basename "$img")"
 
 	echo "####################################################"
+	echo "Target: '$target'"
 	echo "Building image for '$tag'"
-	echo "Context: '$image'"
+	echo "Context: '$img'"
 	echo "####################################################"
 
-	podman build --tag "$tag" "$image"
+	podman build --tag "$tag" "$img"
 done
