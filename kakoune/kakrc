@@ -163,6 +163,10 @@ hook global InsertChar \n %{
 	try %{ exec -itersel -draft ';K<a-&>' }
 }
 
+hook global WinSetOption filetype=(javascript|typescript) %{
+	set-option buffer formatcmd "npx prettier --stdin-filepath=%val{buffile}"
+}
+
 hook global WinSetOption filetype=yaml %{
 	set-option buffer indentwidth 2
 	set-option buffer softtabstop 2
