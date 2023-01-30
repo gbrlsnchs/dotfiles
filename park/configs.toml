@@ -70,6 +70,9 @@ link.base_dir = "$HOME"
 link.name = ".sqliterc"
 tags.all_of = ["tools"]
 
+[targets.containers]
+tags.all_of = ["tools"]
+
 [targets.zathura]
 tags.all_of = ["tools"]
 
