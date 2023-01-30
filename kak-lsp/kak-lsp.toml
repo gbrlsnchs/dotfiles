@@ -169,8 +169,8 @@ args = ["--stdio"]
 [language.jsx] # works for javascript as well
 filetypes = ["javascript"]
 roots = ["package.json", "tsconfig.json", ".git", ".hg"]
-command = "typescript-language-server"
-args = ["--stdio"]
+command = "lspcontainer"
+args = ["typescript-language-server", "--stdio"]
 
 [language.json]
 filetypes = ["json"]
@@ -377,8 +377,8 @@ args = ["serve"]
 [language.tsx] # works for typescript as well
 filetypes = ["typescript"]
 roots = ["package.json", "tsconfig.json", ".git", ".hg"]
-command = "typescript-language-server"
-args = ["--stdio"]
+command = "lspcontainer"
+args = ["typescript-language-server", "--stdio"]
 
 # [language.typescript]
 # filetypes = ["typescript"]
