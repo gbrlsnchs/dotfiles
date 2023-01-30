@@ -1,3 +1,3 @@
-FROM docker.io/node:16.14.0-alpine
+FROM docker.io/node:alpine
 RUN npm install --global vls@0.8.1
 CMD ["vls"]

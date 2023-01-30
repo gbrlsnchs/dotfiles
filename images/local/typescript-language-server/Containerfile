@@ -1,0 +1,4 @@
+FROM docker.io/node:alpine
+RUN npm install --global typescript-language-server typescript
+ENTRYPOINT ["typescript-language-server"]
+CMD ["--stdio"]
