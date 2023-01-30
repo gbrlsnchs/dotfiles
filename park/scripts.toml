@@ -58,3 +58,6 @@ tags.all_of = ["wayland", "river", "display"]
 [targets.kakenv]
 tags.all_of = ["tools"]
 link.name = "kak"
+
+[targets.lspcontainer]
+tags.all_of = ["tools"]

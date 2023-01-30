@@ -1,0 +1,10 @@
+#!/bin/sh
+
+podman container run \
+	--rm \
+	--interactive \
+	--network none \
+	--workdir "$PWD" \
+	--volume "$PWD:$PWD:z" \
+	--pid host \
+	$@
