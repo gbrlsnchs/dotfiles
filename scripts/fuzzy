@@ -5,6 +5,7 @@ Steam: steam
 Discord: discord
 Firefox: firefox
 Foot: footclient
+Lock: waylock -init-color "0x${BG_COLOR}" -input-color "0x${COLOR_4}" -fail-color "0x${COLOR_1}"
 Lutris: lutris
 EOF
 
