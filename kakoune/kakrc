@@ -173,6 +173,12 @@ hook global WinSetOption filetype=yaml %{
 	expandtab
 }
 
+hook global WinSetOption filetype=zig %{
+	set-option buffer indentwidth 4
+	set-option buffer softtabstop 4
+	expandtab
+}
+
 hook global BufCreate .*\.gcfg %{ set-option buffer filetype ini }
 hook global BufCreate .*\.kakenv %{ set-option buffer filetype yaml }
 hook global BufCreate .*\.kaklsp %{ set-option buffer filetype toml }
