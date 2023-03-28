@@ -1,18 +1,18 @@
 _git_branch() {
 	local branch_name=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 	if [[ "$branch_name" != "" ]]; then
-		echo "$(_sep) %F{#$COLOR_7}$(kana --katakana buranchi)%B${branch_name}%b%f"
+		echo "$(_sep) %F{#$COLOR_7}$(kana --katakana <<< 'buranchi')%B${branch_name}%b%f"
 	fi
 }
 
 _kak_session() {
 	if [[ "$kak_session" != "" ]]; then
-		echo "$(_sep) %F{#$COLOR_7}$(kana --katakana sesshon)%B${kak_session}%b%f"
+		echo "$(_sep) %F{#$COLOR_7}$(kana --katakana <<< 'sesshon')%B${kak_session}%b%f"
 	fi
 }
 
 _kana_hostname() {
-	kana --katakana $(hostname) 2>/dev/null || echo "%m"
+	kana --katakana 2>/dev/null <<< $(hostname) || echo "%m"
 }
 
 _sep() {
