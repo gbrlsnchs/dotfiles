@@ -17,5 +17,5 @@ for img in images/"$target"/*; do
 	echo "Context: '$img'"
 	echo "####################################################"
 
-	podman build --tag "$tag" "$img"
+	podman build --no-cache --tag "$tag" "$img"
 done
