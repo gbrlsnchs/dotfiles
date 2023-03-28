@@ -1,6 +1,6 @@
 base_dir = "$XDG_BIN_HOME"
 work_dir = "$PWD/scripts"
-tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
+tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP", "$HOST"]
 
 #############
 ### AUDIO ###
@@ -42,6 +42,18 @@ tags.all_of = ["misc"]
 
 [targets.printsnip]
 tags.all_of = ["misc"]
+
+[targets.sysupdate]
+tags.all_of = ["misc"]
+tags.any_of = ["egguheddo"]
+
+[targets.instroot]
+tags.all_of = ["misc"]
+tags.any_of = ["egguheddo"]
+
+[targets.mntchroot]
+tags.all_of = ["misc"]
+tags.any_of = ["egguheddo"]
 
 ###############
 ### DISPLAY ###

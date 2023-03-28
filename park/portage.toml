@@ -2,9 +2,9 @@ base_dir = "/etc/portage"
 work_dir = "$PWD/etc/portage"
 tags = ["$HOST"]
 
-[targets."egguheddo.conf"]
+[targets."$HOST.conf"]
 link.name = "make.conf"
-tags.all_of = ["egguheddo"]
+tags.all_of = ["$HOST"]
 
 [targets.sets]
 
@@ -15,3 +15,18 @@ link.base_dir = "/etc/portage/package.use"
 
 [targets."package.accept_keywords/main"]
 link.base_dir = "/etc/portage/package.accept_keywords"
+
+[targets."package.license/main"]
+link.base_dir = "/etc/portage/package.license"
+
+[targets."package.mask/main"]
+link.base_dir = "/etc/portage/package.mask"
+
+[targets."package.unmask/main"]
+link.base_dir = "/etc/portage/package.unmask"
+
+[targets."local.conf"]
+link.base_dir = "/etc/portage/repos.conf"
+
+[targets."crossdev.conf"]
+link.base_dir = "/etc/portage/repos.conf"
