@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# Install stage 3 tarball to location.
+
+target="$1"
+
+[ ! -z "$target" ] || exit 1
+
+cd "$target" && sudo tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
