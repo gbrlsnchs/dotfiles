@@ -1,14 +1,16 @@
 #!/bin/sh
 
-SUDO="${1:-doas}"
-
-physical_size="$(\
-	$SUDO podman run --privileged --interactive --tty --rm --volume "/var/swap/swapfile:/swapfile" btrfs_map_physical \
-	| sed -n "2p" \
-	| awk "{print \$NF}" \
+input="$(
+	sudo podman run \
+		--privileged \
+		--interactive \
+		--tty \
+		--rm \
+		--volume /var/swap/swapfile:/swapfile \
+		btrfs_map_physical
 )"
 
-page_size=$(getconf PAGESIZE)
-actual_size=$((physical_size / page_size))
+real_size="$(tr -d '\r' <<< $input | awk '{print $NF}' | sed -n 2p)"
+page_size="$(getconf PAGESIZE)"
 
-echo "$actual_size"
+echo "$((real_size / page_size))"
