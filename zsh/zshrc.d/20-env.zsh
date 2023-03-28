@@ -19,3 +19,4 @@ export SVDIR="$XDG_DATA_HOME/service"
 export EDITOR="${EDITOR:-kak}"
 export VISUAL="$EDITOR"
 export GPG_TTY="$(tty)"
+export MENUCONFIG_COLOR=mono
