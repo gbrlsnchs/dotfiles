@@ -200,8 +200,10 @@ hook global WinSetOption filetype=zig %{
 }
 
 hook global BufCreate .*\.gcfg %{ set-option buffer filetype ini }
+hook global BufCreate .*/Containerfile %{ set-option buffer filetype dockerfile }
+hook global BufCreate .*\.kakrc %{ set-option buffer filetype kak }
 hook global BufCreate .*\.kakenv %{ set-option buffer filetype yaml }
-hook global BufCreate .*\.kaklsp %{ set-option buffer filetype toml }
+hook global BufCreate .*\.kaklsp(config)? %{ set-option buffer filetype toml }
 hook global WinSetOption filetype=git-commit %{
 	hook buffer BufWritePost %sh{ printf ".*$kak_bufname" } %{ delete-buffer }
 }
