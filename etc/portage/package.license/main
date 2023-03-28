@@ -1,0 +1,5 @@
+dev-java/osgi-cmpn        OSGi-Specification-2.0
+net-im/discord            all-rights-reserved
+net-im/slack              all-rights-reserved
+*/*::steam-overlay        ValveSteamLicense
+sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE
