@@ -14,16 +14,16 @@ hook global BufCreate .* %{
 # LSP setup.
 evaluate-commands %sh{
 	# Use local config if it exists.
-	# if [ -f kak-lsp.toml ]; then
-	# 	config="/tmp/kak-lsp/configs/$kak_session.toml"
+	if [ -f .kaklsp ]; then
+		config="/tmp/kak-lsp/configs/$kak_session.toml"
 
-	# 	mkdir --parents "$(dirname "$config")"
-	# 	envsubst < kak-lsp.toml > "$config"
+		mkdir --parents "$(dirname "$config")"
+		envsubst < .kaklsp > "$config"
 
-	# 	lsp_config_opt="--config $config"
-	# fi
+		lsp_config_opt="--config $config"
+	fi
 
-	kak-lsp --kakoune -s $kak_session
+	kak-lsp $lsp_config_opt --kakoune -s $kak_session
 }
 
 try %{
