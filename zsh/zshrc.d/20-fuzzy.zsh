@@ -1,4 +1,4 @@
-export FZF_DEFAULT_COMMAND="fd --color=always --type file --hidden --no-ignore-vcs"
+export FZF_DEFAULT_COMMAND="fd --color=always --type file --hidden --no-ignore-vcs --follow"
 export FZF_DEFAULT_OPTS="
 $FZF_DEFAULT_OPTS
 --ansi
