@@ -18,3 +18,4 @@ yambar/*.yml
 
 zsh/.zcompdump
 zsh/.zshrc.d/00-colors.zsh
+zsh/data/zfunc
