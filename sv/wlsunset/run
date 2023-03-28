@@ -1,4 +1,4 @@
 #!/bin/sh
 
 sv start kanshi || exit 1
-exec wlsunset -S 06:30 -s 18:30 2>&1
+exec wlsunset -S 06:30 -s 19:30 2>&1
