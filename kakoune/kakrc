@@ -97,7 +97,7 @@ bufname="$3"
 search_type="${4:-file}"
 eval_cmd="${5:-edit}"
 
-FZF_DEFAULT_COMMAND="fd --color=always --type "$search_type" --hidden --no-ignore-vcs . '$(dirname "$bufname")'" fzf \
+env FZF_DEFAULT_COMMAND="fd --color=always --type "$search_type" --hidden --no-ignore-vcs --follow . '$(dirname "$bufname")'" fzf \
 	| xargs -I {} echo "evaluate-commands -client $client %{ $eval_cmd '{}' }" \
 	| kak -p "$session"
 EOF
