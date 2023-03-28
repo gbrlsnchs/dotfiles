@@ -1,4 +1,5 @@
 app-crypt/tpm2-tss
+net-dns/openresolv
 net-misc/chrony
 net-misc/dhcpcd
 sys-apps/rng-tools

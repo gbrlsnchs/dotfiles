@@ -1,27 +1,37 @@
-app-containers/docker-buildx       ~amd64
-app-editors/kak-lsp                ~amd64
-app-editors/kakoune                ~amd64
-dev-go/delve                       ~amd64
-dev-go/gopls                       ~amd64
-dev-lang/rust                      ~amd64
-dev-lang/zig                       ~amd64
-dev-libs/wayland-protocols         ~amd64
-dev-util/cargo-ebuild              ~amd64
-dev-util/cargo-license             ~amd64
-dev-zig/zls                        **
-games-util/game-device-udev-rules  
-games-util/lutris                  ~amd64
-*/*::gbrlsnchs                     
-gui-apps/fnott                     ~amd64
-gui-apps/kanshi                    ~amd64
-gui-apps/wlr-randr::guru           ~amd64
-gui-apps/wlsunset                  ~amd64
-gui-apps/wob                       ~amd64
-gui-apps/yambar::guru              ~amd64
-gui-libs/wlroots                   ~amd64
-*/*::local                         
-media-fonts/gofont-mono            ~amd64
-media-fonts/twemoji                ~amd64
-*/*::steam-overlay                 
-sys-libs/solo-udev-rules           ~amd64
-x11-themes/breezex-xcursors        ~amd64
+app-admin/haskell-updater
+app-containers/docker-buildx
+app-containers/docker-compose
+app-editors/helix
+app-editors/kak-lsp
+app-editors/kakoune
+app-text/pandoc
+dev-go/delve
+dev-go/gopls
+dev-haskell/*
+dev-java/gradle::mva
+dev-lang/ghc
+dev-lang/rust
+dev-lang/zig
+dev-libs/nss
+dev-libs/wayland-protocols
+dev-util/cargo-ebuild
+dev-util/cargo-license
+dev-zig/zls
+games-util/game-device-udev-rules
+games-util/lutris
+*/*::gbrlsnchs
+gui-apps/fnott
+gui-apps/kanshi
+gui-apps/wlr-randr::guru
+gui-apps/wlsunset
+gui-apps/wob
+gui-apps/yambar::guru
+gui-libs/wlroots
+*/*::local
+media-fonts/gofont-mono
+media-fonts/twemoji
+net-im/slack
+*/*::steam-overlay
+sys-libs/solo-udev-rules
+www-client/firefox
+x11-themes/breezex-xcursors

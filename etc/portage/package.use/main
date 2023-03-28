@@ -1,18 +1,25 @@
-app-admin/pass                     -X
-dev-lang/rust                      clippy llvm_targets_WebAssembly rust-analyzer rustfmt rust-src system-llvm wasm
-games-util/game-device-udev-rules  -acl
-gui-apps/yambar                    -alsa -backlight -battery -cpu -disk-io -dwl -foreign-toplevel -i3 -memory -mpd -network -removables -script -X
-media-gfx/imv                      gif jpeg png svg tiff
-media-libs/libcanberra             alsa
-media-libs/libsdl2                 gles2
-media-libs/libsixel                jpeg png
-media-libs/vulkan-loader           abi_x86_32
-media-sound/pulseaudio             -daemon
-media-video/pipewire               pipewire-alsa sound-server
-net-im/discord                     system-ffmpeg
-net-misc/openssh                   security-key
-sys-apps/systemd-utils             abi_x86_32
-sys-auth/seatd                     server
-sys-kernel/linux-firmware          initramfs savedconfig
-sys-libs/glibc                     hash-sysv-compat
-www-client/firefox                 hwaccel screencast system-png
+app-admin/pass                    -X
+app-admin/sudo                    offensive -sendmail
+app-emulation/qemu                static-user QEMU_SOFTMMU_TARGETS: aarch64 QEMU_USER_TARGETS: aarch64
+app-text/texlive                  context extra graphics humanities luatex -X
+dev-db/postgresql                 -server
+dev-java/openjdk                  source
+dev-lang/rust                     clippy llvm_targets_WebAssembly nightly rust-analyzer rustfmt rust-src system-llvm wasm
+games-util/game-device-udev-rules -acl
+gui-apps/yambar                   -alsa -backlight -battery -cpu -disk-io -dwl -foreign-toplevel -i3 -memory -mpd -network -removables -script -X
+media-gfx/imv                     gif jpeg png svg tiff
+media-libs/libcanberra            alsa
+media-libs/libsdl2                gles2
+media-libs/libsixel               jpeg png
+media-libs/vulkan-loader          abi_x86_32
+media-sound/pulseaudio            -daemon
+media-video/pipewire              pipewire-alsa sound-server
+net-im/discord                    system-ffmpeg
+net-misc/openssh                  security-key
+net-vpn/openvpn                   inotify iproute2
+sys-apps/systemd-utils            abi_x86_32
+sys-auth/seatd                    server
+sys-kernel/gentoo-sources         symlink
+sys-kernel/linux-firmware         compress-zstd initramfs
+sys-libs/glibc                    hash-sysv-compat
+www-client/firefox                hwaccel screencast system-png
