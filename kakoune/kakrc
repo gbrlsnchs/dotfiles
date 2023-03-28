@@ -105,6 +105,21 @@ EOF
 	}
 
 	nop %sh{
+		cat << 'EOF' > /tmp/kak/cmd/changed
+#!/bin/sh
+
+session="$1"
+client="$2"
+bufname="$3"
+
+env FZF_DEFAULT_COMMAND="git ls-files --modified --others --exclude-standard '$(dirname "$bufname" || .)'" fzf \
+	| xargs -I {} echo "evaluate-commands -client $client %{ edit '{}' }" \
+	| kak -p "$session"
+EOF
+		chmod u+x /tmp/kak/cmd/changed
+	}
+
+	nop %sh{
 		db_home="$XDG_STATE_HOME/kak/db"
 
 		mkdir --parents "$db_home"
@@ -203,31 +218,62 @@ hook global WinSetOption filetype=(diff|git-commit) %{
 	add-highlighter buffer/diff-allow-one-trailing-space regex "^ " 0:Default
 }
 
+define-command hook-eslint -hidden -docstring "Hook ESLint as lintcmd" %{
+	hook global WinSetOption filetype=(javascript|typescript) %{
+		set-option buffer lintcmd "kakeslint %val{buffile}"
+	}
+}
+
+define-command hook-prettier -hidden -params 1 -docstring "Hook Prettier as formatcmd" %{
+	evaluate-commands %sh{
+		printf "%s\n" "
+			hook global WinSetOption filetype=$1 %{
+				set-option buffer formatcmd \"./node_modules/prettier/bin-prettier.js --stdin-filepath=%val{buffile}\"
+			}
+		"
+	}
+}
+
 # Custom commands.
-define-command find-file -docstring "Find a file using fuzzy search" %{
-	terminal-popup /tmp/kak/cmd/open %val{session} %val{client}
-}
-alias global fd find-file
+try %{
+	define-command find-file -docstring "Find a file using fuzzy search" %{
+		terminal-popup /tmp/kak/cmd/open %val{session} %val{client}
+	}
+	alias global fd find-file
 
-define-command find-directory -docstring "Find a directory using fuzzy search and write it to prompt" %{
-	terminal-popup /tmp/kak/cmd/open %val{session} %val{client} "" directory "execute-keys :edit<space>"
-}
-alias global fdd find-directory
+	define-command find-directory -docstring "Find a directory using fuzzy search and write it to prompt" %{
+		terminal-popup /tmp/kak/cmd/open %val{session} %val{client} "" directory "execute-keys :edit<space>"
+	}
+	alias global fdd find-directory
 
-define-command find-file-relative -docstring "Find a file in current buffer's directory using fuzzy search" %{
-	terminal-popup /tmp/kak/cmd/open %val{session} %val{client} %val{bufname}
-}
-alias global fdr find-file-relative
+	define-command find-file-relative -docstring "Find a file in current buffer's directory using fuzzy search" %{
+		terminal-popup /tmp/kak/cmd/open %val{session} %val{client} %val{bufname}
+	}
+	alias global fdr find-file-relative
 
-define-command find-directory-relative -docstring "Find a directory using fuzzy search and write it to prompt" %{
-	terminal-popup /tmp/kak/cmd/open %val{session} %val{client} %{bufname} directory "execute-keys :edit<space>"
-}
-alias global fdp find-directory-relative
+	define-command find-directory-relative -docstring "Find a directory using fuzzy search and write it to prompt" %{
+		terminal-popup /tmp/kak/cmd/open %val{session} %val{client} %val{bufname} directory "execute-keys :edit<space>"
+	}
+	alias global fdp find-directory-relative
 
-define-command find-favorites -docstring "Find favorited files" %{
-	terminal-popup /tmp/kak/cmd/favs %val{session} %val{client}
+	define-command find-modified -docstring "Find a modified file using fuzzy search" %{
+		terminal-popup /tmp/kak/cmd/changed %val{session} %val{client}
+	}
+	alias global fm find-modified
+
+	define-command find-modified-relative -docstring "Find a modified file in current buffer's directory using fuzzy search" %{
+		terminal-popup /tmp/kak/cmd/changed %val{session} %val{client} %val{bufname}
+	}
+	alias global fmr find-modified-relative
+
+	define-command find-favorites -docstring "Find favorited files" %{
+		terminal-popup /tmp/kak/cmd/favs %val{session} %val{client}
+	}
+	define-command split %{
+		new eval buffer %val{bufname} ";" select %val{selection_desc}
+	}
+	alias global fdf find-favorites
 }
-alias global fdf find-favorites
 
 map -docstring "Insert current buffer's directory" global prompt <a-/> '%sh{dirname "$kak_bufname"}<a-!>/'
 
