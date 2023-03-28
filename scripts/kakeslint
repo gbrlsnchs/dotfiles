@@ -1,0 +1,6 @@
+#!/bin/sh
+
+cat "$2" \
+| ./node_modules/eslint/bin/eslint.js --config=.eslintrc --format compact --stdin --stdin-filename="$1" \
+| sed -e "s|: line \([0-9]\+\), col \([0-9]\+\), \([a-zA-Z]\+\) -|:\1:\2: \L\3:|g" \
+| head -n -2

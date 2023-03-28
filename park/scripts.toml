@@ -71,5 +71,8 @@ tags.all_of = ["wayland", "river", "display"]
 tags.all_of = ["tools"]
 link.name = "kak"
 
+[targets.kakeslint]
+tags.all_of = ["tools"]
+
 [targets.lspcontainer]
 tags.all_of = ["tools"]
