@@ -1,8 +1,5 @@
-FROM ghcr.io/void-linux/void-linux:20220211rc01-full-x86_64
+FROM docker.io/alpine
 ADD https://raw.githubusercontent.com/osandov/osandov-linux/c2675a5bc41a769961105d8dfcf38a16e84bd2b8/scripts/btrfs_map_physical.c btrfs_map_physical.c
-RUN xbps-install --sync --update --yes xbps && \    
-	xbps-install --sync --update --yes && \
-    xbps-install --yes gcc && \
-    gcc -O2 -o btrfs_map_physical btrfs_map_physical.c
+RUN apk update && apk add build-base btrfs-progs-dev && gcc -O2 -o btrfs_map_physical btrfs_map_physical.c
 ENTRYPOINT ["./btrfs_map_physical"]
 CMD ["/swapfile"]
