@@ -20,6 +20,5 @@ net-vpn/openvpn                   inotify iproute2
 sys-apps/systemd-utils            abi_x86_32
 sys-auth/seatd                    server
 sys-kernel/gentoo-sources         symlink
-sys-kernel/linux-firmware         compress-zstd initramfs
 sys-libs/glibc                    hash-sysv-compat
 www-client/firefox                hwaccel screencast system-png

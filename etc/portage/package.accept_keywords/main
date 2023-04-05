@@ -32,6 +32,7 @@ media-fonts/gofont-mono
 media-fonts/twemoji
 net-im/slack
 */*::steam-overlay
+sys-boot/systemd-boot
 sys-libs/solo-udev-rules
 www-client/firefox
 x11-themes/breezex-xcursors
