@@ -3,6 +3,6 @@
 exec rivertile \
 	-main-location right \
 	-main-ratio 0.5 \
-	-view-padding 1 \
-	-outer-padding 16 \
+	-view-padding 0 \
+	-outer-padding 0 \
 	2>&1
