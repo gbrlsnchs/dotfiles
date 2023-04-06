@@ -1,0 +1,6 @@
+tmpfs                                     /tmp             tmpfs nosuid,nodev                                                                                   0 0
+tmpfs                                     /var/tmp/portage tmpfs size=32G,uid=portage,gid=portage,mode=755,nosuid,noatime,nodev                                 0 0
+UUID=04150d7d-f32f-4541-aa23-8e269503a086 /                btrfs rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,commit=120,subvol=@                0 0
+UUID=04150d7d-f32f-4541-aa23-8e269503a086 /home            btrfs rw,noatime,compress=zstd:3,ssd,discard=async,space_cache=v2,commit=120,subvol=@home            0 0
+UUID=F96C-70EC                            /efi             vfat  rw,noatime,fmask=0022,dmask=0022,codepage=437,iocharset=utf8,shortname=mixed,errors=remount-ro 0 2
+/var/swap/swapfile                        none             swap  defaults                                                                                       0 0
