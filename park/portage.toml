@@ -10,23 +10,54 @@ tags.all_of = ["$HOST"]
 
 [targets.patches]
 
+# Packages
+
 [targets."package.use/main"]
 link.base_dir = "/etc/portage/package.use"
+tags.all_of = ["packages"]
 
 [targets."package.accept_keywords/main"]
 link.base_dir = "/etc/portage/package.accept_keywords"
+tags.all_of = ["packages"]
 
 [targets."package.license/main"]
 link.base_dir = "/etc/portage/package.license"
+tags.all_of = ["packages"]
 
 [targets."package.mask/main"]
 link.base_dir = "/etc/portage/package.mask"
+tags.all_of = ["packages"]
 
 [targets."package.unmask/main"]
 link.base_dir = "/etc/portage/package.unmask"
+tags.all_of = ["packages"]
 
-[targets."local.conf"]
-link.base_dir = "/etc/portage/repos.conf"
+# Repositories
 
-[targets."crossdev.conf"]
+[targets."repos.conf/crossdev.conf"]
 link.base_dir = "/etc/portage/repos.conf"
+tags.all_of = ["repos"]
+
+[targets."repos.conf/gbrlsnchs.conf"]
+link.base_dir = "/etc/portage/repos.conf"
+tags.all_of = ["repos"]
+
+[targets."repos.conf/gentoo.conf"]
+link.base_dir = "/etc/portage/repos.conf"
+tags.all_of = ["repos"]
+
+[targets."repos.conf/guru.conf"]
+link.base_dir = "/etc/portage/repos.conf"
+tags.all_of = ["repos"]
+
+[targets."repos.conf/local.conf"]
+link.base_dir = "/etc/portage/repos.conf"
+tags.all_of = ["repos"]
+
+[targets."repos.conf/steam-overlay.conf"]
+link.base_dir = "/etc/portage/repos.conf"
+tags.all_of = ["repos"]
+
+[targets."repos.conf/wayland-desktop.conf"]
+link.base_dir = "/etc/portage/repos.conf"
+tags.all_of = ["repos"]
