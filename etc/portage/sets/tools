@@ -29,7 +29,6 @@ dev-libs/protobuf
 dev-util/cargo-ebuild
 dev-util/cargo-license
 dev-util/ccls
-dev-util/fuzzbucket-client
 dev-vcs/git
 dev-zig/zls::gbrlsnchs
 media-gfx/graphviz
