@@ -1,0 +1,39 @@
+#!/bin/sh
+
+sbdir=/usr/local/share/secureboot
+
+sudo mkdir --parents ${sbdir}
+cd ${sbdir}
+uuid="$(uuidgen --random)"
+
+# Platform Key
+
+sudo openssl req -newkey rsa:4096 -nodes -keyout PK.key -new -x509 -sha256 -days 3650 -subj "/CN=Gentoo Platform Key/" -out PK.crt
+sudo openssl x509 -outform DER -in PK.crt -out PK.cer
+sudo cert-to-efi-sig-list -g "${uuid}" PK.crt PK.esl
+sudo sign-efi-sig-list -g "${uuid}" -k PK.key -c PK.crt PK PK.esl PK.auth
+
+# Key Exchange Key
+
+sudo openssl req -newkey rsa:4096 -nodes -keyout KEK.key -new -x509 -sha256 -days 3650 -subj "/CN=Gentoo Key Exchange Key/" -out KEK.crt
+sudo openssl x509 -outform DER -in KEK.crt -out KEK.cer
+sudo cert-to-efi-sig-list -g "${uuid}" KEK.crt KEK.esl
+sudo sign-efi-sig-list -g "${uuid}" -k PK.key -c PK.crt KEK KEK.esl KEK.auth
+
+# Signature Database Key
+
+sudo openssl req -newkey rsa:4096 -nodes -keyout db.key -new -x509 -sha256 -days 3650 -subj "/CN=Gentoo Signature Database Key/" -out db.crt
+sudo openssl x509 -outform DER -in db.crt -out db.cer
+sudo cert-to-efi-sig-list -g "${uuid}" db.crt db.esl
+sudo sign-efi-sig-list -g "${uuid}" -k KEK.key -c KEK.crt db db.esl db.auth
+
+sudo tee GUID.txt >/dev/null <<< "${uuid}"
+sudo mkdir --parents /etc/secureboot/keys/{db,dbx,KEK,PK}
+
+for filename in *.auth; do
+	dir="${filename%.*}"
+	sudo cp "${filename}" /etc/secureboot/keys/${dir}/
+done
+
+sudo sign-efi-sig-list -g "${uuid}" -c PK.crt -k PK.key PK /dev/null rm_PK.auth
+sudo cp rm_PK.auth /etc/secureboot/keys/PK/

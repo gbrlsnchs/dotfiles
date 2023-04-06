@@ -1,0 +1,38 @@
+#!/bin/sh
+
+disk="$1"
+[ -z "${disk}" ] && echo "error: no disk provided!" && exit 1
+
+part="$2"
+[ -z "${part}" ] && echo "error: no partition provided!" && exit 1
+
+log() {
+	echo "========================================================================"
+	echo "$@"
+	echo "========================================================================"
+}
+
+set -e
+
+# Generates an Unified Kernel Image.
+
+kernel="$(uname --kernel-release)"
+version="${kernel%%-gentoo}"
+bootnum="$(efibootmgr | awk '{ print $2 }' | sed --quiet 1p)"
+
+log "Generating Unified Kernel Image"
+sudo dracut --kver="${kernel}" --force /efi/gentoo.efi.signed
+
+log "Deleting previous UEFI entry (bootnum ${bootnum})"
+sudo efibootmgr \
+	--delete-bootnum \
+	--bootnum "${bootnum}"
+
+label="Gentoo (Linux ${version})"
+log "Creating new UEFI entry '${label}'"
+sudo efibootmgr \
+	--create \
+	--label "${label}" \
+	--disk "${disk}" \
+	--part "${part}" \
+	--loader "\gentoo.efi.signed"
