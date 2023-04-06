@@ -1,63 +1,68 @@
-base_dir = "/etc/portage"
-work_dir = "$PWD/etc/portage"
+base_dir = "/etc"
+work_dir = "$PWD/etc"
 tags = ["$HOST"]
 
-[targets."$HOST.conf"]
+[targets."dracut.conf"]
+
+[targets."portage/$HOST.conf"]
+link.base_dir = "/etc/portage"
 link.name = "make.conf"
 tags.all_of = ["$HOST"]
 
-[targets.sets]
+[targets."portage/sets"]
+link.base_dir = "/etc/portage"
 
-[targets.patches]
+[targets."portage/patches"]
+link.base_dir = "/etc/portage"
 
 # Packages
 
-[targets."package.use/main"]
+[targets."portage/package.use/main"]
 link.base_dir = "/etc/portage/package.use"
 tags.all_of = ["packages"]
 
-[targets."package.accept_keywords/main"]
+[targets."portage/package.accept_keywords/main"]
 link.base_dir = "/etc/portage/package.accept_keywords"
 tags.all_of = ["packages"]
 
-[targets."package.license/main"]
+[targets."portage/package.license/main"]
 link.base_dir = "/etc/portage/package.license"
 tags.all_of = ["packages"]
 
-[targets."package.mask/main"]
+[targets."portage/package.mask/main"]
 link.base_dir = "/etc/portage/package.mask"
 tags.all_of = ["packages"]
 
-[targets."package.unmask/main"]
+[targets."portage/package.unmask/main"]
 link.base_dir = "/etc/portage/package.unmask"
 tags.all_of = ["packages"]
 
 # Repositories
 
-[targets."repos.conf/crossdev.conf"]
+[targets."portage/repos.conf/crossdev.conf"]
 link.base_dir = "/etc/portage/repos.conf"
 tags.all_of = ["repos"]
 
-[targets."repos.conf/gbrlsnchs.conf"]
+[targets."portage/repos.conf/gbrlsnchs.conf"]
 link.base_dir = "/etc/portage/repos.conf"
 tags.all_of = ["repos"]
 
-[targets."repos.conf/gentoo.conf"]
+[targets."portage/repos.conf/gentoo.conf"]
 link.base_dir = "/etc/portage/repos.conf"
 tags.all_of = ["repos"]
 
-[targets."repos.conf/guru.conf"]
+[targets."portage/repos.conf/guru.conf"]
 link.base_dir = "/etc/portage/repos.conf"
 tags.all_of = ["repos"]
 
-[targets."repos.conf/local.conf"]
+[targets."portage/repos.conf/local.conf"]
 link.base_dir = "/etc/portage/repos.conf"
 tags.all_of = ["repos"]
 
-[targets."repos.conf/steam-overlay.conf"]
+[targets."portage/repos.conf/steam-overlay.conf"]
 link.base_dir = "/etc/portage/repos.conf"
 tags.all_of = ["repos"]
 
-[targets."repos.conf/wayland-desktop.conf"]
+[targets."portage/repos.conf/wayland-desktop.conf"]
 link.base_dir = "/etc/portage/repos.conf"
 tags.all_of = ["repos"]
