@@ -22,6 +22,7 @@ games-util/lutris
 */*::gbrlsnchs
 gui-apps/fnott
 gui-apps/kanshi
+gui-apps/wf-recorder
 gui-apps/wlr-randr::guru
 gui-apps/wlsunset
 gui-apps/wob
