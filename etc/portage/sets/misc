@@ -2,4 +2,5 @@ app-misc/neofetch
 app-text/tree
 media-gfx/imv
 media-libs/libsixel
+media-video/mpv
 x11-libs/libnotify
