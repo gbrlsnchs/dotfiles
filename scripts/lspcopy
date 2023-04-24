@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cp "${XDG_CONFIG_HOME}/kak-lsp/base.toml" .kaklsp
+
+for lang in $@; do
+	printf "\n" >> .kaklsp
+	cat "${XDG_CONFIG_HOME}/kak-lsp/${lang}.toml" >> .kaklsp
+done

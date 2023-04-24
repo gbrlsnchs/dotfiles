@@ -79,3 +79,6 @@ tags.all_of = ["tools"]
 
 [targets.lspcontainer]
 tags.all_of = ["tools"]
+
+[targets.lspcopy]
+tags.all_of = ["tools"]
