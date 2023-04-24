@@ -6,7 +6,6 @@ app-containers/docker-compose
 app-containers/podman
 app-editors/kakoune
 app-misc/jq
-app-misc/yq
 app-shells/fzf
 app-shells/zsh
 app-text/aspell
@@ -39,5 +38,4 @@ net-vpn/openvpn
 sys-apps/fd
 sys-apps/ripgrep
 sys-apps/yarn
-sys-devel/just
 virtual/jdk
