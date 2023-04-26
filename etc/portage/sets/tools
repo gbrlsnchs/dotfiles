@@ -18,6 +18,8 @@ dev-db/sqlite
 dev-go/delve
 dev-go/gopls
 dev-java/ant
+dev-java/jdtls-bin::gbrlsnchs
+dev-java/maven-bin
 dev-java/openjdk
 dev-lang/rust
 dev-lang/zig
