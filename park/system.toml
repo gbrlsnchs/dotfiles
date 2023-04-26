@@ -2,15 +2,49 @@ base_dir = "/etc"
 work_dir = "$PWD/etc"
 tags = ["$HOST"]
 
-[targets."dracut.conf"]
+[targets."dracut_$HOST.conf"]
+link.base_dir = "/etc/dracut.conf.d"
+link.name = "$HOST.conf"
 
 [targets."portage/$HOST.conf"]
 link.base_dir = "/etc/portage"
 link.name = "make.conf"
 tags.all_of = ["$HOST"]
 
-[targets."portage/sets"]
-link.base_dir = "/etc/portage"
+# Sets
+
+[targets."portage/sets/admin"]
+link.base_dir = "/etc/portage/sets"
+
+[targets."portage/sets/comm"]
+link.base_dir = "/etc/portage/sets"
+tags.all_of = ["comm"]
+
+[targets."portage/sets/core"]
+link.base_dir = "/etc/portage/sets"
+
+[targets."portage/sets/desktop"]
+link.base_dir = "/etc/portage/sets"
+
+[targets."portage/sets/gaming"]
+link.base_dir = "/etc/portage/sets"
+tags.all_of = ["gaming"]
+
+[targets."portage/sets/keyboard"]
+link.base_dir = "/etc/portage/sets"
+tags.all_of = ["keyboard"]
+
+[targets."portage/sets/misc"]
+link.base_dir = "/etc/portage/sets"
+
+[targets."portage/sets/mobile"]
+link.base_dir = "/etc/portage/sets"
+tags.any_of = ["sukaipia"]
+
+[targets."portage/sets/tools"]
+link.base_dir = "/etc/portage/sets"
+
+# Patches
 
 [targets."portage/patches"]
 link.base_dir = "/etc/portage"
@@ -19,23 +53,22 @@ link.base_dir = "/etc/portage"
 
 [targets."portage/package.use/main"]
 link.base_dir = "/etc/portage/package.use"
-tags.all_of = ["packages"]
 
 [targets."portage/package.accept_keywords/main"]
 link.base_dir = "/etc/portage/package.accept_keywords"
-tags.all_of = ["packages"]
 
 [targets."portage/package.license/main"]
 link.base_dir = "/etc/portage/package.license"
-tags.all_of = ["packages"]
+
+[targets."portage/package.license/mobile"]
+link.base_dir = "/etc/portage/package.license"
+tags.any_of = ["sukaipia"]
 
 [targets."portage/package.mask/main"]
 link.base_dir = "/etc/portage/package.mask"
-tags.all_of = ["packages"]
 
 [targets."portage/package.unmask/main"]
 link.base_dir = "/etc/portage/package.unmask"
-tags.all_of = ["packages"]
 
 # Repositories
 
