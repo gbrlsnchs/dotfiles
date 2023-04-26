@@ -1,0 +1,8 @@
+[language.java]
+filetypes = ["java"]
+roots = [".git", "mvnw", "gradlew"]
+command = "jdtls"
+args = []
+
+[language.java.settings]
+# "java.format.insertSpaces" = true

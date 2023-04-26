@@ -1,0 +1,4 @@
+[language.zig]
+filetypes = ["zig"]
+roots = ["build.zig"]
+command = "zls"

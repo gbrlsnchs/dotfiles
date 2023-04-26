@@ -1,0 +1,9 @@
+[language.denolsp]
+filetypes = ["typescript", "javascript", "json"]
+roots = ["deno.json", ".git"]
+command = "deno"
+args = ["lsp"]
+
+[language.denolsp.settings.deno]
+enable = true
+lint = true
