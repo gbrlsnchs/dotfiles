@@ -70,3 +70,10 @@ bar:
           - string: { text: "{time}", right-margin: 8 }
         date-format: "%Y年%m月%d日"
         time-format: "%T"
+
+  right:
+    - battery:
+        name: BAT0
+        poll-interval: 30
+        content:
+          string: {text: "BAT: {capacity}% {estimate}"}
