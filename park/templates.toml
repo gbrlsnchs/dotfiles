@@ -1,4 +1,4 @@
-tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
+tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP", "$HOST"]
 base_dir = ""
 work_dir = "$XDG_CACHE_HOME/dotfiles/templates"
 
@@ -13,13 +13,13 @@ tags.any_of = ["river"]
 
 [targets."yambar/primary.yml"]
 link.base_dir = "$PWD/yambar"
-tags.all_of = ["wayland", "display"]
-tags.any_of = ["river"]
+tags.all_of = ["wayland", "river", "display"]
+tags.any_of = ["egguheddo", "sukaipia"]
 
 [targets."yambar/secondary.yml"]
 link.base_dir = "$PWD/yambar"
-tags.all_of = ["wayland", "display"]
-tags.any_of = ["river"]
+tags.all_of = ["wayland", "river", "display"]
+tags.any_of = ["egguheddo"]
 
 [targets."river/theme"]
 link.base_dir = "$PWD/river/init.d"

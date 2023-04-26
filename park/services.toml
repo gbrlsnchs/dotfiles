@@ -18,12 +18,12 @@ tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
 
 [targets.yambar-primary]
-tags.all_of = ["wayland", "egguheddo", "display"]
-tags.any_of = ["river"]
+tags.all_of = ["wayland", "river", "display"]
+tags.any_of = ["egguheddo", "sukaipia"]
 
 [targets.yambar-secondary]
-tags.all_of = ["wayland", "egguheddo", "display"]
-tags.any_of = ["river"]
+tags.all_of = ["wayland", "river", "display"]
+tags.any_of = ["egguheddo"]
 
 [targets.river-tag-overlay]
 tags.all_of = ["wayland", "river", "display"]
