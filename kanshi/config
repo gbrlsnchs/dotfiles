@@ -6,3 +6,7 @@ profile {
 	output DP-1 mode 2560x1080@75Hz position 0,0
 	output HDMI-A-1 mode 1920x1080@60Hz position 320,1080
 }
+
+profile {
+	output DSI-1 mode 1200x1920@60Hz position 0,0 transform 270 scale 1.5
+}
