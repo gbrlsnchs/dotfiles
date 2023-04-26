@@ -48,7 +48,7 @@ set-face  global  StatusCursor               black,yellow
 set-face  global  Prompt                     yellow+b
 set-face  global  MatchingChar               black,bright-blue+fg
 set-face  global  BufferPadding              black,black
-set-face  global  Whitespace                 default,bright-cyan+f
+set-face  global  Whitespace                 bright-black,default+f
 set-face  global  InlayHint                  white,black
 set-face  global  SnippetsNextPlaceholders   blue,default
 set-face  global  SnippetsOtherPlaceholders  bright-black,default
