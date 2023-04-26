@@ -1,4 +1,7 @@
 app-mobilephone/dfu-util
+cross-avr/avr-libc
+cross-avr/binutils
+cross-avr/gcc
 dev-embedded/avrdude
 dev-embedded/dfu-programmer
 sys-devel/crossdev

@@ -13,9 +13,6 @@ app-text/editorconfig-core-c
 app-text/grip
 app-text/pandoc
 app-text/texlive
-cross-avr/avr-libc
-cross-avr/binutils
-cross-avr/gcc
 dev-db/postgresql
 dev-db/sqlite
 dev-go/delve
