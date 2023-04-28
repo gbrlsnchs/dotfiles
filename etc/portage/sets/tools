@@ -39,4 +39,5 @@ net-vpn/openvpn
 sys-apps/fd
 sys-apps/ripgrep
 sys-apps/yarn
+sys-devel/llvm
 virtual/jdk
