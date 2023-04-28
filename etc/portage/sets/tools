@@ -29,7 +29,6 @@ dev-util/cargo-license
 dev-util/ccls
 dev-vcs/git
 dev-zig/zls::gbrlsnchs
-gui-apps/wf-recorder
 media-gfx/graphviz
 net-libs/deno
 net-misc/grpcurl
