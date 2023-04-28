@@ -17,6 +17,7 @@ dev-db/postgresql
 dev-db/sqlite
 dev-go/delve
 dev-go/gopls
+dev-haskell/haskell-language-server::haskell
 dev-java/ant
 dev-java/jdtls-bin::gbrlsnchs
 dev-java/maven-bin
