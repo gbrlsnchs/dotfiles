@@ -28,6 +28,7 @@ gui-apps/wlsunset
 gui-apps/wob
 gui-apps/yambar::guru
 gui-libs/wlroots
+*/*::haskell
 */*::local
 media-fonts/gofont-mono
 media-fonts/twemoji
