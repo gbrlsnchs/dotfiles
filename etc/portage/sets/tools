@@ -23,6 +23,7 @@ dev-java/jdtls-bin::gbrlsnchs
 dev-java/maven-bin
 dev-java/openjdk
 dev-lang/ghc
+dev-lang/go
 dev-lang/rust
 dev-lang/zig
 dev-libs/protobuf
