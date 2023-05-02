@@ -1,8 +1,10 @@
 [language.java]
-filetypes = ["java"]
-roots = [".git", "mvnw", "gradlew"]
+filetypes = ["java", "xml"]
+roots = ["pom.xml", "build.gradle"]
 command = "jdtls"
 args = []
 
 [language.java.settings]
-# "java.format.insertSpaces" = true
+"java.format.insertSpaces" = true
+# "java.format.settings.url" = "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml"
+# "java.format.settings.profile" = "GoogleStyle"
