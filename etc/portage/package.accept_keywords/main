@@ -32,6 +32,7 @@ gui-libs/wlroots
 */*::haskell
 */*::local
 media-fonts/gofont-mono
+media-fonts/office-code-pro
 media-fonts/twemoji
 net-im/slack
 */*::steam-overlay

@@ -60,7 +60,7 @@ for dir in templates/* ; do
 			--expression "s/{{color13}}/$color13/g" \
 			--expression "s/{{color14}}/$color14/g" \
 			--expression "s/{{color15}}/$color15/g" \
-			--expression "s/{{font_size}}/12/g" \
+			--expression "s/{{font_size}}/13/g" \
 			--expression "s/{{primary_monitor}}/$MONITOR1/g" \
 			--expression "s/{{primary_monitor_width}}/$MONITOR1_W/g" \
 			--expression "s/{{primary_monitor_height}}/$MONITOR1_H/g" \
