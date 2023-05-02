@@ -1,3 +1,7 @@
+declare -A hostnames
+hostnames[egghead]="egguheddo"
+hostnames[skypiea]="sukaipia"
+
 _git_branch() {
 	local branch_name=$(git rev-parse --abbrev-ref HEAD 2> /dev/null)
 	if [[ "$branch_name" != "" ]]; then
@@ -12,7 +16,7 @@ _kak_session() {
 }
 
 _kana_hostname() {
-	kana --katakana 2>/dev/null <<< $(hostname) || echo "%m"
+	kana --katakana 2>/dev/null <<< $hostnames[$(hostname)] || echo "%m"
 }
 
 _sep() {
