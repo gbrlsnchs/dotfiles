@@ -23,6 +23,7 @@ games-util/lutris
 gui-apps/fnott
 gui-apps/kanshi
 gui-apps/wf-recorder
+gui-apps/wl-mirror
 gui-apps/wlr-randr::guru
 gui-apps/wlsunset
 gui-apps/wob
