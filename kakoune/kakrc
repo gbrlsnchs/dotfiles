@@ -194,7 +194,7 @@ hook global WinSetOption filetype=yaml %{
 	expandtab
 }
 
-hook global WinSetOption filetype=zig %{
+hook global WinSetOption filetype=(java|zig) %{
 	set-option buffer indentwidth 4
 	set-option buffer softtabstop 4
 	expandtab
