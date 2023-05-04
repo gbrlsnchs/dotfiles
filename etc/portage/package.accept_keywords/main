@@ -1,9 +1,10 @@
 app-admin/haskell-updater
 app-containers/docker-buildx
-app-containers/docker-compose
+app-containers/docker-compose:2
 app-editors/helix
 app-editors/kak-lsp
 app-editors/kakoune
+app-misc/yq
 app-text/pandoc
 dev-go/delve
 dev-go/gopls
@@ -31,12 +32,10 @@ gui-apps/yambar::guru
 gui-libs/wlroots
 */*::haskell
 */*::local
-media-fonts/gofont-mono
 media-fonts/office-code-pro
 media-fonts/twemoji
 net-im/slack
 */*::steam-overlay
-sys-boot/systemd-boot
 sys-libs/solo-udev-rules
 www-client/firefox
 x11-themes/breezex-xcursors

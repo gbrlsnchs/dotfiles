@@ -1,4 +1,4 @@
 app-emulation/wine-proton
-games-util/lutris
+# games-util/lutris
 games-util/steam-launcher
 sys-apps/firejail
