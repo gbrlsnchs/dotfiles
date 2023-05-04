@@ -66,6 +66,13 @@ tags.all_of = ["uefi"]
 link.name = "river"
 tags.all_of = ["wayland", "river", "display"]
 
+[targets.swaystart]
+link.name = "sway"
+tags.all_of = ["wayland", "sway", "display"]
+
+[targets.barstatus]
+tags.all_of = ["wayland", "sway", "display"]
+
 #############
 ### TOOLS ###
 #############

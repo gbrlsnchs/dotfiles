@@ -20,6 +20,9 @@ tags.all_of = ["audio"]
 [targets.river]
 tags.all_of = ["wayland", "river", "display"]
 
+[targets.sway]
+tags.all_of = ["wayland", "sway", "display"]
+
 [targets.kanshi]
 tags.all_of = ["wayland", "display"]
 tags.any_of = ["river", "sway"]

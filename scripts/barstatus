@@ -1,0 +1,16 @@
+#!/bin/sh
+
+bar=""
+
+current_timestamp="$(date +'%Y-%m-%d %H:%M:%S')"
+bar="${current_timestamp}"
+
+battery_dir=/sys/class/power_supply/BAT0
+
+if [ -d "${battery_dir}" ]; then
+	capacity="$(cat "${battery_dir}/capacity")"
+	status="$(cat "${battery_dir}/status")"
+	bar="${bar} / Battery: ${capacity}% (${status})"
+fi
+
+echo "${bar}"
