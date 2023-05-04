@@ -6,6 +6,9 @@ set-option global indentwidth 0
 set-option global tabstop 4
 set-option global grepcmd "rg --vimgrep --smart-case"
 
+declare-option str raw_modeline
+set-option global raw_modeline "%opt{modelinefmt}"
+
 # Use EditorConfig.
 hook global BufCreate .* %{
 	editorconfig-load
@@ -275,5 +278,7 @@ try %{
 }
 
 map -docstring "Insert current buffer's directory" global prompt <a-/> '%sh{dirname "$kak_bufname"}<a-!>/'
+
+set-option global modelinefmt "%opt{raw_modeline} LSP[%opt{lsp_modeline}]"
 
 colorscheme custom
