@@ -32,7 +32,7 @@ tags.all_of = ["wayland", "river", "display"]
 [targets."foot/foot.ini"]
 link.base_dir = "$PWD/foot"
 tags.all_of = ["wayland", "tools"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 
 [targets."zsh/colors.zsh"]
 link.base_dir = "$ZDOTDIR/.zshrc.d"
@@ -45,7 +45,7 @@ tags.all_of = ["tools"]
 
 [targets."waylock/waylock.toml"]
 tags.all_of = ["wayland", "misc"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 link.base_dir = "$PWD/waylock"
 
 [targets."gtk/settings.ini"]

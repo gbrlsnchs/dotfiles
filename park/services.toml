@@ -13,24 +13,28 @@ tags.all_of = ["wayland", "river", "display"]
 tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
 
+[targets.dunst]
+tags.all_of = ["wayland", "display"]
+tags.any_of = ["sway"]
+
 [targets.wlsunset]
 tags.all_of = ["wayland", "display"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 
 [targets.yambar-primary]
 tags.all_of = ["wayland", "river", "display"]
-tags.any_of = ["egguheddo", "sukaipia"]
+tags.any_of = ["egghead", "skypiea"]
 
 [targets.yambar-secondary]
 tags.all_of = ["wayland", "river", "display"]
-tags.any_of = ["egguheddo"]
+tags.any_of = ["egghead"]
 
 [targets.river-tag-overlay]
 tags.all_of = ["wayland", "river", "display"]
 
 [targets.kanshi]
 tags.all_of = ["wayland", "display"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 
 #############
 ### AUDIO ###
@@ -38,19 +42,19 @@ tags.any_of = ["river"]
 
 [targets.pipewire]
 tags.all_of = ["audio"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 
 [targets.pipewire-pulse]
 tags.all_of = ["audio"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 
 [targets.wireplumber]
 tags.all_of = ["audio"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 
 [targets.wob]
 tags.all_of = ["wayland", "audio"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 
 #############
 ### TOOLS ###

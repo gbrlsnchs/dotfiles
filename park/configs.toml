@@ -22,11 +22,15 @@ tags.all_of = ["wayland", "river", "display"]
 
 [targets.kanshi]
 tags.all_of = ["wayland", "display"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 
 [targets.fnott]
 tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
+
+[targets.dunst]
+tags.all_of = ["wayland", "display"]
+tags.any_of = ["sway"]
 
 [targets.yambar]
 tags.all_of = ["wayland", "display"]
@@ -34,12 +38,12 @@ tags.any_of = ["river"]
 
 [targets."xdg/desktop-portal-wlr"]
 tags.all_of = ["wayland", "display"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 link.name = "xdg-desktop-portal-wlr"
 
 [targets.fontconfig]
 tags.all_of = ["display"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 
 #############
 ### TOOLS ###
@@ -54,7 +58,7 @@ tags.all_of = ["tools"]
 
 [targets.foot]
 tags.all_of = ["wayland", "tools"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 
 [targets."latex/latexmkrc"]
 link.base_dir = "$HOME"
@@ -109,7 +113,7 @@ tags.all_of = ["tools"]
 
 [targets.waylock]
 tags.all_of = ["wayland", "misc"]
-tags.any_of = ["river"]
+tags.any_of = ["river", "sway"]
 
 [targets."xdg/user-dirs.dirs"]
 tags.all_of = ["misc"]
