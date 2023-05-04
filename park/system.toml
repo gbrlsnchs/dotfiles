@@ -2,9 +2,9 @@ base_dir = "/etc"
 work_dir = "$PWD/etc"
 tags = ["$HOST"]
 
-[targets."dracut_$HOST.conf"]
+[targets."dracut/$HOST.conf"]
 link.base_dir = "/etc/dracut.conf.d"
-link.name = "$HOST.conf"
+link.name = "host.conf"
 
 [targets."portage/$HOST.conf"]
 link.base_dir = "/etc/portage"
@@ -39,7 +39,7 @@ link.base_dir = "/etc/portage/sets"
 
 [targets."portage/sets/mobile"]
 link.base_dir = "/etc/portage/sets"
-tags.any_of = ["sukaipia"]
+tags.any_of = ["skypiea"]
 
 [targets."portage/sets/tools"]
 link.base_dir = "/etc/portage/sets"
@@ -62,7 +62,7 @@ link.base_dir = "/etc/portage/package.license"
 
 [targets."portage/package.license/mobile"]
 link.base_dir = "/etc/portage/package.license"
-tags.any_of = ["sukaipia"]
+tags.any_of = ["skypiea"]
 
 [targets."portage/package.mask/main"]
 link.base_dir = "/etc/portage/package.mask"
