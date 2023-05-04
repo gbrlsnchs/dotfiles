@@ -14,6 +14,8 @@ ssh/config.d/unlisted
 
 sv/**/supervise
 
+sway/config.d/
+
 waylock/waylock.toml
 
 yambar/*.yml

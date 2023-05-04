@@ -11,19 +11,29 @@ link.base_dir = "$PWD/fnott"
 tags.all_of = ["wayland", "display"]
 tags.any_of = ["river"]
 
+[targets."dunst/dunstrc"]
+link.base_dir = "$PWD/dunst"
+tags.all_of = ["wayland", "display"]
+tags.any_of = ["sway"]
+
 [targets."yambar/primary.yml"]
 link.base_dir = "$PWD/yambar"
 tags.all_of = ["wayland", "river", "display"]
-tags.any_of = ["egguheddo", "sukaipia"]
+tags.any_of = ["egghead", "skypiea"]
 
 [targets."yambar/secondary.yml"]
 link.base_dir = "$PWD/yambar"
 tags.all_of = ["wayland", "river", "display"]
-tags.any_of = ["egguheddo"]
+tags.any_of = ["egghead"]
 
 [targets."river/theme"]
 link.base_dir = "$PWD/river/init.d"
 tags.all_of = ["wayland", "river", "display"]
+
+[targets.sway]
+link.base_dir = "$PWD/sway"
+link.name = "config.d"
+tags.all_of = ["wayland", "sway", "display"]
 
 #############
 ### TOOLS ###

@@ -1,0 +1,25 @@
+font monospace {{font_size}}
+seat seat0 xcursor_theme {{cursor_theme}}
+
+client.focused #{{color4}} #{{color4}} #{{background}}
+client.focused_inactive #{{color8}} #{{color8}} #{{foreground}}
+client.focused_tab_title #{{color8}} #{{color8}} #{{foreground}}
+client.unfocused #{{color0}} #{{background}} #{{color7}} #{{color7}} #{{color0}}
+client.urgent #{{color4}} #{{color4}} #{{background}}
+
+bar {
+	position bottom
+
+	# When the status_command prints a new line to stdout, swaybar updates.
+	# The default just shows the current date and time.
+	status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+
+	colors {
+		statusline #{{foreground}}
+		background #{{background}}
+		focused_workspace #{{color4}} #{{color4}} #{{background}}
+		active_workspace #{{color7}} #{{color0}} #{{color7}}
+		inactive_workspace #{{color0}} #{{color0}} #{{color7}}
+		urgent_workspace #{{color3}} #{{color3}} #{{background}}
+	}
+}
