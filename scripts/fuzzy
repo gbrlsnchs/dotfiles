@@ -12,4 +12,4 @@ Suspend to RAM: sudo s2ram
 EOF
 
 program="$(echo "$config" | sort | yq --raw-output 'keys | .[]' | dmenu)"
-echo "$config" | yq --raw-output ."$program" | xargs -I {} riverctl spawn '{}'
+echo "$config" | yq --raw-output ."$program" | xargs -I {} swaymsg exec '{}'
