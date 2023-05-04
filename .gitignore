@@ -1,8 +1,10 @@
-git/config.d/unlisted
+dunst/dunstrc
 
 fnott/fnott.ini
 
 foot/foot.ini
+
+git/config.d/unlisted
 
 gtk/settings.ini
 
