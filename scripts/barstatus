@@ -5,12 +5,17 @@ bar=""
 current_timestamp="$(date +'%Y-%m-%d %H:%M:%S')"
 bar="${current_timestamp}"
 
-battery_dir=/sys/class/power_supply/BAT0
+wifi_ssid="$(wpa_cli status | grep "^ssid=")"
+if [ ! -z "${wifi_ssid}" ]; then
+	ssid="$(awk -F= '{ print $2 }' <<< "${wifi_ssid}")"
+	bar="${bar} / WLAN: ${ssid}"
+fi
 
+battery_dir=/sys/class/power_supply/BAT0
 if [ -d "${battery_dir}" ]; then
 	capacity="$(cat "${battery_dir}/capacity")"
 	status="$(cat "${battery_dir}/status")"
-	bar="${bar} / Battery: ${capacity}% (${status})"
+	bar="${bar} / BAT0: ${capacity}% (${status})"
 fi
 
 echo "${bar}"
