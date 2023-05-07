@@ -4,4 +4,3 @@ gui-apps/wf-recorder
 media-gfx/imv
 media-libs/libsixel
 media-video/mpv
-x11-libs/libnotify
