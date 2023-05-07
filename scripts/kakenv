@@ -9,8 +9,13 @@ vars="$(
 	| xargs --delimiter '\n'
 )"
 
-if [ ! -z "$vars" ]; then
-	eval "export $vars"
+if [ ! -z "${vars}" ]; then
+	eval "export ${vars}"
 fi
 
-/usr/bin/kak $*
+args=""
+if [ ! -z "${kak_session}" ]; then
+	args="-c ${kak_session}"
+fi
+
+/usr/bin/kak ${args} $*

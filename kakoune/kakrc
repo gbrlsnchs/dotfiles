@@ -76,8 +76,6 @@ set-option global foot_popup_flags '--app-id=popup' %sh{ printf "%s" "--server=$
 
 define-command start-foot-server -docstring "Start foot server for this session" %{
 	nop %sh{
-		export EDITOR="kak -c $kak_session"
-
 		foot --server="$kak_opt_foot_server_path" > /dev/null 2>&1 < /dev/null &
 		process=$!
 		printf "%s\n" "
