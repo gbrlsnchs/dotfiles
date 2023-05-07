@@ -1,7 +1,7 @@
 font monospace {{font_size}}
 seat seat0 xcursor_theme {{cursor_theme}}
 
-client.focused #{{color4}} #{{color4}} #{{background}}
+client.focused #{{color4}} #{{color4}} #{{background}} #{{color3}} #{{color4}}
 client.focused_inactive #{{color8}} #{{color8}} #{{foreground}}
 client.focused_tab_title #{{color8}} #{{color8}} #{{foreground}}
 client.unfocused #{{color0}} #{{background}} #{{color7}} #{{color7}} #{{color0}}
