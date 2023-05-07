@@ -1,6 +1,8 @@
 font monospace {{font_size}}
 seat seat0 xcursor_theme {{cursor_theme}}
 
+output * background #{{background}} solid_color
+
 client.focused #{{color4}} #{{color4}} #{{background}} #{{color3}} #{{color4}}
 client.focused_inactive #{{color8}} #{{color8}} #{{foreground}}
 client.focused_tab_title #{{color8}} #{{color8}} #{{foreground}}
@@ -15,11 +17,11 @@ bar {
 	status_command while barstatus; do sleep 1; done
 
 	colors {
-		statusline #{{foreground}}
-		background #{{background}}
+		statusline #{{color7}}
+		background #{{color0}}
 		focused_workspace #{{color4}} #{{color4}} #{{background}}
 		active_workspace #{{color7}} #{{color0}} #{{color7}}
-		inactive_workspace #{{color0}} #{{color0}} #{{color7}}
+		inactive_workspace #{{color8}} #{{color8}} #{{color7}}
 		urgent_workspace #{{color3}} #{{color3}} #{{background}}
 	}
 }
