@@ -67,7 +67,7 @@ define-command -hidden -params 1 lsp-init %{
 	}
 }
 
-lsp-init "(c|go|java|javascript|json|rust|typescript|xml|zig)"
+lsp-init "(c|go|haskell|java|javascript|json|rust|typescript|xml|zig)"
 
 declare-option str foot_server_path %sh{ printf "%s" "$XDG_RUNTIME_DIR/foot-kakoune-$kak_session.sock" }
 set-option global foot_normal_flags %sh{ printf "%s" "--server=$kak_opt_foot_server_path" }
