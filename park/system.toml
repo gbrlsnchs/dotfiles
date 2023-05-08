@@ -11,6 +11,11 @@ link.base_dir = "/etc/portage"
 link.name = "make.conf"
 tags.all_of = ["$HOST"]
 
+[targets."kernel/$HOST.config"]
+link.base_dir = "/usr/src/linux"
+link.name = ".config"
+tags.all_of = ["$HOST"]
+
 # Sets
 
 [targets."portage/sets/admin"]
