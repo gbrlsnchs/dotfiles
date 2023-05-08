@@ -9,7 +9,6 @@ gui-apps/wl-clipboard
 gui-apps/wlr-randr
 gui-apps/wlsunset
 gui-apps/wob
-gui-apps/yambar
 gui-libs/xdg-desktop-portal-wlr
 gui-wm/sway
 media-fonts/fira-mono
