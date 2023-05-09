@@ -25,6 +25,8 @@ evaluate-commands %sh{
 		envsubst < .kaklsp > "$config"
 
 		lsp_config_opt="--config $config"
+	else
+		lsp_config_opt="--config ${XDG_CONFIG_HOME}/kak-lsp/base.toml"
 	fi
 
 	kak-lsp $lsp_config_opt --kakoune -s $kak_session
