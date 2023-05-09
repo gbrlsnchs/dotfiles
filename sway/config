@@ -7,7 +7,7 @@ set $right l
 
 bindsym $mod+Space exec fuzzy
 bindsym $mod+Shift+q kill
-bindsym $mod+Shift+e exec pkill runsv; pkill gpg-agent; swaymsg exit
+bindsym $mod+Shift+e exit
 bindsym $mod+Shift+c reload
 
 floating_modifier $mod normal
