@@ -1,0 +1,2 @@
+media-libs/vulkan-loader abi_x86_32
+sys-apps/systemd-utils   abi_x86_32
