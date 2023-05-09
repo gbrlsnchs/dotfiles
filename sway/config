@@ -10,6 +10,10 @@ bindsym $mod+Shift+q kill
 bindsym $mod+Shift+e exit
 bindsym $mod+Shift+c reload
 
+bindsym XF86AudioMute exec mutevol
+bindsym XF86AudioRaiseVolume exec incvol
+bindsym XF86AudioLowerVolume exec decvol
+
 floating_modifier $mod normal
 
 bindsym $mod+$left focus left
