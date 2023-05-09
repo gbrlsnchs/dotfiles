@@ -12,6 +12,7 @@ media-libs/libcanberra            alsa
 media-libs/libsdl2                gles2
 media-libs/libsixel               jpeg png
 media-sound/pulseaudio            -daemon
+media-video/ffmpeg                x264
 media-video/pipewire              pipewire-alsa sound-server
 net-im/discord                    system-ffmpeg
 net-misc/openssh                  security-key
