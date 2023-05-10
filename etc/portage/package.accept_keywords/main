@@ -1,6 +1,6 @@
 app-admin/haskell-updater
 app-containers/docker-buildx
-app-containers/docker-compose:2
+app-containers/docker-compose
 app-editors/helix
 app-editors/kak-lsp
 app-editors/kakoune
