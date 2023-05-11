@@ -35,6 +35,7 @@ dev-util/ccls
 dev-vcs/git
 dev-zig/zls::gbrlsnchs
 media-gfx/graphviz
+media-libs/freeglut
 net-libs/deno
 net-misc/grpcurl
 net-vpn/openvpn
