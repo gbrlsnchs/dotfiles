@@ -73,6 +73,9 @@ tags.all_of = ["wayland", "sway", "display"]
 [targets.barstatus]
 tags.all_of = ["wayland", "sway", "display"]
 
+[targets.virtout]
+tags.all_of = ["wayland", "sway", "display"]
+
 #############
 ### TOOLS ###
 #############
