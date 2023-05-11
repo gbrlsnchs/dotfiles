@@ -19,7 +19,6 @@ dev-db/sqlite
 dev-go/delve
 dev-go/gopls
 dev-haskell/haskell-language-server::haskell
-dev-tex/texlab::gbrlsnchs
 dev-java/ant
 dev-java/jdtls-bin::gbrlsnchs
 dev-java/maven-bin
@@ -29,6 +28,7 @@ dev-lang/go
 dev-lang/rust
 dev-lang/zig
 dev-libs/protobuf
+dev-tex/texlab::gbrlsnchs
 dev-util/cargo-ebuild
 dev-util/cargo-license
 dev-util/ccls
