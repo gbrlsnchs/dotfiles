@@ -42,3 +42,14 @@ swaymsg output "${virt_output}" position -- "${width}" "${height}"
 swaymsg create_output || exit 1
 echo "${tip}" > "${tip_file}"
 echo "${virt_output} mode ${mode} position ${width}x${height}"
+
+function ctrlc() {
+	echo ""
+}
+
+trap ctrlc INT
+
+wl-mirror "${virt_output}"
+
+echo "unplugging ${virt_output}..."
+swaymsg output "${virt_output}" unplug
