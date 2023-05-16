@@ -2,9 +2,13 @@ base_dir = "/etc"
 work_dir = "$PWD/etc"
 tags = ["$HOST"]
 
+[targets."dracut/common.conf"]
+link.base_dir = "/etc/dracut.conf.d"
+link.name = "common.conf"
+
 [targets."dracut/$HOST.conf"]
 link.base_dir = "/etc/dracut.conf.d"
-link.name = "host.conf"
+link.name = "hostonly.conf"
 
 [targets."portage/$HOST.conf"]
 link.base_dir = "/etc/portage"
