@@ -10,4 +10,4 @@ app-shells/gentoo-zsh-completions
 sys-apps/pciutils
 sys-auth/solo1
 sys-libs/solo-udev-rules
-sys-power/suspend
+sys-power/zzz

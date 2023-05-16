@@ -20,6 +20,9 @@ link.base_dir = "/usr/src/linux"
 link.name = ".config"
 tags.all_of = ["$HOST"]
 
+[targets."zzz/lock.sh"]
+link.base_dir = "/etc/zzz.d/resume"
+
 # Sets
 
 [targets."portage/sets/admin"]
