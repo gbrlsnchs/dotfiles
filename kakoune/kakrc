@@ -282,4 +282,9 @@ map -docstring "Insert current buffer's directory" global prompt <a-/> '%sh{dirn
 
 set-option global modelinefmt "%opt{raw_modeline} LSP[%opt{lsp_modeline}]"
 
+declare-user-mode file
+map global file f "<esc>: format-buffer<ret>" -docstring "format buffer using formatcmd"
+map global file l "<esc>: lint-buffer<ret>"   -docstring "lint buffer using lintcmd"
+map global user f %{:enter-user-mode file<ret>} -docstring "File mode"
+
 colorscheme custom
