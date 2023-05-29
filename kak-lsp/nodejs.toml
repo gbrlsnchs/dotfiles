@@ -1,0 +1,5 @@
+[language.nodejs]
+filetypes = ["javascript", "typescript"]
+roots = ["package.json", "tsconfig.json", "jsconfig.json", ".git", ".hg"]
+command = "lspcontainer"
+args = ["typescript-language-server", "--stdio"]
