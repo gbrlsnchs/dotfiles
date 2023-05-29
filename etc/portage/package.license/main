@@ -2,5 +2,6 @@ dev-java/*                EPL
 dev-java/osgi-cmpn        OSGi-Specification-2.0
 net-im/discord            all-rights-reserved
 net-im/slack              all-rights-reserved
+net-libs/deno             MPL-2.0+
 */*::steam-overlay        ValveSteamLicense
 sys-kernel/linux-firmware @BINARY-REDISTRIBUTABLE
