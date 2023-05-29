@@ -8,6 +8,7 @@ app-portage/eix
 app-portage/gentoolkit
 app-shells/gentoo-zsh-completions
 sys-apps/pciutils
+sys-apps/ukiutils::gbrlsnchs
 sys-auth/solo1
 sys-libs/solo-udev-rules
 sys-power/zzz
