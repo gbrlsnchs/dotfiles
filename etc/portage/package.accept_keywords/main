@@ -4,6 +4,7 @@ app-containers/docker-compose
 app-editors/helix
 app-editors/kak-lsp
 app-editors/kakoune
+app-eselect/eselect-zig
 app-misc/yq
 app-text/pandoc
 dev-go/delve
