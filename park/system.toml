@@ -21,7 +21,7 @@ link.name = ".config"
 tags.all_of = ["$HOST"]
 
 [targets."zzz/lock.sh"]
-link.base_dir = "/etc/zzz.d/resume"
+link.base_dir = "/etc/zzz.d/suspend"
 
 # Sets
 
