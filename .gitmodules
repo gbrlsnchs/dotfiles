@@ -22,3 +22,6 @@
 [submodule "kbd/qmk_firmware"]
 	path = kbd/qmk_firmware
 	url = https://github.com/qmk/qmk_firmware
+[submodule "kakoune/autoload/rc/number-toggle.kak"]
+	path = kakoune/autoload/rc/number-toggle.kak
+	url = https://github.com/evanrelf/number-toggle.kak

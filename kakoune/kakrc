@@ -1,5 +1,6 @@
-add-highlighter global/ number-lines -relative -hlcursor -separator "  "
-add-highlighter global/ wrap
+require-module "number-toggle"
+set-option global number_toggle_params -hlcursor
+
 add-highlighter global/ show-whitespaces -tab "»"
 
 set-option global indentwidth 0
