@@ -1,7 +1,7 @@
 font monospace {{font_size}}
 seat seat0 xcursor_theme {{cursor_theme}}
 
-output * background #{{background}} solid_color
+output * background {{wallpaper}} fill #{{background}}
 
 client.focused #{{color4}} #{{color4}} #{{background}} #{{color3}} #{{color4}}
 client.focused_inactive #{{color8}} #{{color8}} #{{foreground}}
