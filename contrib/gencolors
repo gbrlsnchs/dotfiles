@@ -61,16 +61,16 @@ for dir in templates/* ; do
 			--expression "s/{{color14}}/$color14/g" \
 			--expression "s/{{color15}}/$color15/g" \
 			--expression "s/{{font_size}}/10/g" \
-			--expression "s/{{primary_monitor}}/$MONITOR1/g" \
-			--expression "s/{{primary_monitor_width}}/$MONITOR1_W/g" \
-			--expression "s/{{primary_monitor_height}}/$MONITOR1_H/g" \
-			--expression "s/{{primary_monitor_position}}/$MONITOR1_POS/g" \
-			--expression "s/{{secondary_monitor}}/$MONITOR2/g" \
-			--expression "s/{{secondary_monitor_width}}/$MONITOR2_W/g" \
-			--expression "s/{{secondary_monitor_height}}/$MONITOR2_H/g" \
-			--expression "s/{{secondary_monitor_position}}/$MONITOR2_POS/g" \
-			--expression "s/{{cursor_theme}}/$CURSOR_THEME/g" \
-			--expression "s|{{wallpaper}}|$WALLPAPER|g" \
+			--expression "s/{{primary_monitor}}/${MONITOR1}/g" \
+			--expression "s/{{primary_monitor_width}}/${MONITOR1_W}/g" \
+			--expression "s/{{primary_monitor_height}}/${MONITOR1_H}/g" \
+			--expression "s/{{primary_monitor_position}}/${MONITOR1_POS}/g" \
+			--expression "s/{{secondary_monitor}}/${MONITOR2}/g" \
+			--expression "s/{{secondary_monitor_width}}/${MONITOR2_W}/g" \
+			--expression "s/{{secondary_monitor_height}}/${MONITOR2_H}/g" \
+			--expression "s/{{secondary_monitor_position}}/${MONITOR2_POS}/g" \
+			--expression "s/{{cursor_theme}}/${CURSOR_THEME}/g" \
+			--expression "s|{{wallpaper}}|${WALLPAPER}|g" \
 			"$template" > "$file" || continue
 		echo "Generated file from template: $file"
 	done
