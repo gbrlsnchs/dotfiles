@@ -20,6 +20,7 @@ if [ -z "${tip}" ]; then
 			;;
 	esac
 else
+	echo "tip is known, trying to unplug HEADLESS-${tip}"
 	swaymsg output "HEADLESS-${tip}" unplug
 	tip="$((${tip}+1))"
 fi
