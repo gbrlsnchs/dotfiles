@@ -48,13 +48,13 @@ set-face global StatusCursor              black,yellow
 set-face global Prompt                    yellow+b
 set-face global MatchingChar              black,bright-blue+fg
 set-face global BufferPadding             black,black
-set-face global Whitespace                bright-black,default+f
-set-face global InlayHint                 white,black
+set-face global Whitespace                black,default+f
+set-face global InlayHint                 bright-black,default
 set-face global SnippetsNextPlaceholders  blue,default
 set-face global SnippetsOtherPlaceholders bright-black,default
 
 # lsp
-set-face global Reference                 default,bright-black
+set-face global Reference                 default,black
 set-face global InfoDefault               Information
 set-face global InfoBlock                 Information
 set-face global InfoBlockQuote            Information
