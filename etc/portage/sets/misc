@@ -2,6 +2,7 @@ app-misc/neofetch
 app-text/tree
 gui-apps/wf-recorder
 gui-apps/wl-mirror
+media-gfx/imagemagick
 media-gfx/imv
 media-libs/libsixel
 media-video/mpv
