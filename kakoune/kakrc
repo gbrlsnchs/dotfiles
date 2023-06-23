@@ -23,7 +23,7 @@ evaluate-commands %sh{
 		config="/tmp/kak-lsp/configs/$kak_session.toml"
 
 		mkdir --parents "$(dirname "$config")"
-		envsubst < .kaklsp > "$config"
+		envsubst < .kaklsp | sed --expression 's/§/$/g' > "$config"
 
 		lsp_config_opt="--config $config"
 	else
