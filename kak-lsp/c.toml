@@ -1,0 +1,4 @@
+[language_server.ccls]
+filetypes = ["c"]
+roots = ["compile_commands.json", ".ccls", ".git", ".hg"]
+command = "ccls"

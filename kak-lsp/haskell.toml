@@ -1,10 +1,10 @@
-[language.haskell]
+[language_server.hls]
 filetypes = ["haskell"]
 roots = ["hie.yaml", "cabal.project", "Setup.hs", "stack.yaml", "*.cabal"]
 command = "haskell-language-server-wrapper"
 args = ["--lsp"]
 settings_section = "_"
 
-[language.haskell.settings._]
+[language_server.hls.settings._]
 # See https://haskell-language-server.readthedocs.io/en/latest/configuration.html
 # haskell.formattingProvider = "ormolu"

@@ -29,3 +29,7 @@ faces = [
     {face="default+d", token="variable", modifiers=["constant"]},
     {face="variable", token="variable"},
 ]
+
+[language_ids]
+javascript = "javascriptreact"
+typescript = "typescriptreact"

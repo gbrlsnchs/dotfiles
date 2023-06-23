@@ -1,0 +1,9 @@
+[language_server.tailwindcss]
+filetypes = ["javascript", "typescript"]
+roots = ["tailwind.config.js", "tailwind.config.ts"]
+command = "lspcontainer"
+args = ["tailwindcss-language-server", "--stdio"]
+
+[language_server.tailwindcss.settings.tailwindcss]
+editor = {}
+# experimental.configFile = "tailwind.config.js"

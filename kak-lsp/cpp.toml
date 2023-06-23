@@ -1,4 +1,4 @@
-[language.cpp]
+[language_server.clangd]
 filetypes = ["cpp"]
 roots = ["compile_commands.json", ".clangd", ".git", ".hg"]
 command = "clangd"

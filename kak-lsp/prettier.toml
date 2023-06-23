@@ -1,0 +1,30 @@
+[language_server.prettier]
+filetypes = ["javascript", "typescript"]
+roots = [
+	".prettierrc",
+	".prettierrc.json",
+	".prettierrc.yml",
+	".prettierrc.yaml",
+	".prettierrc.json5",
+	".prettierrc.js",
+	".prettierrc.cjs",
+	".prettierrc.toml",
+	"package.json",
+	".git",
+	".hg",
+]
+command = "efm-langserver"
+args = ["-loglevel", "5", "-logfile", "/tmp/efm.log"]
+settings_section = "_"
+
+[language_server.prettier.settings._]
+documentFormatting = true
+rootMarkers = [".git/"]
+
+[[language_server.prettier.settings._.languages.javascriptreact]]
+formatCommand = "lspcontainer yarn --silent prettier --stdin-filepath §{INPUT}"
+formatStdin = true
+
+[[language_server.prettier.settings._.languages.typescriptreact]]
+formatCommand = "lspcontainer yarn --silent prettier --stdin-filepath §{INPUT}"
+formatStdin = true

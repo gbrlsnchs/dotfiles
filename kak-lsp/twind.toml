@@ -1,0 +1,9 @@
+[language.typescriptreact.twind]
+filetypes = ["javascript", "typescript"]
+roots = ["twind.config.js", "twind.config.ts"]
+command = "lspcontainer"
+args = ["twind-language-server", "--stdio"]
+
+[language.typescriptreact.tailwindcss.settings.tailwindcss]
+editor = {}
+# experimental.configFile = "tailwind.config.js"

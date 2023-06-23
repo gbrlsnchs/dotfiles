@@ -1,4 +1,4 @@
-[language.nodejs]
+[language_server.tsserver]
 filetypes = ["javascript", "typescript"]
 roots = ["package.json", "tsconfig.json", "jsconfig.json", ".git", ".hg"]
 command = "lspcontainer"
