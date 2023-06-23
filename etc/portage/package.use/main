@@ -20,4 +20,4 @@ net-vpn/openvpn                   inotify iproute2
 sys-auth/seatd                    builtin server
 sys-kernel/gentoo-sources         symlink
 sys-libs/glibc                    hash-sysv-compat
-www-client/firefox                hwaccel screencast system-png -telemetry
+www-client/firefox                hwaccel jack screencast system-png -telemetry -X
