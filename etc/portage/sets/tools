@@ -32,6 +32,7 @@ dev-tex/texlab::gbrlsnchs
 dev-util/cargo-ebuild
 dev-util/cargo-license
 dev-util/ccls
+dev-util/efm-langserver::gbrlsnchs
 dev-vcs/git
 dev-zig/zls::gbrlsnchs
 media-gfx/graphviz
