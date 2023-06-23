@@ -1,0 +1,8 @@
+FROM docker.io/node:alpine
+RUN yarn global add --verbose \
+	eslint prettier \
+	typescript typescript-language-server \
+	tailwindcss @tailwindcss/language-server \
+	@twind/core @twind/intellisense \
+	vls \
+	vscode-langservers-extracted

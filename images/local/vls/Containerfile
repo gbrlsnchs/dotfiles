@@ -1,3 +1,0 @@
-FROM docker.io/node:alpine
-RUN npm install --global vls
-CMD ["vls"]
