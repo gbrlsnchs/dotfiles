@@ -21,4 +21,3 @@ sys-auth/seatd                    builtin server
 sys-kernel/gentoo-sources         symlink
 sys-libs/glibc                    hash-sysv-compat
 www-client/chromium               cups widevine -X
-www-client/firefox                hwaccel jack screencast system-png -telemetry -X

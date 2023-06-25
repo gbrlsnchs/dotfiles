@@ -22,7 +22,6 @@ media-video/wireplumber
 sys-auth/seatd
 sys-process/runit
 www-client/chromium
-www-client/firefox
 x11-misc/dunst
 x11-misc/xdg-user-dirs
 x11-misc/xdg-utils
