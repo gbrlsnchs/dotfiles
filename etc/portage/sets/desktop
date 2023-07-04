@@ -11,12 +11,9 @@ gui-apps/wlsunset
 gui-apps/wob
 gui-libs/xdg-desktop-portal-wlr
 gui-wm/sway
-media-fonts/fira-mono
-media-fonts/fira-sans
 media-fonts/gofont-mono
 media-fonts/noto-cjk
-media-fonts/office-code-pro
-#media-fonts/twemoji
+media-fonts/twemoji
 media-video/pipewire
 media-video/wireplumber
 sys-auth/seatd
