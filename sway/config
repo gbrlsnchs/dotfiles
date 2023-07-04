@@ -66,6 +66,9 @@ bindsym $mod+a focus parent
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
+gaps inner 5
+gaps outer 5
+
 mode "resize" {
 	# left will shrink the containers width
 	# right will grow the containers width
@@ -92,8 +95,6 @@ input * {
 
 for_window [app_id="dmenu"] floating enable
 for_window [app_id="popup"] floating enable
-for_window [app_id=".*"] opacity 0.9
-for_window [class=".*"] opacity 0.9
 
 include config.d/*
 
