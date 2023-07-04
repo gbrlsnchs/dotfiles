@@ -20,4 +20,4 @@ net-vpn/openvpn                   inotify iproute2
 sys-auth/seatd                    builtin server
 sys-kernel/gentoo-sources         symlink
 sys-libs/glibc                    hash-sysv-compat
-www-client/chromium               cups widevine -X
+www-client/librewolf              hwaccel screencast system-png -telemetry -X

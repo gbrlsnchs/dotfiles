@@ -38,5 +38,5 @@ media-fonts/twemoji
 net-im/slack
 */*::steam-overlay
 sys-libs/solo-udev-rules
-www-client/firefox
+www-client/librewolf
 x11-themes/breezex-xcursors
