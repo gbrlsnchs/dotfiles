@@ -16,6 +16,7 @@ dev-lang/rust
 dev-lang/zig
 dev-libs/nss
 dev-libs/wayland-protocols
+dev-python/notofonttools::guru
 dev-util/cargo-ebuild
 dev-util/cargo-license
 dev-zig/zls
@@ -34,7 +35,7 @@ gui-libs/wlroots
 */*::haskell
 */*::local
 media-fonts/office-code-pro
-media-fonts/twemoji
+media-fonts/twemoji::guru
 net-im/slack
 */*::steam-overlay
 sys-libs/solo-udev-rules
