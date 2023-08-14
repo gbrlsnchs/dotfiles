@@ -32,7 +32,6 @@ evaluate-commands %sh{
 
 	kak-lsp $lsp_config_opt --kakoune -s $kak_session
 }
-#set-option global lsp_cmd "kak-lsp -s %val{session} -vvvv --log /tmp/kak-lsp.log"
 
 define-command -hidden -params 1 lsp-init %{
 	hook global WinSetOption %sh{ printf "filetype=%s" $1 } %{
