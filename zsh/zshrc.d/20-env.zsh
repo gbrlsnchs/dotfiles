@@ -7,6 +7,8 @@ path+=("$CARGO_HOME/bin")
 
 # node
 export NEXT_TELEMETRY_DISABLED=1
+export NVM_DIR="$HOME/.config/nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 
 # go
 path+=("$(go env GOPATH)/bin")
