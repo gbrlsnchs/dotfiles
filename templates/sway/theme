@@ -5,7 +5,7 @@ output * background {{wallpaper}} fill #{{background}}
 
 client.focused #{{color5}} #{{color5}} #{{color15}} #{{color3}} #{{color5}}
 client.focused_inactive #{{color15}} #{{color15}} #{{color7}}
-client.focused_tab_title #{{color15}} #{{color15}} #{{color7}}
+client.focused_tab_title #{{color13}} #{{color13}} #{{background}}
 client.unfocused #{{color0}} #{{background}} #{{color7}} #{{color7}} #{{color0}}
 client.urgent #{{color4}} #{{color4}} #{{background}}
 
