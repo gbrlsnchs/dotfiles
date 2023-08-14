@@ -1,11 +1,23 @@
 #!/bin/sh
 
-read -r -d '' config <<'EOF'
-Foot: footclient
-Librewolf: librewolf
-Lock: waylock -init-color "0x${BG_COLOR}" -input-color "0x${COLOR_4}" -fail-color "0x${COLOR_1}"
-Lutris: lutris
-Steam: steam
+add_entry() {
+	label="$1"
+	exe="$2"
+
+	shift 2
+	type "${exe}" &>/dev/null && echo "${label}: ${exe} ${@}"
+}
+
+read -r -d '' config <<EOF
+$(add_entry Firefox firefox)
+$(add_entry Foot footclient)
+$(add_entry Lock waylock -init-color "0x${BG_COLOR}" -input-color "0x${COLOR_4}" -fail-color "0x${COLOR_1}")
+$(add_entry Lutris lutris)
+$(add_entry Signal signal-desktop)
+$(add_entry Slack slack)
+$(add_entry Steam steam -pipewire)
+$(add_entry Virtout virtout)
+$(add_entry Chrome google-chrome-stable --incognito --enable-features=UseOzonePlatform --ozone-platform=wayland)
 EOF
 
 program="$(echo "$config" | sort | yq --raw-output 'keys | .[]' | dmenu)"
