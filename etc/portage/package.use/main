@@ -21,4 +21,4 @@ sys-apps/systemd-utils            boot
 sys-auth/seatd                    builtin server
 sys-kernel/gentoo-sources         symlink
 sys-libs/glibc                    hash-sysv-compat
-www-client/librewolf              hwaccel screencast system-png -telemetry -X
+www-client/firefox                hwaccel screencast system-png -telemetry -X

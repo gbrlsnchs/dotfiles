@@ -41,5 +41,5 @@ media-fonts/twemoji::guru
 net-im/slack
 */*::steam-overlay
 sys-libs/solo-udev-rules
-www-client/librewolf
+www-client/firefox
 x11-themes/breezex-xcursors
