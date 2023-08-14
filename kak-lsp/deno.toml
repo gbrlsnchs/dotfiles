@@ -3,8 +3,18 @@ filetypes = ["typescript", "javascript", "json"]
 roots = ["deno.json", ".git"]
 command = "deno"
 args = ["lsp"]
-settings_section = "deno"
+settings_section = "_"
 
-[language_server.deno-lsp.settings.deno]
+[language_server.deno-lsp.settings._]
 enable = true
 lint = true
+
+[language_server.deno-lsp.settings._.inlayHints]
+enumMemberVariables.enabled = true
+functionLikeReturnTypes.enabled = true
+parameterNames.enabled = "all"
+parameterNames.suppressWhenArgumentMatchesName = true
+parameterTypes.enabled = true
+propertyDeclarationTypes.enabled = true
+variableTypes.enabled = true
+variableTypes.suppressWhenTypeMatchesName = true

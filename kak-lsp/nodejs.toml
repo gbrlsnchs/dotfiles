@@ -1,5 +1,26 @@
-[language_server.tsserver]
+[language_server.typescript-language-server]
 filetypes = ["javascript", "typescript"]
 roots = ["package.json", "tsconfig.json", "jsconfig.json", ".git", ".hg"]
 command = "lspcontainer"
 args = ["typescript-language-server", "--stdio"]
+settings_section = "_"
+
+[language_server.typescript-language-server.settings._.javascript.inlayHints]
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = false
+includeInlayFunctionParameterTypeHints = true
+includeInlayVariableTypeHints = true
+includeInlayVariableTypeHintsWhenTypeMatchesName = false
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayEnumMemberValueHints = true
+
+[language_server.typescript-language-server.settings._.typescript.inlayHints]
+includeInlayParameterNameHints = "all"
+includeInlayParameterNameHintsWhenArgumentMatchesName = false
+includeInlayFunctionParameterTypeHints = true
+includeInlayVariableTypeHints = true
+includeInlayVariableTypeHintsWhenTypeMatchesName = false
+includeInlayPropertyDeclarationTypeHints = true
+includeInlayFunctionLikeReturnTypeHints = true
+includeInlayEnumMemberValueHints = true

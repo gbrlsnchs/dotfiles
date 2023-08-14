@@ -1,6 +1,6 @@
 [language_server.tailwindcss]
 filetypes = ["javascript", "typescript"]
-roots = ["tailwind.config.js", "tailwind.config.ts"]
+roots = ["tailwind.config.js", "tailwind.config.ts", ".git"]
 command = "lspcontainer"
 args = ["tailwindcss-language-server", "--stdio"]
 
