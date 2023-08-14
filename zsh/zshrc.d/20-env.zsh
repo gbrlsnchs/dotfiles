@@ -23,3 +23,5 @@ export EDITOR="${EDITOR:-kak}"
 export VISUAL="$EDITOR"
 export GPG_TTY="$(tty)"
 export MENUCONFIG_COLOR=mono
+
+typeset -U path

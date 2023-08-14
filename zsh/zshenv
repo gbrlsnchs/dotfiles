@@ -23,5 +23,3 @@ export XKB_DEFAULT_OPTIONS="grp:alt_altgr_toggle"
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 
 export HOST
-
-typeset -U path
