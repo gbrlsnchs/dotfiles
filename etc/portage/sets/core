@@ -5,8 +5,8 @@ net-dns/openresolv
 net-misc/chrony
 net-misc/dhcpcd
 sys-apps/rng-tools
+sys-apps/systemd-utils
 sys-boot/efibootmgr
-sys-boot/systemd-boot
 sys-fs/btrfs-progs
 sys-fs/cryptsetup
 sys-fs/dosfstools
