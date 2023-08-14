@@ -6,6 +6,8 @@ dev-db/postgresql                 -server
 dev-java/openjdk                  source
 dev-lang/rust                     clippy llvm_targets_WebAssembly nightly rust-analyzer rustfmt rust-src system-llvm wasm
 games-util/game-device-udev-rules -acl
+media-fonts/ibm-plex              otf -ttf
+media-fonts/source-han-serif      L10N: ja ko zh-CN zh-TW
 media-gfx/imagemagick             jpeg webp -X
 media-gfx/imv                     gif jpeg png svg tiff
 media-libs/libcanberra            alsa
