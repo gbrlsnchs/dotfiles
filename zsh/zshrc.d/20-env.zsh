@@ -20,6 +20,10 @@ path+=("$HOME/.poetry/bin")
 # latex
 path+=("/opt/texlive/2021/bin/$(uname --machine)-$(uname --kernel-name | tr '[:upper:]' '[:lower:]')")
 
+# ruby
+path+=("$HOME/.rvm/bin")
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+
 export SVDIR="$XDG_DATA_HOME/service"
 export EDITOR="${EDITOR:-kak}"
 export VISUAL="$EDITOR"
