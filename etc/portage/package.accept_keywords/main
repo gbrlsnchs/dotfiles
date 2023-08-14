@@ -24,6 +24,7 @@ games-util/game-device-udev-rules
 games-util/lutris
 */*::gbrlsnchs
 gui-apps/fnott
+gui-apps/foot
 gui-apps/kanshi
 gui-apps/wf-recorder
 gui-apps/wl-mirror
