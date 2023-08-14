@@ -1,56 +1,17 @@
 #!/bin/sh
 
-tip_file="${XDG_RUNTIME_DIR}/sway-headless-tip"
-touch "${tip_file}"
-
-tip="$(cat "${tip_file}")"
-
-if [ -z "${tip}" ]; then
-	echo "'tip' is empty, parsing value..."
-
-	last_output="$(swaymsg --type get_outputs | jq --raw-output "last | .name")"
-	case "${last_output}" in
-		HEADLESS-*)
-			tip="$(awk --field-separator=- '{ print $2 }' <<< "${last_output}")"
-			swaymsg output "HEADLESS-${tip}" unplug
-			tip="$((${tip}+1))"
-			;;
-		*)
-			tip=0
-			;;
-	esac
-else
-	echo "tip is known, trying to unplug HEADLESS-${tip}"
-	swaymsg output "HEADLESS-${tip}" unplug
-	tip="$((${tip}+1))"
-fi
-
-if [ "$1" == "off" ]; then
-	exit 0
-fi
-
-# Position the headless output centered just above the first output.
-outputs="$(swaymsg --raw --type get_outputs)"
-width="$(jq --raw-output ".[0].current_mode.width" <<< "${outputs}")"
-width="$(((${width}-1920)/2))"
-height="-$(jq --raw-output ".[0].current_mode.height" <<< "${outputs}")"
-mode="1920x1080@60Hz"
-
-virt_output="HEADLESS-${tip}"
-swaymsg output "${virt_output}" mode "${mode}"
-swaymsg output "${virt_output}" position -- "${width}" "${height}"
-
-swaymsg create_output || exit 1
-echo "${tip}" > "${tip_file}"
-echo "${virt_output} mode ${mode} position ${width}x${height}"
-
-function ctrlc() {
-	echo ""
+get_last_output() {
+	swaymsg --type get_outputs | jq --raw-output "last | .name"
 }
 
-trap ctrlc INT
+last_output="$(get_last_output)"
+case "${last_output}" in
+	HEADLESS-*)
+		;;
+	*)
+		swaymsg create_output
+		;;
+esac
 
+virt_output="$(get_last_output)"
 wl-mirror "${virt_output}"
-
-echo "unplugging ${virt_output}..."
-swaymsg output "${virt_output}" unplug
