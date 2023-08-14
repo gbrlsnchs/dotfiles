@@ -36,6 +36,7 @@ gui-libs/wlroots
 */*::haskell
 */*::local
 media-fonts/office-code-pro
+media-fonts/source-han-serif::guru
 media-fonts/twemoji::guru
 net-im/slack
 */*::steam-overlay
