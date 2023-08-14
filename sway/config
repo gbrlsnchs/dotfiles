@@ -62,6 +62,7 @@ bindsym $mod+m fullscreen
 bindsym $mod+f floating toggle
 bindsym $mod+c focus mode_toggle
 bindsym $mod+a focus parent
+bindsym $mod+d focus child
 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
