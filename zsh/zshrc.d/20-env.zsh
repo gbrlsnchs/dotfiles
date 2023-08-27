@@ -30,10 +30,4 @@ export VISUAL="$EDITOR"
 export GPG_TTY="$(tty)"
 export MENUCONFIG_COLOR=mono
 
-function chpwd() {
-	if [[ -f .env ]]; then
-		set -o allexport; source .env; set +o allexport
-	fi
-}
-
 typeset -U path
