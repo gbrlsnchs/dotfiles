@@ -1,0 +1,4 @@
+dev-java/jdtls-bin::gbrlsnchs
+dev-java/maven-bin
+dev-java/openjdk
+virtual/jdk

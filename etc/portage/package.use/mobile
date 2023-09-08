@@ -1,1 +1,0 @@
-gui-apps/yambar -alsa -backlight battery -cpu -disk-io -dwl -foreign-toplevel -i3 -memory -mpd network -removables -script -X

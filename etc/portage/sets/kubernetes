@@ -1,0 +1,5 @@
+app-admin/helm
+app-admin/kubectx
+app-admin/skaffold
+sys-cluster/kubectl
+sys-cluster/minikube

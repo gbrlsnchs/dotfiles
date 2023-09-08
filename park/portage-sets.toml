@@ -1,0 +1,37 @@
+base_dir = "/etc/portage/sets"
+work_dir = "$PWD/etc/portage/sets"
+tags = ["$HOST"]
+
+# System.
+[targets.admin]
+[targets.core]
+[targets.desktop]
+[targets.jail]
+[targets.media]
+[targets.shell]
+[targets.storage]
+[targets.vpn]
+
+# Software development.
+[targets.c]
+[targets.deno]
+[targets.document-writing]
+[targets.editor]
+[targets.go]
+[targets.haskell]
+[targets.java]
+[targets.kubernetes]
+[targets.nodejs]
+[targets.opengl]
+[targets.protobuf]
+[targets.rust]
+[targets.vcs]
+[targets.zig]
+
+# Containers.
+[targets.docker]
+[targets.podman]
+
+# Others.
+[targets.steam]
+[targets.qmk]

@@ -5,10 +5,10 @@ gui-apps/kanshi
 gui-apps/slurp
 gui-apps/swaybg
 gui-apps/waylock
+gui-apps/wf-recorder
 gui-apps/wl-clipboard
-gui-apps/wlr-randr
+gui-apps/wl-mirror
 gui-apps/wlsunset
-gui-apps/wob
 gui-libs/xdg-desktop-portal-wlr
 gui-wm/sway
 media-fonts/ibm-plex
@@ -16,9 +16,11 @@ media-fonts/noto-cjk
 media-fonts/twemoji
 media-video/pipewire
 media-video/wireplumber
+net-im/signal-desktop-bin
 sys-auth/seatd
 sys-process/runit
 www-client/firefox
+www-client/google-chrome
 x11-misc/dunst
 x11-misc/xdg-user-dirs
 x11-misc/xdg-utils

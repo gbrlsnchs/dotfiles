@@ -1,0 +1,9 @@
+app-misc/jq
+app-misc/neofetch
+app-misc/yq
+app-shells/fzf
+app-shells/zsh
+app-text/tree
+media-libs/libsixel
+sys-apps/fd
+sys-apps/ripgrep

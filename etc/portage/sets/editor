@@ -1,0 +1,4 @@
+app-editors/kakoune
+app-text/aspell
+app-text/editorconfig-core-c
+dev-util/efm-langserver::gbrlsnchs

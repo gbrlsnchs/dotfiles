@@ -1,0 +1,5 @@
+app-text/grip
+# app-text/pandoc
+app-text/texlive
+dev-tex/texlab::gbrlsnchs
+media-gfx/graphviz
