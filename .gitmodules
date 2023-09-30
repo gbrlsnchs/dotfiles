@@ -25,3 +25,6 @@
 [submodule "kakoune/autoload/rc/number-toggle.kak"]
 	path = kakoune/autoload/rc/number-toggle.kak
 	url = https://github.com/evanrelf/number-toggle.kak
+[submodule "kakoune/autoload/rc/kak-tree-sitter"]
+	path = kakoune/autoload/rc/kak-tree-sitter
+	url = https://github.com/phaazon/kak-tree-sitter
