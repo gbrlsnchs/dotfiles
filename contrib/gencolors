@@ -73,7 +73,7 @@ for dir in templates/* ; do
 			--expression "s/{{secondary_monitor_position}}/${MONITOR2_POS}/g" \
 			--expression "s/{{cursor_theme}}/${CURSOR_THEME}/g" \
 			--expression "s|{{wallpaper}}|${WALLPAPER}|g" \
-			"$template" > "$file" || continue
+			"$template" | envsubst > "$file" || continue
 		echo "Generated file from template: $file"
 	done
 done
