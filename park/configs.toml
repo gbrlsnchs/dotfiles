@@ -127,3 +127,6 @@ tags.all_of = ["misc"]
 
 [targets.firejail]
 tags.all_of = ["misc"]
+
+[targets."gnupg/gpg-agent.conf"]
+link.base_dir = "$HOME/.gnupg"
