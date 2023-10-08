@@ -1,0 +1,9 @@
+[language_server.terraform-ls]
+filetypes = ["terraform"]
+roots = ["*.tf"]
+command = "terraform-ls"
+args = ["serve"]
+
+[language_server.terraform-ls.settings.terraform-ls]
+# See https://github.com/hashicorp/terraform-ls/blob/main/docs/SETTINGS.md
+# rootModulePaths = []

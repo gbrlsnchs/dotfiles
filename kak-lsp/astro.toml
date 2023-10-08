@@ -1,0 +1,9 @@
+[language_server.astro-language-server]
+filetypes = ["javascript", "typescript"]
+roots = ["astro.config.mjs", "package.json", ".git"]
+command = "lspcontainer"
+args = ["astro-ls", "--stdio"]
+settings_section = "_"
+
+[language_server.astro-language-server.settings._.typescript]
+tsdk = "$PWD/node_modules/typescript/lib"
