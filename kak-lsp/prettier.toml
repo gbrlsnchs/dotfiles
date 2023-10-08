@@ -22,21 +22,21 @@ documentFormatting = true
 rootMarkers = [".git/"]
 
 [[language_server.prettier.settings._.languages.javascript]]
-formatCommand = "lspcontainer yarn --silent prettier --stdin-filepath §{INPUT}"
+formatCommand = "yarn --offline --silent prettier --stdin-filepath §{INPUT}"
 formatStdin = true
 
 [[language_server.prettier.settings._.languages.javascriptreact]]
-formatCommand = "lspcontainer yarn --silent prettier --stdin-filepath §{INPUT}"
+formatCommand = "yarn --offline --silent prettier --stdin-filepath §{INPUT}"
 formatStdin = true
 
 [[language_server.prettier.settings._.languages.json]]
-formatCommand = "lspcontainer yarn --silent prettier --stdin-filepath §{INPUT}"
+formatCommand = "yarn --offline --silent prettier --stdin-filepath §{INPUT}"
 formatStdin = true
 
 [[language_server.prettier.settings._.languages.typescript]]
-formatCommand = "lspcontainer yarn --silent prettier --stdin-filepath §{INPUT}"
+formatCommand = "yarn --offline --silent prettier --stdin-filepath §{INPUT}"
 formatStdin = true
 
 [[language_server.prettier.settings._.languages.typescriptreact]]
-formatCommand = "lspcontainer yarn --silent prettier --stdin-filepath §{INPUT}"
+formatCommand = "yarn --offline --silent prettier --stdin-filepath §{INPUT}"
 formatStdin = true
