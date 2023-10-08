@@ -3,6 +3,6 @@ RUN yarn global add --verbose \
 	eslint prettier \
 	typescript typescript-language-server \
 	tailwindcss @tailwindcss/language-server \
-	@twind/core @twind/intellisense \
+	@astrojs/language-server @astrojs/ts-plugin \
 	vls \
 	vscode-langservers-extracted
