@@ -18,6 +18,7 @@ $(add_entry Slack slack)
 $(add_entry Steam steam -pipewire)
 $(add_entry Virtout virtout)
 $(add_entry Chrome google-chrome-stable --incognito --enable-features=UseOzonePlatform --ozone-platform=wayland)
+$(add_entry Xournalpp xournalpp)
 EOF
 
 program="$(echo "$config" | sort | yq --raw-output 'keys | .[]' | dmenu)"
