@@ -34,7 +34,7 @@ set-face global SecondaryCursor           bright-white,green+fga
 set-face global SecondaryCursorEol        bright-white,yellow+fga
 set-face global LineNumbers               white,default
 set-face global LineNumberCursor          black,default+b
-set-face global LineNumbersWrapped        white,white
+set-face global LineNumbersWrapped        bright-white,bright-white
 set-face global MenuBackground            bright-white,black
 set-face global MenuForeground            bright-white,cyan+i
 set-face global MenuInfo                  bright-white+bi

@@ -1,6 +1,7 @@
 require-module "number-toggle"
 set-option global number_toggle_params -hlcursor
 
+add-highlighter global/ wrap
 add-highlighter global/ show-whitespaces -tab "»"
 
 set-option global indentwidth 0
@@ -48,7 +49,7 @@ define-command -hidden -params 1 lsp-init %{
 
 			lsp-enable-window
 			lsp-auto-signature-help-enable
-			lsp-inlay-hints-enable window
+			#lsp-inlay-hints-enable window
 
 			hook window -group semantic-tokens BufReload .* lsp-semantic-tokens
 			hook window -group semantic-tokens NormalIdle .* lsp-semantic-tokens
