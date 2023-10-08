@@ -1,6 +1,15 @@
 #!/bin/sh
 
-cp "${XDG_CONFIG_HOME}/kak-lsp/base.toml" .kaklsp
+config_dir="${XDG_CONFIG_HOME}/kak-lsp"
+cp "${config_dir}/base.toml" .kaklsp
+
+if [ $# -eq 0 ]; then
+	echo "Available LSP configurations:"
+	ls -1 "${config_dir}" \
+		| xargs -I{} basename {} .toml \
+		| grep --invert-match base \
+		| xargs -I{} printf "  - %s\n" {}
+fi
 
 for lang in $@; do
 	printf "\n" >> .kaklsp
