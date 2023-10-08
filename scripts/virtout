@@ -1,7 +1,11 @@
 #!/bin/sh
 
 get_last_output() {
-	swaymsg --type get_outputs | jq --raw-output "last | .name"
+	swaymsg --type get_outputs | jq --raw-output '.[] | select(.name | startswith("HEADLESS-")) | .name'
+}
+
+nop_sigint() {
+	echo ""
 }
 
 last_output="$(get_last_output)"
@@ -13,5 +17,9 @@ case "${last_output}" in
 		;;
 esac
 
+trap nop_sigint INT
+
 virt_output="$(get_last_output)"
 wl-mirror "${virt_output}"
+
+swaymsg output "${virt_output}" unplug
