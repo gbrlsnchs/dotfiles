@@ -1,0 +1,5 @@
+dev-libs/tree-sitter
+dev-libs/tree-sitter-bash
+dev-libs/tree-sitter-go
+dev-libs/tree-sitter-rust
+dev-util/tree-sitter-cli

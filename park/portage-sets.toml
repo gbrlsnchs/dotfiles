@@ -27,6 +27,12 @@ tags = ["$HOST"]
 [targets.rust]
 [targets.vcs]
 [targets.zig]
+[targets.tree-sitter]
+[targets.ruby]
+[targets.infra]
+[targets.emulation]
+[targets.cloud]
+[targets.python]
 
 # Containers.
 [targets.docker]

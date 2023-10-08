@@ -1,3 +1,4 @@
 dev-go/delve
+dev-go/gofumpt
 dev-go/gopls
 dev-lang/go

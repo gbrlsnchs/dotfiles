@@ -4,9 +4,11 @@ app-containers/docker-credential-helpers keyring
 app-emulation/libvirt                    policykit
 app-emulation/qemu                       static-user QEMU_SOFTMMU_TARGETS: aarch64 QEMU_USER_TARGETS: aarch64
 app-text/texlive                         context extra graphics humanities luatex -X
+dev-db/mysql                             -perl -server
 dev-db/postgresql                        -server
 dev-java/openjdk                         source
 dev-lang/rust                            clippy llvm_targets_WebAssembly nightly rust-analyzer rustfmt rust-src system-llvm wasm
+dev-python/python-lsp-server             all-plugins
 games-util/game-device-udev-rules        -acl
 media-fonts/ibm-plex                     otf -ttf
 media-fonts/source-han-serif             L10N: ja ko zh-CN zh-TW

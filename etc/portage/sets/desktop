@@ -9,6 +9,7 @@ gui-apps/wf-recorder
 gui-apps/wl-clipboard
 gui-apps/wl-mirror
 gui-apps/wlsunset
+gui-apps/wob
 gui-libs/xdg-desktop-portal-wlr
 gui-wm/sway
 media-fonts/ibm-plex

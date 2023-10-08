@@ -1,4 +1,8 @@
+app-admin/awscli-bin
 app-admin/haskell-updater
+app-admin/kubectx
+app-admin/skaffold
+app-admin/terraform
 app-containers/docker-buildx
 app-containers/docker-compose
 app-editors/helix
@@ -25,6 +29,7 @@ games-util/lutris
 */*::gbrlsnchs
 gui-apps/fnott
 gui-apps/foot
+gui-apps/foot-terminfo
 gui-apps/kanshi
 gui-apps/wf-recorder
 gui-apps/wl-mirror
@@ -40,6 +45,19 @@ media-fonts/source-han-serif::guru
 media-fonts/twemoji::guru
 net-im/slack
 */*::steam-overlay
+sys-cluster/minikube
 sys-libs/solo-udev-rules
 www-client/firefox
 x11-themes/breezex-xcursors
+
+# vagrant
+app-emulation/vagrant
+dev-ruby/googleapis-common-protos-types
+dev-ruby/grpc
+dev-ruby/hashicorp-checkpoint
+dev-ruby/rgl
+dev-ruby/vagrant_cloud
+dev-ruby/ipaddr
+dev-ruby/pairing_heap
+dev-ruby/stream
+dev-ruby/google-protobuf
