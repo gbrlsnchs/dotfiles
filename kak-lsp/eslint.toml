@@ -10,8 +10,9 @@ roots = [
 ]
 command = "lspcontainer"
 args = ["vscode-eslint-language-server", "--stdio"]
+settings_section = "_"
 
-[language_server.eslint.settings.eslint]
+[language_server.eslint.settings._]
 codeAction.disableRuleComment = { enable = true, location = "separateLine" }
 codeAction.showDocumentation = { enable = true }
 codeActionOnSave = { enable = false, mode = "all" }
