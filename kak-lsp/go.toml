@@ -2,12 +2,12 @@
 filetypes = ["go"]
 roots = ["Gopkg.toml", "go.mod", ".git", ".hg"]
 command = "gopls"
-settings_section = "gopls"
 
 [language_server.gopls.settings.gopls]
 semanticTokens = true
 # See https://github.com/golang/tools/blob/master/gopls/doc/settings.md
 # "build.buildFlags" = []
+"formatting.gofumpt" = true
 
 [language_server.gopls.settings.gopls.hints]
 assignVariableTypes = true
