@@ -53,7 +53,6 @@ gui-libs/wlroots
 media-fonts/gofont-mono
 media-fonts/office-code-pro
 media-fonts/source-han-serif::guru
-media-fonts/twemoji::guru
 net-im/slack
 */*::steam-overlay
 sys-cluster/minikube
