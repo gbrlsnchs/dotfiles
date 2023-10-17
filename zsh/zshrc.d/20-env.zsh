@@ -24,6 +24,9 @@ path=("/opt/texlive/2021/bin/$(uname --machine)-$(uname --kernel-name | tr '[:up
 path=("$HOME/.rvm/bin" $path)
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+# emscripten
+path=("$HOME/.emsdk" "$HOME/.emsdk/upstream/emscripten" $path)
+
 export SVDIR="$XDG_DATA_HOME/service"
 export EDITOR="${EDITOR:-kak}"
 export VISUAL="$EDITOR"
