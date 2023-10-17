@@ -20,6 +20,7 @@
 	wipe = restore .
 	stem = rebase --autostash
 	mirror = push --mirror mirror
+	redo = echo --amend
 [commit]
 	gpgsign = true
 [include]
