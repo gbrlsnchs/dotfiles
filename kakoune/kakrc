@@ -21,17 +21,17 @@ hook global BufCreate .* %{
 evaluate-commands %sh{
 	# Use local config if it exists.
 	if [ -f .kaklsp ]; then
-		config="/tmp/kak-lsp/configs/$kak_session.toml"
+		config="/tmp/kak-lsp/configs/${kak_session}.toml"
 
-		mkdir --parents "$(dirname "$config")"
-		envsubst < .kaklsp | sed --expression 's/§/$/g' > "$config"
+		mkdir --parents "$(dirname "${config}")"
+		envsubst < .kaklsp | sed --expression 's/§/$/g' > "${config}"
 
-		lsp_config_opt="--config $config"
+		lsp_config_opt="--config ${config}"
 	else
 		lsp_config_opt="--config ${XDG_CONFIG_HOME}/kak-lsp/base.toml"
 	fi
 
-	kak-lsp $lsp_config_opt --kakoune -s $kak_session
+	kak-lsp ${lsp_config_opt} ${KAK_LSP_OPTS} --kakoune -s ${kak_session}
 }
 
 define-command -hidden -params 1 lsp-init %{
