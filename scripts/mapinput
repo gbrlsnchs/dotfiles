@@ -1,0 +1,12 @@
+#!/bin/sh
+
+set -e
+
+input="$(swaymsg -t get_inputs | jq --raw-output '.[] | .identifier' | dmenu)"
+output="$(swaymsg -t get_outputs | jq --raw-output '.[] | .name' | dmenu)"
+
+[ ! -z "${input}" ] || exit 1
+[ ! -z "${output}" ] || exit 1
+
+swaymsg input "${input}" map_to_output "${output}"
+echo "'${input}' was mapped to '${output}'"
