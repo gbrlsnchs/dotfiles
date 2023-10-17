@@ -8,6 +8,7 @@ app-containers/docker-compose
 app-editors/helix
 app-editors/kak-lsp
 app-editors/kakoune
+app-emulation/vagrant
 app-eselect/eselect-zig
 app-misc/yq
 app-text/pandoc
@@ -21,6 +22,15 @@ dev-lang/zig
 dev-libs/nss
 dev-libs/wayland-protocols
 dev-python/notofonttools::guru
+dev-ruby/googleapis-common-protos-types
+dev-ruby/google-protobuf
+dev-ruby/grpc
+dev-ruby/hashicorp-checkpoint
+dev-ruby/ipaddr
+dev-ruby/pairing_heap
+dev-ruby/rgl
+dev-ruby/stream
+dev-ruby/vagrant_cloud
 dev-util/cargo-ebuild
 dev-util/cargo-license
 dev-zig/zls
@@ -40,6 +50,7 @@ gui-apps/yambar::guru
 gui-libs/wlroots
 */*::haskell
 */*::local
+media-fonts/gofont-mono
 media-fonts/office-code-pro
 media-fonts/source-han-serif::guru
 media-fonts/twemoji::guru
@@ -47,17 +58,11 @@ net-im/slack
 */*::steam-overlay
 sys-cluster/minikube
 sys-libs/solo-udev-rules
+
+# vagrant
 www-client/firefox
 x11-themes/breezex-xcursors
 
-# vagrant
-app-emulation/vagrant
-dev-ruby/googleapis-common-protos-types
-dev-ruby/grpc
-dev-ruby/hashicorp-checkpoint
-dev-ruby/rgl
-dev-ruby/vagrant_cloud
-dev-ruby/ipaddr
-dev-ruby/pairing_heap
-dev-ruby/stream
-dev-ruby/google-protobuf
+# rust
+dev-util/rustup
+dev-util/wasmer

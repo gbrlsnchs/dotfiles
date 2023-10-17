@@ -12,9 +12,10 @@ gui-apps/wlsunset
 gui-apps/wob
 gui-libs/xdg-desktop-portal-wlr
 gui-wm/sway
+media-fonts/gofont-mono
 media-fonts/ibm-plex
 media-fonts/noto-cjk
-media-fonts/twemoji
+media-fonts/noto-emoji
 media-video/pipewire
 media-video/wireplumber
 net-im/signal-desktop-bin
