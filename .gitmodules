@@ -28,6 +28,3 @@
 [submodule "kakoune/autoload/rc/kak-tree-sitter"]
 	path = kakoune/autoload/rc/kak-tree-sitter
 	url = https://github.com/phaazon/kak-tree-sitter
-[submodule "tree-sitter/parsers/typescript"]
-	path = tree-sitter/parsers/tree-sitter-typescript
-	url = https://github.com/tree-sitter/tree-sitter-typescript
