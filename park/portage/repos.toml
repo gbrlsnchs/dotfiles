@@ -1,0 +1,7 @@
+link.base_dir = "/etc/portage/repos.conf"
+work_dir = "$PWD/etc/portage/repos.conf"
+tags = ["$HOST"]
+
+[targets."local.conf"]
+
+[targets."crossdev.conf"]
