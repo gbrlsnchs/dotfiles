@@ -23,39 +23,6 @@ tags.all_of = ["$HOST"]
 [targets."zzz/lock.sh"]
 link.base_dir = "/etc/zzz.d/suspend"
 
-# Sets
-
-[targets."portage/sets/admin"]
-link.base_dir = "/etc/portage/sets"
-
-[targets."portage/sets/comm"]
-link.base_dir = "/etc/portage/sets"
-tags.all_of = ["comm"]
-
-[targets."portage/sets/core"]
-link.base_dir = "/etc/portage/sets"
-
-[targets."portage/sets/desktop"]
-link.base_dir = "/etc/portage/sets"
-
-[targets."portage/sets/gaming"]
-link.base_dir = "/etc/portage/sets"
-tags.all_of = ["gaming"]
-
-[targets."portage/sets/keyboard"]
-link.base_dir = "/etc/portage/sets"
-tags.all_of = ["keyboard"]
-
-[targets."portage/sets/misc"]
-link.base_dir = "/etc/portage/sets"
-
-[targets."portage/sets/mobile"]
-link.base_dir = "/etc/portage/sets"
-tags.any_of = ["skypiea"]
-
-[targets."portage/sets/tools"]
-link.base_dir = "/etc/portage/sets"
-
 # Patches
 
 [targets."portage/patches"]
@@ -65,10 +32,6 @@ link.base_dir = "/etc/portage"
 
 [targets."portage/package.use/main"]
 link.base_dir = "/etc/portage/package.use"
-
-[targets."portage/package.use/gaming"]
-link.base_dir = "/etc/portage/package.use"
-tags.all_of = ["egghead"]
 
 [targets."portage/package.accept_keywords/main"]
 link.base_dir = "/etc/portage/package.accept_keywords"
@@ -92,26 +55,6 @@ link.base_dir = "/etc/portage/package.unmask"
 link.base_dir = "/etc/portage/repos.conf"
 tags.all_of = ["repos"]
 
-[targets."portage/repos.conf/gbrlsnchs.conf"]
-link.base_dir = "/etc/portage/repos.conf"
-tags.all_of = ["repos"]
-
-[targets."portage/repos.conf/gentoo.conf"]
-link.base_dir = "/etc/portage/repos.conf"
-tags.all_of = ["repos"]
-
-[targets."portage/repos.conf/guru.conf"]
-link.base_dir = "/etc/portage/repos.conf"
-tags.all_of = ["repos"]
-
 [targets."portage/repos.conf/local.conf"]
-link.base_dir = "/etc/portage/repos.conf"
-tags.all_of = ["repos"]
-
-[targets."portage/repos.conf/steam-overlay.conf"]
-link.base_dir = "/etc/portage/repos.conf"
-tags.all_of = ["repos"]
-
-[targets."portage/repos.conf/wayland-desktop.conf"]
 link.base_dir = "/etc/portage/repos.conf"
 tags.all_of = ["repos"]
