@@ -1,4 +1,4 @@
-link.base_dir = "/etc/portage/repos.conf"
+base_dir = "/etc/portage/repos.conf"
 work_dir = "$PWD/etc/portage/repos.conf"
 tags = ["$HOST"]
 
