@@ -1,7 +1,17 @@
 [language_server.rust-analyzer]
 filetypes = ["rust"]
 roots = ["Cargo.toml"]
-command = "rust-analyzer"
+command = "sh"
+args = [
+    "-c",
+    """
+        if path="$(rustup which rust-analyzer 2>/dev/null)"; then
+            "§{path}"
+        else
+            rust-analyzer
+        fi
+    """,
+]
 
 [language_server.rust-analyzer.settings.rust-analyzer]
 # See https://rust-analyzer.github.io/manual.html#configuration
