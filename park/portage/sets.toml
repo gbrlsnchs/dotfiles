@@ -40,6 +40,8 @@ tags = ["$HOST"]
 
 # Others.
 [targets.steam]
+tags.any_of = ["egghead"]
+
 [targets.qmk]
 
 [targets.mobile]
