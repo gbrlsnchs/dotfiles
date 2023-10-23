@@ -1,6 +1,8 @@
 #!/bin/sh
 
-pactl set-sink-volume @DEFAULT_SINK@ -5% && pactl get-sink-volume @DEFAULT_SINK@ \
+current_sink="$(pactl list sinks short | grep RUNNING | awk '{ print $1; }')"
+
+pactl set-sink-volume "${current_sink}" -5% && pactl get-sink-volume "${current_sink}" \
 	| head -n 1 \
 	| awk '{print substr($5, 1, length($5)-1)}' \
 	> "$XDG_RUNTIME_DIR/wob.sock"

@@ -1,12 +1,14 @@
 #!/bin/sh
 
-pactl set-sink-mute @DEFAULT_SINK@ toggle
+current_sink="$(pactl list sinks short | grep RUNNING | awk '{ print $1; }')"
+
+pactl set-sink-mute "${current_sink}" toggle
 
 vol=0
 
-if pactl get-sink-mute @DEFAULT_SINK@ | grep --quiet no; then
+if pactl get-sink-mute "${current_sink}" | grep --quiet no; then
 	vol="$(
-		pactl get-sink-volume @DEFAULT_SINK@ \
+		pactl get-sink-volume ${current_sink} \
 			| head -n 1 \
 			| awk '{print substr($5, 1, length($5)-1)}'
 	)"
