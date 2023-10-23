@@ -15,6 +15,9 @@ tags.all_of = ["audio"]
 [targets.mutevol]
 tags.all_of = ["audio"]
 
+[targets.mvsink]
+tags.all_of = ["audio"]
+
 ############
 ### MISC ###
 ############
@@ -48,15 +51,6 @@ tags.all_of = ["misc"]
 
 [targets.instroot]
 tags.all_of = ["misc"]
-
-[targets.mntchroot]
-tags.all_of = ["misc"]
-
-[targets.mkuki]
-tags.all_of = ["uefi"]
-
-[targets.mksbkeys]
-tags.all_of = ["uefi"]
 
 ###############
 ### DISPLAY ###

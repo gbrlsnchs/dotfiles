@@ -1,0 +1,8 @@
+#!/bin/sh
+
+current_sink_input="$(pactl list sink-inputs short | grep PipeWire | awk '{ print $1; }')"
+desired_sink="$(pactl list sinks short | awk '{ print $1, $2; }' | dmenu)"
+
+[ -z "${desired_sink}" ] && exit 1
+
+pactl move-sink-input "${current_sink_input}" "${desired_sink}"
