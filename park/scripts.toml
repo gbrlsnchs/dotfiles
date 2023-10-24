@@ -2,6 +2,10 @@ base_dir = "$XDG_BIN_HOME"
 work_dir = "$PWD/scripts"
 tags = ["$XDG_SESSION_TYPE", "$XDG_CURRENT_DESKTOP"]
 
+[targets.data]
+link.base_dir = "${XDG_DATA_HOME}"
+link.name = "scripts"
+
 #############
 ### AUDIO ###
 #############
@@ -50,6 +54,9 @@ tags.all_of = ["misc"]
 tags.all_of = ["misc"]
 
 [targets.instroot]
+tags.all_of = ["misc"]
+
+[targets.emoji]
 tags.all_of = ["misc"]
 
 ###############

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+choice="$(
+	jq --raw-output 'to_entries[] | [.key, .value] | flatten | @sh' ${XDG_DATA_HOME}/scripts/emoji.json | \
+		tr --delete "'" | \
+		dmenu '--with-nth=2.. --preview="echo {1}" --preview-window=down:3:wrap' | \
+		awk '{ print $1 }'
+)"
+
+[ -z "${choice}" ] && exit 1
+
+wtype "${choice}"
