@@ -288,4 +288,9 @@ map global file f "<esc>: format-buffer<ret>" -docstring "format buffer using fo
 map global file l "<esc>: lint-buffer<ret>"   -docstring "lint buffer using lintcmd"
 map global user f %{:enter-user-mode file<ret>} -docstring "File mode"
 
+declare-user-mode clipboard
+map global clipboard c "<a-|>wl-copy -n<ret>" -docstring "copy selection to clipboard"
+map global clipboard p "!wl-paste -n<ret>" -docstring "paste clipboard text"
+map global user c %{:enter-user-mode clipboard<ret>} -docstring "Clipboard mode"
+
 colorscheme custom
