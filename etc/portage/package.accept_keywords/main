@@ -42,6 +42,7 @@ gui-apps/fnott
 gui-apps/foot
 gui-apps/foot-terminfo
 gui-apps/kanshi
+gui-apps/waylock
 gui-apps/wf-recorder
 gui-apps/wl-mirror
 gui-apps/wlr-randr::guru
