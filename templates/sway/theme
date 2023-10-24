@@ -3,10 +3,10 @@ seat seat0 xcursor_theme {{cursor_theme}}
 
 output * background {{wallpaper}} fill #{{background}}
 
-client.focused #{{color5}} #{{color5}} #{{color15}} #{{color3}} #{{color5}}
-client.focused_inactive #{{color15}} #{{color15}} #{{color7}}
+client.focused #{{color5}} #{{color5}} #{{color8}} #{{color3}} #{{color5}}
+client.focused_inactive #{{color8}} #{{color8}} #{{color0}}
 client.focused_tab_title #{{color13}} #{{color13}} #{{background}}
-client.unfocused #{{color0}} #{{background}} #{{color7}} #{{color7}} #{{color0}}
+client.unfocused #{{color0}} #{{color0}} #{{color7}} #{{color0}} #{{color0}}
 client.urgent #{{color4}} #{{color4}} #{{background}}
 
 bar {
@@ -17,11 +17,11 @@ bar {
 	status_command while barstatus; do sleep 1; done
 
 	colors {
-		statusline #{{color0}}
-		background #{{color15}}
-		focused_workspace #{{color5}} #{{color5}} #{{color15}}
-		active_workspace #{{color7}} #{{color0}} #{{color7}}
-		inactive_workspace #{{color8}} #{{color8}} #{{color7}}
+		statusline #{{color7}}
+		background #{{background}}
+		focused_workspace #{{color5}} #{{color5}} #{{color8}}
+		active_workspace #{{color0}} #{{color7}} #{{color0}}
+		inactive_workspace #{{color0}} #{{color0}} #{{color7}}
 		urgent_workspace #{{color3}} #{{color3}} #{{background}}
 	}
 }
