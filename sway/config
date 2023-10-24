@@ -6,6 +6,7 @@ set $up k
 set $right l
 
 bindsym $mod+Space exec fuzzy
+bindsym $mod+Shift+Space exec emoji
 bindsym $mod+Shift+q kill
 bindsym $mod+Shift+e exit
 bindsym $mod+Shift+c reload
