@@ -33,6 +33,7 @@ dev-ruby/stream
 dev-ruby/vagrant_cloud
 dev-util/cargo-ebuild
 dev-util/cargo-license
+dev-util/github-cli
 dev-zig/zls
 games-util/game-device-udev-rules
 games-util/lutris
