@@ -34,6 +34,8 @@ dev-ruby/vagrant_cloud
 dev-util/cargo-ebuild
 dev-util/cargo-license
 dev-util/github-cli
+dev-util/rustup
+dev-util/wasmer
 dev-zig/zls
 games-util/game-device-udev-rules
 games-util/lutris
@@ -48,6 +50,7 @@ gui-apps/wl-mirror
 gui-apps/wlr-randr::guru
 gui-apps/wlsunset
 gui-apps/wob
+gui-apps/wtype
 gui-apps/yambar::guru
 gui-libs/wlroots
 */*::haskell
@@ -59,11 +62,5 @@ net-im/slack
 */*::steam-overlay
 sys-cluster/minikube
 sys-libs/solo-udev-rules
-
-# vagrant
 www-client/firefox
 x11-themes/breezex-xcursors
-
-# rust
-dev-util/rustup
-dev-util/wasmer

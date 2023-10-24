@@ -10,6 +10,7 @@ gui-apps/wl-clipboard
 gui-apps/wl-mirror
 gui-apps/wlsunset
 gui-apps/wob
+gui-apps/wtype
 gui-libs/xdg-desktop-portal-wlr
 gui-wm/sway
 media-fonts/gofont-mono
