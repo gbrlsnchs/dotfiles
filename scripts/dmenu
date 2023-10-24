@@ -4,9 +4,7 @@ dmenu_in=$(mktemp)
 dmenu_out=$(mktemp)
 
 cat /dev/stdin > "$dmenu_in"
-echo "$USER" > /tmp/dmenu_user.debug
-echo "$FZF_DEFAULT_OPTS" > /tmp/dmenu.debug
-foot --app-id dmenu --title dmenu sh -c "cat $dmenu_in | fzf --prompt='Select: ' > $dmenu_out"
+foot --app-id dmenu --title dmenu sh -c "cat $dmenu_in | fzf --prompt='Select: ' $1 > $dmenu_out"
 rm "$dmenu_in"
 cat "$dmenu_out"
 rm "$dmenu_out"
