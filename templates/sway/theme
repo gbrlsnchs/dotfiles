@@ -4,7 +4,7 @@ seat seat0 xcursor_theme {{cursor_theme}}
 output * background {{wallpaper}} fill #{{background}}
 
 client.focused #{{color5}} #{{color5}} #{{color8}} #{{color3}} #{{color5}}
-client.focused_inactive #{{color8}} #{{color8}} #{{color0}}
+client.focused_inactive #{{color0}} #{{color0}} #{{foreground}}
 client.focused_tab_title #{{color13}} #{{color13}} #{{background}}
 client.unfocused #{{color0}} #{{color8}} #{{color7}} #{{color0}} #{{color0}}
 client.urgent #{{color4}} #{{color4}} #{{background}}
