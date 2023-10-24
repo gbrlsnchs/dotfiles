@@ -26,32 +26,32 @@ set-face global list   green
 
 # builtin
 set-face global Default                   default,default
-set-face global PrimarySelection          bright-white,yellow+fga
-set-face global PrimaryCursor             bright-white,blue+fga
-set-face global PrimaryCursorEol          bright-white,red+fga
-set-face global SecondarySelection        bright-white,magenta+fga
-set-face global SecondaryCursor           bright-white,green+fga
-set-face global SecondaryCursorEol        bright-white,yellow+fga
-set-face global LineNumbers               white,default
-set-face global LineNumberCursor          black,default+b
-set-face global LineNumbersWrapped        bright-white,bright-white
-set-face global MenuBackground            bright-white,black
-set-face global MenuForeground            bright-white,cyan+i
-set-face global MenuInfo                  bright-white+bi
-set-face global Information               default,bright-white
+set-face global PrimarySelection          bright-black,yellow+fga
+set-face global PrimaryCursor             bright-black,blue+fga
+set-face global PrimaryCursorEol          bright-black,red+fga
+set-face global SecondarySelection        bright-black,magenta+fga
+set-face global SecondaryCursor           bright-black,green+fga
+set-face global SecondaryCursorEol        bright-black,yellow+fga
+set-face global LineNumbers               bright-white,default
+set-face global LineNumberCursor          white,default+b
+set-face global LineNumbersWrapped        bright-black,bright-black
+set-face global MenuBackground            bright-black,bright-blue
+set-face global MenuForeground            bright-black,yellow+bi
+set-face global MenuInfo                  bright-black+bi
+set-face global Information               blue,default+r
 set-face global Error                     red,default+b
-set-face global StatusLine                black,bright-white+b
+set-face global StatusLine                white,bright-black+b
 set-face global StatusLineMode            blue
 set-face global StatusLineInfo            yellow
 set-face global StatusLineValue           green
-set-face global StatusCursor              black,yellow
+set-face global StatusCursor              white,yellow
 set-face global Prompt                    yellow+b
-set-face global MatchingChar              black,blue+fg
+set-face global MatchingChar              white,blue+fg
 set-face global BufferPadding             default,default
-set-face global Whitespace                bright-white,default+f
-set-face global InlayHint                 white,bright-white+i
+set-face global Whitespace                bright-black,default+f
+set-face global InlayHint                 white,bright-black+i
 set-face global SnippetsNextPlaceholders  blue,default
-set-face global SnippetsOtherPlaceholders bright-black,default
+set-face global SnippetsOtherPlaceholders bright-white,default
 
 # lsp
 set-face global Reference                 default,default+u
