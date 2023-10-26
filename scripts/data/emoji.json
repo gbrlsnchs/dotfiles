@@ -12994,5 +12994,9 @@
     "internet",
     "contactless",
     "signal"
+  ],
+  "—": [
+	"em dash",
+	"hyphen"
   ]
 }
