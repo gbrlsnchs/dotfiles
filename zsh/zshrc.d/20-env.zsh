@@ -15,7 +15,9 @@ path=("$(go env GOPATH)/bin" $path)
 export GOPROXY=direct
 
 # python
-path=("$HOME/.poetry/bin" $path)
+export PYENV_ROOT="$HOME/.pyenv"
+path=("$HOME/.poetry/bin" "$PYENV_ROOT/bin" $path)
+eval "$(pyenv init -)"
 
 # latex
 path=("/opt/texlive/2021/bin/$(uname --machine)-$(uname --kernel-name | tr '[:upper:]' '[:lower:]')" $path)
