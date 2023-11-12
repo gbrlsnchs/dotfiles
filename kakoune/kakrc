@@ -1,5 +1,6 @@
 require-module "number-toggle"
 set-option global number_toggle_params -hlcursor
+set-option global ui_options terminal_assistant=none
 
 add-highlighter global/ wrap
 add-highlighter global/ show-whitespaces -tab "»"
