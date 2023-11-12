@@ -24,7 +24,7 @@ media-video/pipewire                     extra ffmpeg jack-sdk pipewire-alsa sou
 net-im/discord                           system-ffmpeg
 net-misc/openssh                         security-key
 net-vpn/openvpn                          inotify iproute2
-sys-apps/systemd-utils                   boot
+sys-apps/systemd-utils                   boot kernel-install
 sys-auth/seatd                           builtin server
 sys-devel/clang-toolchain-symlinks       gcc-symlinks
 sys-kernel/gentoo-sources                symlink
