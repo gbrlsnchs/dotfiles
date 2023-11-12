@@ -1,0 +1,73 @@
+From 39b850a6f2d2082e46c7c1d3f44c348f7c6f000c Mon Sep 17 00:00:00 2001
+From: Aleksi Hannula <ahannula4@gmail.com>
+Date: Thu, 15 Jul 2021 18:33:29 +0300
+Subject: [PATCH 7/7] Implement customizable terminal title
+
+---
+ src/terminal_ui.cc | 29 ++++++++++++++++++++++++-----
+ src/terminal_ui.hh |  1 +
+ 2 files changed, 25 insertions(+), 5 deletions(-)
+
+diff --git a/src/terminal_ui.cc b/src/terminal_ui.cc
+index d411dd671c..27ea4dcb27 100644
+--- a/src/terminal_ui.cc
++++ b/src/terminal_ui.cc
+@@ -611,13 +611,22 @@ void TerminalUI::draw_status(const DisplayLine& status_line,
+         constexpr char suffix[] = " - Kakoune\007";
+         writer.write("\033]2;");
+         // Fill title escape sequence buffer, removing non ascii characters
+-        for (auto& atom : mode_line)
++        if (m_title_line.empty())
+         {
+-            const auto str = atom.content();
+-            for (auto it = str.begin(), end = str.end(); it != end; utf8::to_next(it, end))
++            for (auto& atom : mode_line)
++            {
++                const auto str = atom.content();
++                for (auto it = str.begin(), end = str.end(); it != end; utf8::to_next(it, end))
++                    writer.write((*it >= 0x20 and *it <= 0x7e) ? *it : '?');
++            }
++            writer.write(suffix);
++        }
++        else
++        {
++            for (auto it = m_title_line.begin(), end = m_title_line.end(); it != end; utf8::to_next(it, end))
+                 writer.write((*it >= 0x20 and *it <= 0x7e) ? *it : '?');
++            writer.write("\007");
+         }
+-        writer.write(suffix);
+     }
+ 
+     m_dirty = true;
+@@ -1518,7 +1527,17 @@ void TerminalUI::set_ui_options(const Options& options)
+     auto to_bool = [](StringView s) { return s == "yes" or s == "true"; };
+ 
+     m_status_on_top = find("terminal_status_on_top").map(to_bool).value_or(false);
+-    m_set_title = find("terminal_set_title").map(to_bool).value_or(true);
++
++    auto title_config = find("terminal_set_title").value_or("yes");
++    if (title_config != "yes" and title_config != "no" and title_config != "true" and title_config != "false")
++    {
++        m_set_title = true;
++        m_title_line = String(title_config);
++    }
++    else {
++        m_set_title = to_bool(title_config);
++        m_title_line = "";
++    }
+ 
+     auto synchronized = find("terminal_synchronized").map(to_bool);
+     m_synchronized.set = (bool)synchronized;
+diff --git a/src/terminal_ui.hh b/src/terminal_ui.hh
+index dd4ef870ba..1bfb3aac6b 100644
+--- a/src/terminal_ui.hh
++++ b/src/terminal_ui.hh
+@@ -154,6 +154,7 @@ private:
+     int m_shift_function_key = default_shift_function_key;
+ 
+     bool m_set_title = true;
++    String m_title_line;
+ 
+     struct Synchronized
+     {
+
