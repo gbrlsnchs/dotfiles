@@ -1,5 +1,7 @@
 app-text/grip
 # app-text/pandoc
 app-text/texlive
+app-text/zathura
+app-text/zathura-pdf-mupdf
 dev-tex/texlab::gbrlsnchs
 media-gfx/graphviz

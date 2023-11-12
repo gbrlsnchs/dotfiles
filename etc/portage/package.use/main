@@ -4,6 +4,7 @@ app-containers/docker-credential-helpers keyring
 app-emulation/libvirt                    policykit
 app-emulation/qemu                       static-user QEMU_SOFTMMU_TARGETS: aarch64 QEMU_USER_TARGETS: aarch64
 app-text/texlive                         context extra graphics humanities luatex -X
+app-text/zathura                         sqlite synctext
 dev-db/mysql                             -perl -server
 dev-db/postgresql                        -server
 dev-java/openjdk                         source
