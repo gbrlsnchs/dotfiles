@@ -1,0 +1,28 @@
+[language_server.texlab]
+filetypes = ["latex"]
+roots = [".git", ".hg"]
+command = "texlab"
+
+[language_server.texlab.settings.texlab]
+# See https://github.com/latex-lsp/texlab/wiki/Configuration
+#
+# Preview configuration for zathura with SyncTeX search.
+# For other PDF viewers see https://github.com/latex-lsp/texlab/wiki/Previewing
+forwardSearch.executable = "zathura"
+forwardSearch.args = [
+    "%p",
+    "--synctex-forward", # Support texlab-forward-search
+    "%l:1:%f",
+    "--synctex-editor-command", # Inverse search: use Control+Left-Mouse-Button to jump to source.
+    """
+        sh -c '
+            echo "
+                evaluate-commands -client %opt{texlab_client} %{
+                    evaluate-commands -try-client %opt{jumpclient} %{
+                        edit -- %{input} %{line}
+                    }
+                }
+            " | kak -p $kak_session
+        '
+    """,
+]
