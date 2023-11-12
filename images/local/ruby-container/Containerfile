@@ -1,0 +1,4 @@
+FROM docker.io/ruby
+RUN gem install \
+	solargraph \
+	ruby-lsp ruby-lsp-rails

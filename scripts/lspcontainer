@@ -1,5 +1,7 @@
 #!/bin/sh
 
+lsp_runtime="${LSP_RUNTIME:-nodejs}"
+
 podman container run \
 	--rm \
 	--interactive \
@@ -7,4 +9,4 @@ podman container run \
 	--workdir "$PWD" \
 	--volume "$PWD:$PWD:z" \
 	--pid host \
-	lsp-container $@
+	"${lsp_runtime}-container" $@
