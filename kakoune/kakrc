@@ -277,19 +277,25 @@ try %{
 	define-command find-favorites -docstring "Find favorited files" %{
 		terminal-popup /tmp/kak/cmd/favs %val{session} %val{client}
 	}
-	define-command split %{
-		new eval buffer %val{bufname} ";" select %val{selection_desc}
-	}
 	alias global fdf find-favorites
+}
+
+define-command split -docstring "Open current buffer in a new window" %{
+	new evaluate-commands buffer %val{bufname} ";" select %val{selection_desc}
+}
+
+define-command count-lines -docstring "Count number of lines from the current selection" %{
+	echo %sh{
+		printf 'selected lines: %d\n' $(wc --lines <<< ${kak_selections})
+	}
 }
 
 map -docstring "Insert current buffer's directory" global prompt <a-/> '%sh{dirname "$kak_bufname"}<a-!>/'
 
-set-option global modelinefmt "%opt{raw_modeline} LSP[%opt{lsp_modeline}]"
-
 declare-user-mode file
-map global file f "<esc>: format-buffer<ret>" -docstring "format buffer using formatcmd"
-map global file l "<esc>: lint-buffer<ret>"   -docstring "lint buffer using lintcmd"
+map global file f "<esc>:format-buffer<ret>" -docstring "format buffer using formatcmd"
+map global file l "<esc>:lint-buffer<ret>" -docstring "lint buffer using lintcmd"
+map global file s "<esc>:split<ret>" -docstring "split current file"
 map global user f %{:enter-user-mode file<ret>} -docstring "File mode"
 
 declare-user-mode clipboard
