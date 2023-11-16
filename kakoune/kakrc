@@ -16,6 +16,9 @@ set-option global raw_modeline "%opt{modelinefmt}"
 hook global BufCreate .* %{
 	editorconfig-load
 	autoconfigtab
+	set-option -add buffer ui_options %sh{
+		printf "terminal_set_title=%s - %s - Kakoune" ${PWD/#${HOME}/'~'} $kak_bufname
+	}
 }
 
 # LSP setup.
