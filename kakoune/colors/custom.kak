@@ -44,7 +44,7 @@ set-face global StatusLine                white,bright-black+b
 set-face global StatusLineMode            blue
 set-face global StatusLineInfo            yellow
 set-face global StatusLineValue           green
-set-face global StatusCursor              white,yellow
+set-face global StatusCursor              bright-black,yellow
 set-face global Prompt                    yellow+b
 set-face global MatchingChar              white,blue+fg
 set-face global BufferPadding             default,default
