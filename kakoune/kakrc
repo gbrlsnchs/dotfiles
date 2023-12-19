@@ -149,7 +149,6 @@ client="$2"
 sqlite3 --noheader \
 	"$XDG_STATE_HOME/kak/db/data.db" \
 	"SELECT buffer FROM favorites WHERE directory = '$PWD'" 2>/dev/null \
-	| tr --delete '\n' \
 	| fzf \
 	| xargs -I {} echo "eval -client $client edit '{}'" \
 	| kak -p "$session"

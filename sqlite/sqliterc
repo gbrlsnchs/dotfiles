@@ -1,2 +1,2 @@
 .headers ON
-.mode column
+.mode column --wrap 0
